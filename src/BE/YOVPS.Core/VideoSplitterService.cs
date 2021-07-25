@@ -57,7 +57,7 @@ namespace YOVPS.Core
             videoStream.Object.Close();
             videoFileStream.Close();
 
-            var tasks = new List<Task>();
+            //var tasks = new List<Task>();
             for (var i = 0; i < chapters.Count; i++)
             {
                 var currentChapter = chapters.ElementAt(i);
@@ -66,13 +66,13 @@ namespace YOVPS.Core
                 var fileName = $"{currentChapter.Name}.{videoStream.Name}";
                 var outputPath = Path.Combine(directory, fileName);
 
-                var task = FfmpegWrapper.TrimAndSaveToOutputAsync(path, outputPath, chapters, currentChapter, i);
-                tasks.Add(task);
+                await FfmpegWrapper.TrimAndSaveToOutputAsync(path, outputPath, chapters, currentChapter, i);
+                //tasks.Add(task);
             }
 
             Console.WriteLine("Waiting till TrimAndSaveToOutput tasks will completed");
-            await Task.WhenAll(tasks);
-            tasks.Clear();
+            //await Task.WhenAll(tasks);
+            //tasks.Clear();
 
             var zipMemoryStream = new MemoryStream();
             var zipArchive = new ZipArchive(zipMemoryStream, ZipArchiveMode.Create, false);
