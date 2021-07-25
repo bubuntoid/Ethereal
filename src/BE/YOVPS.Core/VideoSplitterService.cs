@@ -45,16 +45,16 @@ namespace YOVPS.Core
             var chapters = new VideoDescription(description ?? video.Description).ParseChapters();
 
             Console.Write("Downloading video stream... \t");
-            var stream = await GetYouTubeVideoStream(video);
+            var videoStream = await GetYouTubeVideoStream(video);
             Console.Write("Done\n");
 
             var directory = Path.Combine(tempPath, Guid.NewGuid().ToString());
             Directory.CreateDirectory(directory);
-            var path = Path.Combine(directory, "__original__.mp3");
+            var path = Path.Combine(directory, $"__original__.{videoStream.Name}");
             var videoFileStream = File.Create(path);
-            stream.Seek(0, SeekOrigin.Begin);
-            await stream.CopyToAsync(videoFileStream);
-            stream.Close();
+            videoStream.Object.Seek(0, SeekOrigin.Begin);
+            await videoStream.Object.CopyToAsync(videoFileStream);
+            videoStream.Object.Close();
             videoFileStream.Close();
 
             var tasks = new List<Task>();
@@ -63,7 +63,7 @@ namespace YOVPS.Core
                 var currentChapter = chapters.ElementAt(i);
                 currentChapter.EndTimespan ??= video.Duration;
 
-                var fileName = $"{currentChapter.Name}.mp3";
+                var fileName = $"{currentChapter.Name}.{videoStream.Name}";
                 var outputPath = Path.Combine(directory, fileName);
 
                 var task = FfmpegWrapper.TrimAndSaveToOutputAsync(path, outputPath, chapters, currentChapter, i);
@@ -81,14 +81,14 @@ namespace YOVPS.Core
                 var currentChapter = chapters.ElementAt(i);
                 currentChapter.EndTimespan ??= video.Duration;
 
-                var fileName = $"{currentChapter.Name}.mp3";
+                var fileName = $"{currentChapter.Name}.{videoStream.Name}";
                 var outputPath = Path.Combine(directory, fileName);
 
                 ComputationExtensions.ComputeElapsedTimeInMilliseconds(
                     $"CreateEntryFromFile | {currentChapter.Name} | {i + 1} / {chapters.Count}", () =>
                     {
                         Console.WriteLine($"Creating zip entry for {currentChapter.Name}...");
-                        zipArchive.CreateEntryFromFile(outputPath, fileName);
+                        zipArchive.CreateEntryFromFile(outputPath, fileName.Replace(videoStream.Name, ".mp3"));
                     });
             }
 
@@ -114,11 +114,11 @@ namespace YOVPS.Core
             return chapters.ToArray();
         }
 
-        private async Task<Stream> GetYouTubeVideoStream(IVideo video)
+        private async Task<ObjectWithName<Stream>> GetYouTubeVideoStream(IVideo video)
         {
             var manifest = await client.Videos.Streams.GetManifestAsync(video.Id);
             var info = manifest.GetAudioOnlyStreams().GetWithHighestBitrate();
-            return await client.Videos.Streams.GetAsync(info);
+            return new ObjectWithName<Stream>(await client.Videos.Streams.GetAsync(info), info.Container.Name);
         }
 
         public async Task<ObjectWithName<Stream>> DownloadMp3Async(string url, string description, int index)
