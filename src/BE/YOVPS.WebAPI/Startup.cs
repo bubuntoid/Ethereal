@@ -49,7 +49,7 @@ namespace YOVPS.WebAPI
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "YOVPS.WebAPI", Version = "v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebAPI", Version = "v1"});
             });
         }
 
@@ -60,7 +60,7 @@ namespace YOVPS.WebAPI
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "YOVPS.WebAPI v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }
 
             app.UseHttpsRedirection();
