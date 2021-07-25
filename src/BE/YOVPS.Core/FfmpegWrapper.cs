@@ -26,7 +26,7 @@ namespace YOVPS.Core
                     RedirectStandardOutput = true,
                     FileName = ExecutablesPath,
                     Arguments =
-                        $"-i \"{path}\" -ss {chapter.StartTimespan.TotalSeconds} -t {chapter.Duration.Value.TotalSeconds} \"{output}\"",
+                        $"-ss {chapter.StartTimespan.TotalSeconds} -i \"{path}\" -t {chapter.Duration.Value.TotalSeconds} -codec copy \"{output}\"",
                 }
             };
             p.Start();
