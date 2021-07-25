@@ -6,10 +6,14 @@ namespace YOVPS.Core
     {
         public string Original { get; set; }
 
-        public string ParsedName { get; set; }
+        public string Name { get; set; }
 
-        public TimeSpan ParsedTimespan { get; set; }
+        public TimeSpan StartTimespan { get; set; }
+        
+        public TimeSpan? EndTimespan { get; set; }
 
+        public TimeSpan? Duration => EndTimespan - StartTimespan;
+        
         public VideoChapter()
         {
 
@@ -18,8 +22,8 @@ namespace YOVPS.Core
         public VideoChapter(string original, string name, TimeSpan timespan)
         {
             Original = original;
-            ParsedName = name;
-            ParsedTimespan = timespan;
+            Name = name;
+            StartTimespan = timespan;
         }
     }
 }

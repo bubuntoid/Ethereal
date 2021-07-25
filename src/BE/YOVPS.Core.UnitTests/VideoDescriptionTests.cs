@@ -17,29 +17,29 @@ namespace YOVPS.Core.UnitTests
             new VideoChapter 
             {
                 Original = "1. (0:00) KOPI / KOBASOLO – Swayed in Spring Reiniscence", 
-                ParsedName = "1. KOPI  KOBASOLO – Swayed in Spring Reiniscence", 
-                ParsedTimespan = new TimeSpan(00, 00, 00),
+                Name = "1. KOPI  KOBASOLO – Swayed in Spring Reiniscence", 
+                StartTimespan = new TimeSpan(00, 00, 00),
             },
             
             new VideoChapter 
             {
                 Original = "2. (09:13) Memai Siren -Nisemono no Utage", 
-                ParsedName = "2. Memai Siren -Nisemono no Utage", 
-                ParsedTimespan = new TimeSpan(00, 09, 13),
+                Name = "2. Memai Siren -Nisemono no Utage", 
+                StartTimespan = new TimeSpan(00, 09, 13),
             },
             
             new VideoChapter 
             {
                 Original = "3. (34:36) Vivid Undress – Sayonara Dilemma", 
-                ParsedName = "3. Vivid Undress – Sayonara Dilemma", 
-                ParsedTimespan = new TimeSpan(00, 34, 36),
+                Name = "3. Vivid Undress – Sayonara Dilemma", 
+                StartTimespan = new TimeSpan(00, 34, 36),
             },
             
             new VideoChapter 
             {
                 Original = "4. (1:23:31) Vivid Undress – Yours", 
-                ParsedName = "4. Vivid Undress – Yours", 
-                ParsedTimespan = new TimeSpan(01, 23, 31),
+                Name = "4. Vivid Undress – Yours", 
+                StartTimespan = new TimeSpan(01, 23, 31),
             }
         };
 

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -18,17 +20,15 @@ namespace YOVPS.WebAPI.Controllers.MainController
             this.splitter = splitter;
         }
 
-        // [HttpGet("stream/mp3")]
-        // public async Task<IActionResult> GetAudioStream([FromQuery] VideoCredentialsDto dto)
-        // {
-        //     return File(await splitter.GetAudioStreamAsync(dto.Url, dto.Description, dto.Index),
-        //         "application/octet-stream", true);
-        // }
-        
         [HttpGet("download/zip")]
         public async Task<IActionResult> DownloadZip([FromQuery] VideoCredentialsDto dto)
         {
+            var watch = new Stopwatch();
+            watch.Start();
             var result = await splitter.DownloadZipAsync(dto.Url, dto.Description);
+            watch.Stop();
+            Console.WriteLine($"download/zip took {watch.Elapsed.TotalSeconds} seconds");
+            
             return File(result.Object, "application/zip", result.Name);
         }
 
@@ -45,31 +45,20 @@ namespace YOVPS.WebAPI.Controllers.MainController
             return Ok(await splitter.GetThumbnailUrlAsync(url));
         }
         
-        [HttpGet("chapters/url")]
-        public async Task<IActionResult> GetChaptersByUrl(string url)
+        [HttpGet("chapters")]
+        public async Task<IActionResult> GetChaptersByUrl([FromQuery] VideoCredentialsDto dto)
         {
             // todo: add mapper
-            var chapters = await splitter.GetChaptersByUrlAsync(url);
+            var chapters = await splitter.GetChaptersAsync(dto.Url, dto.Description);
             var mapped = chapters.Select(chapter => new VideoChapterDto
             {
-                Name = chapter.ParsedName,
-                Timespan = chapter.ParsedTimespan.ToString(),
+                Name = chapter.Name,
+                StartTimespan = chapter.StartTimespan.ToString(),
+                EndTimespan = chapter.EndTimespan.ToString(),
+                Duration = chapter.Duration.ToString(),
+                Original = chapter.Original
             });
             
-            return Ok(mapped);
-        }
-
-        [HttpGet("chapters/description")]
-        public IActionResult GetChaptersByDescription(string description)
-        {
-            // todo: add mapper
-            var chapters = splitter.GetChaptersByDescription(description);
-            var mapped = chapters.Select(chapter => new VideoChapterDto
-            {
-                Name = chapter.ParsedName,
-                Timespan = chapter.ParsedTimespan.ToString(),
-            });
-
             return Ok(mapped);
         }
     }

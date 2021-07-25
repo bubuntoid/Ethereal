@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Xabe.FFmpeg;
 using YoutubeExplode;
 using YoutubeExplode.Videos;
 using YoutubeExplode.Videos.Streams;
@@ -21,9 +22,10 @@ namespace YOVPS.Core
         {
             this.tempPath = tempPath;
             this.executablesPath = executablesPath;
-            FFmpeg.SetExecutablesPath(executablesPath);
             
             client = new YoutubeClient();
+            
+            FfmpegWrapper.ExecutablesPath = executablesPath;
         }
 
         public async Task<string> GetThumbnailUrlAsync(string url)
@@ -40,7 +42,7 @@ namespace YOVPS.Core
 
             var directory = Path.Combine(tempPath, Guid.NewGuid().ToString());
             Directory.CreateDirectory(directory);
-            var path = Path.Combine(directory, "__original__");
+            var path = Path.Combine(directory, "__original__.mp3");
             var videoFileStream = File.Create(path);
             stream.Seek(0, SeekOrigin.Begin);
             await stream.CopyToAsync(videoFileStream);
@@ -52,45 +54,40 @@ namespace YOVPS.Core
             for (var i = 0; i < chapters.Count; i++)
             {
                 var currentChapter = chapters.ElementAt(i);
-                var startTimespan = currentChapter.ParsedTimespan;
-                var endTimespan = i == chapters.Count - 1
-                    // ReSharper disable once PossibleInvalidOperationException
-                    ? video.Duration.Value
-                    : chapters.ElementAt(i + 1).ParsedTimespan;
-                var duration = endTimespan - startTimespan;
-
-                var fileName = $"{currentChapter.ParsedName}.mp3";
+                currentChapter.EndTimespan ??= video.Duration;
+                
+                var fileName = $"{currentChapter.Name}.mp3";
                 var outputPath = Path.Combine(directory, fileName);
 
-                var mediaInfo = await FFmpeg.GetMediaInfo(path);
-                var mediaInfoStream = mediaInfo.AudioStreams.First().Split(startTimespan, duration);
-                await FFmpeg.Conversions.New()
-                    .AddStream(mediaInfoStream)
-                    .SetOutput(outputPath)
-                    .Start();
+                ComputationExtensions.ComputeElapsedTimeInMilliseconds(
+                    $"TrimAndSaveToOutput | {video.Title} | {i + 1} / {chapters.Count}", () =>
+                        FfmpegWrapper.TrimAndSaveToOutput(path, outputPath, currentChapter.StartTimespan, currentChapter.Duration.Value));
 
-                zipArchive.CreateEntryFromFile(outputPath, fileName);
+                ComputationExtensions.ComputeElapsedTimeInMilliseconds(
+                    $"CreateEntryFromFile | {video.Title} | {i + 1} / {chapters.Count}", () =>
+                        zipArchive.CreateEntryFromFile(outputPath, fileName));
             }
 
             zipArchive.Dispose();
             zipMemoryStream.Close();
 
             Directory.Delete(directory, true);
+            
             return new ObjectWithName<byte[]>(zipMemoryStream.ToArray(),
                 $"{video.Title.RemoveIllegalCharacters()}.zip");
         }
 
-        public async Task<VideoChapter[]> GetChaptersByUrlAsync(string url)
+        public async Task<VideoChapter[]> GetChaptersAsync(string url, string description = null)
         {
             var video = await client.Videos.GetAsync(url);
-            return new VideoDescription(video.Description).ParseChapters().ToArray();
+            var chapters = new VideoDescription(description ?? video.Description).ParseChapters();
+            for (var i = 0; i < chapters.Count; i++)
+            {
+                var currentChapter = chapters.ElementAt(i);
+                currentChapter.EndTimespan ??= video.Duration;
+            }
+            return chapters.ToArray();
         }
-
-        public VideoChapter[] GetChaptersByDescription(string description)
-        {
-            return new VideoDescription(description).ParseChapters().ToArray();
-        }
-
         private async Task<Stream> GetYouTubeVideoStream(IVideo video)
         {
             var manifest = await client.Videos.Streams.GetManifestAsync(video.Id);
@@ -115,22 +112,17 @@ namespace YOVPS.Core
             videoFileStream.Close();
             
             var currentChapter = chapters.ElementAt(index);
-            var startTimespan = currentChapter.ParsedTimespan;
+            var startTimespan = currentChapter.StartTimespan;
             var endTimespan = index == chapters.Count - 1
                 // ReSharper disable once PossibleInvalidOperationException
                 ? video.Duration.Value
-                : chapters.ElementAt(index + 1).ParsedTimespan;
+                : chapters.ElementAt(index + 1).StartTimespan;
             var duration = endTimespan - startTimespan;
             
-            var filename = $"{currentChapter.ParsedName}.mp3";
+            var filename = $"{currentChapter.Name}.mp3";
             var outputPath = Path.Combine(directory, filename);
             
-            var mediaInfo = await FFmpeg.GetMediaInfo(path);
-            var mediaInfoStream = mediaInfo.AudioStreams.First().Split(startTimespan, duration);
-            await FFmpeg.Conversions.New()
-                .AddStream(mediaInfoStream)
-                .SetOutput(outputPath)
-                .Start();
+            FfmpegWrapper.TrimAndSaveToOutput(path, outputPath, startTimespan, duration);
 
             return new ObjectWithName<Stream>(File.OpenRead(outputPath), filename);
         }

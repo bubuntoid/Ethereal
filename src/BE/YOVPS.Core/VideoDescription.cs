@@ -43,13 +43,23 @@ namespace YOVPS.Core
                 var chapter = new VideoChapter
                 {
                     Original = line,
-                    ParsedTimespan = timespan,
-                    ParsedName = line.RemoveTimespan().RemoveIllegalCharacters(),
+                    StartTimespan = timespan,
+                    Name = line.RemoveTimespan().RemoveIllegalCharacters(),
+                    
                 };
                 chapters.Add(chapter);
 
                 index++;
-            } 
+            }
+
+            for (var i = 0; i < chapters.Count; i++)
+            {
+                var currentChapter = chapters.ElementAt(i);
+                currentChapter.EndTimespan = i == chapters.Count - 1
+                    // ReSharper disable once PossibleInvalidOperationException
+                    ? null
+                    : chapters.ElementAt(i + 1).StartTimespan;
+            }
 
             return chapters;
         }
