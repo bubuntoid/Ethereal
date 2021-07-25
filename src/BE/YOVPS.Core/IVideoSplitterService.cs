@@ -3,11 +3,8 @@ using System.Threading.Tasks;
 
 namespace YOVPS.Core
 {
-    public interface IVideoSplitter
+    public interface IVideoSplitterService
     {
-        string TempPath { get; set; }
-        string ExecutablesPath { get; set; }
-
         Task<ObjectWithName<byte[]>> DownloadZipAsync(string url, string description = null);
 
         Task<VideoChapter[]> GetChaptersByUrlAsync(string url);

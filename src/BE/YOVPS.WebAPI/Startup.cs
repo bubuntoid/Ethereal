@@ -13,7 +13,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Xabe.FFmpeg;
 using YOVPS.Core;
+using YOVPS.WebAPI.Settings;
+using HostingEnvironmentExtensions = Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions;
 
 namespace YOVPS.WebAPI
 {
@@ -40,10 +43,14 @@ namespace YOVPS.WebAPI
                     });
             });
 
-            services.AddScoped<IVideoSplitter>(s => new VideoSplitter
+            services.AddScoped<FfmpegSettings>();
+            services.AddScoped<IVideoSplitterService>(s =>
             {
-                TempPath = Path.Combine(Directory.GetCurrentDirectory(), "temp"),
-                ExecutablesPath = Directory.GetCurrentDirectory(),
+                var settings = s.GetService<FfmpegSettings>();
+
+                return new VideoSplitterService(
+                    tempPath: settings.TempPath,
+                    executablesPath: string.IsNullOrEmpty(settings.ExecutablesPath) ? null : settings.ExecutablesPath);
             });
 
             services.AddControllers();

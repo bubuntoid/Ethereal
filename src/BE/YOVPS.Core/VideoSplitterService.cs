@@ -11,15 +11,18 @@ using YOVPS.Core.Extensions;
 
 namespace YOVPS.Core
 {
-    public class VideoSplitter : IVideoSplitter
+    public class VideoSplitterService : IVideoSplitterService
     {
         private readonly YoutubeClient client;
-        public string TempPath { get; set; }
-        public string ExecutablesPath { get; set; }
+        private readonly string tempPath;
+        private readonly string executablesPath;
         
-        public VideoSplitter()
+        public VideoSplitterService(string tempPath, string executablesPath)
         {
-            FFmpeg.SetExecutablesPath(ExecutablesPath);
+            this.tempPath = tempPath;
+            this.executablesPath = executablesPath;
+            FFmpeg.SetExecutablesPath(executablesPath);
+            
             client = new YoutubeClient();
         }
 
@@ -35,7 +38,7 @@ namespace YOVPS.Core
             var chapters = new VideoDescription(description ?? video.Description).ParseChapters();
             var stream = await GetYouTubeVideoStream(video);
 
-            var directory = Path.Combine(TempPath, Guid.NewGuid().ToString());
+            var directory = Path.Combine(tempPath, Guid.NewGuid().ToString());
             Directory.CreateDirectory(directory);
             var path = Path.Combine(directory, "__original__");
             var videoFileStream = File.Create(path);
@@ -102,7 +105,7 @@ namespace YOVPS.Core
                 .ParseChapters();
             var stream = await GetYouTubeVideoStream(video);
             
-            var directory = Path.Combine(TempPath, Guid.NewGuid().ToString());
+            var directory = Path.Combine(tempPath, Guid.NewGuid().ToString());
             Directory.CreateDirectory(directory);
             var path = Path.Combine(directory, "__original__");
             var videoFileStream = File.Create(path);

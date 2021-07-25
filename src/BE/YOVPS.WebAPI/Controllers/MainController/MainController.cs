@@ -11,9 +11,9 @@ namespace YOVPS.WebAPI.Controllers.MainController
     [Route("api")]
     public class MainController : ControllerBase
     {
-        private readonly IVideoSplitter splitter;
+        private readonly IVideoSplitterService splitter;
 
-        public MainController(IVideoSplitter splitter)
+        public MainController(IVideoSplitterService splitter)
         {
             this.splitter = splitter;
         }
@@ -25,14 +25,14 @@ namespace YOVPS.WebAPI.Controllers.MainController
         //         "application/octet-stream", true);
         // }
         
-        [HttpPost("download/zip")]
+        [HttpGet("download/zip")]
         public async Task<IActionResult> DownloadZip([FromQuery] ProcessRequestDto dto)
         {
             var result = await splitter.DownloadZipAsync(dto.Url, dto.Description);
             return File(result.Object, "application/zip", result.Name);
         }
 
-        [HttpPost("download/mp3")]
+        [HttpGet("download/mp3")]
         public async Task<IActionResult> DownloadMp3([FromQuery] VideoCredentialsDto dto)
         {
             var result = await splitter.DownloadMp3Async(dto.Url, dto.Description, dto.Index);

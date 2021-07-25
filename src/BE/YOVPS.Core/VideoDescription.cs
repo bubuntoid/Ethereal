@@ -11,8 +11,7 @@ namespace YOVPS.Core
     public class VideoDescription
     {
         // ReSharper disable once InconsistentNaming
-        private readonly string[] FirstChapterVariants = new string[]
-        {
+        private readonly string[] FirstChapterVariants = {
             "0:00", 
             "00:00", 
             "00:00:00"
