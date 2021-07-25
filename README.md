@@ -2,6 +2,12 @@
 Youtube One Video Playlist Splitter
 
 ## Backend
+* .NET 5.0
+* ASP.NET Core 5.6.3
+* FFMPEG 4.2.4-1ubuntu0.1
+* Nunit 3.13.1
+  * FluentAssertions 5.10.3
+
 test server endpoint: http://81.177.135.200:322 </br>
 swagger: http://81.177.135.200:322/swagger/index.html
 
@@ -28,3 +34,5 @@ v2:
 - thumbnail for each chapter
 - native ffmpeg usage / own client (?)
 - choose bitrate quality
+- fluent validator
+- github ci/cd
