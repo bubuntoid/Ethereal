@@ -31,9 +31,9 @@ v1 / mvp:
 v2:
 - [ ] db usage with processing status 
   - MariaDb / MySQL / PostgreSQL
-- [ ] total optimization
+- [X] total optimization
 - [ ] thumbnail for each chapter
 - [X] native ffmpeg usage / own client (?)
-- [ ] choose bitrate quality
+- [X] choose bitrate quality
 - [ ] fluent validator
 - [ ] github ci/cd
