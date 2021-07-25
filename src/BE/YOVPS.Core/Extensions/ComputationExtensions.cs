@@ -15,5 +15,14 @@ namespace YOVPS.Core.Extensions
             Console.WriteLine($"{actionName} took {stopwatch.ElapsedMilliseconds} ms");
             return stopwatch.ElapsedMilliseconds;
         }
+        
+        public static async Task ComputeElapsedTimeInMillisecondsAsync(string actionName, Task action)
+        {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            await action;
+            stopwatch.Stop();
+            Console.WriteLine($"{actionName} took {stopwatch.ElapsedMilliseconds} ms");
+        }
     }
 }

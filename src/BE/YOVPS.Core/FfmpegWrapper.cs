@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using YOVPS.Core.Extensions;
 
 namespace YOVPS.Core
 {
@@ -8,8 +12,11 @@ namespace YOVPS.Core
     {
         public static string ExecutablesPath { get; set; }
 
-        public static void TrimAndSaveToOutput(string path, string output, TimeSpan from, TimeSpan to)
+        public static async Task TrimAndSaveToOutputAsync(string path, string output,
+            IEnumerable<VideoChapter> chapters, VideoChapter chapter, int index)
         {
+            Console.WriteLine($"Processing {chapter.Name}...");
+            
             using var p = new Process
             {
                 StartInfo =
@@ -17,21 +24,16 @@ namespace YOVPS.Core
                     UseShellExecute = false,
                     CreateNoWindow = true,
                     RedirectStandardOutput = true,
-                    FileName = Path.Combine(ExecutablesPath),
-                    Arguments = $"-i \"{path}\" -ss {from.TotalSeconds} -t {to.TotalSeconds} \"{output}\"",
+                    FileName = ExecutablesPath,
+                    Arguments =
+                        $"-i \"{path}\" -ss {chapter.StartTimespan.TotalSeconds} -t {chapter.Duration.Value.TotalSeconds} \"{output}\"",
                 }
             };
             p.Start();
-            p.WaitForExit();
-        }
 
-        private static bool IsLinux
-        {
-            get
-            {
-                var p = (int) Environment.OSVersion.Platform;
-                return p is 4 or 6 or 128;
-            }
+            await ComputationExtensions.ComputeElapsedTimeInMillisecondsAsync(
+                $"TrimAndSaveToOutput | {chapter.Name} | {index + 1} / {chapters.Count()}",
+                p.WaitForExitAsync());
         }
     }
 }
