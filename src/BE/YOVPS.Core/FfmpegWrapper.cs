@@ -17,7 +17,7 @@ namespace YOVPS.Core
                     UseShellExecute = false,
                     CreateNoWindow = true,
                     RedirectStandardOutput = true,
-                    FileName = Path.Combine(ExecutablesPath, IsLinux ? "ffmpeg" : "ffmpeg.exe"),
+                    FileName = Path.Combine(ExecutablesPath),
                     Arguments = $"-i \"{path}\" -ss {from.TotalSeconds} -t {to.TotalSeconds} \"{output}\"",
                 }
             };
