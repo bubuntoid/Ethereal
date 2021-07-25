@@ -26,7 +26,7 @@ namespace YOVPS.WebAPI.Controllers.MainController
         // }
         
         [HttpGet("download/zip")]
-        public async Task<IActionResult> DownloadZip([FromQuery] ProcessRequestDto dto)
+        public async Task<IActionResult> DownloadZip([FromQuery] VideoCredentialsDto dto)
         {
             var result = await splitter.DownloadZipAsync(dto.Url, dto.Description);
             return File(result.Object, "application/zip", result.Name);
@@ -35,7 +35,7 @@ namespace YOVPS.WebAPI.Controllers.MainController
         [HttpGet("download/mp3")]
         public async Task<IActionResult> DownloadMp3([FromQuery] VideoCredentialsDto dto)
         {
-            var result = await splitter.DownloadMp3Async(dto.Url, dto.Description, dto.Index);
+            var result = await splitter.DownloadMp3Async(dto.Url, dto.Description, dto.Index.Value);
             return File(result.Object, "application/octet-stream", result.Name);
         }
 
