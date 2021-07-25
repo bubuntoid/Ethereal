@@ -116,7 +116,7 @@ namespace YOVPS.Core
         private async Task<ObjectWithName<Stream>> GetYouTubeVideoStream(IVideo video)
         {
             var manifest = await client.Videos.Streams.GetManifestAsync(video.Id);
-            var info = manifest.GetAudioOnlyStreams().GetWithHighestBitrate();
+            var info = manifest.GetAudioOnlyStreams().FirstOrDefault(x => x.Container.Name == "mp4");
             return new ObjectWithName<Stream>(await client.Videos.Streams.GetAsync(info), info.Container.Name);
         }
 
