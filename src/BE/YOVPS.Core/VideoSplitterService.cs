@@ -79,7 +79,6 @@ namespace YOVPS.Core
             for (var i = 0; i < chapters.Count; i++)
             {
                 var currentChapter = chapters.ElementAt(i);
-                currentChapter.EndTimespan ??= video.Duration;
 
                 var fileName = $"{currentChapter.Name}.{videoStream.Name}";
                 var outputPath = Path.Combine(directory, fileName);
@@ -123,36 +122,34 @@ namespace YOVPS.Core
 
         public async Task<ObjectWithName<Stream>> DownloadMp3Async(string url, string description, int index)
         {
-            return null;
+            Console.Write("Fetching video... \t");
+            var video = await client.Videos.GetAsync(url);
+            Console.Write("Done\n");
 
-            // var video = await client.Videos.GetAsync(url);
-            // var chapters = new VideoDescription(string.IsNullOrEmpty(description) ? video.Description : description)
-            //     .ParseChapters();
-            // var stream = await GetYouTubeVideoStream(video);
-            // 
-            // var directory = Path.Combine(tempPath, Guid.NewGuid().ToString());
-            // Directory.CreateDirectory(directory);
-            // var path = Path.Combine(directory, "__original__");
-            // var videoFileStream = File.Create(path);
-            // stream.Seek(0, SeekOrigin.Begin);
-            // await stream.CopyToAsync(videoFileStream);
-            // stream.Close();
-            // videoFileStream.Close();
-            // 
-            // var currentChapter = chapters.ElementAt(index);
-            // var startTimespan = currentChapter.StartTimespan;
-            // var endTimespan = index == chapters.Count - 1
-            //     // ReSharper disable once PossibleInvalidOperationException
-            //     ? video.Duration.Value
-            //     : chapters.ElementAt(index + 1).StartTimespan;
-            // var duration = endTimespan - startTimespan;
-            // 
-            // var filename = $"{currentChapter.Name}.mp3";
-            // var outputPath = Path.Combine(directory, filename);
-            // 
-            // FfmpegWrapper.TrimAndSaveToOutput(path, outputPath, startTimespan, duration);
-            // 
-            // return new ObjectWithName<Stream>(File.OpenRead(outputPath), filename);
+            var chapters = new VideoDescription(description ?? video.Description).ParseChapters();
+
+            Console.Write("Downloading video stream... \t");
+            var videoStream = await GetYouTubeVideoStream(video);
+            Console.Write("Done\n");
+
+            var directory = Path.Combine(tempPath, Guid.NewGuid().ToString());
+            Directory.CreateDirectory(directory);
+            var path = Path.Combine(directory, $"__original__.{videoStream.Name}");
+            var videoFileStream = File.Create(path);
+            videoStream.Object.Seek(0, SeekOrigin.Begin);
+            await videoStream.Object.CopyToAsync(videoFileStream);
+            videoStream.Object.Close();
+            videoFileStream.Close();
+            
+            var currentChapter = chapters.ElementAt(index);
+            currentChapter.EndTimespan ??= video.Duration;
+
+            var fileName = $"{currentChapter.Name}.{videoStream.Name}";
+            var outputPath = Path.Combine(directory, fileName);
+
+            await FfmpegWrapper.TrimAndSaveToOutputAsync(path, outputPath, chapters, currentChapter, index);
+            
+            return new ObjectWithName<Stream>(File.OpenRead(outputPath), outputPath);
         }
     }
 }
