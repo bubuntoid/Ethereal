@@ -25,7 +25,7 @@ v1 / mvp:
 - [ ] VideoSplitterService unit tests
 - [ ] StringExtensions unit tests
 - [ ] TimeSpanExtensions unit tests
-- [ ] Add logs
+- [X] Add logs
 - [ ] dry VideoSplitterService
 
 v2:
