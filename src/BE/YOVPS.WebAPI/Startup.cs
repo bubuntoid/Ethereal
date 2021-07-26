@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using YOVPS.Core;
+using YOVPS.WebAPI.Filters;
 using YOVPS.WebAPI.Settings;
 using HostingEnvironmentExtensions = Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions;
 
@@ -42,6 +43,8 @@ namespace YOVPS.WebAPI
                     });
             });
 
+            services.AddScoped<ExceptionFilter>();
+            
             services.AddScoped<FfmpegSettings>();
             services.AddScoped<IVideoSplitterService>(s =>
             {

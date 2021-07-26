@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using NLog;
 
 namespace YOVPS.Core.Extensions
 {
     public static class ComputationExtensions
     {
+        // ReSharper disable once InconsistentNaming
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        
         public static long ComputeElapsedTimeInMilliseconds(string actionName, Action action)
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             action.Invoke();
             stopwatch.Stop();
-            Console.WriteLine($"{actionName} took {stopwatch.ElapsedMilliseconds} ms");
+            logger.Info($"{actionName} took {stopwatch.ElapsedMilliseconds} ms");
             return stopwatch.ElapsedMilliseconds;
         }
         
@@ -22,7 +26,7 @@ namespace YOVPS.Core.Extensions
             stopwatch.Start();
             await action;
             stopwatch.Stop();
-            Console.WriteLine($"{actionName} took {stopwatch.ElapsedMilliseconds} ms");
+            logger.Info($"{actionName} took {stopwatch.ElapsedMilliseconds} ms");
         }
     }
 }

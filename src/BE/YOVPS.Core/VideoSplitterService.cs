@@ -7,15 +7,19 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using NLog;
 using YoutubeExplode;
 using YoutubeExplode.Videos;
 using YoutubeExplode.Videos.Streams;
+using YOVPS.Core.Exceptions;
 using YOVPS.Core.Extensions;
 
 namespace YOVPS.Core
 {
     public class VideoSplitterService : IVideoSplitterService
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+        
         private readonly YoutubeClient client;
         private readonly string tempPath;
         private readonly string executablesPath;
@@ -38,15 +42,17 @@ namespace YOVPS.Core
 
         public async Task<ObjectWithName<byte[]>> DownloadZipAsync(string url, string description = null)
         {
-            Console.Write("Fetching video... \t");
+            logger.Info("Fetching video... \t");
             var video = await client.Videos.GetAsync(url);
-            Console.Write("Done\n");
+            logger.Info("Done\n");
 
             var chapters = new VideoDescription(description ?? video.Description).ParseChapters();
-
-            Console.Write("Downloading video stream... \t");
+            if (chapters.Count == 0)
+                throw description == null ? new ChaptersNotFoundException() : new ChaptersParseException(); 
+            
+            logger.Info("Downloading video stream... \t");
             var videoStream = await GetYouTubeVideoStream(video);
-            Console.Write("Done\n");
+            logger.Info("Done\n");
 
             var directory = Path.Combine(tempPath, Guid.NewGuid().ToString());
             Directory.CreateDirectory(directory);
@@ -57,6 +63,7 @@ namespace YOVPS.Core
             videoStream.Object.Close();
             videoFileStream.Close();
 
+            var tasks = new List<Task>();
             for (var i = 0; i < chapters.Count; i++)
             {
                 var currentChapter = chapters.ElementAt(i);
@@ -65,10 +72,12 @@ namespace YOVPS.Core
                 var fileName = $"{currentChapter.Name}.{videoStream.Name}";
                 var outputPath = Path.Combine(directory, fileName);
 
-                await FfmpegWrapper.TrimAndSaveToOutputAsync(path, outputPath, chapters, currentChapter, i);
+                var task = FfmpegWrapper.TrimAndSaveToOutputAsync(path, outputPath, currentChapter, i, chapters.Count);
+                tasks.Add(task);
             }
 
-            Console.WriteLine("Waiting till TrimAndSaveToOutput tasks will completed");
+            logger.Info("Waiting till TrimAndSaveToOutput tasks will completed");
+            await Task.WhenAll(tasks);
 
             var zipMemoryStream = new MemoryStream();
             var zipArchive = new ZipArchive(zipMemoryStream, ZipArchiveMode.Create, false);
@@ -82,7 +91,7 @@ namespace YOVPS.Core
                 ComputationExtensions.ComputeElapsedTimeInMilliseconds(
                     $"CreateEntryFromFile | {currentChapter.Name} | {i + 1} / {chapters.Count}", () =>
                     {
-                        Console.WriteLine($"Creating zip entry for {currentChapter.Name}...");
+                        logger.Info($"Creating zip entry for {currentChapter.Name}...");
                         zipArchive.CreateEntryFromFile(outputPath, fileName.Replace(videoStream.Name, ".mp3"));
                     });
             }
@@ -118,15 +127,15 @@ namespace YOVPS.Core
 
         public async Task<ObjectWithName<Stream>> DownloadMp3Async(string url, string description, int index)
         {
-            Console.Write("Fetching video... \t");
+            logger.Info("Fetching video... \t");
             var video = await client.Videos.GetAsync(url);
-            Console.Write("Done\n");
+            logger.Info("Done\n");
 
             var chapters = new VideoDescription(description ?? video.Description).ParseChapters();
 
-            Console.Write("Downloading video stream... \t");
+            logger.Info("Downloading video stream... \t");
             var videoStream = await GetYouTubeVideoStream(video);
-            Console.Write("Done\n");
+            logger.Info("Done\n");
 
             var directory = Path.Combine(tempPath, Guid.NewGuid().ToString());
             Directory.CreateDirectory(directory);
@@ -143,7 +152,7 @@ namespace YOVPS.Core
             var fileName = $"{currentChapter.Name}.{videoStream.Name}";
             var outputPath = Path.Combine(directory, fileName);
 
-            await FfmpegWrapper.TrimAndSaveToOutputAsync(path, outputPath, chapters, currentChapter, index);
+            await FfmpegWrapper.TrimAndSaveToOutputAsync(path, outputPath, currentChapter, index, chapters.Count);
             
             return new ObjectWithName<Stream>(File.OpenRead(outputPath), outputPath);
         }

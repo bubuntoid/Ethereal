@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using YOVPS.Core.Exceptions;
 using YOVPS.Core.Extensions;
 
 namespace YOVPS.Core
@@ -34,6 +35,12 @@ namespace YOVPS.Core
             var firstLine = lines.FirstOrDefault(line => FirstChapterVariants.Any(line.Contains));
             var index = lines.IndexOf(firstLine);
 
+            if (index == -1)
+                throw new ChaptersParseException();
+            
+            if (lines.Count == 0)
+                return new List<VideoChapter>();
+            
             while(lines.Count > index)
             {
                 var line = lines[index].Trim();

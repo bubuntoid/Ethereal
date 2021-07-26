@@ -4,18 +4,25 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using NLog;
 using YOVPS.Core.Extensions;
 
 namespace YOVPS.Core
 {
     public static class FfmpegWrapper
     {
+        // ReSharper disable once InconsistentNaming
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         public static string ExecutablesPath { get; set; }
 
-        public static async Task TrimAndSaveToOutputAsync(string path, string output,
-            IEnumerable<VideoChapter> chapters, VideoChapter chapter, int index)
+        public static async Task TrimAndSaveToOutputAsync(
+            string path, 
+            string output, 
+            VideoChapter chapter, 
+            int index,
+            int count)
         {
-            Console.WriteLine($"Processing {chapter.Name}...");
+            logger.Info($"Processing {chapter.Name}...");
             
             using var p = new Process
             {
@@ -32,7 +39,7 @@ namespace YOVPS.Core
             p.Start();
 
             await ComputationExtensions.ComputeElapsedTimeInMillisecondsAsync(
-                $"TrimAndSaveToOutput | {chapter.Name} | {index + 1} / {chapters.Count()}",
+                $"TrimAndSaveToOutput | {chapter.Name} | {index + 1} / {count}",
                 p.WaitForExitAsync());
         }
     }
