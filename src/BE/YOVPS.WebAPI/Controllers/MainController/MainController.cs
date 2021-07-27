@@ -27,7 +27,7 @@ namespace YOVPS.WebAPI.Controllers.MainController
             this.splitter = splitter;
         }
 
-        [HttpGet("download/zip")]
+        [HttpPost("download/zip")]
         [Produces("application/zip")]
         [ProducesResponseType(typeof(ApiErrorDto), 400)]
         public async Task<IActionResult> DownloadZip(DownloadZipRequestDto dto)
@@ -41,7 +41,7 @@ namespace YOVPS.WebAPI.Controllers.MainController
             return File(result.Object, "application/zip", result.Name);
         }
 
-        [HttpGet("download/mp3")]
+        [HttpPost("download/mp3")]
         [Produces("application/octet-stream")]
         [ProducesResponseType(typeof(ApiErrorDto), 400)]
         public async Task<IActionResult> DownloadMp3(DownloadMp3RequestDto dto)
@@ -55,7 +55,7 @@ namespace YOVPS.WebAPI.Controllers.MainController
             return File(result.Object, "application/octet-stream", result.Name);
         }
 
-        [HttpGet("download/thumbnail")]
+        [HttpPost("download/thumbnail")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(ApiErrorDto), 400)]
         public async Task<IActionResult> DownloadThumbnail(string url)
@@ -63,7 +63,7 @@ namespace YOVPS.WebAPI.Controllers.MainController
             return Ok(await splitter.GetThumbnailUrlAsync(url));
         }
         
-        [HttpGet("chapters")]
+        [HttpPost("chapters")]
         [ProducesResponseType(typeof(IEnumerable<VideoChapterDto>), 200)]
         [ProducesResponseType(typeof(ApiErrorDto), 400)]
         public async Task<IActionResult> GetChaptersByUrl(GetChaptersByUrlRequestDto dto)
