@@ -51,6 +51,8 @@ namespace YOVPS.Core
             int count
             )
         {
+            logger.Info($"Processing {chapter.Name}...");
+            
             using var p = new Process
             {
                 StartInfo =
@@ -60,7 +62,7 @@ namespace YOVPS.Core
                     RedirectStandardOutput = true,
                     FileName = ExecutablesPath,
                     Arguments =
-                        $"-ss {chapter.StartTimespan.TotalSeconds + 1} -i \"{path}\" -vframes 1 -q:v 2 \"{output}\"",
+                        $"-ss {chapter.StartTimespan.TotalSeconds} -i \"{path}\" -frames:v 1 \"{output}\"",
                 }
             };
             p.Start();

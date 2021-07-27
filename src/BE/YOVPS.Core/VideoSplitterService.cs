@@ -100,11 +100,13 @@ namespace YOVPS.Core
         public async Task<VideoChapter[]> GetChaptersAsync(string url, string description = null, bool includeThumbnails = true)
         {
             var video = await client.Videos.GetAsync(url);
-            var videoFile = includeThumbnails ? await SaveYouTubeVideoFileAsync(video) : null;
+            var videoFile = includeThumbnails ? await SaveYouTubeVideoFileAsync(video, true) : null;
             
             var chapters = new VideoDescription(description ?? video.Description).ParseChapters();
             if (chapters == null ||chapters.Count == 0)
-                throw description == null ? new ChaptersNotFoundException() : new ChaptersParseException(); 
+                throw description == null ? new ChaptersNotFoundException() : new ChaptersParseException();
+
+            var threadContextId = Guid.NewGuid();
             
             for (var i = 0; i < chapters.Count; i++)
             {
@@ -114,23 +116,55 @@ namespace YOVPS.Core
                 if (includeThumbnails)
                 {
                     var outputPath = Path.Combine(videoFile.Directory, $"{currentChapter.Name}.png");
-                    await FfmpegWrapper.SaveImageAsync(videoFile.Path, outputPath, currentChapter, i, chapters.Count);
+                    ThreadQueue.QueueTask(threadContextId, FfmpegWrapper.SaveImageAsync(videoFile.Path, outputPath,
+                        currentChapter, i,
+                        chapters.Count));
 
-                    await using var stream = File.OpenRead(outputPath);
-                    currentChapter.Thumbnail = stream.ReadFully();
+                    // ThreadQueue.QueueTask(threadContextId, new Task(async () =>
+                    // {
+                    //     Console.WriteLine("started");
+                    //     var outputPath = Path.Combine(videoFile.Directory, $"{currentChapter.Name}.png");
+                    // 
+                    //     await FfmpegWrapper.SaveImageAsync(videoFile.Path, outputPath, currentChapter, i,
+                    //         chapters.Count);
+                    //     
+                    //     await using var stream = File.OpenRead(outputPath);
+                    //     currentChapter.Thumbnail = stream.ReadFully();
+                    // }));
                 }
             }
 
             if (includeThumbnails)
+            {
+                await ThreadQueue.WhenAll(threadContextId, TimeSpan.FromMinutes(3));
+                
+                for (var i = 0; i < chapters.Count; i++)
+                {
+                    var currentChapter = chapters.ElementAt(i);
+
+                    var outputPath = Path.Combine(videoFile.Directory, $"{currentChapter.Name}.png");
+
+                    ComputationExtensions.ComputeElapsedTimeInMilliseconds(
+                        $"Generating thumbnail | {currentChapter.Name} | {i + 1} / {chapters.Count}", async () =>
+                        {
+                            await using var stream = File.OpenRead(outputPath);
+                            currentChapter.Thumbnail = stream.ReadFully();
+                        });
+                }
+                
                 Directory.Delete(videoFile.Directory, true);
-            
+            }
+
             return chapters.ToArray();
         }
 
-        private async Task<YouTubeVideoFile> SaveYouTubeVideoFileAsync(IVideo video)
+        private async Task<YouTubeVideoFile> SaveYouTubeVideoFileAsync(IVideo video, bool lowestSize = false)
         {
             var manifest = await client.Videos.Streams.GetManifestAsync(video.Id);
-            var info = manifest.GetVideoStreams().FirstOrDefault(x => x.Container.Name == "mp4");
+            var streams = manifest.GetVideoStreams();
+            var info = lowestSize
+                ? streams.FirstOrDefault(x => x.Size.Bytes == streams.Min(s => s.Size.Bytes))
+                : streams.FirstOrDefault(x => x.Container.Name == "mp4");
             var videoStream = await client.Videos.Streams.GetAsync(info);
             
             var directory = Path.Combine(tempPath, Guid.NewGuid().ToString());
