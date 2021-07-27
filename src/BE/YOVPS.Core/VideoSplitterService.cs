@@ -13,6 +13,7 @@ using YoutubeExplode.Videos;
 using YoutubeExplode.Videos.Streams;
 using YOVPS.Core.Exceptions;
 using YOVPS.Core.Extensions;
+using YOVPS.Core.Threading;
 
 namespace YOVPS.Core
 {
@@ -72,10 +73,8 @@ namespace YOVPS.Core
                 var fileName = $"{currentChapter.Name}.{videoStream.Name}";
                 var outputPath = Path.Combine(directory, fileName);
 
-                ThreadQueue.QueueAction(threadContextId, async () =>
-                {
-                    await FfmpegWrapper.TrimAndSaveToOutputAsync(path, outputPath, currentChapter, i, chapters.Count);
-                });
+                ThreadQueue.QueueTask(threadContextId,
+                    FfmpegWrapper.TrimAndSaveToOutputAsync(path, outputPath, currentChapter, i, chapters.Count));
             }
 
             logger.Info("Waiting till TrimAndSaveToOutput threads will completed");
