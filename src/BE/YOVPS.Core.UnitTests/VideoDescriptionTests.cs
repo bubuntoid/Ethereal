@@ -19,6 +19,7 @@ namespace YOVPS.Core.UnitTests
                 Original = "1. (0:00) KOPI / KOBASOLO – Swayed in Spring Reiniscence", 
                 Name = "1. KOPI  KOBASOLO – Swayed in Spring Reiniscence", 
                 StartTimespan = new TimeSpan(00, 00, 00),
+                EndTimespan = new TimeSpan(00, 09, 13),
             },
             
             new VideoChapter 
@@ -26,6 +27,7 @@ namespace YOVPS.Core.UnitTests
                 Original = "2. (09:13) Memai Siren -Nisemono no Utage", 
                 Name = "2. Memai Siren -Nisemono no Utage", 
                 StartTimespan = new TimeSpan(00, 09, 13),
+                EndTimespan = new TimeSpan(00, 34, 36),
             },
             
             new VideoChapter 
@@ -33,6 +35,7 @@ namespace YOVPS.Core.UnitTests
                 Original = "3. (34:36) Vivid Undress – Sayonara Dilemma", 
                 Name = "3. Vivid Undress – Sayonara Dilemma", 
                 StartTimespan = new TimeSpan(00, 34, 36),
+                EndTimespan = new TimeSpan(01, 23, 31)
             },
             
             new VideoChapter 
