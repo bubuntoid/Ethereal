@@ -27,14 +27,14 @@ v1 / mvp:
 - [ ] StringExtensions unit tests
 - [ ] TimeSpanExtensions unit tests
 - [X] Add logs
-- [ ] dry VideoSplitterService
+- [X] dry VideoSplitterService
 
 v2:
 - [ ] db usage with processing status 
   - MariaDb / MySQL / PostgreSQL
 - [X] total optimization
-- [ ] thumbnail for each chapter
+- [X] thumbnail for each chapter
 - [X] native ffmpeg usage / own client (?)
 - [X] choose bitrate quality
-- [ ] fluent validator
+- [X] fluent validator
 - [ ] github ci/cd
