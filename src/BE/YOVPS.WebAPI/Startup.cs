@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using YOVPS.Core;
+using YOVPS.WebAPI.Controllers.MainController.Models;
 using YOVPS.WebAPI.Filters;
 using YOVPS.WebAPI.Settings;
 using HostingEnvironmentExtensions = Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions;
@@ -32,17 +34,6 @@ namespace YOVPS.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowSpecificOrigin",
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                            .AllowAnyMethod()
-                            .AllowAnyHeader();
-                    });
-            });
-
             services.AddScoped<ExceptionFilter>();
             
             services.AddScoped<FfmpegSettings>();
@@ -55,10 +46,24 @@ namespace YOVPS.WebAPI
                     executablesPath: string.IsNullOrEmpty(settings.ExecutablesPath) ? null : settings.ExecutablesPath);
             });
 
+            services.AddFluentValidation(fv =>
+                fv.RegisterValidatorsFromAssemblyContaining<VideoCredentialsDto.Validator>());
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebAPI", Version = "v1"});
+            });
+            
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
             });
         }
 

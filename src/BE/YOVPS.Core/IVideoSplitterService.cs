@@ -7,7 +7,7 @@ namespace YOVPS.Core
     {
         Task<ObjectWithName<byte[]>> DownloadZipAsync(string url, string description = null);
 
-        Task<VideoChapter[]> GetChaptersAsync(string url, string description = null);
+        Task<VideoChapter[]> GetChaptersAsync(string url, string description = null, bool includeThumbnails = true);
 
         Task<ObjectWithName<Stream>> DownloadMp3Async(string url, string description, int index);
         

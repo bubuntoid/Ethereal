@@ -15,7 +15,7 @@ namespace YOVPS.Core
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         public static string ExecutablesPath { get; set; }
 
-        public static async Task TrimAndSaveToOutputAsync(
+        public static async Task SaveTrimmedAsync(
             string path, 
             string output, 
             VideoChapter chapter, 
@@ -39,7 +39,34 @@ namespace YOVPS.Core
             p.Start();
 
             await ComputationExtensions.ComputeElapsedTimeInMillisecondsAsync(
-                $"TrimAndSaveToOutput | {chapter.Name} | {index + 1} / {count}",
+                $"SaveTrimmedAsync | {chapter.Name} | {index + 1} / {count}",
+                p.WaitForExitAsync());
+        }
+
+        public static async Task SaveImageAsync(
+            string path,
+            string output,
+            VideoChapter chapter,
+            int index,
+            int count
+            )
+        {
+            using var p = new Process
+            {
+                StartInfo =
+                {
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    RedirectStandardOutput = true,
+                    FileName = ExecutablesPath,
+                    Arguments =
+                        $"-ss {chapter.StartTimespan.TotalSeconds + 1} -i \"{path}\" -vframes 1 -q:v 2 \"{output}\"",
+                }
+            };
+            p.Start();
+
+            await ComputationExtensions.ComputeElapsedTimeInMillisecondsAsync(
+                $"SaveImageAsync | {chapter.Name} | {index + 1} / {count}",
                 p.WaitForExitAsync());
         }
     }

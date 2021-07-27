@@ -52,17 +52,8 @@ namespace YOVPS.Core
                 throw description == null ? new ChaptersNotFoundException() : new ChaptersParseException(); 
             
             logger.Info("Downloading video stream... \t");
-            var videoStream = await GetYouTubeVideoStream(video);
+            var videoFile = await SaveYouTubeVideoFileAsync(video);
             logger.Info("Done\n");
-
-            var directory = Path.Combine(tempPath, Guid.NewGuid().ToString());
-            Directory.CreateDirectory(directory);
-            var path = Path.Combine(directory, $"__original__.{videoStream.Name}");
-            var videoFileStream = File.Create(path);
-            videoStream.Object.Seek(0, SeekOrigin.Begin);
-            await videoStream.Object.CopyToAsync(videoFileStream);
-            videoStream.Object.Close();
-            videoFileStream.Close();
 
             var threadContextId = Guid.NewGuid();
             for (var i = 0; i < chapters.Count; i++)
@@ -70,11 +61,11 @@ namespace YOVPS.Core
                 var currentChapter = chapters.ElementAt(i);
                 currentChapter.EndTimespan ??= video.Duration;
 
-                var fileName = $"{currentChapter.Name}.{videoStream.Name}";
-                var outputPath = Path.Combine(directory, fileName);
+                var fileName = $"{currentChapter.Name}.{videoFile.Extension}";
+                var outputPath = Path.Combine(videoFile.Directory, fileName);
 
                 ThreadQueue.QueueTask(threadContextId,
-                    FfmpegWrapper.TrimAndSaveToOutputAsync(path, outputPath, currentChapter, i, chapters.Count));
+                    FfmpegWrapper.SaveTrimmedAsync(videoFile.Path, outputPath, currentChapter, i, chapters.Count));
             }
 
             logger.Info("Waiting till TrimAndSaveToOutput threads will completed");
@@ -86,44 +77,78 @@ namespace YOVPS.Core
             {
                 var currentChapter = chapters.ElementAt(i);
 
-                var fileName = $"{currentChapter.Name}.{videoStream.Name}";
-                var outputPath = Path.Combine(directory, fileName);
+                var fileName = $"{currentChapter.Name}.{videoFile.Extension}";
+                var outputPath = Path.Combine(videoFile.Directory, fileName);
 
                 ComputationExtensions.ComputeElapsedTimeInMilliseconds(
                     $"CreateEntryFromFile | {currentChapter.Name} | {i + 1} / {chapters.Count}", () =>
                     {
                         logger.Info($"Creating zip entry for {currentChapter.Name}...");
-                        zipArchive.CreateEntryFromFile(outputPath, fileName.Replace(videoStream.Name, ".mp3"));
+                        zipArchive.CreateEntryFromFile(outputPath, fileName.Replace(videoFile.Extension, ".mp3"));
                     });
             }
 
             zipArchive.Dispose();
             zipMemoryStream.Close();
 
-            Directory.Delete(directory, true);
+            Directory.Delete(videoFile.Directory, true);
 
             return new ObjectWithName<byte[]>(zipMemoryStream.ToArray(),
                 $"{video.Title.RemoveIllegalCharacters()}.zip");
         }
 
-        public async Task<VideoChapter[]> GetChaptersAsync(string url, string description = null)
+        public async Task<VideoChapter[]> GetChaptersAsync(string url, string description = null, bool includeThumbnails = true)
         {
             var video = await client.Videos.GetAsync(url);
+            var videoFile = includeThumbnails ? await SaveYouTubeVideoFileAsync(video) : null;
+            
             var chapters = new VideoDescription(description ?? video.Description).ParseChapters();
+            if (chapters == null ||chapters.Count == 0)
+                throw description == null ? new ChaptersNotFoundException() : new ChaptersParseException(); 
+            
             for (var i = 0; i < chapters.Count; i++)
             {
                 var currentChapter = chapters.ElementAt(i);
                 currentChapter.EndTimespan ??= video.Duration;
+
+                if (includeThumbnails)
+                {
+                    var outputPath = Path.Combine(videoFile.Directory, $"{currentChapter.Name}.png");
+                    await FfmpegWrapper.SaveImageAsync(videoFile.Path, outputPath, currentChapter, i, chapters.Count);
+
+                    await using var stream = File.OpenRead(outputPath);
+                    currentChapter.Thumbnail = stream.ReadFully();
+                }
             }
 
+            if (includeThumbnails)
+                Directory.Delete(videoFile.Directory, true);
+            
             return chapters.ToArray();
         }
 
-        private async Task<ObjectWithName<Stream>> GetYouTubeVideoStream(IVideo video)
+        private async Task<YouTubeVideoFile> SaveYouTubeVideoFileAsync(IVideo video)
         {
             var manifest = await client.Videos.Streams.GetManifestAsync(video.Id);
-            var info = manifest.GetAudioOnlyStreams().FirstOrDefault(x => x.Container.Name == "mp4");
-            return new ObjectWithName<Stream>(await client.Videos.Streams.GetAsync(info), info.Container.Name);
+            var info = manifest.GetVideoStreams().FirstOrDefault(x => x.Container.Name == "mp4");
+            var videoStream = await client.Videos.Streams.GetAsync(info);
+            
+            var directory = Path.Combine(tempPath, Guid.NewGuid().ToString());
+            Directory.CreateDirectory(directory);            
+            var path = Path.Combine(directory, $"__original__.{info.Container.Name}");
+            var videoFileStream = File.Create(path);
+            videoStream.Seek(0, SeekOrigin.Begin);
+            await videoStream.CopyToAsync(videoFileStream);
+            
+            videoStream.Close();
+            videoFileStream.Close();
+            
+            return new YouTubeVideoFile
+            {
+                Path = path,
+                Extension = info.Container.Name,
+                Directory = directory,
+            };
         }
 
         public async Task<ObjectWithName<Stream>> DownloadMp3Async(string url, string description, int index)
@@ -135,26 +160,18 @@ namespace YOVPS.Core
             var chapters = new VideoDescription(description ?? video.Description).ParseChapters();
 
             logger.Info("Downloading video stream... \t");
-            var videoStream = await GetYouTubeVideoStream(video);
+            var videoFile = await SaveYouTubeVideoFileAsync(video);
             logger.Info("Done\n");
 
-            var directory = Path.Combine(tempPath, Guid.NewGuid().ToString());
-            Directory.CreateDirectory(directory);
-            var path = Path.Combine(directory, $"__original__.{videoStream.Name}");
-            var videoFileStream = File.Create(path);
-            videoStream.Object.Seek(0, SeekOrigin.Begin);
-            await videoStream.Object.CopyToAsync(videoFileStream);
-            videoStream.Object.Close();
-            videoFileStream.Close();
-            
             var currentChapter = chapters.ElementAt(index);
             currentChapter.EndTimespan ??= video.Duration;
 
-            var fileName = $"{currentChapter.Name}.{videoStream.Name}";
-            var outputPath = Path.Combine(directory, fileName);
+            var fileName = $"{currentChapter.Name}.{videoFile.Extension}";
+            var outputPath = Path.Combine(videoFile.Directory, fileName);
 
-            await FfmpegWrapper.TrimAndSaveToOutputAsync(path, outputPath, currentChapter, index, chapters.Count);
+            await FfmpegWrapper.SaveTrimmedAsync(videoFile.Path, outputPath, currentChapter, index, chapters.Count);
             
+            Directory.Delete(videoFile.Directory, true);
             return new ObjectWithName<Stream>(File.OpenRead(outputPath), outputPath);
         }
     }

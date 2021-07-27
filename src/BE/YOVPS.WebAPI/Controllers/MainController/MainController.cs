@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using YOVPS.Core;
 using YOVPS.Core.Extensions;
 using YOVPS.WebAPI.Controllers.MainController.Models;
 using YOVPS.WebAPI.Filters;
+using YOVPS.WebAPI.Models;
 
 namespace YOVPS.WebAPI.Controllers.MainController
 {
@@ -26,6 +28,8 @@ namespace YOVPS.WebAPI.Controllers.MainController
         }
 
         [HttpGet("download/zip")]
+        [Produces("application/zip")]
+        [ProducesResponseType(typeof(ApiErrorDto), 400)]
         public async Task<IActionResult> DownloadZip([FromQuery] VideoCredentialsDto dto)
         {
             var watch = new Stopwatch();
@@ -38,6 +42,8 @@ namespace YOVPS.WebAPI.Controllers.MainController
         }
 
         [HttpGet("download/mp3")]
+        [Produces("application/octet-stream")]
+        [ProducesResponseType(typeof(ApiErrorDto), 400)]
         public async Task<IActionResult> DownloadMp3([FromQuery] VideoCredentialsDto dto)
         {
             var watch = new Stopwatch();
@@ -50,23 +56,32 @@ namespace YOVPS.WebAPI.Controllers.MainController
         }
 
         [HttpGet("download/thumbnail")]
+        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(typeof(ApiErrorDto), 400)]
         public async Task<IActionResult> DownloadThumbnail(string url)
         {
             return Ok(await splitter.GetThumbnailUrlAsync(url));
         }
         
         [HttpGet("chapters")]
-        public async Task<IActionResult> GetChaptersByUrl([FromQuery] VideoCredentialsDto dto)
+        [ProducesResponseType(typeof(IEnumerable<VideoChapterDto>), 200)]
+        [ProducesResponseType(typeof(ApiErrorDto), 400)]
+        public async Task<IActionResult> GetChaptersByUrl(
+            [FromQuery] VideoCredentialsDto dto, 
+            [FromQuery]bool includeThumbnails = true)
         {
             // todo: add mapper
-            var chapters = await splitter.GetChaptersAsync(dto.Url, dto.Description);
+            var chapters = await splitter.GetChaptersAsync(dto.Url, dto.Description, includeThumbnails);
             var mapped = chapters.Select(chapter => new VideoChapterDto
             {
                 Name = chapter.Name,
                 StartTimespan = chapter.StartTimespan.ToString(),
                 EndTimespan = chapter.EndTimespan.ToString(),
                 Duration = chapter.Duration.ToString(),
-                Original = chapter.Original
+                Original = chapter.Original,
+                ThumbnailBase64 = chapter.Thumbnail != null 
+                    ? Convert.ToBase64String(chapter.Thumbnail)
+                    : null
             });
             
             return Ok(mapped);

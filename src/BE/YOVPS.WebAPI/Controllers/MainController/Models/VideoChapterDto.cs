@@ -11,5 +11,7 @@
         public string EndTimespan { get; set; }
 
         public string Duration { get; set; }
+        
+        public string ThumbnailBase64 { get; set; }
     }
 }

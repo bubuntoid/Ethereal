@@ -14,9 +14,11 @@ namespace YOVPS.Core
 
         public TimeSpan? Duration => EndTimespan - StartTimespan;
         
+        public byte[] Thumbnail { get; set; }
+        
         public VideoChapter()
         {
-
+            
         }
 
         public VideoChapter(string original, string name, TimeSpan timespan)
