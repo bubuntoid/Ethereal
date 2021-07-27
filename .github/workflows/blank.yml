@@ -37,7 +37,7 @@ jobs:
         working-directory: src/BE
         
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build src/BE --configuration Release --no-restore
         
       - name: Test
         run: dotnet test src/BE/YOVPS.Core.UnitTests --no-restore --verbosity normal
