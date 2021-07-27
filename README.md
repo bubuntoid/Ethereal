@@ -6,6 +6,7 @@ Youtube One Video Playlist Splitter
 * ASP.NET Core 5.6.3
 * NLog 4.5.11
 * FFMPEG 4.2.4-1ubuntu0.1
+* FluentValidation 10.3.0
 * Nunit 3.13.1
   * FluentAssertions 5.10.3
 
