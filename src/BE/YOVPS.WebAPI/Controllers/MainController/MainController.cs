@@ -30,7 +30,7 @@ namespace YOVPS.WebAPI.Controllers.MainController
         [HttpGet("download/zip")]
         [Produces("application/zip")]
         [ProducesResponseType(typeof(ApiErrorDto), 400)]
-        public async Task<IActionResult> DownloadZip([FromQuery] VideoCredentialsDto dto)
+        public async Task<IActionResult> DownloadZip(DownloadZipRequestDto dto)
         {
             var watch = new Stopwatch();
             watch.Start();
@@ -44,7 +44,7 @@ namespace YOVPS.WebAPI.Controllers.MainController
         [HttpGet("download/mp3")]
         [Produces("application/octet-stream")]
         [ProducesResponseType(typeof(ApiErrorDto), 400)]
-        public async Task<IActionResult> DownloadMp3([FromQuery] VideoCredentialsDto dto)
+        public async Task<IActionResult> DownloadMp3(DownloadMp3RequestDto dto)
         {
             var watch = new Stopwatch();
             watch.Start();
@@ -66,12 +66,10 @@ namespace YOVPS.WebAPI.Controllers.MainController
         [HttpGet("chapters")]
         [ProducesResponseType(typeof(IEnumerable<VideoChapterDto>), 200)]
         [ProducesResponseType(typeof(ApiErrorDto), 400)]
-        public async Task<IActionResult> GetChaptersByUrl(
-            [FromQuery] VideoCredentialsDto dto, 
-            [FromQuery]bool includeThumbnails = true)
+        public async Task<IActionResult> GetChaptersByUrl(GetChaptersByUrlRequestDto dto)
         {
             // todo: add mapper
-            var chapters = await splitter.GetChaptersAsync(dto.Url, dto.Description, includeThumbnails);
+            var chapters = await splitter.GetChaptersAsync(dto.Url, dto.Description, dto.IncludeThumbnails);
             var mapped = chapters.Select(chapter => new VideoChapterDto
             {
                 Name = chapter.Name,

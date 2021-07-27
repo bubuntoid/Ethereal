@@ -47,7 +47,7 @@ namespace YOVPS.WebAPI
             });
 
             services.AddFluentValidation(fv =>
-                fv.RegisterValidatorsFromAssemblyContaining<VideoCredentialsDto.Validator>());
+                fv.RegisterValidatorsFromAssemblyContaining<DownloadMp3RequestDto.Validator>());
             
             services.AddControllers();
             services.AddSwaggerGen(c =>
