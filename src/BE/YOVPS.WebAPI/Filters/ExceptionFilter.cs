@@ -14,7 +14,7 @@ namespace YOVPS.WebAPI.Filters
             context.Result = new ObjectResult(new
             {
                 error = context.Exception.Message,
-                description = exception?.Description ?? null,
+                description = exception?.Description ?? context.Exception.StackTrace,
             })
             {
                 StatusCode = 400

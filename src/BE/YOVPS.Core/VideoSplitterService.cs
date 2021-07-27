@@ -13,6 +13,7 @@ using YoutubeExplode.Videos;
 using YoutubeExplode.Videos.Streams;
 using YOVPS.Core.Exceptions;
 using YOVPS.Core.Extensions;
+using YOVPS.Core.Threading;
 
 namespace YOVPS.Core
 {
@@ -63,7 +64,7 @@ namespace YOVPS.Core
             videoStream.Object.Close();
             videoFileStream.Close();
 
-            var tasks = new List<Task>();
+            var threadContextId = Guid.NewGuid();
             for (var i = 0; i < chapters.Count; i++)
             {
                 var currentChapter = chapters.ElementAt(i);
@@ -72,12 +73,12 @@ namespace YOVPS.Core
                 var fileName = $"{currentChapter.Name}.{videoStream.Name}";
                 var outputPath = Path.Combine(directory, fileName);
 
-                var task = FfmpegWrapper.TrimAndSaveToOutputAsync(path, outputPath, currentChapter, i, chapters.Count);
-                tasks.Add(task);
+                ThreadQueue.QueueTask(threadContextId,
+                    FfmpegWrapper.TrimAndSaveToOutputAsync(path, outputPath, currentChapter, i, chapters.Count));
             }
 
-            logger.Info("Waiting till TrimAndSaveToOutput tasks will completed");
-            await Task.WhenAll(tasks);
+            logger.Info("Waiting till TrimAndSaveToOutput threads will completed");
+            await ThreadQueue.WhenAll(threadContextId, TimeSpan.FromMinutes(3));
 
             var zipMemoryStream = new MemoryStream();
             var zipArchive = new ZipArchive(zipMemoryStream, ZipArchiveMode.Create, false);
