@@ -18,6 +18,10 @@ $ chmod +x scripts/run.sh
 $ ./scripts/run.sh
 ```
 
+## Frontend
+* PUG
+* SCSS
+
 #### Todo / Goals
 v1 / mvp:
 - [ ] DownloadMp3Async optimization 
