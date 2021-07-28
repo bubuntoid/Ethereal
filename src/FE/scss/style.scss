@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap');
+
+$accColor: #66C68C;
+$disColor: #4F4F4F;
+$defColor: #fff;
+$hvrColor: rgb(49, 241, 255);
+
+$defSize: 24px;
+$bgSize: 96px;
+$smSize: 16px;
+
+@keyframes flow {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 20px);
+  }
+}
+
+#ac {
+  color: $accColor;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border: none;
+}
+
+:root {
+  --input-border: #8b8a8b;
+  --input-focus-h: 245;
+  --input-focus-s: 100%;
+  --input-focus-l: 42%;
+}
+
+body {
+  background-color: #111;
+  font-family: 'Roboto', sans-serif;
+  color: $defColor;
+  overflow: hidden;
+}
+
+.main {
+  transform: translate(0, -10vh);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .main__title {
+    text-align: center;
+    font-size: $bgSize;
+    text-transform: uppercase;
+    width: 836px;
+  }
+  .main__input-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .main__input-text {
+      height: 50px;
+      width: 834px;
+      background-color: #1c1c1c;
+      font-size: 40px;
+      color: $defColor;
+      &:active {
+        border: none;
+      }
+    }
+    .main__input-btn {
+      height: 50px;
+      width: 50px;
+      background-color: $accColor;
+      transition: .4s ease;
+      &:hover {
+        background-color: $hvrColor;
+      }
+    }
+  }
+}
+
+.active-footer {
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  bottom: 5%;
+  right: 50vw;
+  margin: auto 0;
+  animation: flow 1s infinite;
+  animation-direction: alternate;
+  animation-fill-mode: backwards;
+  animation-timing-function: ease-in-out;
+}
+
+.footer {
+  position: relative;
+  margin: 0 auto;
+  height: 380px;
+  width: 934px;
+  background-color: #1c1c1c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .footer__exit {
+    transition: .4s ease;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 10%;
+    left: 6%;
+    -webkit-clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+    clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+    &:hover {
+      background-color: $hvrColor;
+    }
+  }
+  .footer__text {
+    width: 624px;
+    height: 310px;
+    background: rgba(0, 0, 0, 0.2);
+    color: $defColor;
+    font-size: 30px;
+    border-radius: 12px;
+  }
+  .footer__btn {
+    transition: .4s ease;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    right: 5%;
+    -webkit-clip-path: polygon(0 0, 50% 50%, 0 100%);
+    clip-path: polygon(0 0, 50% 50%, 0 100%);
+    &:hover {
+      background-color: $hvrColor;
+    }
+  }
+}
