@@ -58,9 +58,9 @@ namespace YOVPS.WebAPI.Controllers.MainController
         [HttpPost("download/thumbnail")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(ApiErrorDto), 400)]
-        public async Task<IActionResult> DownloadThumbnail(string url)
+        public async Task<IActionResult> DownloadThumbnail(DownloadThumbnailRequestDto dto)
         {
-            return Ok(await splitter.GetThumbnailUrlAsync(url));
+            return Ok(await splitter.GetThumbnailUrlAsync(dto.Url));
         }
         
         [HttpPost("chapters")]
