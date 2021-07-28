@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap");
+@-webkit-keyframes flow {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, 20px);
+            transform: translate(0, 20px);
+  }
+}
+@keyframes flow {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, 20px);
+            transform: translate(0, 20px);
+  }
+}
+#ac {
+  color: #66C68C;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: none;
+}
+
+:root {
+  --input-border: #8b8a8b;
+  --input-focus-h: 245;
+  --input-focus-s: 100%;
+  --input-focus-l: 42%;
+}
+
+body {
+  background-color: #111;
+  font-family: "Roboto", sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+
+.main {
+  -webkit-transform: translate(0, -10vh);
+          transform: translate(0, -10vh);
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+}
+.main .main__title {
+  text-align: center;
+  font-size: 96px;
+  text-transform: uppercase;
+  width: 836px;
+}
+.main .main__input-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.main .main__input-block .main__input-text {
+  height: 50px;
+  width: 834px;
+  background-color: #1c1c1c;
+  font-size: 40px;
+  color: #fff;
+}
+.main .main__input-block .main__input-text:active {
+  border: none;
+}
+.main .main__input-block .main__input-btn {
+  height: 50px;
+  width: 50px;
+  background-color: #66C68C;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+.main .main__input-block .main__input-btn:hover {
+  background-color: #31f1ff;
+}
+
+.active-footer {
+  -webkit-clip-path: polygon(50% 100%, 0 0, 100% 0);
+          clip-path: polygon(50% 100%, 0 0, 100% 0);
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  bottom: 5%;
+  right: 50vw;
+  margin: auto 0;
+  -webkit-animation: flow 1s infinite;
+          animation: flow 1s infinite;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-fill-mode: backwards;
+          animation-fill-mode: backwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+.footer {
+  position: relative;
+  margin: 0 auto;
+  height: 380px;
+  width: 934px;
+  background-color: #1c1c1c;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.footer .footer__exit {
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 10%;
+  left: 6%;
+  -webkit-clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+  clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+}
+.footer .footer__exit:hover {
+  background-color: #31f1ff;
+}
+.footer .footer__text {
+  width: 624px;
+  height: 310px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-size: 30px;
+  border-radius: 12px;
+}
+.footer .footer__btn {
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  right: 5%;
+  -webkit-clip-path: polygon(0 0, 50% 50%, 0 100%);
+  clip-path: polygon(0 0, 50% 50%, 0 100%);
+}
+.footer .footer__btn:hover {
+  background-color: #31f1ff;
+}
