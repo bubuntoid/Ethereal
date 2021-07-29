@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NLog;
@@ -21,10 +22,12 @@ namespace YOVPS.WebAPI.Controllers.MainController
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IVideoSplitterService splitter;
+        private readonly IMapper mapper;
 
-        public MainController(IVideoSplitterService splitter)
+        public MainController(IVideoSplitterService splitter, IMapper mapper)
         {
             this.splitter = splitter;
+            this.mapper = mapper;
         }
 
         [HttpPost("download/zip")]
@@ -32,12 +35,7 @@ namespace YOVPS.WebAPI.Controllers.MainController
         [ProducesResponseType(typeof(ApiErrorDto), 400)]
         public async Task<IActionResult> DownloadZip(DownloadZipRequestDto dto)
         {
-            var watch = new Stopwatch();
-            watch.Start();
             var result = await splitter.DownloadZipAsync(dto.Url, dto.Description);
-            watch.Stop();
-            logger.Info($"download/zip took {watch.Elapsed.TotalSeconds} seconds");
-            
             return File(result.Object, "application/zip", result.Name);
         }
 
@@ -46,12 +44,7 @@ namespace YOVPS.WebAPI.Controllers.MainController
         [ProducesResponseType(typeof(ApiErrorDto), 400)]
         public async Task<IActionResult> DownloadMp3(DownloadMp3RequestDto dto)
         {
-            var watch = new Stopwatch();
-            watch.Start();
             var result = await splitter.DownloadMp3Async(dto.Url, dto.Description, dto.Index.Value);
-            watch.Stop();
-            logger.Info($"download/mp3 took {watch.Elapsed.TotalSeconds} seconds");
-            
             return File(result.Object, "application/octet-stream", result.Name);
         }
 
@@ -60,7 +53,8 @@ namespace YOVPS.WebAPI.Controllers.MainController
         [ProducesResponseType(typeof(ApiErrorDto), 400)]
         public async Task<IActionResult> DownloadThumbnail(DownloadThumbnailRequestDto dto)
         {
-            return Ok(await splitter.GetThumbnailUrlAsync(dto.Url));
+            var url = await splitter.GetThumbnailUrlAsync(dto.Url); 
+            return Ok(url);
         }
         
         [HttpPost("chapters")]
@@ -69,21 +63,7 @@ namespace YOVPS.WebAPI.Controllers.MainController
         public async Task<IActionResult> GetChaptersByUrl(GetChaptersByUrlRequestDto dto)
         {
             var chapters = await splitter.GetChaptersAsync(dto.Url, dto.Description, dto.IncludeThumbnails);
-            var mapped = chapters.Select(chapter => new VideoChapterDto
-            {
-                 // todo: add/use mapper
-                Name = chapter.Name,
-                StartTimespan = chapter.StartTimespan.ToString(),
-                EndTimespan = chapter.EndTimespan.ToString(),
-                Duration = chapter.Duration.ToString(),
-                Original = chapter.Original,
-                YoutubeTitle = chapter.YoutubeTitle,
-                ThumbnailBase64 = chapter.Thumbnail != null 
-                    ? Convert.ToBase64String(chapter.Thumbnail)
-                    : null
-            });
-            
-            return Ok(mapped);
+            return Ok(chapters.Select(c => mapper.Map<VideoChapterDto>(c)));
         }
     }
 }

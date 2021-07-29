@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using AutoMapper;
 using Microsoft.Extensions.Logging;
 using YOVPS.Core;
 using YOVPS.WebAPI.Filters;
@@ -17,16 +18,24 @@ namespace YOVPS.WebAPI.Modules
 
             builder.RegisterType<ExceptionFilter>()
                 .AsSelf();
-            
+
             builder.RegisterType<FfmpegSettings>()
                 .AsSelf();
-            
+
             builder.Register<VideoSplitterService>(c =>
                 {
                     var settings = c.Resolve<FfmpegSettings>();
                     return new VideoSplitterService(settings.TempPath, settings.ExecutablesPath);
                 })
                 .As<IVideoSplitterService>();
+
+            builder.Register(c =>
+                    new MapperConfiguration(mc =>
+                        {
+                            mc.AddProfile(new MapperModule());
+                        }).CreateMapper())
+                .As<IMapper>()
+                .SingleInstance();
         }
     }
 }
