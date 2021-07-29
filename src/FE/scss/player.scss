@@ -1,0 +1,63 @@
+.wplayer {
+  transform: translate(100vw, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background: #1c1c1c;
+  .player {
+    position: relative;
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    .player__bg {
+      position: absolute;
+      z-index: 2;
+      height: 100%; 
+      opacity: 0.5;
+    }
+    .player__title {
+      z-index: 3;
+      margin-top: 20vh;
+      font-size: 80px;
+    }
+    .player__subtitle {
+      z-index: 3;
+      font-size: 30px;
+    }
+  }
+  .sidebar {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .sidebar__nav {
+      display: flex;
+      flex-direction: column;
+      justify-items: flex-start;
+      align-items: center;
+      height: 95%;
+      width: 30vw;
+      background-color: #0D0D0D;
+      border-radius: 20px;
+      .nav__link:nth-child(1) {
+        margin-top: 20%;
+      }
+      .nav__link {
+        transition: .4s ease;
+        font-size: 30px;
+        margin-top: 20px;
+        &:hover {
+          color: #66C68C;
+        }
+      }
+    }
+  }
+}

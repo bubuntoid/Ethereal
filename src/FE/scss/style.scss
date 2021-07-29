@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap');
+@import 'player';
+@import 'loader';
+
 
 $accColor: #66C68C;
 $disColor: #4F4F4F;
@@ -27,6 +30,13 @@ $smSize: 16px;
 *::after {
   box-sizing: border-box;
   border: none;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: $defColor;
 }
 
 :root {
@@ -40,7 +50,6 @@ body {
   background-color: #111;
   font-family: 'Roboto', sans-serif;
   color: $defColor;
-  overflow: hidden;
 }
 
 .main {
@@ -56,6 +65,7 @@ body {
     font-size: $bgSize;
     text-transform: uppercase;
     width: 836px;
+    margin: 60px;
   }
   .main__input-block {
     display: flex;
@@ -140,3 +150,4 @@ body {
     }
   }
 }
+

@@ -7,20 +7,38 @@
     <link rel="stylesheet" href="assets/style.css">
     <title>YOVPS</title>
   </head>
-  <main class="main"> 
-    <h1 class="main__title">Youtube Video to <span id="ac">mp3</span> playlist</h1>
-    <div class="main__input-block">
-      <input class="main__input-text" type="text" placeholder="https://youtube.com/example">
-      <button class="main__input-btn" type="submit" onclick="input2req()"></button>
+  <body> 
+    <div class="loader"> 
+      <div class="loading"></div>
     </div>
-  </main>
-  <button class="active-footer" type="text" onclick="footerChecker(true)"></button>
-  <footer class="footer"> 
-    <button class="footer__exit" onclick="footerChecker(false)"></button>
-    <textarea class="footer__text" name="" cols="30" rows="10"> </textarea>
-    <button class="footer__btn" type="submit"></button>
-  </footer>
-  <script src="assets/main.js"> </script>
-  <script src="assets/xhr.js"> </script>
-  <body> </body>
+    <div class="wplayer">
+      <div class="player"> <img class="player__bg" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/0994d841602157.57ac63336b606.jpg" alt="album image">
+        <h2 class="player__title"> </h2>
+        <h4 class="player__subtitle"> </h4>
+        <div class="wplayer__hud"> 
+          <button class="hud__rewind"> </button>
+          <button class="hud__stop"></button>
+          <button class="hud__speedup"></button>
+        </div>
+      </div>
+      <div class="sidebar"> 
+        <nav class="sidebar__nav"> </nav>
+      </div>
+    </div>
+    <main class="main"> 
+      <h1 class="main__title">Youtube Video to <span id="ac">mp3</span> playlist</h1>
+      <div class="main__input-block">
+        <input class="main__input-text" type="text" placeholder="https://youtube.com/example">
+        <button class="main__input-btn" type="submit" onclick="input2req()"></button>
+      </div>
+    </main>
+    <button class="active-footer" type="text" onclick="footerChecker(true)"></button>
+    <footer class="footer"> 
+      <button class="footer__exit" onclick="footerChecker(false)"></button>
+      <textarea class="footer__text" name="" cols="30" rows="10"> </textarea>
+      <button class="footer__btn" type="submit"></button>
+    </footer>
+    <script src="assets/main.js"> </script>
+    <script src="assets/xhr.js"> </script>
+  </body>
 </html>

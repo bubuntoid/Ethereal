@@ -6,21 +6,21 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href="assets/style.css")
     title YOVPS
-
-  main.main 
-    h1.main__title Youtube Video to <span id="ac">mp3</span> playlist
-    .main__input-block
-      input.main__input-text(type="text" placeholder="https://youtube.com/example")
-      button.main__input-btn(type="submit" onclick="input2req()")
-
-  button.active-footer(type="text" onclick="footerChecker(true)")
-  footer.footer 
-    button.footer__exit(onclick="footerChecker(false)")
-    textarea.footer__text(name="", cols="30", rows="10") 
-    button.footer__btn(type="submit")
-  
-
-
-  script(src="assets/main.js") 
-  script(src="assets/xhr.js") 
   body 
+    .loader 
+      .loading
+    include player.pug
+    main.main 
+      h1.main__title Youtube Video to <span id="ac">mp3</span> playlist
+      .main__input-block
+        input.main__input-text(type="text" placeholder="https://youtube.com/example")
+        button.main__input-btn(type="submit" onclick="input2req()")
+
+    button.active-footer(type="text" onclick="footerChecker(true)")
+    footer.footer 
+      button.footer__exit(onclick="footerChecker(false)")
+      textarea.footer__text(name="", cols="30", rows="10") 
+      button.footer__btn(type="submit")
+
+    script(src="assets/main.js") 
+    script(src="assets/xhr.js") 
