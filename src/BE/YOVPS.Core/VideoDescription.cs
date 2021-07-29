@@ -64,7 +64,7 @@ namespace YOVPS.Core
                 var currentChapter = chapters.ElementAt(i);
                 currentChapter.EndTimespan = i == chapters.Count - 1
                     // ReSharper disable once PossibleInvalidOperationException
-                    ? null
+                    ? (TimeSpan?) null
                     : chapters.ElementAt(i + 1).StartTimespan;
             }
 

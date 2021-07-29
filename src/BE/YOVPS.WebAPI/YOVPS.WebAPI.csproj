@@ -5,6 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Autofac" Version="6.2.0" />
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
         <PackageReference Include="FluentValidation" Version="10.3.0" />
         <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
@@ -15,9 +17,4 @@
     <ItemGroup>
       <ProjectReference Include="..\YOVPS.Core\YOVPS.Core.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="temp" />
-    </ItemGroup>
-
 </Project>
