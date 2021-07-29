@@ -8,6 +8,7 @@ Youtube One Video Playlist Splitter
 * FFMPEG 4.2.4-1ubuntu0.1
 * FluentValidation 10.3.0
 * Autofac 6.2.0
+* AutoMapper 10.1.1
 * Nunit 3.13.1
   * FluentAssertions 5.10.3
 
@@ -34,8 +35,6 @@ v1 / mvp:
 - [ ] TimeSpanExtensions unit tests
 - [X] Add logs
 - [X] dry VideoSplitterService
-
-v2:
 - [ ] db usage with processing status 
   - MariaDb / MySQL / PostgreSQL
 - [X] total optimization
