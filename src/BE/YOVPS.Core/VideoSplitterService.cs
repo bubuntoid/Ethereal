@@ -111,6 +111,7 @@ namespace YOVPS.Core
             for (var i = 0; i < chapters.Count; i++)
             {
                 var currentChapter = chapters.ElementAt(i);
+                currentChapter.YoutubeTitle = video.Title;
                 currentChapter.EndTimespan ??= video.Duration;
 
                 if (includeThumbnails)

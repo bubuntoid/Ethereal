@@ -4,6 +4,8 @@
     {
         public string Original { get; set; }
 
+        public string YoutubeTitle { get; set; }
+        
         public string Name { get; set; }
 
         public string StartTimespan { get; set; }

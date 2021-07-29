@@ -68,15 +68,16 @@ namespace YOVPS.WebAPI.Controllers.MainController
         [ProducesResponseType(typeof(ApiErrorDto), 400)]
         public async Task<IActionResult> GetChaptersByUrl(GetChaptersByUrlRequestDto dto)
         {
-            // todo: add mapper
             var chapters = await splitter.GetChaptersAsync(dto.Url, dto.Description, dto.IncludeThumbnails);
             var mapped = chapters.Select(chapter => new VideoChapterDto
             {
+                 // todo: add/use mapper
                 Name = chapter.Name,
                 StartTimespan = chapter.StartTimespan.ToString(),
                 EndTimespan = chapter.EndTimespan.ToString(),
                 Duration = chapter.Duration.ToString(),
                 Original = chapter.Original,
+                YoutubeTitle = chapter.YoutubeTitle,
                 ThumbnailBase64 = chapter.Thumbnail != null 
                     ? Convert.ToBase64String(chapter.Thumbnail)
                     : null

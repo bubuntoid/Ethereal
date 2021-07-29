@@ -6,6 +6,8 @@ namespace YOVPS.Core
     {
         public string Original { get; set; }
 
+        public string YoutubeTitle { get; set; }
+        
         public string Name { get; set; }
 
         public TimeSpan StartTimespan { get; set; }
