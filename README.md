@@ -7,6 +7,7 @@ Youtube One Video Playlist Splitter
 * NLog 4.5.11
 * FFMPEG 4.2.4-1ubuntu0.1
 * FluentValidation 10.3.0
+* Autofac 6.2.0
 * Nunit 3.13.1
   * FluentAssertions 5.10.3
 
@@ -42,4 +43,4 @@ v2:
 - [X] native ffmpeg usage / own client (?)
 - [X] choose bitrate quality
 - [X] fluent validator
-- [ ] github ci/cd
+- [X] github ci/cd

@@ -49,7 +49,7 @@ namespace YOVPS.Core
 
             var chapters = new VideoDescription(description ?? video.Description).ParseChapters();
             if (chapters.Count == 0)
-                throw description == null ? new ChaptersNotFoundException() : new ChaptersParseException(); 
+                throw description == null ? (Exception) new ChaptersNotFoundException() : new ChaptersParseException(); 
             
             logger.Info("Downloading video stream... \t");
             var videoFile = await SaveYouTubeVideoFileAsync(video);
@@ -104,7 +104,7 @@ namespace YOVPS.Core
             
             var chapters = new VideoDescription(description ?? video.Description).ParseChapters();
             if (chapters == null ||chapters.Count == 0)
-                throw description == null ? new ChaptersNotFoundException() : new ChaptersParseException();
+                throw description == null ? (Exception) new ChaptersNotFoundException() : new ChaptersParseException();
 
             var threadContextId = Guid.NewGuid();
             

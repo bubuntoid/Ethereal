@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,7 @@ using Microsoft.OpenApi.Models;
 using YOVPS.Core;
 using YOVPS.WebAPI.Controllers.MainController.Models;
 using YOVPS.WebAPI.Filters;
+using YOVPS.WebAPI.Modules;
 using YOVPS.WebAPI.Settings;
 using HostingEnvironmentExtensions = Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions;
 
@@ -24,28 +26,17 @@ namespace YOVPS.WebAPI
 {
     public class Startup
     {
+        public ILifetimeScope AutofacContainer { get; private set; }
+        public IConfiguration Configuration { get; }
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<ExceptionFilter>();
-            
-            services.AddScoped<FfmpegSettings>();
-            services.AddScoped<IVideoSplitterService>(s =>
-            {
-                var settings = s.GetService<FfmpegSettings>();
-
-                return new VideoSplitterService(
-                    tempPath: settings.TempPath,
-                    executablesPath: string.IsNullOrEmpty(settings.ExecutablesPath) ? null : settings.ExecutablesPath);
-            });
-
             services.AddFluentValidation(fv =>
                 fv.RegisterValidatorsFromAssemblyContaining<DownloadMp3RequestDto.Validator>());
             
@@ -67,6 +58,14 @@ namespace YOVPS.WebAPI
             });
         }
 
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            // Register your own things directly with Autofac here. Don't
+            // call builder.Populate(), that happens in AutofacServiceProviderFactory
+            // for you.
+            builder.RegisterModule(new AutofacModule());
+        }
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
