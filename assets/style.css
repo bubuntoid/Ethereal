@@ -64,6 +64,7 @@
           align-items: center;
 }
 .wplayer .sidebar .sidebar__nav {
+  overflow: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -80,14 +81,10 @@
   background-color: #0D0D0D;
   border-radius: 20px;
 }
-.wplayer .sidebar .sidebar__nav .nav__link:nth-child(1) {
-  margin-top: 20%;
-}
 .wplayer .sidebar .sidebar__nav .nav__link {
   -webkit-transition: 0.4s ease;
   transition: 0.4s ease;
   font-size: 30px;
-  margin-top: 20px;
 }
 .wplayer .sidebar .sidebar__nav .nav__link:hover {
   color: #66C68C;

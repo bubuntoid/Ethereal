@@ -39,6 +39,7 @@
     justify-content: center;
     align-items: center;
     .sidebar__nav {
+      overflow: auto;
       display: flex;
       flex-direction: column;
       justify-items: flex-start;
@@ -48,12 +49,12 @@
       background-color: #0D0D0D;
       border-radius: 20px;
       .nav__link:nth-child(1) {
-        margin-top: 20%;
+        // margin-top: 20%;
       }
       .nav__link {
         transition: .4s ease;
         font-size: 30px;
-        margin-top: 20px;
+        // margin-top: 20px;
         &:hover {
           color: #66C68C;
         }
