@@ -1,12 +1,12 @@
 const footer = document.querySelector('.footer');
 const mainInput = document.querySelector('.main__input-text');
-const webPlayer = document.querySelector('.wplayer')
-const playerTitle = document.querySelector('.player__title')
-const playerSubTitle = document.querySelector('.player__subtitle')
-const sidebarNav = document.querySelector('.sidebar__nav')
-
-const loader = document.querySelector('.loader')
-const chapters = {}
+const webPlayer = document.querySelector('.wplayer');
+const playerTitle = document.querySelector('.player__title');
+const playerSubTitle = document.querySelector('.player__subtitle');
+const navList = document.querySelector('.nav-list');
+const navLinks = ''
+const loader = document.querySelector('.loader');
+const chapters = {};
 
 
 let footerChecker = (isOpen = false) => {
@@ -33,3 +33,4 @@ function input2req(url) {
     url: url
   })
 }
+

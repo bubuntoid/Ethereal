@@ -1,13 +1,17 @@
 .wplayer {
   transform: translate(100vw, 0);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   z-index: 2;
   position: absolute;
   height: 100vh;
   width: 100vw;
   background: #1c1c1c;
+  .wp__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
   .player {
     position: relative;
     width: 50vw;
@@ -28,6 +32,8 @@
       font-size: 80px;
     }
     .player__subtitle {
+      width: 400px;
+      text-align: center;
       z-index: 3;
       font-size: 30px;
     }
@@ -39,24 +45,31 @@
     justify-content: center;
     align-items: center;
     .sidebar__nav {
+      box-shadow: 10px 10px 3px #111;
       overflow: auto;
-      display: flex;
-      flex-direction: column;
-      justify-items: flex-start;
-      align-items: center;
-      height: 95%;
-      width: 30vw;
+      text-align: center;
+      height: 600px;
+      width: 70%;
       background-color: #0D0D0D;
       border-radius: 20px;
-      .nav__link:nth-child(1) {
-        // margin-top: 20%;
-      }
-      .nav__link {
-        transition: .4s ease;
-        font-size: 30px;
-        // margin-top: 20px;
-        &:hover {
-          color: #66C68C;
+      .nav-list {
+        .nav-list-i {
+          margin: 30px 20px;
+          padding: 15px;
+          border-radius: 20px;
+          background: #000;
+          transition: .4s ease;
+          &:hover {
+            // animation: gradientFlow 5s linear infinite alternate;
+            transform: translate(-10px, 0);
+          }
+          .nav__link {
+            transition: .4s ease;
+            font-size: 20px;
+            &:hover {
+              color: #66C68C;
+            }
+          }
         }
       }
     }

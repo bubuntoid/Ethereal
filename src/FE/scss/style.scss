@@ -21,6 +21,18 @@ $smSize: 16px;
   }
 }
 
+@keyframes gradientFlow {
+  0% {
+    background-color: #cd9ca5;
+  }
+  50% {
+    background-color: #c9a0e6;
+  }
+  100% {
+    background-color: #a2ebfa;
+  }
+}
+
 #ac {
   color: $accColor;
 }

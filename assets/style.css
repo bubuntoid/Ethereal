@@ -2,6 +2,13 @@
 .wplayer {
   -webkit-transform: translate(100vw, 0);
           transform: translate(100vw, 0);
+  z-index: 2;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background: #1c1c1c;
+}
+.wplayer .wp__container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11,11 +18,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  z-index: 2;
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  background: #1c1c1c;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 .wplayer .player {
   position: relative;
@@ -47,6 +51,8 @@
   font-size: 80px;
 }
 .wplayer .player .player__subtitle {
+  width: 400px;
+  text-align: center;
   z-index: 3;
   font-size: 30px;
 }
@@ -64,29 +70,33 @@
           align-items: center;
 }
 .wplayer .sidebar .sidebar__nav {
+  -webkit-box-shadow: 10px 10px 3px #111;
+          box-shadow: 10px 10px 3px #111;
   overflow: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  justify-items: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 95%;
-  width: 30vw;
+  text-align: center;
+  height: 600px;
+  width: 70%;
   background-color: #0D0D0D;
   border-radius: 20px;
 }
-.wplayer .sidebar .sidebar__nav .nav__link {
+.wplayer .sidebar .sidebar__nav .nav-list .nav-list-i {
+  margin: 30px 20px;
+  padding: 15px;
+  border-radius: 20px;
+  background: #000;
   -webkit-transition: 0.4s ease;
   transition: 0.4s ease;
-  font-size: 30px;
 }
-.wplayer .sidebar .sidebar__nav .nav__link:hover {
+.wplayer .sidebar .sidebar__nav .nav-list .nav-list-i:hover {
+  -webkit-transform: translate(-10px, 0);
+          transform: translate(-10px, 0);
+}
+.wplayer .sidebar .sidebar__nav .nav-list .nav-list-i .nav__link {
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+  font-size: 20px;
+}
+.wplayer .sidebar .sidebar__nav .nav-list .nav-list-i .nav__link:hover {
   color: #66C68C;
 }
 
@@ -193,6 +203,28 @@
   100% {
     -webkit-transform: translate(0, 20px);
             transform: translate(0, 20px);
+  }
+}
+@-webkit-keyframes gradientFlow {
+  0% {
+    background-color: #cd9ca5;
+  }
+  50% {
+    background-color: #c9a0e6;
+  }
+  100% {
+    background-color: #a2ebfa;
+  }
+}
+@keyframes gradientFlow {
+  0% {
+    background-color: #cd9ca5;
+  }
+  50% {
+    background-color: #c9a0e6;
+  }
+  100% {
+    background-color: #a2ebfa;
   }
 }
 #ac {
