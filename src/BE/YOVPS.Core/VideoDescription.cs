@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
 using YOVPS.Core.Exceptions;
 using YOVPS.Core.Extensions;
 
@@ -43,23 +41,23 @@ namespace YOVPS.Core
             
             if (lines.Count == 0)
                 return new List<VideoChapter>();
-            
-            while(lines.Count > index)
+
+            while (lines.Count > index)
             {
                 var line = lines[index].Trim();
+                index++;
+
                 if (line.ContainsTimespan(out var timespan) == false)
-                    break;
+                    continue;
 
                 var chapter = new VideoChapter
                 {
                     Original = line,
                     StartTimespan = timespan,
                     Name = line.RemoveTimespan().RemoveIllegalCharacters(),
-                    
+
                 };
                 chapters.Add(chapter);
-
-                index++;
             }
 
             for (var i = 0; i < chapters.Count; i++)

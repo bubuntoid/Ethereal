@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading;
 using System.Threading.Tasks;
+
 using NLog;
 using YoutubeExplode;
 using YoutubeExplode.Videos;
-using YoutubeExplode.Videos.Streams;
-using YOVPS.Core.Exceptions;
-using YOVPS.Core.Extensions;
 using YOVPS.Core.Threading;
+using YOVPS.Core.Extensions;
+using YOVPS.Core.Exceptions;
 
 namespace YOVPS.Core
 {
