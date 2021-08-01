@@ -1,12 +1,13 @@
 ﻿using System;
 using NUnit.Framework;
 using FluentAssertions;
+using YOVPS.Core.Exceptions;
 
 namespace YOVPS.Core.UnitTests
 {
     public class VideoDescriptionTests
     {
-        private readonly string src = @"
+        private readonly string description = @"
                         1. (0:00) KOPI / KOBASOLO – Swayed in Spring Reiniscence
                         2. (09:13) Memai Siren -Nisemono no Utage
                         3. (34:36) Vivid Undress – Sayonara Dilemma
@@ -46,25 +47,24 @@ namespace YOVPS.Core.UnitTests
             }
         };
 
-        // [Test]
-        // public async Task Test()
-        // {
-        //     var content = await new VideoSplitter().ProcessAsync("https://www.youtube.com/watch?v=TmQyfUpyeFk&list=LL&index=5&ab_channel=NewRetroWave");
-        //     
-        //     var zipFileStream = File.Create(Path.Combine(Directory.GetCurrentDirectory(), "archive.zip"));
-        //     await zipFileStream.WriteAsync(content, 0, content.Length);
-        //     zipFileStream.Flush();
-        //     zipFileStream.Close();
-        // }
-        
         [Test]
         public void ParseChaptersTest()
         {
-            var description = new VideoDescription(src);
+            var videoDescription = new VideoDescription(this.description);
 
-            var chapters = description.ParseChapters();
+            var chapters = videoDescription.ParseChapters();
 
             chapters.Should().BeEquivalentTo(expectedChapters);
+        }
+
+        [TestCase("")]
+        [TestCase("String without timecodes")]
+        [TestCase("String without timecodes\n with new line")]
+        [TestCase(null)]
+        public void DescriptionHasNoTimeCodes_ChaptersParseExceptionExpected(string desc)
+        {
+            var videoDescription = new VideoDescription(desc);
+            Assert.Throws<ChaptersParseException>(() => videoDescription.ParseChapters());
         }
     }
 }

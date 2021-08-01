@@ -27,6 +27,9 @@ namespace YOVPS.Core
 
         public IReadOnlyCollection<VideoChapter> ParseChapters()
         {
+            if (Description == null)
+                throw new ChaptersParseException(description: "description has no value");
+            
             var chapters = new List<VideoChapter>();
 
             var lines = Description.Split("\n").ToList(); 
