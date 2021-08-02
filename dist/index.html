@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>YOVPS</title>
   </head>
   <body> 
@@ -13,7 +13,8 @@
     </div>
     <div class="wplayer">
       <div class="wp__container"> 
-        <div class="player"> <img class="player__bg" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/0994d841602157.57ac63336b606.jpg" alt="album image">
+        <button class="wp__exit" onclick="webPlayer.style.transform = 'translate(100vw, 0)'"></button>
+        <div class="player"> <img class="player__bg" src="" alt="album image">
           <h2 class="player__title"> </h2>
           <h4 class="player__subtitle"> </h4>
           <div class="wplayer__hud"> 
@@ -26,6 +27,7 @@
           <nav class="sidebar__nav"> 
             <ul class="nav-list"> </ul>
           </nav>
+          <button class="download__button" onclick="downloadZip(mainInput.value)">Download ZIP</button>
         </div>
       </div>
     </div>
@@ -42,7 +44,7 @@
       <textarea class="footer__text" name="" cols="30" rows="10"> </textarea>
       <button class="footer__btn" type="submit"></button>
     </footer>
-    <script src="assets/xhr.js"> </script>
-    <script src="assets/main.js"> </script>
+    <script src="xhr.js"> </script>
+    <script src="main.js"> </script>
   </body>
 </html>

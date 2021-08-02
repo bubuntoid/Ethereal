@@ -1,7 +1,8 @@
 .wplayer
   .wp__container 
+    button.wp__exit(onclick="webPlayer.style.transform = 'translate(100vw, 0)'")
     .player 
-      img.player__bg(src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/0994d841602157.57ac63336b606.jpg", alt="album image")
+      img.player__bg(src="", alt="album image")
       h2.player__title  
       h4.player__subtitle  
       .wplayer__hud 
@@ -11,4 +12,9 @@
     .sidebar 
       nav.sidebar__nav 
         ul.nav-list 
-        //- a.nav__link(href="#") 0:15 - Freaks 
+      button.download__button(onclick="downloadZip(mainInput.value)") Download ZIP
+      //- .sidebar__download
+      //-   input.download__radio(type="radio", name="Download ZIP", id="0")
+      //-   input.download__radio(type="radio", name="Download Song", id="1")
+
+        

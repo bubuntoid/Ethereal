@@ -5,6 +5,19 @@
   height: 100vh;
   width: 100vw;
   background: #1c1c1c;
+  .wp__exit {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    margin: 3%;
+    clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%);
+    height: 20px;
+    width: 50px;
+    transition: .4s ease;
+    &:hover {
+      background-color: $accColor;
+    }
+  }
   .wp__container {
     display: flex;
     justify-content: space-between;
@@ -42,6 +55,7 @@
     width: 50vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     .sidebar__nav {
@@ -71,6 +85,21 @@
             }
           }
         }
+      }
+    }
+    .download__button {
+      margin: 5%;
+      height: 30px;
+      width: 100px;
+      background-color: rgba(0, 0, 0, 0);
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 10px;
+      transition: .4s ease;
+      cursor: pointer;
+      &:hover {
+        background-color: #fff;
+        color: #000;
       }
     }
   }
