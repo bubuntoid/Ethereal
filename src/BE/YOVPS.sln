@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YOVPS.Core.UnitTests", "YOV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YOVPS.WebAPI", "YOVPS.WebAPI\YOVPS.WebAPI.csproj", "{6F66F2CE-6431-43B6-B49D-2A216DFAB75E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YOVPS.WebAPI.AutoTests", "YOVPS.WebAPI.AutoTests\YOVPS.WebAPI.AutoTests.csproj", "{D7A50CC5-A7D5-4CD1-A513-4FA277CBEE1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YOVPS.WebAPI.Client", "YOVPS.WebAPI.Client\YOVPS.WebAPI.Client.csproj", "{80CE2047-62E1-4899-BF92-F017F8603942}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{6F66F2CE-6431-43B6-B49D-2A216DFAB75E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F66F2CE-6431-43B6-B49D-2A216DFAB75E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F66F2CE-6431-43B6-B49D-2A216DFAB75E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7A50CC5-A7D5-4CD1-A513-4FA277CBEE1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7A50CC5-A7D5-4CD1-A513-4FA277CBEE1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7A50CC5-A7D5-4CD1-A513-4FA277CBEE1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7A50CC5-A7D5-4CD1-A513-4FA277CBEE1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80CE2047-62E1-4899-BF92-F017F8603942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80CE2047-62E1-4899-BF92-F017F8603942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80CE2047-62E1-4899-BF92-F017F8603942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80CE2047-62E1-4899-BF92-F017F8603942}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

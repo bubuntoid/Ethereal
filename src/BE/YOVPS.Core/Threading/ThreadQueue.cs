@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using NLog;
+using YOVPS.Core.Exceptions;
 
 namespace YOVPS.Core.Threading
 {
@@ -59,7 +60,7 @@ namespace YOVPS.Core.Threading
                     }
 
                     logger.Warn($"Timeout exceeded, removing context {contextId} from queue");
-                    throw new Exception("Something went wrong, try again"); // todo: use local exception;
+                    throw new ThreadExceededTimeoutException();
                 }
                 
                 var threadContext = ThreadContexts.FirstOrDefault(x => x.Id == contextId);
