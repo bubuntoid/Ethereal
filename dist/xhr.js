@@ -12,31 +12,28 @@ function sendReq(method, url, responseType, body = null) {
     xhr.send(JSON.stringify(body));
   })
   .catch(err => {
-    loaderChecker(false)
+    UIChecker(loader, false)
     mainInput.value = '';
     mainInput.setAttribute('placeholder', err);
     webPlayer.style.transition = '1s ease';
-    webPlayer.style.transform = 'translate(100vw, 0)';
+    webPlayer.style.display = 'none';
   })
 }
 
 function getChapters(url) {
+    UIChecker(loader, true)
     sendReq("POST", reqUrlChapters, 'json', {
     url: url,
     includeThumbnails: true
   })
   .then(data => {
-    loaderChecker(false)
     const chapters = data;
     if (data) {
+      UIChecker(loader, false);
+      UIChecker(webPlayer, true);
       const playerBg = document.querySelector('.player__bg');
-
-      webPlayer.style.transition = '1s ease';
-      webPlayer.style.transform = 'translate(0, 0)';
-
       playerSubTitle.innerHTML = chapters[0].name;
-      playerBg.setAttribute('src', `data:image/png;base64, ${chapters[0].thumbnailBase64}`)
-
+      playerBg.setAttribute('src', `data:image/png;base64, ${chapters[0].thumbnailBase64}`);
       let itemsList = '';
       chapters.forEach((item, idx) => {
         itemsList += `
@@ -58,14 +55,13 @@ function getChapters(url) {
   })
 }
 function downloadZip(url, description = null) {
-  loaderChecker(true);
+  UIChecker(loader,true);
   sendReq("POST", "http://81.177.135.200:322/api/download/zip", "blob", {
     url: url,
     description: description
   })
-  .catch(err => loaderChecker(false))
   .then(data =>{
-    loaderChecker(false);
+    UIChecker(loader,false);
     console.log(data);
       let tempEl = document.createElement("a");
       	document.body.appendChild(tempEl);

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>YOVPS</title>
   </head>
@@ -13,7 +13,7 @@
     </div>
     <div class="wplayer">
       <div class="wp__container"> 
-        <button class="wp__exit" onclick="webPlayer.style.transform = 'translate(100vw, 0)'"></button>
+        <button class="wp__exit" onclick="UIChecker(webPlayer, false)"></button>
         <div class="player"> <img class="player__bg" src="" alt="album image">
           <h2 class="player__title"> </h2>
           <h4 class="player__subtitle"> </h4>

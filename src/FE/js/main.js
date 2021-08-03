@@ -13,20 +13,22 @@ let footerChecker = (isOpen = false) => {
   isOpen ? footer.style.transform = 'translate(0, -30%)' : footer.style.transform = 'translate(0, 0%)';
 }
 
-function loaderChecker(isValid = false) {
-  loader.style.transition = '1s ease'
+function UIChecker(intarface = null,isValid = false) {
+  intarface.style.transition = '1s ease'
   if (isValid) {
-    loader.style.opacity = '1' 
-    loader.style.zIndex = '6'
+    intarface.style.opacity = '1' 
+    intarface.style.zIndex = '6'
   } else {
-    loader.style.opacity = '0'
-    loader.style.zIndex = '0'
+    intarface.style.opacity = '0'
+    intarface.style.zIndex = '-6'
   }
 }
 
 function input2req(url) {
-  loaderChecker(true)
+  UIChecker(loader ,true)
   url = mainInput.value
   console.log(url)
   getChapters(url);
 }
+
+UIChecker(webPlayer, false)

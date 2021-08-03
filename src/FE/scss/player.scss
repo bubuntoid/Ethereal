@@ -1,5 +1,4 @@
 .wplayer {
-  transform: translate(100vw, 0);
   z-index: 2;
   position: absolute;
   height: 100vh;
@@ -15,7 +14,7 @@
     width: 50px;
     transition: .4s ease;
     &:hover {
-      background-color: $accColor;
+     background-color: $accColor;
     }
   }
   .wp__container {

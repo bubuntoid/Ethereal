@@ -1,6 +1,6 @@
 .wplayer
   .wp__container 
-    button.wp__exit(onclick="webPlayer.style.transform = 'translate(100vw, 0)'")
+    button.wp__exit(onclick="UIChecker(webPlayer, false)")
     .player 
       img.player__bg(src="", alt="album image")
       h2.player__title  
@@ -16,5 +16,3 @@
       //- .sidebar__download
       //-   input.download__radio(type="radio", name="Download ZIP", id="0")
       //-   input.download__radio(type="radio", name="Download Song", id="1")
-
-        
