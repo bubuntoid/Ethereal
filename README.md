@@ -3,13 +3,13 @@
 
 Demo url: http://81.177.135.200/
 
-
 ![](./assets/Screenshot_1.png)
 ![](./assets/Screenshot_2.png)
 ![](./assets/Screenshot_3.png)
 
 ## Syntax
-There is just one strict rule - use only one line per each song
+There is no strict rule, if youtube recognize chapters from your video then we can parse it without any problems.
+How do youtube chapters work: https://www.tubics.com/blog/youtube-chapters/
 
 Correct (https://www.youtube.com/watch?v=UZ7oOhhPEWU&t=3448s&ab_channel=kneon):
 ```
@@ -17,7 +17,7 @@ Correct (https://www.youtube.com/watch?v=UZ7oOhhPEWU&t=3448s&ab_channel=kneon):
 2. (04:11) Sakanaction – Shin Takarajima
 3. (09:13) Memai Siren - Nisemono no Utage
 ```
-Incorrect (https://www.youtube.com/watch?v=CU_ruPKWJpc&t=82s&ab_channel=Asthenic):
+Correct as well (https://www.youtube.com/watch?v=CU_ruPKWJpc&t=82s&ab_channel=Asthenic):
 ```
 0:00 Lazerhawk - So Far Away 
 https://soundcloud.com/lazerhawk/so-f...
@@ -31,7 +31,7 @@ https://zanealexander.bandcamp.com/al...
 https://soundcloud.com/oddlingmusic/r...
 https://oddling.bandcamp.com/releases
 ```
-To make this template work, you have to edit it by yourself and put in custom description box like that:
+If your video has no timecodes in description, but you got one or writted it by yourself, then you can specify timecodes just like this:
 ![](./assets/Screenshot_4.png)
 
 ## Backend
