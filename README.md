@@ -1,5 +1,5 @@
 # YOVPS
-**Youtube One Video Playlist Splitter** - Solution that provide functionality for splitting huge youtube one-video playlists to mp3 files using just url and (optionally) time code description. For most of processing operations it uses [FFMPEG](https://www.ffmpeg.org/) library.
+**Youtube One Video Playlist Splitter** - Solution that provide functionality for splitting huge youtube one-video playlists to mp3 files using just url and (optionally) custom  description with time codes (chapters). For most of processing operations it uses [FFMPEG](https://www.ffmpeg.org/) library.
 
 ## Navigation
 [YOVPS](https://github.com/bubuntoid/YOVPS/) - Core and WebAPI. **(we are here)**<br>
