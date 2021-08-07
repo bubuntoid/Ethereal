@@ -3,7 +3,7 @@
 
 ## Navigation
 [YOVPS](https://github.com/bubuntoid/YOVPS/) - Core and WebAPI. **(we are here)**<br>
-[YOVPS.CLI](https://github.com/bubuntoid/YOVPS.CLI/) - Cross platforms command line interface (console application).<br>
+[YOVPS.Cli](https://github.com/bubuntoid/YOVPS.CLI/) - Cross platform command line interface application.<br>
 [YOVPS.Web](#) - Web client written in native JS.<br>
 [YOVPS.Desktop](#) - Desktop client written in electron.<br>
 
@@ -49,6 +49,7 @@ Ensure that you have new line after each time code.
 * Nunit 3.13.1
 * FluentAssertions 5.10.3
 
+## Backend
 test server endpoint: http://81.177.135.200:322 </br>
 swagger: http://81.177.135.200:322/swagger/index.html
 
@@ -57,7 +58,7 @@ $ chmod +x scripts/run.sh
 $ ./scripts/run.sh
 ```
 
-## FFMPEG Environment
+### **FFMPEG**
 Download and install fmpeg (https://ffmpeg.org/)<br>
 Specify path to FFMPEG executables in **appsetings.json**:
 
