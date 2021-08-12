@@ -21,7 +21,7 @@ namespace YOVPS.Core
             int count)
         {
             logger.Info($"Processing {chapter.Name}...");
-            
+
             using var p = new Process
             {
                 StartInfo =

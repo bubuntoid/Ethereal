@@ -18,4 +18,15 @@
     <ProjectReference Include="..\YOVPS.Core\YOVPS.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Ffmpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Ffmpeg\ffmpeg.exe" />
+    <EmbeddedResource Include="Ffmpeg\ffmpeg.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
