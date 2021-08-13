@@ -14,7 +14,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Resources" />
+      <None Remove="Resources\sample.mp4" />
+      <EmbeddedResource Include="Resources\sample.mp4">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
     </ItemGroup>
 
 </Project>

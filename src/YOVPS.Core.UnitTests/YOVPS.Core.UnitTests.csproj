@@ -12,21 +12,16 @@
     <PackageReference Include="NUnit" Version="3.13.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
     <PackageReference Include="coverlet.collector" Version="3.0.2" />
+    <PackageReference Include="Xabe.FFmpeg.Downloader" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\YOVPS.Common.Tests\YOVPS.Common.Tests.csproj" />
     <ProjectReference Include="..\YOVPS.Core\YOVPS.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Ffmpeg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Ffmpeg\ffmpeg.exe" />
-    <EmbeddedResource Include="Ffmpeg\ffmpeg.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
