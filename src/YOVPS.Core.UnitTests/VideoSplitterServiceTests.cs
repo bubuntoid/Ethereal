@@ -5,6 +5,6 @@ namespace YOVPS.Core.UnitTests
     [TestFixture]
     public class VideoSplitterServiceTests
     {
-        // todo
+        // todo: wait until v2 release
     }
 }

@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Xabe.FFmpeg;
 using Xabe.FFmpeg.Downloader;
 using YOVPS.Common.Tests;
+using YOVPS.Core.Extensions;
 
 namespace YOVPS.Core.UnitTests
 {
@@ -19,19 +20,25 @@ namespace YOVPS.Core.UnitTests
         [SetUp]
         public async Task SetUp()
         {
+            // Setting up ffmpeg
             var ffmpegPath = Path.Combine(Directory.GetCurrentDirectory(), "ffmpeg");
             await FFmpegDownloader.GetLatestVersion(FFmpegVersion.Full, ffmpegPath);
             FfmpegWrapper.ExecutablesPath = Path.Combine(ffmpegPath, "ffmpeg");
             FFmpeg.SetExecutablesPath(ffmpegPath);
             
-            videoPath = ResourcesHelper.GetResourceFullPath("sample.mp4");
+            // Creating temp directory to work with
             tempOutputPath = Path.Combine(Directory.GetCurrentDirectory(), Guid.NewGuid().ToString());
             Directory.CreateDirectory(tempOutputPath);
             
+            // Copying video to temp folder
+            videoPath = Path.Combine(tempOutputPath, "sample.mp4");
+            await ResourcesHelper.SaveResourceToFileAsync("sample.mp4", videoPath);
+            
+            // Sample chapter
             chapter = new VideoChapter
             {
-                StartTimespan = TimeSpan.FromMinutes(5),
-                EndTimespan = TimeSpan.FromMinutes(10),
+                StartTimespan = TimeSpan.FromMinutes(1),
+                EndTimespan = TimeSpan.FromMinutes(2),
             };
         }
 
@@ -44,31 +51,49 @@ namespace YOVPS.Core.UnitTests
         [Test]
         public async Task SaveTrimmedAsync_VideoSaved()
         {
-            var outputPath = Path.Combine(tempOutputPath, $"{Guid.NewGuid()}.mp3");
+            var filename = $"{Guid.NewGuid()}.mp4";
+            var outputPath = Path.Combine(tempOutputPath, filename);
             await FfmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter, 0, 1);
             
             var mediaInfo = await FFmpeg.GetMediaInfo(outputPath);
-            var videoDuration = mediaInfo.VideoStreams.First().Duration;
+            var videoDuration = mediaInfo.AudioStreams.First().Duration;
 
-            Assert.That(videoDuration, Is.EqualTo(chapter.Duration));
+            var files = Directory.GetFiles(tempOutputPath);
+            Assert.That(files.Any(file => file.EndsWith(filename)));
         }
         
         [Test]
-        public void SaveTrimmedAsync_VideoHasCorrectLength()
+        public async Task SaveTrimmedAsync_VideoHasCorrectLength()
         {
+            var outputPath = Path.Combine(tempOutputPath, $"{Guid.NewGuid()}.mp4");
+            await FfmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter, 0, 1);
             
+            var mediaInfo = await FFmpeg.GetMediaInfo(outputPath);
+            var videoDuration = mediaInfo.AudioStreams.First().Duration;
+
+            // ReSharper disable once PossibleInvalidOperationException
+            Assert.That(videoDuration.ClearMilliseconds(), Is.EqualTo(chapter.Duration.Value.ClearMilliseconds()));
         }
         
         [Test]
-        public void SaveTrimmedAsync_VideoHasAudioTrack()
+        public async Task SaveTrimmedAsync_TrimmedVideoHasNoVideoStreamsLeft()
         {
+            var outputPath = Path.Combine(tempOutputPath, $"{Guid.NewGuid()}.mp4");
+            await FfmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter, 0, 1);
             
+            var mediaInfo = await FFmpeg.GetMediaInfo(outputPath);
+            Assert.That(mediaInfo.VideoStreams.Count(), Is.EqualTo(0));
         }
         
         [Test]
-        public void SaveImageAsync_ImageSaved()
+        public async Task SaveImageAsync_ImageSaved()
         {
+            var filename = $"{Guid.NewGuid()}.jpeg";
+            var outputPath = Path.Combine(tempOutputPath, filename);
+            await FfmpegWrapper.SaveImageAsync(videoPath, outputPath, chapter, 0, 1);
             
+            var files = Directory.GetFiles(tempOutputPath);
+            Assert.That(files.Any(file => file.EndsWith(filename)));
         }
     }
 }

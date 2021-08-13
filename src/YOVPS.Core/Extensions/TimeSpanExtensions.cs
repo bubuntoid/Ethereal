@@ -23,5 +23,10 @@ namespace YOVPS.Core.Extensions
 
             return TimeSpan.TryParse(str, out timespan);
         }
+        
+        public static TimeSpan ClearMilliseconds(this TimeSpan time)
+        {
+            return new TimeSpan(time.Days, time.Hours, time.Minutes, time.Seconds);
+        }
     }
 }
