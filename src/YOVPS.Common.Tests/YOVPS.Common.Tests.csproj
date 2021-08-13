@@ -15,9 +15,9 @@
 
     <ItemGroup>
       <None Remove="Resources\sample.mp4" />
-      <EmbeddedResource Include="Resources\sample.mp4">
+      <Resource Include="Resources\sample.mp4">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </EmbeddedResource>
+      </Resource>
     </ItemGroup>
 
 </Project>
