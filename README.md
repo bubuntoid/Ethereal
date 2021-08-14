@@ -1,15 +1,19 @@
-# YOVPS
-**Youtube One Video Playlist Splitter** - Service that splitting huge youtube one-video playlists to mp3 files using just url and time code description (optionally).
+# Ethereal
+**Ethereal** is a service that splitting huge youtube one-video playlists to mp3 files using just url and (optionally) custom  description with time codes (chapters). For most of processing operations it uses [FFMPEG](https://www.ffmpeg.org/) library.
 
-Demo url: http://81.177.135.200/
-
+## Navigation
+[Ethereal](https://github.com/bubuntoid/Ethereal/) - Web API. **(we are here)**<br>
+[Ethereal.Cli](https://github.com/bubuntoid/Ethereal.Cli/) - Cross platform command line interface application.<br>
+[Ethereal.Web](#) - Web client written in native JS.<br>
+[Ethereal.Desktop](#) - Desktop client written in electron.<br>
 
 ![](./assets/Screenshot_1.png)
 ![](./assets/Screenshot_2.png)
 ![](./assets/Screenshot_3.png)
 
 ## Syntax
-There is just one strict rule - use only one line per each song
+There is no strict rule, if youtube recognize chapters from your video then we can parse it without any other additional actions.
+How do youtube chapters work: https://www.tubics.com/blog/youtube-chapters/
 
 Correct (https://www.youtube.com/watch?v=UZ7oOhhPEWU&t=3448s&ab_channel=kneon):
 ```
@@ -17,7 +21,7 @@ Correct (https://www.youtube.com/watch?v=UZ7oOhhPEWU&t=3448s&ab_channel=kneon):
 2. (04:11) Sakanaction – Shin Takarajima
 3. (09:13) Memai Siren - Nisemono no Utage
 ```
-Incorrect (https://www.youtube.com/watch?v=CU_ruPKWJpc&t=82s&ab_channel=Asthenic):
+Correct as well (https://www.youtube.com/watch?v=CU_ruPKWJpc&t=82s&ab_channel=Asthenic):
 ```
 0:00 Lazerhawk - So Far Away 
 https://soundcloud.com/lazerhawk/so-f...
@@ -31,10 +35,10 @@ https://zanealexander.bandcamp.com/al...
 https://soundcloud.com/oddlingmusic/r...
 https://oddling.bandcamp.com/releases
 ```
-To make this template work, you have to edit it by yourself and put in custom description box like that:
-![](./assets/Screenshot_4.png)
+If your video has no timecodes in description, but you got one (often situation when people leave time codes in comments) or writted it by yourself, then you can explicit custom description with timecodes with youtube like syntax.
+Ensure that you have new line after each time code.
 
-## Backend
+## Dependencies
 * .NET 5.0
 * ASP.NET Core 5.6.3
 * NLog 4.5.11
@@ -43,8 +47,9 @@ To make this template work, you have to edit it by yourself and put in custom de
 * Autofac 6.2.0
 * AutoMapper 10.1.1
 * Nunit 3.13.1
-  * FluentAssertions 5.10.3
+* FluentAssertions 5.10.3
 
+## Backend
 test server endpoint: http://81.177.135.200:322 </br>
 swagger: http://81.177.135.200:322/swagger/index.html
 
@@ -53,7 +58,7 @@ $ chmod +x scripts/run.sh
 $ ./scripts/run.sh
 ```
 
-### FFMPEG
+### **FFMPEG**
 Download and install fmpeg (https://ffmpeg.org/)<br>
 Specify path to FFMPEG executables in **appsetings.json**:
 
@@ -71,7 +76,3 @@ Specify path to FFMPEG executables in **appsetings.json**:
     "ExecutablesPath" : "C://Path//To//ffmpeg.exe"
 }
 ```
-
-## Frontend
-* PUG
-* SCSS

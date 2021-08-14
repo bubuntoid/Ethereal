@@ -34,10 +34,10 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
         run: dotnet restore
-        working-directory: src/BE
+        working-directory: src
         
       - name: Build
-        run: dotnet build src/BE --configuration Release --no-restore
+        run: dotnet build src --configuration Release --no-restore
         
       - name: Test
-        run: dotnet test src/BE/YOVPS.Core.UnitTests --no-restore --verbosity normal
+        run: dotnet test src/Ethereal.Application.UnitTests --no-restore --verbosity normal
