@@ -18,13 +18,16 @@ namespace Ethereal.Application
         
         private readonly YoutubeClient client;
         private readonly string tempPath;
+        private readonly string executablesPath;
 
-        public VideoSplitterService(IEtherealSettings settings)
+        public VideoSplitterService(string tempPath, string executablesPath)
         {
-            tempPath = settings.TempPath;
-            FfmpegWrapper.ExecutablesPath = settings.ExecutablesPath;
-            
+            this.tempPath = tempPath;
+            this.executablesPath = executablesPath;
+
             client = new YoutubeClient();
+
+            FfmpegWrapper.ExecutablesPath = executablesPath;
         }
 
         public async Task<string> GetThumbnailUrlAsync(string url)
