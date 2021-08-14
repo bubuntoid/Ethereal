@@ -10,6 +10,7 @@ using YOVPS.Common.Tests;
 
 namespace Ethereal.Application.UnitTests
 {
+    [Ignore("CI/CD")]
     [TestFixture]
     public class FfmpegWrapperTests
     {

@@ -27,13 +27,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721af198-314f-424b-a35d-823ea0946efe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/ThreadQueueTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/ThreadQueueTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Exceptions/ChaptersNotFoundException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Exceptions/ChaptersNotFoundException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Exceptions/ChaptersParseException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Exceptions/ChaptersParseException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Exceptions/ThreadExceededTimeoutException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Exceptions/ThreadExceededTimeoutException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Exceptions/YovpsException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Exceptions/EtherealException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Filters/ExceptionFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Filters/ExceptionFilter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +55,7 @@
         <option value="$PROJECT_DIR$/Ethereal.Application/VideoSplitterService.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application/Exceptions/YovpsException.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/ThreadQueueTests.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" />
       </list>
     </option>
   </component>
@@ -189,7 +184,7 @@
       <workItem from="1628899965990" duration="204000" />
       <workItem from="1628900192350" duration="101000" />
       <workItem from="1628900359471" duration="30000" />
-      <workItem from="1628900511132" duration="697000" />
+      <workItem from="1628900511132" duration="1175000" />
     </task>
     <servers />
   </component>
@@ -207,5 +202,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="613" y="253" width="694" height="534" key="find.popup" timestamp="1628901152209">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="613" y="253" width="694" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1628901152209" />
   </component>
 </project>
