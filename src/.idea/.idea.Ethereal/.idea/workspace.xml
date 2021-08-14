@@ -26,66 +26,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="721af198-314f-424b-a35d-823ea0946efe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Ethereal.Application.UnitTests.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Commands/DownloadYoutubeVideoCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application/IEtherealSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Domain/Ethereal.Domain.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Domain/EtherealDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YOVPS/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YOVPS/riderModule.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Common.Tests/Resources/sample.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Common.Tests/Resources/sample.mp4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Common.Tests/ResourcesHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Common.Tests/ResourcesHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Common.Tests/YOVPS.Common.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Common.Tests/Ethereal.Common.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core.UnitTests/FfmpegWrapperTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core.UnitTests/ThreadQueueTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/ThreadQueueTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core.UnitTests/VideoDescriptionTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/VideoDescriptionTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core.UnitTests/VideoSplitterServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/VideoSplitterServiceTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core.UnitTests/YOVPS.Core.UnitTests.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/Exceptions/ChaptersNotFoundException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Exceptions/ChaptersNotFoundException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/Exceptions/ChaptersParseException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Exceptions/ChaptersParseException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/Exceptions/ThreadExceededTimeoutException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Exceptions/ThreadExceededTimeoutException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/Exceptions/YovpsException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Exceptions/YovpsException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/Extensions/ComputationExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Extensions/ComputationExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/Extensions/LinqExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Extensions/LinqExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/Extensions/StreamExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Extensions/StreamExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/Extensions/StringExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Extensions/StringExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/Extensions/TimeSpanExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Extensions/TimeSpanExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/FfmpegWrapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/IVideoSplitterService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/IVideoSplitterService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/ObjectWithName.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/ObjectWithName.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/Threading/ThreadContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Threading/ThreadContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/Threading/ThreadQueue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Threading/ThreadQueue.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/Threading/ThreadWithId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Threading/ThreadWithId.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/VideoChapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/VideoChapter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/VideoDescription.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/VideoDescription.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/VideoSplitterService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/VideoSplitterService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/YOVPS.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Ethereal.Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.Core/YouTubeVideoFile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/YouTubeVideoFile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI.AutoTests/YOVPS.WebAPI.AutoTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI.AutoTests/Ethereal.WebAPI.AutoTests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI.Client/YOVPS.WebAPI.Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Client/Ethereal.WebAPI.Client.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Controllers/MainController/MainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/MainController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Controllers/MainController/Models/DownloadMp3RequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/Models/DownloadMp3RequestDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Controllers/MainController/Models/DownloadThumbnailRequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/Models/DownloadThumbnailRequestDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Controllers/MainController/Models/DownloadZipRequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/Models/DownloadZipRequestDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Controllers/MainController/Models/GetChaptersByUrlRequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/Models/GetChaptersByUrlRequestDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Controllers/MainController/Models/VideoChapterDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/Models/VideoChapterDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Filters/ExceptionFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Filters/ExceptionFilter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Models/ApiErrorDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Models/ApiErrorDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Modules/AutofacModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Modules/AutofacModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Modules/MapperModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Modules/MapperModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Settings/FfmpegSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Settings/SystemSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Settings/SettingsBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Settings/SettingsBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/YOVPS.WebAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Ethereal.WebAPI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/nlog.config" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/nlog.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/temp/30e0a655-e6f1-4822-9b6e-d434f4c3ea4e/__original__.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.WebAPI/temp/bdf7bbd2-c7d9-459e-a0a4-cc6b15b7bc57/__original__.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.sln" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/YOVPS.sln.DotSettings" beforeDir="false" />
-    </list>
+    <list default="true" id="721af198-314f-424b-a35d-823ea0946efe" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,6 +50,7 @@
         <option value="$PROJECT_DIR$/YOVPS.Core.UnitTests/ThreadQueueTests.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application/IVideoSplitterSettings.cs" />
         <option value="$PROJECT_DIR$/Ethereal.WebAPI/Settings/FfmpegSettings.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/VideoSplitterService.cs" />
       </list>
     </option>
   </component>
@@ -237,6 +179,7 @@
       <workItem from="1628899965990" duration="204000" />
       <workItem from="1628900192350" duration="101000" />
       <workItem from="1628900359471" duration="30000" />
+      <workItem from="1628900511132" duration="371000" />
     </task>
     <servers />
   </component>
