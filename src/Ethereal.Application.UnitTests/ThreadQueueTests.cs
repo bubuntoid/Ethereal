@@ -42,10 +42,9 @@ namespace Ethereal.Application.UnitTests
             var id = Guid.NewGuid();
             ThreadQueue.QueueTask(id, BuildSelfDestructingTask(DateTime.Now.AddHours(5)));
 
-            var ex = Assert.CatchAsync(() => ThreadQueue.WhenAll(id, TimeSpan.FromSeconds(5)));
+            var ex = Assert.ThrowsAsync<ThreadExceededTimeoutException>(() => ThreadQueue.WhenAll(id, TimeSpan.FromSeconds(5)));
 
             Assert.That(ThreadQueue.ThreadContexts.Any(c => c.Id == id), Is.False);
-            Assert.That(ex.Message, Is.TypeOf<ThreadExceededTimeoutException>());
         }
         
         [Test]

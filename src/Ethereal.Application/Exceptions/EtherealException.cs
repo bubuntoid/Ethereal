@@ -2,11 +2,11 @@
 
 namespace Ethereal.Application.Exceptions
 {
-    public abstract class YovpsException : Exception
+    public abstract class EtherealException : Exception
     {
         public string Description { get; set; } 
         
-        protected YovpsException(string message, string description) : base(message)
+        protected EtherealException(string message, string description) : base(message)
         {
             Description = description;
         }

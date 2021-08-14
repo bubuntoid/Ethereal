@@ -6,8 +6,6 @@
         <IsPackable>false</IsPackable>
 
         <AssemblyName>Ethereal.Common.Tests</AssemblyName>
-
-        <RootNamespace>YOVPS.Common.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

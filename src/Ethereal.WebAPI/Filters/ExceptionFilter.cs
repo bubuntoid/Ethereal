@@ -10,7 +10,7 @@ namespace Ethereal.WebAPI.Filters
     {
         public Task OnExceptionAsync(ExceptionContext context)
         {
-            var exception = context.Exception as YovpsException;
+            var exception = context.Exception as EtherealException;
             context.Result = new ObjectResult(new ApiErrorDto
             {
                 Error = context.Exception.Message,

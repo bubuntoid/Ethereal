@@ -25,8 +25,8 @@
         <e p="Exceptions" t="Include">
           <e p="ChaptersNotFoundException.cs" t="Include" />
           <e p="ChaptersParseException.cs" t="Include" />
+          <e p="EtherealException.cs" t="Include" />
           <e p="ThreadExceededTimeoutException.cs" t="Include" />
-          <e p="YovpsException.cs" t="Include" />
         </e>
         <e p="Extensions" t="Include">
           <e p="ComputationExtensions.cs" t="Include" />
