@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Evs\.nuget\packages\microsoft.net.test.sdk\16.9.4\build\netcoreapp2.1" t="Include">
+      <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
+    </e>
+    <e p="C:\Users\Evs\.nuget\packages\microsoft.testplatform.testhost\16.9.4\build\netcoreapp2.1\x64\Microsoft.TestPlatform.PlatformAbstractions.dll" t="Include" />
+    <e p="C:\Users\Evs\.nuget\packages\microsoft.testplatform.testhost\16.9.4\build\netcoreapp2.1\x64\testhost.dll" t="Include" />
+    <e p="C:\Users\Evs\.nuget\packages\microsoft.testplatform.testhost\16.9.4\build\netcoreapp2.1\x64\testhost.exe" t="Include" />
+    <e p="C:\Users\Evs\.nuget\packages\nunit3testadapter\3.17.0\build\netcoreapp2.1\nunit.engine.api.dll" t="Include" />
+    <e p="C:\Users\Evs\.nuget\packages\nunit3testadapter\3.17.0\build\netcoreapp2.1\nunit.engine.core.dll" t="Include" />
+    <e p="C:\Users\Evs\.nuget\packages\nunit3testadapter\3.17.0\build\netcoreapp2.1\nunit.engine.dll" t="Include" />
+    <e p="C:\Users\Evs\.nuget\packages\nunit3testadapter\3.17.0\build\netcoreapp2.1\NUnit3.TestAdapter.dll" t="Include" />
+    <e p="C:\Users\Evs\.nuget\packages\nunit3testadapter\3.17.0\build\netcoreapp2.1\NUnit3.TestAdapter.pdb" t="Include" />
+    <e p="C:\Users\Evs\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Evs\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Ethereal.1942316285.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Evs\repos\YOVPS\src" t="IncludeFlat">
+      <e p="Common" t="Include" />
+      <e p="Ethereal.Application" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Commands" t="Include">
+          <e p="DownloadYoutubeVideoCommand.cs" t="Include" />
+        </e>
+        <e p="Ethereal.Application.csproj" t="IncludeRecursive" />
+        <e p="Exceptions" t="Include">
+          <e p="ChaptersNotFoundException.cs" t="Include" />
+          <e p="ChaptersParseException.cs" t="Include" />
+          <e p="ThreadExceededTimeoutException.cs" t="Include" />
+          <e p="YovpsException.cs" t="Include" />
+        </e>
+        <e p="Extensions" t="Include">
+          <e p="ComputationExtensions.cs" t="Include" />
+          <e p="LinqExtensions.cs" t="Include" />
+          <e p="StreamExtensions.cs" t="Include" />
+          <e p="StringExtensions.cs" t="Include" />
+          <e p="TimeSpanExtensions.cs" t="Include" />
+        </e>
+        <e p="FfmpegWrapper.cs" t="Include" />
+        <e p="IEtherealSettings.cs" t="Include" />
+        <e p="IVideoSplitterService.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="Ethereal.Application.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="ObjectWithName.cs" t="Include" />
+        <e p="Threading" t="Include">
+          <e p="ThreadContext.cs" t="Include" />
+          <e p="ThreadQueue.cs" t="Include" />
+          <e p="ThreadWithId.cs" t="Include" />
+        </e>
+        <e p="VideoChapter.cs" t="Include" />
+        <e p="VideoDescription.cs" t="Include" />
+        <e p="VideoSplitterService.cs" t="Include" />
+        <e p="YouTubeVideoFile.cs" t="Include" />
+      </e>
+      <e p="Ethereal.Application.UnitTests" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Ethereal.Application.UnitTests.csproj" t="IncludeRecursive" />
+        <e p="FfmpegWrapperTests.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="Ethereal.Application.UnitTests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="ThreadQueueTests.cs" t="Include" />
+        <e p="VideoDescriptionTests.cs" t="Include" />
+        <e p="VideoSplitterServiceTests.cs" t="Include" />
+      </e>
+      <e p="Ethereal.Common.Tests" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Ethereal.Common.Tests.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="Ethereal.Common.Tests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Resources" t="Include">
+          <e p="sample.mp4" t="Include" />
+        </e>
+        <e p="ResourcesHelper.cs" t="Include" />
+      </e>
+      <e p="Ethereal.Domain" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Ethereal.Domain.csproj" t="IncludeRecursive" />
+        <e p="EtherealDbContext.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="Ethereal.Domain.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Ethereal.sln" t="IncludeFlat" />
+      <e p="Ethereal.WebAPI" t="IncludeRecursive">
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="MainController" t="Include">
+            <e p="MainController.cs" t="Include" />
+            <e p="Models" t="Include">
+              <e p="DownloadMp3RequestDto.cs" t="Include" />
+              <e p="DownloadThumbnailRequestDto.cs" t="Include" />
+              <e p="DownloadZipRequestDto.cs" t="Include" />
+              <e p="GetChaptersByUrlRequestDto.cs" t="Include" />
+              <e p="VideoChapterDto.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Ethereal.WebAPI.csproj" t="IncludeRecursive" />
+        <e p="Filters" t="Include">
+          <e p="ExceptionFilter.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="ApiErrorDto.cs" t="Include" />
+        </e>
+        <e p="Modules" t="Include">
+          <e p="AutofacModule.cs" t="Include" />
+          <e p="MapperModule.cs" t="Include" />
+        </e>
+        <e p="nlog.config" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="Ethereal.WebAPI.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Settings" t="Include">
+          <e p="SettingsBase.cs" t="Include" />
+          <e p="SystemSettings.cs" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+      </e>
+      <e p="Ethereal.WebAPI.AutoTests" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Ethereal.WebAPI.AutoTests.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="Ethereal.WebAPI.AutoTests.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Ethereal.WebAPI.Client" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Ethereal.WebAPI.Client.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="Ethereal.WebAPI.Client.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
