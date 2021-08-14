@@ -1,11 +1,11 @@
-# YOVPS
-**Youtube One Video Playlist Splitter** - Solution that provide functionality for splitting huge youtube one-video playlists to mp3 files using just url and (optionally) custom  description with time codes (chapters). For most of processing operations it uses [FFMPEG](https://www.ffmpeg.org/) library.
+# Ethereal
+**Ethereal** - Solution that provide functionality for splitting huge youtube one-video playlists to mp3 files using just url and (optionally) custom  description with time codes (chapters). For most of processing operations it uses [FFMPEG](https://www.ffmpeg.org/) library.
 
 ## Navigation
-[YOVPS](https://github.com/bubuntoid/YOVPS/) - Core and WebAPI. **(we are here)**<br>
-[YOVPS.Cli](https://github.com/bubuntoid/YOVPS.CLI/) - Cross platform command line interface application.<br>
-[YOVPS.Web](#) - Web client written in native JS.<br>
-[YOVPS.Desktop](#) - Desktop client written in electron.<br>
+[Ethereal](https://github.com/bubuntoid/Ethereal/) - Web API. **(we are here)**<br>
+[Ethereal.Cli](https://github.com/bubuntoid/Ethereal.Cli/) - Cross platform command line interface application.<br>
+[Ethereal.Web](#) - Web client written in native JS.<br>
+[Ethereal.Desktop](#) - Desktop client written in electron.<br>
 
 ![](./assets/Screenshot_1.png)
 ![](./assets/Screenshot_2.png)
