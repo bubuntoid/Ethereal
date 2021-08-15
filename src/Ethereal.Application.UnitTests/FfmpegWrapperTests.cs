@@ -3,10 +3,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Ethereal.Application.Extensions;
+using Ethereal.Common.Tests;
 using NUnit.Framework;
 using Xabe.FFmpeg;
 using Xabe.FFmpeg.Downloader;
-using YOVPS.Common.Tests;
 
 namespace Ethereal.Application.UnitTests
 {

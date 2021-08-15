@@ -17,11 +17,16 @@
     <e p="C:\Users\Evs\repos\YOVPS\src" t="IncludeFlat">
       <e p="Common" t="Include" />
       <e p="Ethereal.Application" t="IncludeRecursive">
+        <e p="BackgroundJobs" t="Include">
+          <e p="BackgroundJobBase.cs" t="Include" />
+          <e p="FetchYoutubeVideoJob.cs" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Commands" t="Include">
-          <e p="DownloadYoutubeVideoCommand.cs" t="Include" />
+          <e p="InitiateProcessingJobCommand.cs" t="Include" />
         </e>
         <e p="Ethereal.Application.csproj" t="IncludeRecursive" />
+        <e p="EtherealConstants.cs" t="Include" />
         <e p="Exceptions" t="Include">
           <e p="ChaptersNotFoundException.cs" t="Include" />
           <e p="ChaptersParseException.cs" t="Include" />
@@ -46,6 +51,10 @@
           </e>
         </e>
         <e p="ObjectWithName.cs" t="Include" />
+        <e p="ProcessingJobLogger" t="Include" />
+        <e p="Queries" t="Include">
+          <e p="GetProcessingJobQuery.cs" t="Include" />
+        </e>
         <e p="Threading" t="Include">
           <e p="ThreadContext.cs" t="Include" />
           <e p="ThreadQueue.cs" t="Include" />
@@ -88,6 +97,10 @@
       </e>
       <e p="Ethereal.Domain" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Entities" t="Include">
+          <e p="ProcessingJob.cs" t="Include" />
+          <e p="ProcessingJobStatus.cs" t="Include" />
+        </e>
         <e p="Ethereal.Domain.csproj" t="IncludeRecursive" />
         <e p="EtherealDbContext.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">

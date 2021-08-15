@@ -27,7 +27,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721af198-314f-424b-a35d-823ea0946efe" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/BackgroundJobBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/FetchYoutubeVideoJob.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Commands/InitiateProcessingJobCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.Application/EtherealConstants.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Queries/GetProcessingJobQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJob.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobStatus.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Commands/DownloadYoutubeVideoCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Ethereal.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Ethereal.Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Common.Tests/ResourcesHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Common.Tests/ResourcesHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Domain/Ethereal.Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain/Ethereal.Domain.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Domain/EtherealDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain/EtherealDbContext.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +53,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/DBC52D10-A5E2-4007-8286-6FD8496744DA/5F/YoutubeClient.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/ThreadQueueTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ethereal.Common.Tests/ResourcesHelper.cs" root0="FORCE_HIGHLIGHTING" />
@@ -56,6 +71,24 @@
         <option value="$PROJECT_DIR$/Ethereal.Application/Exceptions/YovpsException.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/ThreadQueueTests.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/DownloadYoutubeVideoCommand.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Ethereal.Application.csproj" />
+        <option value="$PROJECT_DIR$/Ethereal.Domain/Ethereal.Domain.csproj" />
+        <option value="$PROJECT_DIR$/Ethereal.Domain/Models/ProcessingJob.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Domain/EtherealDbContext.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Domain/Models/ProcessingJobStatus.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Exceptions/DbException.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetProcessingJobQuery.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJob.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/BackgroundJobBase.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/FetchYoutubeVideoCommand.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/StartVideoProcessingJob.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/FetchChapterThumbnailCommand.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/EtherealConstants.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobStatus.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/InitiateProcessingJobCommand.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/FetchYoutubeVideoJob.cs" />
       </list>
     </option>
   </component>
@@ -185,6 +218,7 @@
       <workItem from="1628900192350" duration="101000" />
       <workItem from="1628900359471" duration="30000" />
       <workItem from="1628900511132" duration="1175000" />
+      <workItem from="1629045646146" duration="5106000" />
     </task>
     <servers />
   </component>
@@ -208,5 +242,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="613" y="253" width="694" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1628901152209" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1629050664398">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1629050664398" />
   </component>
 </project>

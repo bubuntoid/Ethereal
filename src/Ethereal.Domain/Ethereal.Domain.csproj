@@ -2,7 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>Ethereal.Application</AssemblyName>
-    <RootNamespace>Ethereal.Application</RootNamespace>
+    <AssemblyName>Ethereal.Domain</AssemblyName>
+    <RootNamespace>Ethereal.Domain</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
+  </ItemGroup>
 </Project>
