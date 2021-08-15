@@ -54,7 +54,7 @@ namespace Ethereal.Application.UnitTests
         {
             var filename = $"{Guid.NewGuid()}.mp4";
             var outputPath = Path.Combine(tempOutputPath, filename);
-            await FfmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter, 0, 1);
+            await FfmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter);
             
             var mediaInfo = await FFmpeg.GetMediaInfo(outputPath);
             var videoDuration = mediaInfo.AudioStreams.First().Duration;
@@ -67,7 +67,7 @@ namespace Ethereal.Application.UnitTests
         public async Task SaveTrimmedAsync_VideoHasCorrectLength()
         {
             var outputPath = Path.Combine(tempOutputPath, $"{Guid.NewGuid()}.mp4");
-            await FfmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter, 0, 1);
+            await FfmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter);
             
             var mediaInfo = await FFmpeg.GetMediaInfo(outputPath);
             var videoDuration = mediaInfo.AudioStreams.First().Duration;
@@ -80,7 +80,7 @@ namespace Ethereal.Application.UnitTests
         public async Task SaveTrimmedAsync_TrimmedVideoHasNoVideoStreamsLeft()
         {
             var outputPath = Path.Combine(tempOutputPath, $"{Guid.NewGuid()}.mp4");
-            await FfmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter, 0, 1);
+            await FfmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter);
             
             var mediaInfo = await FFmpeg.GetMediaInfo(outputPath);
             Assert.That(mediaInfo.VideoStreams.Count(), Is.EqualTo(0));
@@ -91,7 +91,7 @@ namespace Ethereal.Application.UnitTests
         {
             var filename = $"{Guid.NewGuid()}.jpeg";
             var outputPath = Path.Combine(tempOutputPath, filename);
-            await FfmpegWrapper.SaveImageAsync(videoPath, outputPath, chapter, 0, 1);
+            await FfmpegWrapper.SaveImageAsync(videoPath, outputPath, chapter);
             
             var files = Directory.GetFiles(tempOutputPath);
             Assert.That(files.Any(file => file.EndsWith(filename)));

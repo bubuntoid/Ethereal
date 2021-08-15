@@ -4,11 +4,14 @@ namespace Ethereal.Application.Exceptions
 {
     public abstract class EtherealException : Exception
     {
-        public string Description { get; set; } 
+        public string ErrorCode { get; }
         
-        protected EtherealException(string message, string description) : base(message)
+        public string ErrorMessage { get; } 
+        
+        protected EtherealException(string errorCode, string message) : base(message)
         {
-            Description = description;
+            ErrorCode = errorCode;
+            ErrorMessage = message;
         }
     }
 }

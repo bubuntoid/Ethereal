@@ -2,7 +2,8 @@
 {
     public class ApiErrorDto
     {
-        public string Error { get; set; }
-        public string Description { get; set; }
+        public string ErrorCode { get; set; }
+        
+        public string ErrorMessage { get; set; }
     }
 }

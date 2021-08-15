@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using AutoMapper;
 using Ethereal.Application;
+using Ethereal.Application.BackgroundJobs;
+using Ethereal.Application.Commands;
 using Ethereal.WebAPI.Filters;
 using Ethereal.WebAPI.Settings;
 
@@ -10,23 +12,14 @@ namespace Ethereal.WebAPI.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            // The generic ILogger<TCategoryName> service was added to the ServiceCollection by ASP.NET Core.
-            // It was then registered with Autofac using the Populate method. All of this starts
-            // with the services.AddAutofac() that happens in Program and registers Autofac
-            // as the service provider.
+            LoadCommands(builder);
+            LoadBgJobs(builder);
 
             builder.RegisterType<ExceptionFilter>()
                 .AsSelf();
 
             builder.RegisterType<SystemSettings>()
-                .AsSelf();
-
-            builder.Register<VideoSplitterService>(c =>
-                {
-                    var settings = c.Resolve<SystemSettings>();
-                    return new VideoSplitterService(settings.TempPath, settings.ExecutablesPath);
-                })
-                .As<IVideoSplitterService>();
+                .As<IEtherealSettings>();
 
             builder.Register(c =>
                     new MapperConfiguration(mc =>
@@ -36,5 +29,30 @@ namespace Ethereal.WebAPI.Modules
                 .As<IMapper>()
                 .SingleInstance();
         }
+
+        private void LoadCommands(ContainerBuilder builder)
+        {
+            builder.RegisterType<SplitVideoCommand>()
+                .AsSelf();
+            
+            builder.RegisterType<InitializeProcessingJobCommand>()
+                .AsSelf();
+            
+            builder.RegisterType<FetchThumbnailsCommand>()
+                .AsSelf();
+            
+            builder.RegisterType<FetchYoutubeVideoCommand>()
+                .AsSelf();
+            
+            builder.RegisterType<ArchiveFilesCommand>()
+                .AsSelf();
+        }
+
+        private void LoadBgJobs(ContainerBuilder builder)
+        {
+            builder.RegisterType<InitializeJob>()
+                .AsSelf();
+        }
+        
     }
 }

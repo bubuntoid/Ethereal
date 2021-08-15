@@ -14,9 +14,7 @@ namespace Ethereal.Application
         public static async Task SaveTrimmedAsync(
             string path, 
             string output, 
-            VideoChapter chapter, 
-            int index,
-            int count)
+            VideoChapter chapter)
         {
             logger.Info($"Processing {chapter.Name}...");
 
@@ -35,17 +33,14 @@ namespace Ethereal.Application
             p.Start();
 
             await ComputationExtensions.ComputeElapsedTimeInMillisecondsAsync(
-                $"SaveTrimmedAsync | {chapter.Name} | {index + 1} / {count}",
+                $"SaveTrimmedAsync | {chapter.Name}",
                 p.WaitForExitAsync());
         }
 
         public static async Task SaveImageAsync(
             string path,
             string output,
-            VideoChapter chapter,
-            int index,
-            int count
-            )
+            VideoChapter chapter)
         {
             logger.Info($"Processing {chapter.Name}...");
             
@@ -64,7 +59,7 @@ namespace Ethereal.Application
             p.Start();
 
             await ComputationExtensions.ComputeElapsedTimeInMillisecondsAsync(
-                $"SaveImageAsync | {chapter.Name} | {index + 1} / {count}",
+                $"SaveImageAsync | {chapter.Name}",
                 p.WaitForExitAsync());
         }
     }

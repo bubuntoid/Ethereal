@@ -11,34 +11,34 @@ using YoutubeExplode;
 
 namespace Ethereal.Application.Commands
 {
-    public class InitiateProcessingJobCommand
+    public class InitializeProcessingJobCommand
     {
         private readonly EtherealDbContext dbContext;
         private readonly IEtherealSettings settings;
-        private readonly FetchYoutubeVideoJob fetchYoutubeVideoJob;
         private readonly IBackgroundJobClient backgroundJobClient;
         private readonly YoutubeClient youtubeClient;
 
-        public InitiateProcessingJobCommand(EtherealDbContext dbContext, IEtherealSettings settings,
-            FetchYoutubeVideoJob fetchYoutubeVideoJob, IBackgroundJobClient backgroundJobClient,
+        public InitializeProcessingJobCommand(EtherealDbContext dbContext, IEtherealSettings settings,
+            IBackgroundJobClient backgroundJobClient,
             YoutubeClient youtubeClient)
         {
             this.dbContext = dbContext;
             this.settings = settings;
-            this.fetchYoutubeVideoJob = fetchYoutubeVideoJob;
             this.backgroundJobClient = backgroundJobClient;
             this.youtubeClient = youtubeClient;
         }
 
-        public async Task<Guid> ExecuteAsync(string url)
+        public async Task<Guid> ExecuteAsync(string url, string description = null)
         {
             var youtubeVideo = await youtubeClient.Videos.GetAsync(url);
             if (youtubeVideo == null)
                 throw new Exception("Could not get youtube video");
 
+            var desc = description ?? youtubeVideo.Description;
             var existingJob = await dbContext.ProcessingJobs
                 .Where(j => j.Status != ProcessingJobStatus.Expired)
                 .Where(j => j.Status != ProcessingJobStatus.Failed)
+                .Where(j => j.VideoDescription == desc)
                 .FirstOrDefaultAsync(j => j.VideoUrl == youtubeVideo.Url);
             
             if (existingJob != null)
@@ -50,7 +50,7 @@ namespace Ethereal.Application.Commands
                 VideoId = youtubeVideo.Id,
                 VideoUrl = url,
                 VideoTitle = youtubeVideo.Title,
-                VideoDescription = youtubeVideo.Description,
+                VideoDescription = desc,
                 Status = ProcessingJobStatus.Created,
             };
             
@@ -60,7 +60,7 @@ namespace Ethereal.Application.Commands
             await dbContext.ProcessingJobs.AddAsync(job);
             await dbContext.SaveChangesAsync();
 
-            backgroundJobClient.Enqueue<FetchYoutubeVideoJob>(bgJob => bgJob.Execute(job.Id));
+            backgroundJobClient.Enqueue<InitializeJob>(bgJob => bgJob.Execute(job.Id));
 
             return job.Id;
         }

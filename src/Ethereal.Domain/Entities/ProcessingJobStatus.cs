@@ -10,6 +10,8 @@
         
         Processing,
         
+        Archiving,
+        
         Completed,
         
         Expired,

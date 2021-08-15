@@ -19,11 +19,16 @@
       <e p="Ethereal.Application" t="IncludeRecursive">
         <e p="BackgroundJobs" t="Include">
           <e p="BackgroundJobBase.cs" t="Include" />
-          <e p="FetchYoutubeVideoJob.cs" t="Include" />
+          <e p="DestructJob.cs" t="Include" />
+          <e p="InitializeJob.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Commands" t="Include">
-          <e p="InitiateProcessingJobCommand.cs" t="Include" />
+          <e p="ArchiveFilesCommand.cs" t="Include" />
+          <e p="FetchThumbnailsCommand.cs" t="Include" />
+          <e p="FetchYoutubeVideoCommand.cs" t="Include" />
+          <e p="InitializeProcessingJobCommand.cs" t="Include" />
+          <e p="SplitVideoCommand.cs" t="Include" />
         </e>
         <e p="Ethereal.Application.csproj" t="IncludeRecursive" />
         <e p="EtherealConstants.cs" t="Include" />
@@ -36,13 +41,13 @@
         <e p="Extensions" t="Include">
           <e p="ComputationExtensions.cs" t="Include" />
           <e p="LinqExtensions.cs" t="Include" />
+          <e p="ProcessingJobExtensions.cs" t="Include" />
           <e p="StreamExtensions.cs" t="Include" />
           <e p="StringExtensions.cs" t="Include" />
           <e p="TimeSpanExtensions.cs" t="Include" />
         </e>
         <e p="FfmpegWrapper.cs" t="Include" />
         <e p="IEtherealSettings.cs" t="Include" />
-        <e p="IVideoSplitterService.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="net5.0" t="Include">
@@ -50,20 +55,14 @@
             </e>
           </e>
         </e>
-        <e p="ObjectWithName.cs" t="Include" />
         <e p="ProcessingJobLogger" t="Include" />
         <e p="Queries" t="Include">
+          <e p="GetAudioFileQuery.cs" t="Include" />
           <e p="GetProcessingJobQuery.cs" t="Include" />
-        </e>
-        <e p="Threading" t="Include">
-          <e p="ThreadContext.cs" t="Include" />
-          <e p="ThreadQueue.cs" t="Include" />
-          <e p="ThreadWithId.cs" t="Include" />
+          <e p="GetZipArchiveFileQuery.cs" t="Include" />
         </e>
         <e p="VideoChapter.cs" t="Include" />
         <e p="VideoDescription.cs" t="Include" />
-        <e p="VideoSplitterService.cs" t="Include" />
-        <e p="YouTubeVideoFile.cs" t="Include" />
       </e>
       <e p="Ethereal.Application.UnitTests" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
@@ -76,7 +75,6 @@
             </e>
           </e>
         </e>
-        <e p="ThreadQueueTests.cs" t="Include" />
         <e p="VideoDescriptionTests.cs" t="Include" />
         <e p="VideoSplitterServiceTests.cs" t="Include" />
       </e>
