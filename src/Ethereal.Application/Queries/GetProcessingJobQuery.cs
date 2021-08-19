@@ -17,7 +17,10 @@ namespace Ethereal.Application.Queries
 
         public async Task<ProcessingJob> ExecuteAsync(Guid jobId)
         {
-            var job = await dbContext.ProcessingJobs.FirstOrDefaultAsync(j => j.Id == jobId);
+            var job = await dbContext.ProcessingJobs
+                .Include(j => j.Video)
+                .FirstOrDefaultAsync(j => j.Id == jobId);
+            
             if (job == null)
             {
                 throw new Exception("Job not found");

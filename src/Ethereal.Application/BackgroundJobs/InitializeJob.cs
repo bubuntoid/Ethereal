@@ -47,13 +47,29 @@ namespace Ethereal.Application.BackgroundJobs
             var chapters = new VideoDescription(job.Video.Description).ParseChapters();
             if (chapters?.Any() == false)
                 throw new Exception();
-            
-            await fetchYoutubeVideoCommand.ExecuteAsync(job);
-            await fetchThumbnailsCommand.ExecuteAsync(job, chapters);
-            await splitVideoCommand.ExecuteAsync(job, chapters);
-            await archiveFilesCommand.ExecuteAsync(job, chapters);
 
-            backgroundJobClient.Schedule<DestructJob>(bgJob => bgJob.Execute(job.Id), EtherealConstants.DefaultFileLifetime);
+            try
+            {
+                await fetchYoutubeVideoCommand.ExecuteAsync(job);
+                await fetchThumbnailsCommand.ExecuteAsync(job, chapters);
+                await splitVideoCommand.ExecuteAsync(job, chapters);
+                await archiveFilesCommand.ExecuteAsync(job, chapters);
+
+                job.Status = ProcessingJobStatus.Completed;
+                job.CurrentStepIndex = job.TotalStepsCount = 1;
+                job.CurrentStepDescription = "Completed"; // todo: log
+                await dbContext.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                // todo: log
+                job.Status = ProcessingJobStatus.Failed;
+                await dbContext.SaveChangesAsync();
+                return;
+            }
+            
+            backgroundJobClient.Schedule<DestructJob>(bgJob => bgJob.Execute(job.Id),
+                EtherealConstants.DefaultFileLifetime);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Ethereal.Application
     {
         public string Original { get; set; }
 
-        public string YoutubeTitle { get; set; }
+        public int Index { get; set; }
         
         public string Name { get; set; }
 

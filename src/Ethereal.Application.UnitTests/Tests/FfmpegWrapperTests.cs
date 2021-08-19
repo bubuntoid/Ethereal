@@ -8,7 +8,7 @@ using NUnit.Framework;
 using Xabe.FFmpeg;
 using Xabe.FFmpeg.Downloader;
 
-namespace Ethereal.Application.UnitTests
+namespace Ethereal.Application.UnitTests.Tests
 {
     [Ignore("CI/CD")]
     [TestFixture]

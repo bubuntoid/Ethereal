@@ -21,6 +21,8 @@ namespace Ethereal.Application.Commands
         public async Task ExecuteAsync(ProcessingJob job, IReadOnlyCollection<VideoChapter> chapters)
         {
             job.Status = ProcessingJobStatus.Archiving;
+            job.TotalStepsCount = chapters.Count;
+            job.CurrentStepIndex = 0;
             await dbContext.SaveChangesAsync();
             
             var zipMemoryStream = new MemoryStream();
@@ -28,20 +30,20 @@ namespace Ethereal.Application.Commands
             for (var i = 0; i < chapters.Count; i++)
             {
                 var chapter = chapters.ElementAt(i);
-
-                job.CurrentProcessingStep = $"Archiving files [{i}/{chapters.Count}] ({chapter.Name})";
+                
+                job.CurrentStepIndex++;
+                job.CurrentStepDescription = $"Archiving files [{i}/{chapters.Count}] ({chapter.Name})";
                 await dbContext.SaveChangesAsync();
 
                 var filename = Path.GetFileName(job.GetChapterLocalFilePath(chapter));
                 zipArchive.CreateEntryFromFile(job.GetChapterLocalFilePath(chapter),
                     filename.Replace(".mp4", ".mp3"));
             }
-
+            
             zipArchive.Dispose();
             zipMemoryStream.Close();
-          
-            job.Status = ProcessingJobStatus.Completed;
-            job.CurrentProcessingStep = $"Archiving completed";
+            
+            job.CurrentStepDescription = $"Archiving completed";
             await dbContext.SaveChangesAsync();
         }
     }

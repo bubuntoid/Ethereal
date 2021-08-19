@@ -25,7 +25,7 @@ namespace Ethereal.Application
         public IReadOnlyCollection<VideoChapter> ParseChapters()
         {
             if (Description == null)
-                throw new ChaptersParseException(description: "description has no value");
+                throw new InternalErrorException(message: "Could not parse any chapter");
             
             var chapters = new List<VideoChapter>();
 
@@ -35,12 +35,10 @@ namespace Ethereal.Application
             var firstLine = lines.FirstOrDefault(line => FirstChapterVariants.Any(line.Contains));
             var index = lines.IndexOf(firstLine);
 
-            if (index == -1)
-                throw new ChaptersParseException();
+            if (index == -1 || lines.Count == 0)
+                throw new InternalErrorException(message: "Could not parse any chapter");
             
-            if (lines.Count == 0)
-                return new List<VideoChapter>();
-
+            var chapterIndex = -1;
             while (lines.Count > index)
             {
                 var line = lines[index].Trim();
@@ -51,10 +49,10 @@ namespace Ethereal.Application
 
                 var chapter = new VideoChapter
                 {
+                    Index = ++chapterIndex,
                     Original = line,
                     StartTimespan = timespan,
                     Name = line.RemoveTimespan().RemoveIllegalCharacters(),
-
                 };
                 chapters.Add(chapter);
             }

@@ -25,9 +25,19 @@ namespace Ethereal.Application.BackgroundJobs
                 return;
             }
 
-            Directory.Delete(job.LocalPath, true);
-            job.Status = ProcessingJobStatus.Expired;
-            await dbContext.SaveChangesAsync();
+            try
+            {
+                Directory.Delete(job.LocalPath, true);
+            }
+            catch (Exception e)
+            {
+                // ignored
+            }
+            finally
+            {
+                job.Status = ProcessingJobStatus.Expired;
+                await dbContext.SaveChangesAsync();
+            }
         }
     }
 }

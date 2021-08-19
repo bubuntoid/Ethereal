@@ -20,20 +20,22 @@ namespace Ethereal.Application.Commands
         public async Task ExecuteAsync(ProcessingJob job, IReadOnlyCollection<VideoChapter> chapters)
         {
             job.Status = ProcessingJobStatus.FetchingThumbnail;
+            job.TotalStepsCount = chapters.Count;
             await dbContext.SaveChangesAsync();
             
             for (var i = 0; i < chapters.Count; i++)
             {
                 var chapter = chapters.ElementAt(i);
 
-                job.CurrentProcessingStep = $"Fetching thumbnails [{i}/{chapters.Count}] ({chapter.Name})";
+                job.CurrentStepIndex++;
+                job.CurrentStepDescription = $"Fetching thumbnails [{i}/{chapters.Count}] ({chapter.Name})";
                 await dbContext.SaveChangesAsync();
                 
                 var path = Path.Combine(job.GetLocalThumbnailsDirectoryPath(), $"{i}.png");
                 await FfmpegWrapper.SaveImageAsync(job.GetLocalVideoPath(), path, chapter);
             }
             
-            job.CurrentProcessingStep = $"Thumbnails fetched";
+            job.CurrentStepDescription = $"Thumbnails fetched";
             await dbContext.SaveChangesAsync();
         }
     }

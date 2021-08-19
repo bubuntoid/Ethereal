@@ -33,10 +33,9 @@
         <e p="Ethereal.Application.csproj" t="IncludeRecursive" />
         <e p="EtherealConstants.cs" t="Include" />
         <e p="Exceptions" t="Include">
-          <e p="ChaptersNotFoundException.cs" t="Include" />
-          <e p="ChaptersParseException.cs" t="Include" />
           <e p="EtherealException.cs" t="Include" />
-          <e p="ThreadExceededTimeoutException.cs" t="Include" />
+          <e p="InternalErrorException.cs" t="Include" />
+          <e p="NotFoundException.cs" t="Include" />
         </e>
         <e p="Extensions" t="Include">
           <e p="ComputationExtensions.cs" t="Include" />
@@ -66,8 +65,11 @@
       </e>
       <e p="Ethereal.Application.UnitTests" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Builders" t="Include">
+          <e p="ProcessingJobBuilder.cs" t="Include" />
+        </e>
         <e p="Ethereal.Application.UnitTests.csproj" t="IncludeRecursive" />
-        <e p="FfmpegWrapperTests.cs" t="Include" />
+        <e p="EtherealInMemoryDatabase.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="net5.0" t="Include">
@@ -75,8 +77,18 @@
             </e>
           </e>
         </e>
-        <e p="VideoDescriptionTests.cs" t="Include" />
-        <e p="VideoSplitterServiceTests.cs" t="Include" />
+        <e p="TestConfiguration.cs" t="Include" />
+        <e p="Tests" t="Include">
+          <e p="Commands" t="Include">
+            <e p="FetchYoutubeVideoCommandTests.cs" t="Include" />
+          </e>
+          <e p="FfmpegWrapperTests.cs" t="Include" />
+          <e p="Queries" t="Include">
+            <e p="GetProcessingJobQueryTests.cs" t="Include" />
+          </e>
+          <e p="VideoDescriptionTests.cs" t="Include" />
+        </e>
+        <e p="WithInMemoryDatabaseTestBase.cs" t="Include" />
       </e>
       <e p="Ethereal.Common.Tests" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
@@ -98,9 +110,13 @@
         <e p="Entities" t="Include">
           <e p="ProcessingJob.cs" t="Include" />
           <e p="ProcessingJobStatus.cs" t="Include" />
+          <e p="ProcessingJobVideo.cs" t="Include" />
         </e>
         <e p="Ethereal.Domain.csproj" t="IncludeRecursive" />
         <e p="EtherealDbContext.cs" t="Include" />
+        <e p="Migrations" t="Include">
+          <e p="1_InitializeDatabaseMigration.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="net5.0" t="Include">

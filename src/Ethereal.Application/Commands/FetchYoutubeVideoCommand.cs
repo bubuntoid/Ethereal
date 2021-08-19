@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Ethereal.Application.Extensions;
@@ -22,7 +23,9 @@ namespace Ethereal.Application.Commands
         public async Task ExecuteAsync(ProcessingJob job)
         {
             job.Status = ProcessingJobStatus.FetchingVideo;
-            job.CurrentProcessingStep = "Fetching video from youtube";
+            job.CurrentStepDescription = "Fetching video from youtube";
+            job.TotalStepsCount = 1;
+            job.CurrentStepIndex = 0;
             await dbContext.SaveChangesAsync();
             
             // Fetching video from youtube
@@ -36,7 +39,8 @@ namespace Ethereal.Application.Commands
             videoStream.Seek(0, SeekOrigin.Begin);
             await videoStream.CopyToAsync(createdFileStream);
             
-            job.CurrentProcessingStep = "Video fetched";
+            job.CurrentStepIndex++;
+            job.CurrentStepDescription = "Video fetched";
             await dbContext.SaveChangesAsync();
         }
     }

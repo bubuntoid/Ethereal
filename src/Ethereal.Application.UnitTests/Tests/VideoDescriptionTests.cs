@@ -3,8 +3,9 @@ using Ethereal.Application.Exceptions;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace Ethereal.Application.UnitTests
+namespace Ethereal.Application.UnitTests.Tests
 {
+    [TestFixture]
     public class VideoDescriptionTests
     {
         private readonly string description = @"
@@ -89,7 +90,8 @@ namespace Ethereal.Application.UnitTests
 
             var chapters = videoDescription.ParseChapters();
 
-            chapters.Should().BeEquivalentTo(expectedChapters);
+            chapters.Should().BeEquivalentTo(expectedChapters, opt => opt
+                .Excluding(o => o.Index));
         }
 
         [TestCase("")]
@@ -99,7 +101,10 @@ namespace Ethereal.Application.UnitTests
         public void DescriptionHasNoTimeCodes_ChaptersParseExceptionExpected(string desc)
         {
             var videoDescription = new VideoDescription(desc);
-            Assert.Throws<ChaptersParseException>(() => videoDescription.ParseChapters());
+            
+            var ex = Assert.Throws<InternalErrorException>(() => videoDescription.ParseChapters());
+
+            Assert.That(ex.ErrorMessage.Contains("Could not parse any chapter"));
         }
     }
 }

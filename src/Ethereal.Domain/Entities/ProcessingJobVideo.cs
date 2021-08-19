@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Ethereal.Domain.Entities
 {
@@ -15,5 +17,17 @@ namespace Ethereal.Domain.Entities
         public string OriginalDescription { get; set; }
         
         public string Description { get; set; }
+        
+        public virtual ProcessingJob ProcessingJob { get; set; }
+        
+        public class Configuration : IEntityTypeConfiguration<ProcessingJobVideo>
+        {
+            public void Configure(EntityTypeBuilder<ProcessingJobVideo> builder)
+            {
+                builder.ToTable("processingJobVideo");
+                
+                builder.HasKey(j => j.ProcessingJobId);
+            }
+        }
     }
 }
