@@ -26,7 +26,7 @@ namespace Ethereal.Application.Commands
             await dbContext.SaveChangesAsync();
             
             // Fetching video from youtube
-            var manifest = await youtubeClient.Videos.Streams.GetManifestAsync(job.VideoId);
+            var manifest = await youtubeClient.Videos.Streams.GetManifestAsync(job.Video.Id);
             var manifestStreams = manifest.GetVideoStreams();
             var videoStreamInfo = manifestStreams.FirstOrDefault(x => x.Container.Name == "mp4");
             await using var videoStream = await youtubeClient.Videos.Streams.GetAsync(videoStreamInfo);

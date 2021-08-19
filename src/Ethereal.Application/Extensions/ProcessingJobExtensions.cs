@@ -17,7 +17,7 @@ namespace Ethereal.Application.Extensions
 
         public static string GetArchivePath(this ProcessingJob job)
         {
-            return Path.Combine(job.LocalPath, job.VideoTitle.RemoveIllegalCharacters() + ".zip");
+            return Path.Combine(job.LocalPath, job.Video.Title.RemoveIllegalCharacters() + ".zip");
         }
 
         public static string GetChapterLocalFilePath(this ProcessingJob job, VideoChapter chapter)

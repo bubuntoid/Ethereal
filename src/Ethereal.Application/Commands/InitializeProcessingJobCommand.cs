@@ -38,8 +38,8 @@ namespace Ethereal.Application.Commands
             var existingJob = await dbContext.ProcessingJobs
                 .Where(j => j.Status != ProcessingJobStatus.Expired)
                 .Where(j => j.Status != ProcessingJobStatus.Failed)
-                .Where(j => j.VideoDescription == desc)
-                .FirstOrDefaultAsync(j => j.VideoUrl == youtubeVideo.Url);
+                .Where(j => j.Video.Description == desc)
+                .FirstOrDefaultAsync(j => j.Video.Url == youtubeVideo.Url);
             
             if (existingJob != null)
                 return existingJob.Id;
@@ -47,11 +47,16 @@ namespace Ethereal.Application.Commands
             var job = new ProcessingJob
             {
                 Id = Guid.NewGuid(),
-                VideoId = youtubeVideo.Id,
-                VideoUrl = url,
-                VideoTitle = youtubeVideo.Title,
-                VideoDescription = desc,
                 Status = ProcessingJobStatus.Created,
+                
+                Video = new ProcessingJobVideo
+                {
+                    Id = youtubeVideo.Id,
+                    Url = url,
+                    Title = youtubeVideo.Title,
+                    OriginalDescription = desc,
+                    Description = desc,
+                },
             };
             
             job.LocalPath = Path.Combine(settings.TempPath, $"{job.Id}");

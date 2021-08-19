@@ -27,36 +27,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721af198-314f-424b-a35d-823ea0946efe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/DestructJob.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/InitializeJob.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Commands/ArchiveFilesCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Commands/FetchThumbnailsCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Commands/FetchYoutubeVideoCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Commands/SplitVideoCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Extensions/ProcessingJobExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Queries/GetAudioFileQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Queries/GetZipArchiveFileQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobVideo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/ThreadQueueTests.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/FetchYoutubeVideoJob.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Commands/InitiateProcessingJobCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Commands/InitializeProcessingJobCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/EtherealConstants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/EtherealConstants.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Exceptions/EtherealException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Exceptions/EtherealException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/IVideoSplitterService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/ObjectWithName.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Threading/ThreadContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Threading/ThreadQueue.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Threading/ThreadWithId.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/VideoSplitterService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/YouTubeVideoFile.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobStatus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobStatus.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/MainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/MainController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Filters/ExceptionFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Filters/ExceptionFilter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Models/ApiErrorDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Models/ApiErrorDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Modules/AutofacModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Modules/AutofacModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/riderModule.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJob.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,64 +43,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/DBC52D10-A5E2-4007-8286-6FD8496744DA/5F/YoutubeClient.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ethereal.Common.Tests/ResourcesHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/YOVPS.Application/FfmpegWrapper.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Domain/YovpsDbContext.cs" />
-        <option value="$PROJECT_DIR$/YOVPS.Core.UnitTests/FfmpegWrapperTests.cs" />
-        <option value="$PROJECT_DIR$/YOVPS.Core.UnitTests/ThreadQueueTests.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/IVideoSplitterSettings.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Settings/FfmpegSettings.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/VideoSplitterService.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Exceptions/YovpsException.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/ThreadQueueTests.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/DownloadYoutubeVideoCommand.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Ethereal.Application.csproj" />
-        <option value="$PROJECT_DIR$/Ethereal.Domain/Ethereal.Domain.csproj" />
-        <option value="$PROJECT_DIR$/Ethereal.Domain/Models/ProcessingJob.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Domain/EtherealDbContext.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Domain/Models/ProcessingJobStatus.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Exceptions/DbException.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetProcessingJobQuery.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/BackgroundJobBase.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/StartVideoProcessingJob.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/FetchChapterThumbnailCommand.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/VideoDescription.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/FetchYoutubeVideoCommand.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/FetchYoutubeVideoJob.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/InitializeProcessingJob.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/ArchieveFilesCommand.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobStatus.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/FetchThumbnailsCommand.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Extensions/ProcessingJobExtensions.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/SplitVideoCommand.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/InitiateProcessingJobCommand.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Modules/AutofacModule.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/DeleteFolderJob.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/DestructProcessingJob.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/DestructJob.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/EtherealConstants.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJob.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/InitializeProcessingJobCommand.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/InitializeJob.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/MainController.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetAudioFileQuery.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetZipArchiveFileQuery.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Models/ApiErrorDto.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Exceptions/EtherealException.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Filters/ExceptionFilter.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/ArchiveFilesCommand.cs" />
-      </list>
-    </option>
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobVideo.cs" />
+      <option value="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJob.cs" />
+    </changedPaths>
   </component>
   <component name="ProjectId" id="1wh9SDSX6IGcFAJoRLA9eiphBav" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -134,6 +61,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RunManager" selected=".NET Project.YOVPS.Common.Tests">

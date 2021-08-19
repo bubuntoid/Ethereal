@@ -44,7 +44,7 @@ namespace Ethereal.Application.BackgroundJobs
                 return;
             }
 
-            var chapters = new VideoDescription(job.VideoDescription).ParseChapters();
+            var chapters = new VideoDescription(job.Video.Description).ParseChapters();
             if (chapters?.Any() == false)
                 throw new Exception();
             
