@@ -27,42 +27,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721af198-314f-424b-a35d-823ea0946efe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Builders/ProcessingJobBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/EtherealInMemoryDatabase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/TestConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/FetchYoutubeVideoCommandTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Queries/GetProcessingJobQueryTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/WithInMemoryDatabaseTestBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Exceptions/InternalErrorException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Exceptions/NotFoundException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Domain/Migrations/1_InitializeDatabaseMigration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.Domain/IDatabaseSettings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Settings/DatabaseSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Ethereal.Application.UnitTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Ethereal.Application.UnitTests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/FfmpegWrapperTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/VideoDescriptionTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/VideoDescriptionTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/VideoSplitterServiceTests.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/DestructJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/DestructJob.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/riderModule.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/EtherealInMemoryDatabase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/EtherealInMemoryDatabase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/FetchYoutubeVideoCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/FetchYoutubeVideoCommandTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/InitializeJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/InitializeJob.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Commands/ArchiveFilesCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Commands/ArchiveFilesCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Commands/FetchThumbnailsCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Commands/FetchThumbnailsCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Commands/FetchYoutubeVideoCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Commands/FetchYoutubeVideoCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Commands/SplitVideoCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Commands/SplitVideoCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Exceptions/ChaptersNotFoundException.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Exceptions/ChaptersParseException.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Exceptions/ThreadExceededTimeoutException.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Extensions/LinqExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Extensions/LinqExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application/EtherealConstants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/EtherealApplication.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Exceptions/EtherealException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Exceptions/EtherealException.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ethereal.Application/Extensions/ProcessingJobExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Extensions/ProcessingJobExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/IEtherealSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/IEtherealSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Queries/GetAudioFileQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Queries/GetAudioFileQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Queries/GetProcessingJobQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Queries/GetProcessingJobQuery.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ethereal.Application/Queries/GetZipArchiveFileQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Queries/GetZipArchiveFileQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/VideoChapter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/VideoChapter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/VideoDescription.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/VideoDescription.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJob.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobVideo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobVideo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Domain/Ethereal.Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain/Ethereal.Domain.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobStatus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobStatus.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Domain/EtherealDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain/EtherealDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Filters/ExceptionFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Filters/ExceptionFilter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Settings/SystemSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Settings/SystemSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,61 +56,27 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/TestConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/DBC52D10-A5E2-4007-8286-6FD8496744DA/5F/YoutubeClient.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/WithInMemoryDatabaseTestBase.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Queries/GetProcessingJobQueryTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/VideoDescriptionTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/FfmpegWrapperTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/FetchYoutubeVideoCommandTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/DBC52D10-A5E2-4007-8286-6FD8496744DA/5D/VideoClient.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ethereal.Common.Tests/ResourcesHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/EtherealInMemoryDatabase.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/DBC52D10-A5E2-4007-8286-6FD8496744DA/58/StreamClient.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ethereal.Application/VideoDescription.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ethereal.Application/VideoChapter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ethereal.Application/Exceptions/InternalErrorException.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Ethereal.Common.Tests/ResourcesHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Ethereal.Application/VideoDescription.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/FfmpegWrapperTests.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/EtherealMemoryDatabase.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/WithInMemoryDatabseTestBase.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Domain/Ethereal.Domain.csproj" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Ethereal.Application.UnitTests.csproj" />
-        <option value="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJob.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Domain/Migrations/1_InitializeDatabaseMigration.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetProcessingJobQuery.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/FakeYoutubeClient.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/WithInMemoryDatabaseTestBase.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/EtherealInMemoryDatabase.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Queries/GetProcessingJobQueryTests.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/TestConfiguration.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Builders/ProcessingJobBuilder.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/FetchYoutubeVideoCommand.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/FetchYoutubeVideoCommandTests.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/IEtherealSettings.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/FetchThumbnailsCommand.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/SplitVideoCommand.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Extensions/LinqExtensions.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/VideoChapter.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobVideo.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Extensions/ProcessingJobExtensions.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetAudioFileQuery.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetZipArchiveFileQuery.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Exceptions/ChaptersNotFoundException.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Exceptions/InternalException.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Exceptions/NotFoundException.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/VideoDescriptionTests.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/VideoDescription.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/InitializeProcessingJobCommand.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/ArchiveFilesCommand.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/InitializeJob.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/DestructJob.cs" />
-      </list>
-    </option>
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Ethereal.WebAPI/Filters/ExceptionFilter.cs" />
+      <option value="$PROJECT_DIR$/Ethereal.Application/Exceptions/EtherealException.cs" />
+      <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/VideoDescriptionTests.cs" />
+      <option value="$PROJECT_DIR$/Ethereal.Domain/IDatabaseSettings.cs" />
+      <option value="$PROJECT_DIR$/Ethereal.Domain/EtherealDbContext.cs" />
+      <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/EtherealInMemoryDatabase.cs" />
+      <option value="$PROJECT_DIR$/Ethereal.WebAPI/Settings/SystemSettings.cs" />
+      <option value="$PROJECT_DIR$/Ethereal.WebAPI/Settings/DatabaseSettings.cs" />
+      <option value="$PROJECT_DIR$/Ethereal.WebAPI/appsettings.json" />
+      <option value="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobStatus.cs" />
+      <option value="$PROJECT_DIR$/Ethereal.Application/EtherealConstants.cs" />
+      <option value="$PROJECT_DIR$/Ethereal.Application/Commands/InitializeProcessingJobCommand.cs" />
+      <option value="$PROJECT_DIR$/Ethereal.Application/Extensions/ProcessingJobExtensions.cs" />
+    </changedPaths>
   </component>
   <component name="ProjectId" id="1wh9SDSX6IGcFAJoRLA9eiphBav" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -261,6 +210,7 @@
       <workItem from="1629045646146" duration="5458000" />
       <workItem from="1629062891385" duration="3810000" />
       <workItem from="1629390947050" duration="8329000" />
+      <workItem from="1629453559628" duration="2242000" />
     </task>
     <servers />
   </component>
@@ -279,135 +229,19 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
-  <component name="WindowStateProjectService">
-    <state width="542" height="464" key="DebuggerActiveHint" timestamp="1629398716440">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="542" height="464" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1629398716440" />
-    <state width="1877" height="375" key="GridCell.Tab.0.bottom" timestamp="1629398717195">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717195" />
-    <state width="1877" height="375" key="GridCell.Tab.0.center" timestamp="1629398717195">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717195" />
-    <state width="1877" height="375" key="GridCell.Tab.0.left" timestamp="1629398717195">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717195" />
-    <state width="1877" height="375" key="GridCell.Tab.0.right" timestamp="1629398717195">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717195" />
-    <state width="1877" height="375" key="GridCell.Tab.1.bottom" timestamp="1629398717195">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717195" />
-    <state width="1877" height="375" key="GridCell.Tab.1.center" timestamp="1629398717195">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717195" />
-    <state width="1877" height="375" key="GridCell.Tab.1.left" timestamp="1629398717195">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717195" />
-    <state width="1877" height="375" key="GridCell.Tab.1.right" timestamp="1629398717195">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717195" />
-    <state width="1877" height="375" key="GridCell.Tab.2.bottom" timestamp="1629398717195">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717195" />
-    <state width="1877" height="375" key="GridCell.Tab.2.center" timestamp="1629398717195">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717195" />
-    <state width="1877" height="375" key="GridCell.Tab.2.left" timestamp="1629398717195">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717195" />
-    <state width="1877" height="375" key="GridCell.Tab.2.right" timestamp="1629398717195">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717195" />
-    <state width="1877" height="375" key="GridCell.Tab.3.bottom" timestamp="1629398717196">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.3.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717196" />
-    <state width="1877" height="375" key="GridCell.Tab.3.center" timestamp="1629398717196">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.3.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717196" />
-    <state width="1877" height="375" key="GridCell.Tab.3.left" timestamp="1629398717195">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.3.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717195" />
-    <state width="1877" height="375" key="GridCell.Tab.3.right" timestamp="1629398717196">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717196" />
-    <state width="1877" height="375" key="GridCell.Tab.4.bottom" timestamp="1629398717197">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.4.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717197" />
-    <state width="1877" height="375" key="GridCell.Tab.4.center" timestamp="1629398717196">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.4.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717196" />
-    <state width="1877" height="375" key="GridCell.Tab.4.left" timestamp="1629398717196">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.4.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717196" />
-    <state width="1877" height="375" key="GridCell.Tab.4.right" timestamp="1629398717196">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="375" key="GridCell.Tab.4.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629398717196" />
-    <state x="794" y="236" key="RiderGenerateDialog" timestamp="1629393689484">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="794" y="236" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1629393689484" />
-    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1629395457243">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1629395457243" />
-    <state x="613" y="253" width="694" height="534" key="find.popup" timestamp="1628901152209">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="613" y="253" width="694" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1628901152209" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1629393167787">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1629393167787" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/FetchYoutubeVideoCommandTests.cs</url>
           <line>58</line>
-          <properties documentPath="C:\Users\Evs\repos\YOVPS\src\Ethereal.Application.UnitTests\Tests\Commands\FetchYoutubeVideoCommandTests.cs" initialLine="45">
-            <startOffsets>
-              <option value="2114" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2182" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\Evs\repos\YOVPS\src\Ethereal.Application.UnitTests\Tests\Commands\FetchYoutubeVideoCommandTests.cs" initialLine="45" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/VideoDescriptionTests.cs</url>
           <line>106</line>
-          <properties documentPath="C:\Users\Evs\repos\YOVPS\src\Ethereal.Application.UnitTests\Tests\VideoDescriptionTests.cs" initialLine="106">
-            <startOffsets>
-              <option value="4089" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4158" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\Evs\repos\YOVPS\src\Ethereal.Application.UnitTests\Tests\VideoDescriptionTests.cs" initialLine="106" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

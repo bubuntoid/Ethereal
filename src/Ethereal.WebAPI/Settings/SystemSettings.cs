@@ -15,7 +15,6 @@ namespace Ethereal.WebAPI.Settings
         public SystemSettings(IConfiguration config) 
             : base(config, "FFMPEG")
         {
-            
         }
     }
 }

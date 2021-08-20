@@ -55,7 +55,7 @@ namespace Ethereal.Application.BackgroundJobs
                 await splitVideoCommand.ExecuteAsync(job, chapters);
                 await archiveFilesCommand.ExecuteAsync(job, chapters);
 
-                job.Status = ProcessingJobStatus.Completed;
+                job.Status = ProcessingJobStatus.Succeed;
                 job.CurrentStepIndex = job.TotalStepsCount = 1;
                 job.CurrentStepDescription = "Completed"; // todo: log
                 await dbContext.SaveChangesAsync();
@@ -69,7 +69,7 @@ namespace Ethereal.Application.BackgroundJobs
             }
             
             backgroundJobClient.Schedule<DestructJob>(bgJob => bgJob.Execute(job.Id),
-                EtherealConstants.DefaultFileLifetime);
+                EtherealApplication.DefaultFileLifetime);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Ethereal.Application
             "00:00:00"
         };
 
-        public string Description { get; }
+        private string Description { get; }
 
         public VideoDescription(string description)
         {
@@ -25,7 +25,7 @@ namespace Ethereal.Application
         public IReadOnlyCollection<VideoChapter> ParseChapters()
         {
             if (Description == null)
-                throw new InternalErrorException(message: "Could not parse any chapter");
+                throw new InternalErrorException("Could not parse any chapter");
             
             var chapters = new List<VideoChapter>();
 
@@ -36,7 +36,7 @@ namespace Ethereal.Application
             var index = lines.IndexOf(firstLine);
 
             if (index == -1 || lines.Count == 0)
-                throw new InternalErrorException(message: "Could not parse any chapter");
+                throw new InternalErrorException("Could not parse any chapter");
             
             var chapterIndex = -1;
             while (lines.Count > index)
@@ -61,8 +61,7 @@ namespace Ethereal.Application
             {
                 var currentChapter = chapters.ElementAt(i);
                 currentChapter.EndTimespan = i == chapters.Count - 1
-                    // ReSharper disable once PossibleInvalidOperationException
-                    ? (TimeSpan?) null
+                    ? null
                     : chapters.ElementAt(i + 1).StartTimespan;
             }
 

@@ -8,12 +8,12 @@ namespace Ethereal.Application.Extensions
     {
         public static string GetLocalVideoPath(this ProcessingJob job)
         {
-            return Path.Combine(job.LocalPath, EtherealConstants.OriginalVideoFileName);
+            return Path.Combine(job.LocalPath, EtherealApplication.OriginalVideoFileName);
         }
 
         public static string GetLocalThumbnailsDirectoryPath(this ProcessingJob job)
         {
-            return Path.Combine(job.LocalPath, EtherealConstants.ThumbnailsDirectoryName);
+            return Path.Combine(job.LocalPath, EtherealApplication.ThumbnailsDirectoryName);
         }
 
         public static string GetArchivePath(this ProcessingJob job)
@@ -29,6 +29,11 @@ namespace Ethereal.Application.Extensions
         public static IReadOnlyCollection<VideoChapter> ParseChapters(this ProcessingJob job)
         {
             return new VideoDescription(job.Video.Description).ParseChapters();
+        }
+
+        public static string GetLogFilePath(this ProcessingJob job, IEtherealSettings settings)
+        {
+            return Path.Combine(settings.TempPath, EtherealApplication.LogsDirectoryName, $"{job.Id}.txt");
         }
     }
 }

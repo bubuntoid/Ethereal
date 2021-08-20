@@ -27,7 +27,7 @@ namespace Ethereal.Application.Queries
             if (job == null)
                 throw new Exception("Job not found");
             
-            if (job.Status != ProcessingJobStatus.Completed)
+            if (job.Status != ProcessingJobStatus.Succeed)
                 throw new Exception("Video is not processed");
             
             var path = Path.Combine(job.LocalPath, job.GetArchivePath());

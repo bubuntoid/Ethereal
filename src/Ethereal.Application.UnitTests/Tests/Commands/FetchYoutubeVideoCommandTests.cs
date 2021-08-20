@@ -32,7 +32,7 @@ namespace Ethereal.Application.UnitTests.Tests.Commands
             await Task.Delay(1000);
             await command.ExecuteAsync(job);
             
-            var expectedDownloadedVideoPath = Path.Combine(job.LocalPath, EtherealConstants.OriginalVideoFileName);
+            var expectedDownloadedVideoPath = Path.Combine(job.LocalPath, EtherealApplication.OriginalVideoFileName);
             Assert.That(File.Exists(expectedDownloadedVideoPath));
         }
         

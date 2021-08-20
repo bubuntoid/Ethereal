@@ -2,8 +2,8 @@
 {
     public class InternalErrorException : EtherealException
     {
-        public InternalErrorException(string errorCode = "internal_error", string message = "Internal server error") 
-            : base(errorCode, message)
+        public InternalErrorException(string errorCode = "internal_error", string errorMessage = "Internal server error") 
+            : base(errorCode, errorMessage)
         {
         }
     }
