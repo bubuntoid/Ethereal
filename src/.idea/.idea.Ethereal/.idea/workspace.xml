@@ -28,21 +28,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721af198-314f-424b-a35d-823ea0946efe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Ethereal.Domain.UnitTests/TestDatabseSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Domain.UnitTests/Tests/ProcessingJobTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.Domain.UnitTests/WithRealDatabaseTestBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/DataController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Builders/ProcessingJobBuilder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Builders/ProcessingJobBuilder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Ethereal.Application.UnitTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Ethereal.Application.UnitTests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/EtherealInMemoryDatabase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/EtherealInMemoryDatabase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application/VideoDescription.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/VideoDescription.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJob.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobVideo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobVideo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/TestConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/TestSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/FetchYoutubeVideoCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/FetchYoutubeVideoCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/FfmpegWrapperTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/FfmpegWrapperTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Queries/GetProcessingJobQueryTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Queries/GetProcessingJobQueryTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/WithInMemoryDatabaseTestBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/WithInMemoryDatabaseTestBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Commands/FetchThumbnailsCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Commands/FetchThumbnailsCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Commands/SplitVideoCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Commands/SplitVideoCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Exceptions/InternalErrorException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Exceptions/InternalErrorException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application/Exceptions/NotFoundException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/Exceptions/NotFoundException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Common.Tests/Ethereal.Common.Tests.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Common.Tests/Resources/sample.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/Resources/sample.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Common.Tests/ResourcesHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/ResourcesHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Domain.UnitTests/WithRealDatabaseTestBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain.UnitTests/WithRealDatabaseTestBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.Domain/Ethereal.Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain/Ethereal.Domain.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ethereal.Domain/EtherealDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain/EtherealDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.Domain/Migrations/1_InitializeDatabaseMigration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Domain/Migrations/1_InitializeDatabaseMigration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/MainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/Models/DownloadMp3RequestDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/Models/DownloadThumbnailRequestDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/Models/DownloadZipRequestDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/Models/GetChaptersByUrlRequestDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/Models/VideoChapterDto.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Ethereal.WebAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Ethereal.WebAPI.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Filters/ExceptionFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Filters/ExceptionFilter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Models/ApiErrorDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/Infrastructure/ErrorResponseDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Modules/AutofacModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/AutofacModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Modules/MapperModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/MapperProfile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ethereal.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,30 +73,50 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Ethereal.Application/VideoDescription.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ethereal.Common.Tests/ResourcesHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/ResourcesHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ethereal.Application/VideoChapter.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Ethereal.Application/VideoDescription.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Ethereal.Application.UnitTests.csproj" />
         <option value="$PROJECT_DIR$/Ethereal.Domain.UnitTests/WithRealDatabseTestBase.cs" />
         <option value="$PROJECT_DIR$/Ethereal.WebAPI/Ethereal.WebAPI.csproj" />
-        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Startup.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Domain.UnitTests/Ethereal.Domain.UnitTests.csproj" />
         <option value="$PROJECT_DIR$/Ethereal.Domain.UnitTests/TestDatabseSettings.cs" />
         <option value="$PROJECT_DIR$/Ethereal.WebAPI/appsettings.json" />
-        <option value="$PROJECT_DIR$/Ethereal.Domain.UnitTests/WithRealDatabaseTestBase.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Domain/Migrations/1_InitializeDatabaseMigration.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/EtherealInMemoryDatabase.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Domain.UnitTests/Tests/ProcessingJobTests.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobVideo.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJob.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/ResourcesHelper.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Exceptions/InternalErrorException.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Exceptions/NotFoundException.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Ethereal.Application.UnitTests.csproj" />
         <option value="$PROJECT_DIR$/Ethereal.Domain/EtherealDbContext.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Domain/Ethereal.Domain.csproj" />
+        <option value="$PROJECT_DIR$/Ethereal.Domain.UnitTests/WithRealDatabaseTestBase.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/Infrastructure/ErrorResponseDto.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Filters/ExceptionFilter.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController/MainController.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Modules/MapperModule.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/AutofacModule.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/DataController.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/MapperProfile.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Startup.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/FetchThumbnailsCommand.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/SplitVideoCommand.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/TestConfiguration.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/FfmpegWrapperTests.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Builders/ProcessingJobBuilder.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/WithInMemoryDatabaseTestBase.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Queries/GetProcessingJobQueryTests.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/FetchYoutubeVideoCommandTests.cs" />
       </list>
     </option>
   </component>
@@ -234,6 +272,8 @@
       <workItem from="1629390947050" duration="8329000" />
       <workItem from="1629453559628" duration="2242000" />
       <workItem from="1629545652784" duration="4186000" />
+      <workItem from="1629562202295" duration="1258000" />
+      <workItem from="1629563491058" duration="2370000" />
     </task>
     <servers />
   </component>
@@ -253,98 +293,110 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="711" height="464" key="DebuggerActiveHint" timestamp="1629548524131">
+    <state width="711" height="464" key="DebuggerActiveHint" timestamp="1629563150492">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="711" height="464" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1629548524131" />
-    <state width="1877" height="375" key="GridCell.Tab.0.bottom" timestamp="1629549843833">
+    <state width="711" height="464" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1629563150492" />
+    <state width="1877" height="375" key="GridCell.Tab.0.bottom" timestamp="1629563746344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843833" />
-    <state width="1877" height="375" key="GridCell.Tab.0.center" timestamp="1629549843833">
+    <state width="1877" height="375" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746344" />
+    <state width="1877" height="375" key="GridCell.Tab.0.center" timestamp="1629563746344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843833" />
-    <state width="1877" height="375" key="GridCell.Tab.0.left" timestamp="1629549843832">
+    <state width="1877" height="375" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746344" />
+    <state width="1877" height="375" key="GridCell.Tab.0.left" timestamp="1629563746344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843832" />
-    <state width="1877" height="375" key="GridCell.Tab.0.right" timestamp="1629549843833">
+    <state width="1877" height="375" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746344" />
+    <state width="1877" height="375" key="GridCell.Tab.0.right" timestamp="1629563746344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843833" />
-    <state width="1877" height="375" key="GridCell.Tab.1.bottom" timestamp="1629549843833">
+    <state width="1877" height="375" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746344" />
+    <state width="1877" height="375" key="GridCell.Tab.1.bottom" timestamp="1629563746344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843833" />
-    <state width="1877" height="375" key="GridCell.Tab.1.center" timestamp="1629549843833">
+    <state width="1877" height="375" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746344" />
+    <state width="1877" height="375" key="GridCell.Tab.1.center" timestamp="1629563746344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843833" />
-    <state width="1877" height="375" key="GridCell.Tab.1.left" timestamp="1629549843833">
+    <state width="1877" height="375" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746344" />
+    <state width="1877" height="375" key="GridCell.Tab.1.left" timestamp="1629563746344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843833" />
-    <state width="1877" height="375" key="GridCell.Tab.1.right" timestamp="1629549843833">
+    <state width="1877" height="375" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746344" />
+    <state width="1877" height="375" key="GridCell.Tab.1.right" timestamp="1629563746344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843833" />
-    <state width="1877" height="375" key="GridCell.Tab.2.bottom" timestamp="1629549843833">
+    <state width="1877" height="375" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746344" />
+    <state width="1877" height="375" key="GridCell.Tab.2.bottom" timestamp="1629563746344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843833" />
-    <state width="1877" height="375" key="GridCell.Tab.2.center" timestamp="1629549843833">
+    <state width="1877" height="375" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746344" />
+    <state width="1877" height="375" key="GridCell.Tab.2.center" timestamp="1629563746344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843833" />
-    <state width="1877" height="375" key="GridCell.Tab.2.left" timestamp="1629549843833">
+    <state width="1877" height="375" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746344" />
+    <state width="1877" height="375" key="GridCell.Tab.2.left" timestamp="1629563746344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843833" />
-    <state width="1877" height="375" key="GridCell.Tab.2.right" timestamp="1629549843833">
+    <state width="1877" height="375" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746344" />
+    <state width="1877" height="375" key="GridCell.Tab.2.right" timestamp="1629563746344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843833" />
-    <state width="1877" height="375" key="GridCell.Tab.3.bottom" timestamp="1629549843834">
+    <state width="1877" height="375" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746344" />
+    <state width="1877" height="375" key="GridCell.Tab.3.bottom" timestamp="1629563746345">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.3.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843834" />
-    <state width="1877" height="375" key="GridCell.Tab.3.center" timestamp="1629549843833">
+    <state width="1877" height="375" key="GridCell.Tab.3.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746345" />
+    <state width="1877" height="375" key="GridCell.Tab.3.center" timestamp="1629563746345">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.3.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843833" />
-    <state width="1877" height="375" key="GridCell.Tab.3.left" timestamp="1629549843833">
+    <state width="1877" height="375" key="GridCell.Tab.3.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746345" />
+    <state width="1877" height="375" key="GridCell.Tab.3.left" timestamp="1629563746345">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.3.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843833" />
-    <state width="1877" height="375" key="GridCell.Tab.3.right" timestamp="1629549843833">
+    <state width="1877" height="375" key="GridCell.Tab.3.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746345" />
+    <state width="1877" height="375" key="GridCell.Tab.3.right" timestamp="1629563746345">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843833" />
-    <state width="1877" height="375" key="GridCell.Tab.4.bottom" timestamp="1629549843834">
+    <state width="1877" height="375" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746345" />
+    <state width="1877" height="375" key="GridCell.Tab.4.bottom" timestamp="1629563746345">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.4.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843834" />
-    <state width="1877" height="375" key="GridCell.Tab.4.center" timestamp="1629549843834">
+    <state width="1877" height="375" key="GridCell.Tab.4.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746345" />
+    <state width="1877" height="375" key="GridCell.Tab.4.center" timestamp="1629563746345">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.4.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843834" />
-    <state width="1877" height="375" key="GridCell.Tab.4.left" timestamp="1629549843834">
+    <state width="1877" height="375" key="GridCell.Tab.4.center/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746345" />
+    <state width="1877" height="375" key="GridCell.Tab.4.left" timestamp="1629563746345">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.4.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843834" />
-    <state width="1877" height="375" key="GridCell.Tab.4.right" timestamp="1629549843834">
+    <state width="1877" height="375" key="GridCell.Tab.4.left/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746345" />
+    <state width="1877" height="375" key="GridCell.Tab.4.right" timestamp="1629563746345">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.4.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629549843834" />
+    <state width="1877" height="375" key="GridCell.Tab.4.right/0.0.1920.1040@0.0.1920.1040" timestamp="1629563746345" />
     <state x="552" y="251" key="Rider.ProjectTemplateDialog.Size" timestamp="1629546126478">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="251" key="Rider.ProjectTemplateDialog.Size/0.0.1920.1040@0.0.1920.1040" timestamp="1629546126478" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1629548601344">
+    <state x="788" y="193" key="RiderGenerateDialog" timestamp="1629565706605">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1629548601344" />
+    <state x="788" y="193" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1629565706605" />
+    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog" timestamp="1629565277311">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1629565277311" />
+    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1629563666254">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1629563666254" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1629563357952">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1629563357952" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -392,12 +444,14 @@
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#Ethereal.Application.VideoChapter" memberName="Index" />
+        <PinnedItemInfo parentTag="Type#Npgsql.PostgresException" memberName="Statement" />
       </pinned-members>
     </pin-to-top-manager>
     <watches-manager>
       <configuration name="RiderUnitTests">
         <watch expression="runner.MigrationLoader.LoadMigrations()" language="C#" />
         <watch expression="runner.MigrateUp()" language="C#" />
+        <watch expression="DbContext.Database.GetMigrations()" language="C#" />
       </configuration>
     </watches-manager>
   </component>

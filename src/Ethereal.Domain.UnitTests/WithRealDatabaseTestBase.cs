@@ -53,6 +53,7 @@ namespace Ethereal.Domain.UnitTests
         {
             return new ServiceCollection()
                 // Add common FluentMigrator services
+                .AddLogging(c => c.AddFluentMigratorConsole())
                 .AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb
                     .AddPostgres()

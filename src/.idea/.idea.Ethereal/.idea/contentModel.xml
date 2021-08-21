@@ -15,7 +15,6 @@
     <e p="C:\Users\Evs\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Evs\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Ethereal.-1478550176.00" t="ExcludeRecursive" />
     <e p="C:\Users\Evs\repos\ethereal\src" t="IncludeFlat">
-      <e p="Common" t="Include" />
       <e p="Ethereal.Application" t="IncludeRecursive">
         <e p="BackgroundJobs" t="Include">
           <e p="BackgroundJobBase.cs" t="Include" />
@@ -77,7 +76,10 @@
             </e>
           </e>
         </e>
-        <e p="TestConfiguration.cs" t="Include" />
+        <e p="Resources" t="Include">
+          <e p="sample.mp4" t="Include" />
+        </e>
+        <e p="ResourcesHelper.cs" t="Include" />
         <e p="Tests" t="Include">
           <e p="Commands" t="Include">
             <e p="FetchYoutubeVideoCommandTests.cs" t="Include" />
@@ -88,22 +90,8 @@
           </e>
           <e p="VideoDescriptionTests.cs" t="Include" />
         </e>
+        <e p="TestSettings.cs" t="Include" />
         <e p="WithInMemoryDatabaseTestBase.cs" t="Include" />
-      </e>
-      <e p="Ethereal.Common.Tests" t="IncludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="Ethereal.Common.Tests.csproj" t="IncludeRecursive" />
-        <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
-            <e p="net5.0" t="Include">
-              <e p="Ethereal.Common.Tests.AssemblyInfo.cs" t="Include" />
-            </e>
-          </e>
-        </e>
-        <e p="Resources" t="Include">
-          <e p="sample.mp4" t="Include" />
-        </e>
-        <e p="ResourcesHelper.cs" t="Include" />
       </e>
       <e p="Ethereal.Domain" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
@@ -145,30 +133,17 @@
       <e p="Ethereal.sln" t="IncludeFlat" />
       <e p="Ethereal.WebAPI" t="IncludeRecursive">
         <e p="appsettings.json" t="Include" />
+        <e p="AutofacModule.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
-          <e p="MainController" t="Include">
-            <e p="MainController.cs" t="Include" />
-            <e p="Models" t="Include">
-              <e p="DownloadMp3RequestDto.cs" t="Include" />
-              <e p="DownloadThumbnailRequestDto.cs" t="Include" />
-              <e p="DownloadZipRequestDto.cs" t="Include" />
-              <e p="GetChaptersByUrlRequestDto.cs" t="Include" />
-              <e p="VideoChapterDto.cs" t="Include" />
-            </e>
-          </e>
+          <e p="DataController.cs" t="Include" />
+          <e p="MainController.cs" t="Include" />
         </e>
         <e p="Ethereal.WebAPI.csproj" t="IncludeRecursive" />
         <e p="Filters" t="Include">
           <e p="ExceptionFilter.cs" t="Include" />
         </e>
-        <e p="Models" t="Include">
-          <e p="ApiErrorDto.cs" t="Include" />
-        </e>
-        <e p="Modules" t="Include">
-          <e p="AutofacModule.cs" t="Include" />
-          <e p="MapperModule.cs" t="Include" />
-        </e>
+        <e p="MapperProfile.cs" t="Include" />
         <e p="nlog.config" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -206,6 +181,20 @@
           <e p="Debug" t="Include">
             <e p="net5.0" t="Include">
               <e p="Ethereal.WebAPI.Client.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Ethereal.WebAPI.Contracts" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Ethereal.WebAPI.Contracts.csproj" t="IncludeRecursive" />
+        <e p="Infrastructure" t="Include">
+          <e p="ErrorResponseDto.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="Ethereal.WebAPI.Contracts.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>

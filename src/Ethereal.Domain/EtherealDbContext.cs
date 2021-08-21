@@ -17,13 +17,14 @@ namespace Ethereal.Domain
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(databaseSettings.ConnectionString);
+            optionsBuilder.UseCamelCaseNamingConvention();
             base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(EtherealDbContext).Assembly);
-            // modelBuilder.HasDefaultSchema("public");   
+            modelBuilder.HasDefaultSchema("public");   
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -11,10 +11,12 @@ namespace Ethereal.Application.Commands
     public class SplitVideoCommand
     {
         private readonly EtherealDbContext dbContext;
+        private readonly FfmpegWrapper ffmpegWrapper;
 
-        public SplitVideoCommand(EtherealDbContext dbContext)
+        public SplitVideoCommand(EtherealDbContext dbContext, FfmpegWrapper ffmpegWrapper)
         {
             this.dbContext = dbContext;
+            this.ffmpegWrapper = ffmpegWrapper;
         }
         
         public async Task ExecuteAsync(ProcessingJob job, IReadOnlyCollection<VideoChapter> chapters)
@@ -31,7 +33,7 @@ namespace Ethereal.Application.Commands
                 job.CurrentStepDescription = $"Splitting video [{i}/{chapters.Count}] ({chapter.Name})";
                 await dbContext.SaveChangesAsync();
 
-                await FfmpegWrapper.SaveTrimmedAsync(job.GetLocalVideoPath(), job.GetChapterLocalFilePath(chapter),
+                await ffmpegWrapper.SaveTrimmedAsync(job.GetLocalVideoPath(), job.GetChapterLocalFilePath(chapter),
                     chapter);
             }
 

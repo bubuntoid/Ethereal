@@ -21,7 +21,7 @@ namespace Ethereal.Application.UnitTests.Tests.Commands
         public async Task SetUp()
         {
             command = Substitute.Resolve<FetchYoutubeVideoCommand>();
-            job = new ProcessingJobBuilder(Fixture).Build();
+            job = new ProcessingJobBuilder(Fixture, Settings).Build();
             await DbContext.ProcessingJobs.AddAsync(job);
             await DbContext.SaveChangesAsync();
         }

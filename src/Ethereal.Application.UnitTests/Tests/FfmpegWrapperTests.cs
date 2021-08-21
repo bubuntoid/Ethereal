@@ -3,20 +3,20 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Ethereal.Application.Extensions;
-using Ethereal.Common.Tests;
 using NUnit.Framework;
 using Xabe.FFmpeg;
 using Xabe.FFmpeg.Downloader;
 
 namespace Ethereal.Application.UnitTests.Tests
 {
-    [Ignore("CI/CD")]
+    //[Ignore("CI/CD")]
     [TestFixture]
     public class FfmpegWrapperTests
     {
         private string videoPath;
         private string tempOutputPath;
         private VideoChapter chapter;
+        private FfmpegWrapper ffmpegWrapper;
         
         [SetUp]
         public async Task SetUp()
@@ -24,7 +24,8 @@ namespace Ethereal.Application.UnitTests.Tests
             // Setting up ffmpeg
             var ffmpegPath = Path.Combine(Directory.GetCurrentDirectory(), "ffmpeg");
             await FFmpegDownloader.GetLatestVersion(FFmpegVersion.Full, ffmpegPath);
-            FfmpegWrapper.ExecutablesPath = Path.Combine(ffmpegPath, "ffmpeg");
+            
+            ffmpegWrapper = new FfmpegWrapper(new TestSettings{ExecutablesPath = Path.Combine(ffmpegPath, "ffmpeg")});
             FFmpeg.SetExecutablesPath(ffmpegPath);
             
             // Creating temp directory to work with
@@ -54,7 +55,7 @@ namespace Ethereal.Application.UnitTests.Tests
         {
             var filename = $"{Guid.NewGuid()}.mp4";
             var outputPath = Path.Combine(tempOutputPath, filename);
-            await FfmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter);
+            await ffmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter);
             
             var mediaInfo = await FFmpeg.GetMediaInfo(outputPath);
             var videoDuration = mediaInfo.AudioStreams.First().Duration;
@@ -67,7 +68,7 @@ namespace Ethereal.Application.UnitTests.Tests
         public async Task SaveTrimmedAsync_VideoHasCorrectLength()
         {
             var outputPath = Path.Combine(tempOutputPath, $"{Guid.NewGuid()}.mp4");
-            await FfmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter);
+            await ffmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter);
             
             var mediaInfo = await FFmpeg.GetMediaInfo(outputPath);
             var videoDuration = mediaInfo.AudioStreams.First().Duration;
@@ -80,7 +81,7 @@ namespace Ethereal.Application.UnitTests.Tests
         public async Task SaveTrimmedAsync_TrimmedVideoHasNoVideoStreamsLeft()
         {
             var outputPath = Path.Combine(tempOutputPath, $"{Guid.NewGuid()}.mp4");
-            await FfmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter);
+            await ffmpegWrapper.SaveTrimmedAsync(videoPath, outputPath, chapter);
             
             var mediaInfo = await FFmpeg.GetMediaInfo(outputPath);
             Assert.That(mediaInfo.VideoStreams.Count(), Is.EqualTo(0));
@@ -91,7 +92,7 @@ namespace Ethereal.Application.UnitTests.Tests
         {
             var filename = $"{Guid.NewGuid()}.jpeg";
             var outputPath = Path.Combine(tempOutputPath, filename);
-            await FfmpegWrapper.SaveImageAsync(videoPath, outputPath, chapter);
+            await ffmpegWrapper.SaveImageAsync(videoPath, outputPath, chapter);
             
             var files = Directory.GetFiles(tempOutputPath);
             Assert.That(files.Any(file => file.EndsWith(filename)));

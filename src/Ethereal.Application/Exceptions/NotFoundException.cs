@@ -4,7 +4,7 @@ namespace Ethereal.Application.Exceptions
 {
     public class NotFoundException : EtherealException
     {
-        public NotFoundException(string errorCode = "not_found", string errorMessage = "Object not found") 
+        public NotFoundException(string errorMessage = "Object not found", string errorCode = "not_found") 
             : base(errorCode, errorMessage)
         {
         }

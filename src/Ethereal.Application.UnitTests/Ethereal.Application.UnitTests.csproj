@@ -24,7 +24,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ethereal.Application\Ethereal.Application.csproj" />
-    <ProjectReference Include="..\Ethereal.Common.Tests\Ethereal.Common.Tests.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\sample.mp4" />
   </ItemGroup>
 
 </Project>

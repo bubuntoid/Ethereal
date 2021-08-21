@@ -22,5 +22,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Ethereal.Application\Ethereal.Application.csproj" />
+      <ProjectReference Include="..\Ethereal.WebAPI.Contracts\Ethereal.WebAPI.Contracts.csproj" />
     </ItemGroup>
 </Project>

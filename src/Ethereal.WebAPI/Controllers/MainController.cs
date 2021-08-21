@@ -1,15 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Ethereal.Application;
-using Ethereal.WebAPI.Controllers.MainController.Models;
-using Ethereal.WebAPI.Filters;
-using Ethereal.WebAPI.Models;
+﻿using Ethereal.WebAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
-using NLog;
 
-namespace Ethereal.WebAPI.Controllers.MainController
+namespace Ethereal.WebAPI.Controllers
 {
     [ApiController]
     [Route("api")]

@@ -8,10 +8,12 @@ namespace Ethereal.Application.UnitTests.Builders
     public class ProcessingJobBuilder
     {
         private readonly IFixture fixture;
+        private readonly TestSettings settings;
 
-        public ProcessingJobBuilder(IFixture fixture)
+        public ProcessingJobBuilder(IFixture fixture, TestSettings settings)
         {
             this.fixture = fixture;
+            this.settings = settings;
         }
         
         public ProcessingJob Build()
@@ -21,7 +23,7 @@ namespace Ethereal.Application.UnitTests.Builders
             job.Video.Id = "TmQyfUpyeFk";
             job.Video.Url = $"https://youtu.be/{job.Video.Id}";
 
-            job.LocalPath = Path.Combine(TestConfiguration.GetTempDirectory(), $"{job.Id}");
+            job.LocalPath = Path.Combine(settings.TempPath, $"{job.Id}");
             Directory.CreateDirectory(job.LocalPath);
             
             return job;

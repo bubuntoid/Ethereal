@@ -6,7 +6,7 @@ using Ethereal.Application.Commands;
 using Ethereal.WebAPI.Filters;
 using Ethereal.WebAPI.Settings;
 
-namespace Ethereal.WebAPI.Modules
+namespace Ethereal.WebAPI
 {
     public class AutofacModule : Module
     {
@@ -24,7 +24,7 @@ namespace Ethereal.WebAPI.Modules
             builder.Register(c =>
                     new MapperConfiguration(mc =>
                         {
-                            mc.AddProfile(new MapperModule());
+                            mc.AddProfile(new MapperProfile());
                         }).CreateMapper())
                 .As<IMapper>()
                 .SingleInstance();

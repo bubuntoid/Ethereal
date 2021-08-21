@@ -3,14 +3,14 @@ using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace Ethereal.Common.Tests
+namespace Ethereal.Application.UnitTests
 {
     public static class ResourcesHelper
     {
         public static async Task SaveResourceToFileAsync(string resourceFilename, string path)
         {
             await using var resource = Assembly.GetExecutingAssembly()
-                .GetManifestResourceStream($"Ethereal.Common.Tests.Resources.{resourceFilename}");
+                .GetManifestResourceStream($"Ethereal.Application.UnitTests.Resources.{resourceFilename}");
             
             if (resource == null)
             {

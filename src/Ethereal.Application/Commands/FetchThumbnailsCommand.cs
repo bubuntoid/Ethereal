@@ -11,10 +11,12 @@ namespace Ethereal.Application.Commands
     public class FetchThumbnailsCommand
     {
         private readonly EtherealDbContext dbContext;
+        private readonly FfmpegWrapper ffmpegWrapper;
 
-        public FetchThumbnailsCommand(EtherealDbContext dbContext)
+        public FetchThumbnailsCommand(EtherealDbContext dbContext, FfmpegWrapper ffmpegWrapper)
         {
             this.dbContext = dbContext;
+            this.ffmpegWrapper = ffmpegWrapper;
         }
         
         public async Task ExecuteAsync(ProcessingJob job, IReadOnlyCollection<VideoChapter> chapters)
@@ -32,7 +34,7 @@ namespace Ethereal.Application.Commands
                 await dbContext.SaveChangesAsync();
                 
                 var path = Path.Combine(job.GetLocalThumbnailsDirectoryPath(), $"{i}.png");
-                await FfmpegWrapper.SaveImageAsync(job.GetLocalVideoPath(), path, chapter);
+                await ffmpegWrapper.SaveImageAsync(job.GetLocalVideoPath(), path, chapter);
             }
             
             job.CurrentStepDescription = $"Thumbnails fetched";

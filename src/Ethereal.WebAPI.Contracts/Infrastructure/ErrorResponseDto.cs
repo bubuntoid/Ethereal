@@ -1,6 +1,6 @@
-﻿namespace Ethereal.WebAPI.Models
+﻿namespace Ethereal.WebAPI.Contracts.Infrastructure
 {
-    public class ApiErrorDto
+    public class ErrorResponseDto
     {
         public string ErrorCode { get; set; }
         

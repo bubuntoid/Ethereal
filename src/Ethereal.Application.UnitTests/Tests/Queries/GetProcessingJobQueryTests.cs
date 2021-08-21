@@ -23,7 +23,7 @@ namespace Ethereal.Application.UnitTests.Tests.Queries
         [Test]
         public async Task JobExists_JobReturned()
         {
-            var existingJob = new ProcessingJobBuilder(Fixture).Build();
+            var existingJob = new ProcessingJobBuilder(Fixture, Settings).Build();
             await DbContext.ProcessingJobs.AddAsync(existingJob);
             await DbContext.SaveChangesAsync();
             

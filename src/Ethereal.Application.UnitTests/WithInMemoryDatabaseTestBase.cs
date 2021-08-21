@@ -13,6 +13,8 @@ namespace Ethereal.Application.UnitTests
 
         protected IFixture Fixture { get; }
 
+        protected TestSettings Settings;
+        
         protected WithInMemoryDatabaseTestBase()
         {
             DbContext = new EtherealInMemoryDatabase();
@@ -21,6 +23,8 @@ namespace Ethereal.Application.UnitTests
             Fixture.Behaviors.Remove(new ThrowingRecursionBehavior());
             Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
             
+            Settings = new TestSettings();
+
             Substitute = AutoSubstitute
                 .Configure()
                 .Provide(DbContext)
