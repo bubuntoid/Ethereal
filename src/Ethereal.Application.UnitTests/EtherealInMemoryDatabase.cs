@@ -14,10 +14,5 @@ namespace Ethereal.Application.UnitTests
         {
             optionsBuilder.UseInMemoryDatabase(Guid.NewGuid().ToString());
         }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(EtherealDbContext).Assembly);
-        }
     }
 }

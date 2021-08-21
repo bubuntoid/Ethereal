@@ -61,7 +61,7 @@ namespace Ethereal.Application
             {
                 var currentChapter = chapters.ElementAt(i);
                 currentChapter.EndTimespan = i == chapters.Count - 1
-                    ? null
+                    ? (TimeSpan?) null
                     : chapters.ElementAt(i + 1).StartTimespan;
             }
 

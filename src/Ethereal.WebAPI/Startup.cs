@@ -1,4 +1,7 @@
+using System.Reflection;
 using Autofac;
+using Ethereal.Domain;
+using Ethereal.Domain.Migrations;
 using Ethereal.WebAPI.Controllers.MainController.Models;
 using Ethereal.WebAPI.Modules;
 using FluentValidation.AspNetCore;
@@ -8,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using FluentMigrator;
+using FluentMigrator.Runner;
 
 namespace Ethereal.WebAPI
 {
@@ -22,7 +27,7 @@ namespace Ethereal.WebAPI
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IDatabaseSettings databaseSettings)
         {
             services.AddFluentValidation(fv =>
                 fv.RegisterValidatorsFromAssemblyContaining<DownloadMp3RequestDto.Validator>());
@@ -43,6 +48,14 @@ namespace Ethereal.WebAPI
                             .AllowAnyHeader();
                     });
             });
+            
+            services
+                .AddLogging(c => c.AddFluentMigratorConsole())
+                .AddFluentMigratorCore()
+                .ConfigureRunner(c => c
+                    .AddPostgres11_0()
+                    .WithGlobalConnectionString(databaseSettings.ConnectionString)
+                    .ScanIn(typeof(InitializeDatabaseMigration).Assembly).For.All());
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

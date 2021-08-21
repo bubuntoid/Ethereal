@@ -19,5 +19,12 @@ namespace Ethereal.Domain
             optionsBuilder.UseNpgsql(databaseSettings.ConnectionString);
             base.OnConfiguring(optionsBuilder);
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(EtherealDbContext).Assembly);
+            // modelBuilder.HasDefaultSchema("public");   
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

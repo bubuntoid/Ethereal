@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -6,6 +7,7 @@ namespace Ethereal.Domain.Entities
 {
     public class ProcessingJobVideo
     {
+        [Key]
         public Guid ProcessingJobId { get; set; }
         
         public string Url { get; set; }
@@ -25,8 +27,11 @@ namespace Ethereal.Domain.Entities
             public void Configure(EntityTypeBuilder<ProcessingJobVideo> builder)
             {
                 builder.ToTable("processingJobVideo");
-                
-                builder.HasKey(j => j.ProcessingJobId);
+
+                builder.HasKey(v => v.ProcessingJobId);
+
+                builder.HasOne(v => v.ProcessingJob)
+                    .WithOne(j => j.Video);
             }
         }
     }

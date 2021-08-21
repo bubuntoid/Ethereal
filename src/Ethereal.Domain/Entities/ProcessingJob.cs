@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -6,6 +7,7 @@ namespace Ethereal.Domain.Entities
 {
     public class ProcessingJob
     {
+        [Key]
         public Guid Id { get; set; }
         
         public ProcessingJobStatus Status { get; set; }
@@ -30,9 +32,9 @@ namespace Ethereal.Domain.Entities
 
                 builder.Property(j => j.Status)
                     .HasConversion<string>();
-                
+
                 builder.HasOne(j => j.Video)
-                    .WithOne(j => j.ProcessingJob);
+                    .WithOne(v => v.ProcessingJob);
             }
         }
         

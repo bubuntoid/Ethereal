@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.Common.Tests", "Et
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.Domain", "Ethereal.Domain\Ethereal.Domain.csproj", "{B123B0C7-D8FD-4410-820E-7E81BC5ACFFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.Domain.UnitTests", "Ethereal.Domain.UnitTests\Ethereal.Domain.UnitTests.csproj", "{679EB1C2-ECEE-4B94-B4F1-D076BBBB13D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{B123B0C7-D8FD-4410-820E-7E81BC5ACFFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B123B0C7-D8FD-4410-820E-7E81BC5ACFFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B123B0C7-D8FD-4410-820E-7E81BC5ACFFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{679EB1C2-ECEE-4B94-B4F1-D076BBBB13D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{679EB1C2-ECEE-4B94-B4F1-D076BBBB13D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{679EB1C2-ECEE-4B94-B4F1-D076BBBB13D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{679EB1C2-ECEE-4B94-B4F1-D076BBBB13D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

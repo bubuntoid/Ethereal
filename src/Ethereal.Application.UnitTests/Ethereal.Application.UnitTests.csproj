@@ -27,8 +27,4 @@
     <ProjectReference Include="..\Ethereal.Common.Tests\Ethereal.Common.Tests.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Ffmpeg\ffmpeg.exe" />
-  </ItemGroup>
-
 </Project>
