@@ -9,7 +9,7 @@ using Xabe.FFmpeg.Downloader;
 
 namespace Ethereal.Application.UnitTests.Tests
 {
-    //[Ignore("CI/CD")]
+    [Ignore("CI/CD")]
     [TestFixture]
     public class FfmpegWrapperTests
     {
