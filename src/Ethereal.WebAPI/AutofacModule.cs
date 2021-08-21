@@ -21,6 +21,9 @@ namespace Ethereal.WebAPI
             builder.RegisterType<SystemSettings>()
                 .As<IEtherealSettings>();
 
+            builder.RegisterType<FfmpegWrapper>()
+                .AsSelf();
+            
             builder.Register(c =>
                     new MapperConfiguration(mc =>
                         {

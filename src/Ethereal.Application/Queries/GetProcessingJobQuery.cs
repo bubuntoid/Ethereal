@@ -22,9 +22,7 @@ namespace Ethereal.Application.Queries
                 .FirstOrDefaultAsync(j => j.Id == jobId);
             
             if (job == null)
-            {
                 throw new Exception("Job not found");
-            }
 
             return job;
         }

@@ -8,7 +8,7 @@ namespace Ethereal.Application
     public class FfmpegWrapper
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
-        public string ExecutablesPath { get; set; }
+        public string ExecutablesPath { get; }
 
         public FfmpegWrapper(IEtherealSettings settings)
         {
