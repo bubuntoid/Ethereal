@@ -82,6 +82,7 @@
         <e p="ResourcesHelper.cs" t="Include" />
         <e p="Tests" t="Include">
           <e p="Commands" t="Include">
+            <e p="FetchThumbnailsCommandTests.cs" t="Include" />
             <e p="FetchYoutubeVideoCommandTests.cs" t="Include" />
           </e>
           <e p="FfmpegWrapperTests.cs" t="Include" />
@@ -162,6 +163,33 @@
           <e p="SystemSettings.cs" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
+        <e p="temp" t="Include">
+          <e p="2da94233-9778-4654-a674-15d6bfcfc1b7" t="Include">
+            <e p="__original__.mp4" t="Include" />
+            <e p="__thumbnails__" t="Include">
+              <e p="0.png" t="Include" />
+              <e p="1.png" t="Include" />
+              <e p="2.png" t="Include" />
+              <e p="3.png" t="Include" />
+              <e p="4.png" t="Include" />
+              <e p="5.png" t="Include" />
+              <e p="6.png" t="Include" />
+              <e p="7.png" t="Include" />
+              <e p="8.png" t="Include" />
+              <e p="9.png" t="Include" />
+            </e>
+            <e p="Sleepy Fish - Collages.mp4" t="Include" />
+            <e p="Sleepy Fish - Fireplace.mp4" t="Include" />
+            <e p="Sleepy Fish - Nights Like These.mp4" t="Include" />
+            <e p="Sleepy Fish - Small Things.mp4" t="Include" />
+            <e p="Sleepy Fish - Sunbreak.mp4" t="Include" />
+            <e p="Sleepy Fish - Swimming.mp4" t="Include" />
+            <e p="Sleepy Fish - The Shore and You.mp4" t="Include" />
+            <e p="Sleepy Fish - Velocities.mp4" t="Include" />
+            <e p="Sleepy Fish - Watercolor.mp4" t="Include" />
+            <e p="Sleepy Fish - Winter Winter.mp4" t="Include" />
+          </e>
+        </e>
       </e>
       <e p="Ethereal.WebAPI.AutoTests" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
@@ -190,7 +218,9 @@
         <e p="Ethereal.WebAPI.Contracts.csproj" t="IncludeRecursive" />
         <e p="Infrastructure" t="Include">
           <e p="ErrorResponseDto.cs" t="Include" />
+          <e p="GuidResponseDto.cs" t="Include" />
         </e>
+        <e p="InitializeJobRequestDto.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="net5.0" t="Include">

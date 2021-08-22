@@ -7,7 +7,6 @@ namespace Ethereal.Domain.Entities
 {
     public class ProcessingJob
     {
-        [Key]
         public Guid Id { get; set; }
         
         public ProcessingJobStatus Status { get; set; }
@@ -19,6 +18,10 @@ namespace Ethereal.Domain.Entities
         public string CurrentStepDescription { get; set; }
         
         public string LocalPath { get; set; }
+        
+        public DateTime CreatedDate { get; set; }
+
+        public DateTime? ProcessedDate { get; set; }
         
         public virtual ProcessingJobVideo Video { get; set; }
 

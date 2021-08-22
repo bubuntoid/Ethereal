@@ -29,8 +29,7 @@ namespace Ethereal.Application.UnitTests.Tests.Commands
         [Test]
         public async Task CorrectUrl_VideoExists_VideoDownloadedLocally()
         {
-            await Task.Delay(1000);
-            await command.ExecuteAsync(job);
+            await command.ExecuteAsync(job.Id);
             
             var expectedDownloadedVideoPath = Path.Combine(job.LocalPath, EtherealApplication.OriginalVideoFileName);
             Assert.That(File.Exists(expectedDownloadedVideoPath));
@@ -39,8 +38,7 @@ namespace Ethereal.Application.UnitTests.Tests.Commands
         [Test]
         public async Task CorrectUrl_VideoExists_StatusChanged()
         {
-            await Task.Delay(1000);
-            await command.ExecuteAsync(job);
+            await command.ExecuteAsync(job.Id);
 
             var updatedJob = await DbContext.ProcessingJobs.FirstOrDefaultAsync(j => j.Id == job.Id);
             updatedJob.Status.Should().Be(ProcessingJobStatus.FetchingVideo);
@@ -54,8 +52,9 @@ namespace Ethereal.Application.UnitTests.Tests.Commands
         {
             job.Video.Id = "ZZZZZZZZZZZZZZZZZZZZZZ";
             job.Video.Url = $"https://youtu.be/{job.Video.Id}";
-
-            var ex = Assert.ThrowsAsync<ArgumentException>(() => command.ExecuteAsync(job));
+            DbContext.SaveChanges();
+            
+            var ex = Assert.ThrowsAsync<ArgumentException>(() => command.ExecuteAsync(job.Id));
             Assert.That(ex.Message.Contains("Invalid YouTube video ID or URL"));
         }
         
@@ -64,8 +63,9 @@ namespace Ethereal.Application.UnitTests.Tests.Commands
         {
             job.Video.Id = "2093418932";
             job.Video.Url = $"https://vk.com/videos/{job.Video.Id}";
-
-            var ex = Assert.ThrowsAsync<ArgumentException>(() => command.ExecuteAsync(job));
+            DbContext.SaveChanges();
+            
+            var ex = Assert.ThrowsAsync<ArgumentException>(() => command.ExecuteAsync(job.Id));
             Assert.That(ex.Message.Contains("Invalid YouTube video ID or URL"));
         }
     }

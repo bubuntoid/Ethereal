@@ -3,8 +3,12 @@ using AutoMapper;
 using Ethereal.Application;
 using Ethereal.Application.BackgroundJobs;
 using Ethereal.Application.Commands;
+using Ethereal.Domain;
 using Ethereal.WebAPI.Filters;
 using Ethereal.WebAPI.Settings;
+using Hangfire;
+using Microsoft.AspNetCore.Components.RenderTree;
+using YoutubeExplode;
 
 namespace Ethereal.WebAPI
 {
@@ -14,12 +18,14 @@ namespace Ethereal.WebAPI
         {
             LoadCommands(builder);
             LoadBgJobs(builder);
+            LoadSettings(builder);
 
+            builder.RegisterType<EtherealDbContext>()
+                .AsSelf()
+                .InstancePerLifetimeScope();
+            
             builder.RegisterType<ExceptionFilter>()
                 .AsSelf();
-
-            builder.RegisterType<SystemSettings>()
-                .As<IEtherealSettings>();
 
             builder.RegisterType<FfmpegWrapper>()
                 .AsSelf();
@@ -31,31 +37,52 @@ namespace Ethereal.WebAPI
                         }).CreateMapper())
                 .As<IMapper>()
                 .SingleInstance();
+
+            builder.Register(c => new YoutubeClient())
+                .AsSelf();
         }
 
         private void LoadCommands(ContainerBuilder builder)
         {
             builder.RegisterType<SplitVideoCommand>()
-                .AsSelf();
+                .AsSelf()
+                .InstancePerLifetimeScope();
             
             builder.RegisterType<InitializeProcessingJobCommand>()
-                .AsSelf();
+                .AsSelf()
+                .InstancePerLifetimeScope();
             
             builder.RegisterType<FetchThumbnailsCommand>()
-                .AsSelf();
+                .AsSelf()
+                .InstancePerLifetimeScope();
             
             builder.RegisterType<FetchYoutubeVideoCommand>()
-                .AsSelf();
+                .AsSelf()
+                .InstancePerLifetimeScope();
             
             builder.RegisterType<ArchiveFilesCommand>()
-                .AsSelf();
+                .AsSelf()
+                .InstancePerLifetimeScope();
         }
 
         private void LoadBgJobs(ContainerBuilder builder)
         {
             builder.RegisterType<InitializeJob>()
-                .AsSelf();
+                .AsSelf()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<DestructJob>()
+                .AsSelf()
+                .InstancePerLifetimeScope();
         }
-        
+
+        private void LoadSettings(ContainerBuilder builder)
+        {
+            builder.RegisterType<SystemSettings>()
+                .As<IEtherealSettings>();
+
+            builder.RegisterType<DatabaseSettings>()
+                .As<IDatabaseSettings>();
+        }
     }
 }

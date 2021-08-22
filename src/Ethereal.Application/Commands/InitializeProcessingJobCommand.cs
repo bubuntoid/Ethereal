@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Ethereal.Application.BackgroundJobs;
+using Ethereal.Application.Exceptions;
 using Ethereal.Domain;
 using Ethereal.Domain.Entities;
 using Hangfire;
@@ -31,15 +32,14 @@ namespace Ethereal.Application.Commands
         public async Task<Guid> ExecuteAsync(string url, string description = null)
         {
             var youtubeVideo = await youtubeClient.Videos.GetAsync(url);
-            if (youtubeVideo == null)
-                throw new Exception("Could not get youtube video");
 
             var desc = description ?? youtubeVideo.Description;
             var existingJob = await dbContext.ProcessingJobs
                 .Where(j => j.Status != ProcessingJobStatus.Expired)
                 .Where(j => j.Status != ProcessingJobStatus.Failed)
+                .Where(j => j.Status != ProcessingJobStatus.FetchingVideo)
                 .Where(j => j.Video.Description == desc)
-                .FirstOrDefaultAsync(j => j.Video.Url == youtubeVideo.Url);
+                .FirstOrDefaultAsync(j => j.Video.Id == youtubeVideo.Id.Value);
             
             if (existingJob != null)
                 return existingJob.Id;
@@ -48,6 +48,7 @@ namespace Ethereal.Application.Commands
             {
                 Id = Guid.NewGuid(),
                 Status = ProcessingJobStatus.Created,
+                CreatedDate = DateTime.UtcNow,
                 
                 Video = new ProcessingJobVideo
                 {
@@ -56,6 +57,7 @@ namespace Ethereal.Application.Commands
                     Title = youtubeVideo.Title,
                     OriginalDescription = desc,
                     Description = desc,
+                    Duration = youtubeVideo.Duration.GetValueOrDefault(),
                 },
             };
             

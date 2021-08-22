@@ -1,4 +1,10 @@
-﻿using Ethereal.WebAPI.Filters;
+﻿using System;
+using System.Threading.Tasks;
+using Autofac;
+using Ethereal.Application.Commands;
+using Ethereal.WebAPI.Contracts;
+using Ethereal.WebAPI.Contracts.Infrastructure;
+using Ethereal.WebAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ethereal.WebAPI.Controllers
@@ -8,50 +14,22 @@ namespace Ethereal.WebAPI.Controllers
     [ServiceFilter(typeof(ExceptionFilter))]
     public class MainController : ControllerBase
     {
-        // private readonly Logger logger = LogManager.GetCurrentClassLogger();
-        // private readonly IVideoSplitterService splitter;
-        // private readonly IMapper mapper;
-        // 
-        // public MainController(IVideoSplitterService splitter, IMapper mapper)
-        // {
-        //     this.splitter = splitter;
-        //     this.mapper = mapper;
-        // }
-        // 
-        // [HttpPost("download/zip")]
-        // [Produces("application/zip")]
-        // [ProducesResponseType(typeof(ApiErrorDto), 400)]
-        // public async Task<IActionResult> DownloadZip(DownloadZipRequestDto dto)
-        // {
-        //     var result = await splitter.DownloadZipAsync(dto.Url, dto.Description);
-        //     return File(result.Object, "application/zip", result.Name);
-        // }
-        // 
-        // [HttpPost("download/mp3")]
-        // [Produces("application/octet-stream")]
-        // [ProducesResponseType(typeof(ApiErrorDto), 400)]
-        // public async Task<IActionResult> DownloadMp3(DownloadMp3RequestDto dto)
-        // {
-        //     var result = await splitter.DownloadMp3Async(dto.Url, dto.Description, dto.Index.Value);
-        //     return File(result.Object, "application/octet-stream", result.Name);
-        // }
-        // 
-        // [HttpPost("download/thumbnail")]
-        // [ProducesResponseType(typeof(string), 200)]
-        // [ProducesResponseType(typeof(ApiErrorDto), 400)]
-        // public async Task<IActionResult> DownloadThumbnail(DownloadThumbnailRequestDto dto)
-        // {
-        //     var url = await splitter.GetThumbnailUrlAsync(dto.Url); 
-        //     return Ok(url);
-        // }
-        // 
-        // [HttpPost("chapters")]
-        // [ProducesResponseType(typeof(IEnumerable<VideoChapterDto>), 200)]
-        // [ProducesResponseType(typeof(ApiErrorDto), 400)]
-        // public async Task<IActionResult> GetChaptersByUrl(GetChaptersByUrlRequestDto dto)
-        // {
-        //     var chapters = await splitter.GetChaptersAsync(dto.Url, dto.Description, dto.IncludeThumbnails);
-        //     return Ok(chapters.Select(c => mapper.Map<VideoChapterDto>(c)));
-        // }
+        private readonly ILifetimeScope scope;
+
+        public MainController(ILifetimeScope scope)
+        {
+            this.scope = scope;
+        }
+
+        [HttpPost("initialize")]
+        [ProducesResponseType(typeof(GuidResponseDto), 200)]
+        [ProducesResponseType(typeof(ErrorResponseDto), 400)]
+        public async Task<IActionResult> Initialize(InitializeJobRequestDto dto)
+        {
+            var id = await scope.Resolve<InitializeProcessingJobCommand>()
+                .ExecuteAsync(dto.Url, dto.Description);
+            
+            return Ok(new GuidResponseDto(id));
+        }
     }
 }

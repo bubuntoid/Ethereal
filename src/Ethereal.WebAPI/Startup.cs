@@ -1,7 +1,10 @@
+using System;
 using System.Reflection;
 using Autofac;
 using Ethereal.Domain;
 using Ethereal.Domain.Migrations;
+using Ethereal.WebAPI.Contracts;
+using Ethereal.WebAPI.Settings;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +14,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using FluentMigrator;
 using FluentMigrator.Runner;
+using Hangfire;
+using Hangfire.PostgreSql;
+using Hangfire.SqlServer;
 
 namespace Ethereal.WebAPI
 {
@@ -25,10 +31,10 @@ namespace Ethereal.WebAPI
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services, IDatabaseSettings databaseSettings)
+        public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddFluentValidation(fv =>
-            //     fv.RegisterValidatorsFromAssemblyContaining<DownloadMp3RequestDto.Validator>());
+            services.AddFluentValidation(fv =>
+                fv.RegisterValidatorsFromAssemblyContaining<InitializeJobRequestDto>());
             
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -46,6 +52,8 @@ namespace Ethereal.WebAPI
                             .AllowAnyHeader();
                     });
             });
+
+            var databaseSettings = new DatabaseSettings(this.Configuration);
             
             services
                 .AddLogging(c => c.AddFluentMigratorConsole())
@@ -54,6 +62,17 @@ namespace Ethereal.WebAPI
                     .AddPostgres()
                     .WithGlobalConnectionString(databaseSettings.ConnectionString)
                     .ScanIn(typeof(InitializeDatabaseMigration).Assembly).For.All());
+
+            var runner = services.BuildServiceProvider().GetService<IMigrationRunner>();
+            runner.MigrateUp();
+            
+            services.AddHangfire(configuration => configuration
+                .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+                .UseSimpleAssemblyNameTypeSerializer()
+                .UseRecommendedSerializerSettings()
+                .UsePostgreSqlStorage(databaseSettings.ConnectionString, new PostgreSqlStorageOptions()));
+            
+            services.AddHangfireServer();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -82,7 +101,12 @@ namespace Ethereal.WebAPI
             
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseHangfireDashboard();
+            
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

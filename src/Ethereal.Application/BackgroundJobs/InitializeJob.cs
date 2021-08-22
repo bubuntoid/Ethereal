@@ -37,7 +37,10 @@ namespace Ethereal.Application.BackgroundJobs
 
         public override async Task ExecuteAsync(Guid jobId)
         {
-            var job = await dbContext.ProcessingJobs.FirstOrDefaultAsync(j => j.Id == jobId);
+            var job = await dbContext.ProcessingJobs
+                .Include(j => j.Video)
+                .FirstOrDefaultAsync(j => j.Id == jobId);
+            
             if (job == null)
             {
                 // todo: log
@@ -50,14 +53,15 @@ namespace Ethereal.Application.BackgroundJobs
 
             try
             {
-                await fetchYoutubeVideoCommand.ExecuteAsync(job);
-                await fetchThumbnailsCommand.ExecuteAsync(job, chapters);
-                await splitVideoCommand.ExecuteAsync(job, chapters);
-                await archiveFilesCommand.ExecuteAsync(job, chapters);
+                await fetchYoutubeVideoCommand.ExecuteAsync(job.Id);
+                await fetchThumbnailsCommand.ExecuteAsync(job.Id);
+                await splitVideoCommand.ExecuteAsync(job.Id);
+                await archiveFilesCommand.ExecuteAsync(job.Id);
 
                 job.Status = ProcessingJobStatus.Succeed;
                 job.CurrentStepIndex = job.TotalStepsCount = 1;
                 job.CurrentStepDescription = "Completed"; // todo: log
+                job.ProcessedDate = DateTime.UtcNow;
                 await dbContext.SaveChangesAsync();
             }
             catch (Exception e)

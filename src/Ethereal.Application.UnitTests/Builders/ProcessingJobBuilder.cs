@@ -22,7 +22,8 @@ namespace Ethereal.Application.UnitTests.Builders
             job.Video.ProcessingJobId = job.Id;
             job.Video.Id = "TmQyfUpyeFk";
             job.Video.Url = $"https://youtu.be/{job.Video.Id}";
-
+            job.Video.Description = job.Video.OriginalDescription = @"Side A: 00:00\nSide B: 05:25";
+            
             job.LocalPath = Path.Combine(settings.TempPath, $"{job.Id}");
             Directory.CreateDirectory(job.LocalPath);
             

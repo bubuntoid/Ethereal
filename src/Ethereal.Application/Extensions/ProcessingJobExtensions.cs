@@ -28,7 +28,12 @@ namespace Ethereal.Application.Extensions
 
         public static IReadOnlyCollection<VideoChapter> ParseChapters(this ProcessingJob job)
         {
-            return new VideoDescription(job.Video.Description).ParseChapters();
+            var chapters = new VideoDescription(job.Video.Description).ParseChapters();
+            foreach (var item in chapters)
+            {
+                item.EndTimespan ??= job.Video.Duration;
+            }
+            return chapters;
         }
 
         public static string GetLogFilePath(this ProcessingJob job, IEtherealSettings settings)

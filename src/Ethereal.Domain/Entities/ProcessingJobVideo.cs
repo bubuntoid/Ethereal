@@ -7,7 +7,6 @@ namespace Ethereal.Domain.Entities
 {
     public class ProcessingJobVideo
     {
-        [Key]
         public Guid ProcessingJobId { get; set; }
         
         public string Url { get; set; }
@@ -19,6 +18,8 @@ namespace Ethereal.Domain.Entities
         public string OriginalDescription { get; set; }
         
         public string Description { get; set; }
+        
+        public TimeSpan Duration { get; set; }
         
         public virtual ProcessingJob ProcessingJob { get; set; }
         
