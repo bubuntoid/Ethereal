@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using AutoFixture;
 using Ethereal.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace Ethereal.Application.UnitTests.Builders
         {
             var job = fixture.Create<ProcessingJob>();
             job.Video.ProcessingJobId = job.Id;
+            job.Video.Duration = TimeSpan.Parse("00:10:15");
             job.Video.Id = "TmQyfUpyeFk";
             job.Video.Url = $"https://youtu.be/{job.Video.Id}";
             job.Video.Description = job.Video.OriginalDescription = @"Side A: 00:00\nSide B: 05:25";

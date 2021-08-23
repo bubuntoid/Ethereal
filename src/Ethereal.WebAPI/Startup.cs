@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using Autofac;
+using Ethereal.Application.ProcessingJobLogger;
 using Ethereal.Domain;
 using Ethereal.Domain.Migrations;
 using Ethereal.WebAPI.Contracts;
@@ -53,6 +54,7 @@ namespace Ethereal.WebAPI
                     });
             });
 
+            ProcessingJobLogger.CurrentSettings = new SystemSettings(this.Configuration);
             var databaseSettings = new DatabaseSettings(this.Configuration);
             
             services
@@ -71,7 +73,6 @@ namespace Ethereal.WebAPI
                 .UseSimpleAssemblyNameTypeSerializer()
                 .UseRecommendedSerializerSettings()
                 .UsePostgreSqlStorage(databaseSettings.ConnectionString, new PostgreSqlStorageOptions()));
-            
             services.AddHangfireServer();
         }
 
@@ -101,6 +102,10 @@ namespace Ethereal.WebAPI
             
             app.UseAuthorization();
 
+            app.UseHangfireServer(new BackgroundJobServerOptions
+            {
+                WorkerCount = 10,
+            });
             app.UseHangfireDashboard();
             
             app.UseEndpoints(endpoints =>

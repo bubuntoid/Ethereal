@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ethereal.Application.Exceptions;
 using Ethereal.Application.Extensions;
+using Ethereal.Application.ProcessingJobLogger;
 using Ethereal.Domain;
 using Ethereal.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -42,15 +43,18 @@ namespace Ethereal.Application.Commands
                 var chapter = chapters.ElementAt(i);
 
                 job.CurrentStepIndex++;
-                job.CurrentStepDescription = $"Splitting video [{i+1}/{chapters.Count}] ({chapter.Name})";
+                var currentStepDescription = $"Splitting video [{i + 1}/{chapters.Count}] ({chapter.Name})";
+                job.CurrentStepDescription = currentStepDescription;
                 await dbContext.SaveChangesAsync();
+                await job.LogAsync(currentStepDescription);
 
                 await ffmpegWrapper.SaveTrimmedAsync(job.GetLocalVideoPath(), job.GetChapterLocalFilePath(chapter),
                     chapter);
             }
 
-            job.CurrentStepDescription = $"Splitting succeeded";
+            job.CurrentStepDescription = "Splitting succeeded";
             await dbContext.SaveChangesAsync();
+            await job.LogAsync("Splitting succeeded");
         }
     }
 }

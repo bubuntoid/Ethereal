@@ -53,7 +53,9 @@
             </e>
           </e>
         </e>
-        <e p="ProcessingJobLogger" t="Include" />
+        <e p="ProcessingJobLogger" t="Include">
+          <e p="ProcessingJobLogger.cs" t="Include" />
+        </e>
         <e p="Queries" t="Include">
           <e p="GetAudioFileQuery.cs" t="Include" />
           <e p="GetProcessingJobQuery.cs" t="Include" />
@@ -82,8 +84,10 @@
         <e p="ResourcesHelper.cs" t="Include" />
         <e p="Tests" t="Include">
           <e p="Commands" t="Include">
+            <e p="ArchiveFilesCommandTests.cs" t="Include" />
             <e p="FetchThumbnailsCommandTests.cs" t="Include" />
             <e p="FetchYoutubeVideoCommandTests.cs" t="Include" />
+            <e p="SplitVideoCommandTests.cs" t="Include" />
           </e>
           <e p="FfmpegWrapperTests.cs" t="Include" />
           <e p="Queries" t="Include">
@@ -164,7 +168,10 @@
         </e>
         <e p="Startup.cs" t="Include" />
         <e p="temp" t="Include">
-          <e p="2da94233-9778-4654-a674-15d6bfcfc1b7" t="Include">
+          <e p="2b3180bb-46c7-4da9-8e81-08bc2b87f459" t="Include">
+            <e p="__original__.mp4" t="Include" />
+          </e>
+          <e p="405d6285-f789-4184-a80b-b2b652dace9c" t="Include">
             <e p="__original__.mp4" t="Include" />
             <e p="__thumbnails__" t="Include">
               <e p="0.png" t="Include" />
@@ -178,6 +185,7 @@
               <e p="8.png" t="Include" />
               <e p="9.png" t="Include" />
             </e>
+            <e p="Sleepy Fish - Beneath Your Waves [lofi hiphop beats].zip" t="Include" />
             <e p="Sleepy Fish - Collages.mp4" t="Include" />
             <e p="Sleepy Fish - Fireplace.mp4" t="Include" />
             <e p="Sleepy Fish - Nights Like These.mp4" t="Include" />
@@ -188,6 +196,102 @@
             <e p="Sleepy Fish - Velocities.mp4" t="Include" />
             <e p="Sleepy Fish - Watercolor.mp4" t="Include" />
             <e p="Sleepy Fish - Winter Winter.mp4" t="Include" />
+            <e p="✔️ Check out our livestream.mp4" t="Include" />
+          </e>
+          <e p="7f65b3bd-0722-4b5d-9153-abfb1be015a0" t="Include">
+            <e p="__original__.mp4" t="Include" />
+            <e p="__thumbnails__" t="Include">
+              <e p="0.png" t="Include" />
+              <e p="6.png" t="Include" />
+              <e p="7.png" t="Include" />
+            </e>
+            <e p="BIDØ - last sunshine..mp4" t="Include" />
+            <e p="broey. - Paradise.mp4" t="Include" />
+            <e p="heytheremylove. - bloom..mp4" t="Include" />
+            <e p="Jay-Lounge - Puddles w Jordy Chandra.mp4" t="Include" />
+            <e p="Jay-Lounge - Sleeping City.mp4" t="Include" />
+            <e p="RAINING IN ＯＳＡＫＡ (Lofi HipHop).zip" t="Include" />
+            <e p="tzelun - see u soon.mp4" t="Include" />
+            <e p="WYS - lone.mp4" t="Include" />
+            <e p="ＴＲＡ＄Ｈ - Journey.mp4" t="Include" />
+          </e>
+          <e p="84299988-8d3b-4e1a-8e83-195236c0e2d6" t="Include">
+            <e p="__original__.mp4" t="Include" />
+            <e p="__thumbnails__" t="Include">
+              <e p="0.png" t="Include" />
+              <e p="1.png" t="Include" />
+              <e p="10.png" t="Include" />
+              <e p="11.png" t="Include" />
+              <e p="12.png" t="Include" />
+              <e p="13.png" t="Include" />
+              <e p="14.png" t="Include" />
+              <e p="15.png" t="Include" />
+              <e p="16.png" t="Include" />
+              <e p="17.png" t="Include" />
+              <e p="18.png" t="Include" />
+              <e p="19.png" t="Include" />
+              <e p="2.png" t="Include" />
+              <e p="20.png" t="Include" />
+              <e p="21.png" t="Include" />
+              <e p="22.png" t="Include" />
+              <e p="23.png" t="Include" />
+              <e p="24.png" t="Include" />
+              <e p="25.png" t="Include" />
+              <e p="26.png" t="Include" />
+              <e p="27.png" t="Include" />
+              <e p="28.png" t="Include" />
+              <e p="29.png" t="Include" />
+              <e p="3.png" t="Include" />
+              <e p="30.png" t="Include" />
+              <e p="31.png" t="Include" />
+              <e p="32.png" t="Include" />
+              <e p="33.png" t="Include" />
+              <e p="4.png" t="Include" />
+              <e p="5.png" t="Include" />
+              <e p="6.png" t="Include" />
+              <e p="7.png" t="Include" />
+              <e p="8.png" t="Include" />
+              <e p="9.png" t="Include" />
+            </e>
+            <e p="АМ ФП.mp4" t="Include" />
+            <e p="Баунти Хантер.mp4" t="Include" />
+            <e p="ВСЕ ТРЕКИ СЕРЕГИ ПИРАТА!!! ПОЛНОЕ СОБРАНИЕ ТРЕКОВ СЕРЕГИ ПИРАТА!!!.zip" t="Include" />
+            <e p="Гей.mp4" t="Include" />
+            <e p="Гимн Дакаха.mp4" t="Include" />
+            <e p="Гимн.mp4" t="Include" />
+            <e p="Дайте денег на котлету .mp4" t="Include" />
+            <e p="Дороже золота.mp4" t="Include" />
+            <e p="Если бы бог играл в доту.mp4" t="Include" />
+            <e p="Заблочили видео.mp4" t="Include" />
+            <e p="Завершающий чел ты долбаёб.mp4" t="Include" />
+            <e p="Команда виновата.mp4" t="Include" />
+            <e p="Ласт пик сапорт.mp4" t="Include" />
+            <e p="Лесники уроды.mp4" t="Include" />
+            <e p="Мои тимейты молодцы.mp4" t="Include" />
+            <e p="Мой сларк.mp4" t="Include" />
+            <e p="Научи меня.mp4" t="Include" />
+            <e p="Новогодняя.mp4" t="Include" />
+            <e p="Остановите катку.mp4" t="Include" />
+            <e p="ПАБГ.mp4" t="Include" />
+            <e p="Пати рейтинг.mp4" t="Include" />
+            <e p="Пауза.mp4" t="Include" />
+            <e p="Песня в машине.mp4" t="Include" />
+            <e p="Песня в поддержку афроамериканцев.mp4" t="Include" />
+            <e p="Пидр.mp4" t="Include" />
+            <e p="Плюс мораль.mp4" t="Include" />
+            <e p="Просто так.mp4" t="Include" />
+            <e p="Репрезент.mp4" t="Include" />
+            <e p="Свинья.mp4" t="Include" />
+            <e p="Солевар.mp4" t="Include" />
+            <e p="Тильт.mp4" t="Include" />
+            <e p="Ты кто такой.mp4" t="Include" />
+            <e p="Чел ты долбаёб.mp4" t="Include" />
+            <e p="Что.mp4" t="Include" />
+            <e p="Я взлетаю вверх.mp4" t="Include" />
+            <e p="Я шизоид.mp4" t="Include" />
+          </e>
+          <e p="Logs" t="Include">
+            <e p="84299988-8d3b-4e1a-8e83-195236c0e2d6.txt" t="Include" />
           </e>
         </e>
       </e>

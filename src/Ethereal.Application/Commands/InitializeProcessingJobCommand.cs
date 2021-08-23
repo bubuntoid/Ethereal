@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ethereal.Application.BackgroundJobs;
 using Ethereal.Application.Exceptions;
+using Ethereal.Application.ProcessingJobLogger;
 using Ethereal.Domain;
 using Ethereal.Domain.Entities;
 using Hangfire;
@@ -66,6 +67,7 @@ namespace Ethereal.Application.Commands
             await dbContext.ProcessingJobs.AddAsync(job);
             await dbContext.SaveChangesAsync();
 
+            await job.LogAsync("Job created");
             backgroundJobClient.Enqueue<InitializeJob>(bgJob => bgJob.Execute(job.Id));
 
             return job.Id;

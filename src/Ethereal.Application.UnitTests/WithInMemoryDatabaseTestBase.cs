@@ -41,6 +41,8 @@ namespace Ethereal.Application.UnitTests
                 .Provide(new FfmpegWrapper(Settings))
                 .Provide(new YoutubeClient())
                 .Build();
+
+            ProcessingJobLogger.ProcessingJobLogger.CurrentSettings = Settings;
         }
     }
 }

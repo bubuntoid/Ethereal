@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ethereal.Application.Commands;
 using Ethereal.Application.Extensions;
+using Ethereal.Application.ProcessingJobLogger;
 using Ethereal.Domain;
 using Ethereal.Domain.Entities;
 using Hangfire;
@@ -42,15 +43,22 @@ namespace Ethereal.Application.BackgroundJobs
                 .FirstOrDefaultAsync(j => j.Id == jobId);
             
             if (job == null)
+                return;
+
+            await job.LogAsync("Initializing chapters...");
+            
+            var chapters = new VideoDescription(job.Video.Description).ParseChapters();
+            if (chapters?.Any() == false)
             {
-                // todo: log
+                job.Status = ProcessingJobStatus.Failed;
+                job.CurrentStepDescription = "Could not parse any chapter";
+                await dbContext.SaveChangesAsync();
+                await job.LogAsync($"Could not parse any chapter");
                 return;
             }
 
-            var chapters = new VideoDescription(job.Video.Description).ParseChapters();
-            if (chapters?.Any() == false)
-                throw new Exception();
-
+            await job.LogAsync($"Found {chapters.Count} chapters");
+            
             try
             {
                 await fetchYoutubeVideoCommand.ExecuteAsync(job.Id);
@@ -60,15 +68,16 @@ namespace Ethereal.Application.BackgroundJobs
 
                 job.Status = ProcessingJobStatus.Succeed;
                 job.CurrentStepIndex = job.TotalStepsCount = 1;
-                job.CurrentStepDescription = "Completed"; // todo: log
+                job.CurrentStepDescription = "Completed"; 
                 job.ProcessedDate = DateTime.UtcNow;
                 await dbContext.SaveChangesAsync();
+                await job.LogAsync($"Completed");
             }
             catch (Exception e)
             {
-                // todo: log
                 job.Status = ProcessingJobStatus.Failed;
                 await dbContext.SaveChangesAsync();
+                await job.LogAsync($"Failed with error: {e.Message}");
                 return;
             }
             

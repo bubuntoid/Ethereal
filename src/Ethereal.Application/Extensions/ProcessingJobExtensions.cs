@@ -23,7 +23,7 @@ namespace Ethereal.Application.Extensions
 
         public static string GetChapterLocalFilePath(this ProcessingJob job, VideoChapter chapter)
         {
-            return Path.Combine(job.LocalPath, $"{chapter.Name}.mp4");
+            return Path.Combine(job.LocalPath, $"{chapter.Name.RemoveIllegalCharacters()}.mp4");
         }
 
         public static IReadOnlyCollection<VideoChapter> ParseChapters(this ProcessingJob job)

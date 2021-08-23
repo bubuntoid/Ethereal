@@ -44,17 +44,24 @@ namespace Ethereal.Application
                 var line = lines[index].Trim();
                 index++;
 
-                if (line.ContainsTimespan(out var timespan) == false)
-                    continue;
-
-                var chapter = new VideoChapter
+                try
                 {
-                    Index = ++chapterIndex,
-                    Original = line,
-                    StartTimespan = timespan,
-                    Name = line.RemoveTimespan().RemoveIllegalCharacters(),
-                };
-                chapters.Add(chapter);
+                    if (line.ContainsTimespan(out var timespan) == false)
+                        continue;
+                    
+                    var chapter = new VideoChapter
+                    {
+                        Index = ++chapterIndex,
+                        Original = line,
+                        StartTimespan = timespan,
+                        Name = line.RemoveTimespan().RemoveIllegalCharacters(),
+                    };
+                    chapters.Add(chapter);
+                }
+                catch
+                {
+                    continue;
+                }
             }
 
             for (var i = 0; i < chapters.Count; i++)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using Ethereal.Application.ProcessingJobLogger;
 using Ethereal.Domain;
 using Ethereal.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -21,22 +22,23 @@ namespace Ethereal.Application.BackgroundJobs
             var job = await dbContext.ProcessingJobs.FirstOrDefaultAsync(j => j.Id == jobId);
             if (job == null)
             {
-                // todo: log
                 return;
             }
 
             try
             {
                 Directory.Delete(job.LocalPath, true);
+                await job.LogAsync($"Cache deleted");
             }
             catch (Exception e)
             {
-                // ignored
+                await job.LogAsync($"Could not delete files: {e.Message}");
             }
             finally
             {
                 job.Status = ProcessingJobStatus.Expired;
                 await dbContext.SaveChangesAsync();
+                await job.LogAsync($"Job expired");
             }
         }
     }

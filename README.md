@@ -1,12 +1,6 @@
 # Ethereal
 **Ethereal** is a service that splitting huge youtube one-video playlists to mp3 files using just url and (optionally) custom  description with time codes (chapters). For most of processing operations it uses [FFMPEG](https://www.ffmpeg.org/) library.
 
-## Navigation
-[Ethereal](https://github.com/bubuntoid/Ethereal/) - Web API. **(we are here)**<br>
-[Ethereal.Cli](https://github.com/bubuntoid/Ethereal.Cli/) - Cross platform command line interface application.<br>
-[Ethereal.Web](#) - Web client written in native JS.<br>
-[Ethereal.Desktop](#) - Desktop client written in electron.<br>
-
 ![](./assets/Screenshot_1.png)
 ![](./assets/Screenshot_2.png)
 ![](./assets/Screenshot_3.png)
@@ -38,11 +32,14 @@ https://oddling.bandcamp.com/releases
 If your video has no timecodes in description, but you got one (often situation when people leave time codes in comments) or writted it by yourself, then you can explicit custom description with timecodes with youtube like syntax.
 Ensure that you have new line after each time code.
 
-## Dependencies
+## Stack / Dependencies
+* PostgreSQL 13 
+* FFMPEG 4.2.4-1ubuntu0.1
 * .NET 5.0
 * ASP.NET Core 5.6.3
+* EF Core 5.0.7
+* Hangfire 1.7.0
 * NLog 4.5.11
-* FFMPEG 4.2.4-1ubuntu0.1
 * FluentValidation 10.3.0
 * Autofac 6.2.0
 * AutoMapper 10.1.1
@@ -65,14 +62,14 @@ Specify path to FFMPEG executables in **appsetings.json**:
 **Linux**:
 ```json
 "FFMPEG": {
-    "TempPath" : "{current}/temp",
+    "TempPath" : "{current}\\temp",
     "ExecutablesPath" : "ffmpeg"
 }
 ```
 **Windows**:
 ```json
 "FFMPEG": {
-    "TempPath" : "{current}/temp",
-    "ExecutablesPath" : "C://Path//To//ffmpeg.exe"
+    "TempPath" : "{current}\\temp",
+    "ExecutablesPath" : "C:\\Path\\To\\ffmpeg.exe"
 }
 ```

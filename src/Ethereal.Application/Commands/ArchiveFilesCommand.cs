@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ethereal.Application.Exceptions;
 using Ethereal.Application.Extensions;
+using Ethereal.Application.ProcessingJobLogger;
 using Ethereal.Domain;
 using Ethereal.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -43,19 +44,24 @@ namespace Ethereal.Application.Commands
                 var chapter = chapters.ElementAt(i);
                 
                 job.CurrentStepIndex++;
-                job.CurrentStepDescription = $"Archiving files [{i+1}/{chapters.Count}] ({chapter.Name})";
+                var currentStepDescription = $"Archiving files [{i + 1}/{chapters.Count}] ({chapter.Name})"; 
+                job.CurrentStepDescription = currentStepDescription;
                 await dbContext.SaveChangesAsync();
+                await job.LogAsync(currentStepDescription);
 
                 var filename = Path.GetFileName(job.GetChapterLocalFilePath(chapter));
                 zipArchive.CreateEntryFromFile(job.GetChapterLocalFilePath(chapter),
                     filename.Replace(".mp4", ".mp3"));
             }
-            
+
             zipArchive.Dispose();
             zipMemoryStream.Close();
             
-            job.CurrentStepDescription = $"Archiving completed";
+            await File.WriteAllBytesAsync(job.GetArchivePath(), zipMemoryStream.ToArray());
+            
+            job.CurrentStepDescription = "Archiving completed";
             await dbContext.SaveChangesAsync();
+            await job.LogAsync("Archiving completed");
         }
     }
 }
