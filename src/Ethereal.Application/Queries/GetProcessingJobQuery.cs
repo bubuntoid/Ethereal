@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Ethereal.Application.Exceptions;
 using Ethereal.Domain;
 using Ethereal.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +23,7 @@ namespace Ethereal.Application.Queries
                 .FirstOrDefaultAsync(j => j.Id == jobId);
             
             if (job == null)
-                throw new Exception("Job not found");
+                throw new NotFoundException("Job not found");
 
             return job;
         }

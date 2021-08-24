@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoFixture;
+using Ethereal.Application.Exceptions;
 using Ethereal.Application.Queries;
 using Ethereal.Application.UnitTests.Builders;
 using Ethereal.Domain.Entities;
@@ -35,7 +36,7 @@ namespace Ethereal.Application.UnitTests.Tests.Queries
         [Test]
         public void JobDoesNotExists_ExceptionExpected()
         {
-            var ex = Assert.ThrowsAsync<Exception>(() => query.ExecuteAsync(Guid.NewGuid()));
+            Assert.ThrowsAsync<NotFoundException>(() => query.ExecuteAsync(Guid.NewGuid()));
         }
     }
 }

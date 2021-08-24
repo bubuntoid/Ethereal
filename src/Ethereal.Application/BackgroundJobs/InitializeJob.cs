@@ -51,7 +51,6 @@ namespace Ethereal.Application.BackgroundJobs
             if (chapters?.Any() == false)
             {
                 job.Status = ProcessingJobStatus.Failed;
-                job.CurrentStepDescription = "Could not parse any chapter";
                 await dbContext.SaveChangesAsync();
                 await job.LogAsync($"Could not parse any chapter");
                 return;
@@ -67,8 +66,6 @@ namespace Ethereal.Application.BackgroundJobs
                 await archiveFilesCommand.ExecuteAsync(job.Id);
 
                 job.Status = ProcessingJobStatus.Succeed;
-                job.CurrentStepIndex = job.TotalStepsCount = 1;
-                job.CurrentStepDescription = "Completed"; 
                 job.ProcessedDate = DateTime.UtcNow;
                 await dbContext.SaveChangesAsync();
                 await job.LogAsync($"Completed");

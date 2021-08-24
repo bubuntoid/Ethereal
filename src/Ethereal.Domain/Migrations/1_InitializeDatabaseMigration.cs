@@ -10,9 +10,6 @@ namespace Ethereal.Domain.Migrations
             Create.Table("processingJob")
                 .WithColumn("id").AsGuid().PrimaryKey()
                 .WithColumn("status").AsString(32).NotNullable()
-                .WithColumn("totalStepsCount").AsInt32().Nullable()
-                .WithColumn("currentStepIndex").AsInt32().Nullable()
-                .WithColumn("currentStepDescription").AsString(256).Nullable()
                 .WithColumn("localPath").AsString(2000).NotNullable()
                 .WithColumn("createdDate").AsDateTime().NotNullable()
                 .WithColumn("processedDate").AsDateTime().Nullable();

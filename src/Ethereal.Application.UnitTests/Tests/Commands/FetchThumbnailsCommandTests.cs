@@ -23,6 +23,7 @@ namespace Ethereal.Application.UnitTests.Tests.Commands
         [SetUp]
         public async Task SetUp()
         {
+            await Task.Delay(1000);
             command = Substitute.Resolve<FetchThumbnailsCommand>();
             job = new ProcessingJobBuilder(Fixture, Settings).Build();
             await DbContext.ProcessingJobs.AddAsync(job);
@@ -44,8 +45,7 @@ namespace Ethereal.Application.UnitTests.Tests.Commands
 
             var updatedJob = await DbContext.ProcessingJobs.FirstOrDefaultAsync(j => j.Id == job.Id);
             
-            updatedJob.Status.Should().BeEquivalentTo(ProcessingJobStatus.FetchingThumbnail);
-            updatedJob.CurrentStepDescription.Should().BeEquivalentTo("Thumbnails fetched");
+            updatedJob.Status.Should().BeEquivalentTo(ProcessingJobStatus.Processing);
         }
         
         [Test]

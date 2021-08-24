@@ -34,25 +34,18 @@ namespace Ethereal.Application.Commands
             
             var chapters = job.ParseChapters();
             job.Status = ProcessingJobStatus.Processing;
-            job.TotalStepsCount = chapters.Count;
-            job.CurrentStepIndex = 0;
             await dbContext.SaveChangesAsync();
             
             for (var i = 0; i < chapters.Count; i++)
             {
                 var chapter = chapters.ElementAt(i);
 
-                job.CurrentStepIndex++;
-                var currentStepDescription = $"Splitting video [{i + 1}/{chapters.Count}] ({chapter.Name})";
-                job.CurrentStepDescription = currentStepDescription;
-                await dbContext.SaveChangesAsync();
-                await job.LogAsync(currentStepDescription);
+                await job.LogAsync($"Splitting video [{i + 1}/{chapters.Count}] ({chapter.Name})");
 
                 await ffmpegWrapper.SaveTrimmedAsync(job.GetLocalVideoPath(), job.GetChapterLocalFilePath(chapter),
                     chapter);
             }
 
-            job.CurrentStepDescription = "Splitting succeeded";
             await dbContext.SaveChangesAsync();
             await job.LogAsync("Splitting succeeded");
         }

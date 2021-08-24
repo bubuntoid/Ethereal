@@ -32,9 +32,7 @@ namespace Ethereal.Application.Commands
                 throw new NotFoundException();
             
             var chapters = job.ParseChapters();
-            job.Status = ProcessingJobStatus.Archiving;
-            job.TotalStepsCount = chapters.Count;
-            job.CurrentStepIndex = 0;
+            job.Status = ProcessingJobStatus.Processing;
             await dbContext.SaveChangesAsync();
             
             var zipMemoryStream = new MemoryStream();
@@ -43,11 +41,7 @@ namespace Ethereal.Application.Commands
             {
                 var chapter = chapters.ElementAt(i);
                 
-                job.CurrentStepIndex++;
-                var currentStepDescription = $"Archiving files [{i + 1}/{chapters.Count}] ({chapter.Name})"; 
-                job.CurrentStepDescription = currentStepDescription;
-                await dbContext.SaveChangesAsync();
-                await job.LogAsync(currentStepDescription);
+                await job.LogAsync($"Archiving files [{i + 1}/{chapters.Count}] ({chapter.Name})");
 
                 var filename = Path.GetFileName(job.GetChapterLocalFilePath(chapter));
                 zipArchive.CreateEntryFromFile(job.GetChapterLocalFilePath(chapter),
@@ -59,8 +53,6 @@ namespace Ethereal.Application.Commands
             
             await File.WriteAllBytesAsync(job.GetArchivePath(), zipMemoryStream.ToArray());
             
-            job.CurrentStepDescription = "Archiving completed";
-            await dbContext.SaveChangesAsync();
             await job.LogAsync("Archiving completed");
         }
     }

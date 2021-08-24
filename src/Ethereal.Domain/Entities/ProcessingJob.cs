@@ -11,12 +11,6 @@ namespace Ethereal.Domain.Entities
         
         public ProcessingJobStatus Status { get; set; }
 
-        public int TotalStepsCount { get; set; }
-        
-        public int CurrentStepIndex { get; set; }
-
-        public string CurrentStepDescription { get; set; }
-        
         public string LocalPath { get; set; }
         
         public DateTime CreatedDate { get; set; }

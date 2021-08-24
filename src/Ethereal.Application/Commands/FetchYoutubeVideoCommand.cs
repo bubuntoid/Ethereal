@@ -34,10 +34,7 @@ namespace Ethereal.Application.Commands
             if (job == null)
                 throw new NotFoundException();
 
-            job.Status = ProcessingJobStatus.FetchingVideo;
-            job.CurrentStepDescription = "Fetching video from youtube";
-            job.TotalStepsCount = 1;
-            job.CurrentStepIndex = 0;
+            job.Status = ProcessingJobStatus.Processing;
             await dbContext.SaveChangesAsync();
             await job.LogAsync("Fetching video from youtube...");
 
@@ -49,8 +46,6 @@ namespace Ethereal.Application.Commands
                 {
                     if (DateTime.UtcNow > timeoutDate)
                     {
-                        job.CurrentStepDescription =
-                            "Could not fetch video from youtube. It happens sometimes. Try again.";
                         job.Status = ProcessingJobStatus.Failed;
                         // ReSharper disable once MethodSupportsCancellation
                         await dbContext.SaveChangesAsync();
@@ -84,12 +79,6 @@ namespace Ethereal.Application.Commands
             videoStream.Seek(0, SeekOrigin.Begin);
             // ReSharper disable once MethodSupportsCancellation
             await videoStream.CopyToAsync(createdFileStream);
-            await job.LogAsync("Video saved");
-            
-            job.CurrentStepIndex++;
-            job.CurrentStepDescription = "Video fetched";
-            // ReSharper disable once MethodSupportsCancellation
-            await dbContext.SaveChangesAsync();
             await job.LogAsync("Video fetched");
         }
     }

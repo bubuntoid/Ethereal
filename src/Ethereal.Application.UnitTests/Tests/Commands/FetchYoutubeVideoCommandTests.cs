@@ -20,6 +20,7 @@ namespace Ethereal.Application.UnitTests.Tests.Commands
         [SetUp]
         public async Task SetUp()
         {
+            await Task.Delay(1000);
             command = Substitute.Resolve<FetchYoutubeVideoCommand>();
             job = new ProcessingJobBuilder(Fixture, Settings).Build();
             await DbContext.ProcessingJobs.AddAsync(job);
@@ -41,10 +42,7 @@ namespace Ethereal.Application.UnitTests.Tests.Commands
             await command.ExecuteAsync(job.Id);
 
             var updatedJob = await DbContext.ProcessingJobs.FirstOrDefaultAsync(j => j.Id == job.Id);
-            updatedJob.Status.Should().Be(ProcessingJobStatus.FetchingVideo);
-            updatedJob.TotalStepsCount.Should().Be(1);
-            updatedJob.CurrentStepIndex.Should().Be(1);
-            updatedJob.CurrentStepDescription.Should().Be("Video fetched");
+            updatedJob.Status.Should().Be(ProcessingJobStatus.Processing);
         }
         
         [Test]
