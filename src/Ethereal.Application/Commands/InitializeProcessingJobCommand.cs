@@ -35,14 +35,14 @@ namespace Ethereal.Application.Commands
             var youtubeVideo = await youtubeClient.Videos.GetAsync(url);
 
             var desc = description ?? youtubeVideo.Description;
-            var existingJob = await dbContext.ProcessingJobs
-                .Where(j => j.Status != ProcessingJobStatus.Expired)
-                .Where(j => j.Status != ProcessingJobStatus.Failed)
-                .Where(j => j.Video.Description == desc)
-                .FirstOrDefaultAsync(j => j.Video.Id == youtubeVideo.Id.Value);
-            
-            if (existingJob != null)
-                return existingJob.Id;
+            // var existingJob = await dbContext.ProcessingJobs
+            //     .Where(j => j.Status != ProcessingJobStatus.Expired)
+            //     .Where(j => j.Status != ProcessingJobStatus.Failed)
+            //     .Where(j => j.Video.Description == desc)
+            //     .FirstOrDefaultAsync(j => j.Video.Id == youtubeVideo.Id.Value);
+            // 
+            // if (existingJob != null)
+            //     return existingJob.Id;
             
             var job = new ProcessingJob
             {

@@ -7,20 +7,20 @@ using Ethereal.Application.Extensions;
 using Ethereal.Domain;
 using Ethereal.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using InvalidOperationException = System.InvalidOperationException;
+using InvalidOperationException = Ethereal.Application.Exceptions.InvalidOperationException;
 
 namespace Ethereal.Application.Queries
 {
-    public class GetZipArchiveFileQuery
+    public class GetAudioFilePathQuery
     {
         private readonly EtherealDbContext dbContext;
 
-        public GetZipArchiveFileQuery(EtherealDbContext dbContext)
+        public GetAudioFilePathQuery(EtherealDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
 
-        public async Task<string> ExecuteAsync(Guid jobId)
+        public async Task<string> ExecuteAsync(Guid jobId, int index)
         {
             var job = await dbContext.ProcessingJobs
                 .Include(j => j.Video)
@@ -28,14 +28,19 @@ namespace Ethereal.Application.Queries
 
             if (job == null)
                 throw new NotFoundException("Job not found");
-            
+
             if (job.Status == ProcessingJobStatus.Processing || job.Status == ProcessingJobStatus.Created)
                 throw new InvalidOperationException("Video is not processed yet");
 
-            var path = job.GetArchivePath();
-            
+            var chapters = job.ParseChapters();
+            var chapter = chapters.FirstOrDefault(x => x.Index == index);
+            if (chapter == null)
+                throw new InvalidOperationException("Chapter not found");
+
+            var path = Path.Combine(job.LocalPath, job.GetChapterLocalFilePath(chapter));
+
             if (File.Exists(path) == false)
-                throw new NotFoundException("Zip ar not found");
+                throw new NotFoundException("File not found");
 
             return path;
         }

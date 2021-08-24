@@ -12,12 +12,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ethereal.Application.Commands
 {
-    public class SplitVideoCommand
+    public class ConvertVideoCommand
     {
         private readonly EtherealDbContext dbContext;
         private readonly FfmpegWrapper ffmpegWrapper;
 
-        public SplitVideoCommand(EtherealDbContext dbContext, FfmpegWrapper ffmpegWrapper)
+        public ConvertVideoCommand(EtherealDbContext dbContext, FfmpegWrapper ffmpegWrapper)
         {
             this.dbContext = dbContext;
             this.ffmpegWrapper = ffmpegWrapper;
@@ -40,14 +40,14 @@ namespace Ethereal.Application.Commands
             {
                 var chapter = chapters.ElementAt(i);
 
-                await job.LogAsync($"Splitting video [{i + 1}/{chapters.Count}] ({chapter.Name})");
+                await job.LogAsync($"Converting video [{i + 1}/{chapters.Count}] ({chapter.Name})");
 
                 await ffmpegWrapper.SaveTrimmedAsync(job.GetLocalVideoPath(), job.GetChapterLocalFilePath(chapter),
                     chapter);
             }
 
             await dbContext.SaveChangesAsync();
-            await job.LogAsync("Splitting succeeded");
+            await job.LogAsync("Converting succeeded");
         }
     }
 }

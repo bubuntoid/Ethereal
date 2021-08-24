@@ -39,11 +39,13 @@ namespace Ethereal.Application.Commands
             await job.LogAsync("Fetching video from youtube...");
 
             var cts = new CancellationTokenSource();
-            var timeoutDate = DateTime.UtcNow.AddSeconds(30);
+            var timeoutDate = DateTime.UtcNow.AddSeconds(10);
             var thread = new Thread(async () =>
             {
                 while (true)
                 {
+                    Console.WriteLine(timeoutDate.ToLongTimeString() + " || " + DateTime.UtcNow.ToLongTimeString());
+                    
                     if (DateTime.UtcNow > timeoutDate)
                     {
                         job.Status = ProcessingJobStatus.Failed;

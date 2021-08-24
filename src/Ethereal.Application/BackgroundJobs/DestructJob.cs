@@ -4,10 +4,12 @@ using System.Threading.Tasks;
 using Ethereal.Application.ProcessingJobLogger;
 using Ethereal.Domain;
 using Ethereal.Domain.Entities;
+using Hangfire;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ethereal.Application.BackgroundJobs
 {
+    [AutomaticRetry(Attempts = 0)]
     public class DestructJob : BackgroundJobBase<Guid>
     {
         private readonly EtherealDbContext dbContext;

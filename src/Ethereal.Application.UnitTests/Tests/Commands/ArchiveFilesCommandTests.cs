@@ -29,13 +29,13 @@ namespace Ethereal.Application.UnitTests.Tests.Commands
             
             await Substitute.Resolve<FetchYoutubeVideoCommand>().ExecuteAsync(job.Id);
             await Substitute.Resolve<FetchThumbnailsCommand>().ExecuteAsync(job.Id);
-            await Substitute.Resolve<SplitVideoCommand>().ExecuteAsync(job.Id);
+            await Substitute.Resolve<ConvertVideoCommand>().ExecuteAsync(job.Id);
         }
         
         [Test]
         public void JobDoesNotExists_ErrorExpected()
         {
-            var ex = Assert.CatchAsync<NotFoundException>(() => command.ExecuteAsync(Guid.NewGuid()));
+            Assert.CatchAsync<NotFoundException>(() => command.ExecuteAsync(Guid.NewGuid()));
         }
 
         [Test]

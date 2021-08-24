@@ -14,18 +14,19 @@ using YoutubeExplode;
 
 namespace Ethereal.Application.BackgroundJobs
 {
+    [AutomaticRetry(Attempts = 0)]
     public class InitializeJob : BackgroundJobBase<Guid>
     {
         private readonly EtherealDbContext dbContext;
         private readonly FetchThumbnailsCommand fetchThumbnailsCommand;
         private readonly FetchYoutubeVideoCommand fetchYoutubeVideoCommand;
-        private readonly SplitVideoCommand splitVideoCommand;
+        private readonly ConvertVideoCommand splitVideoCommand;
         private readonly IBackgroundJobClient backgroundJobClient;
         private readonly ArchiveFilesCommand archiveFilesCommand;
 
         public InitializeJob(EtherealDbContext dbContext,
             FetchThumbnailsCommand fetchThumbnailsCommand, FetchYoutubeVideoCommand fetchYoutubeVideoCommand,
-            SplitVideoCommand splitVideoCommand, IBackgroundJobClient backgroundJobClient,
+            ConvertVideoCommand splitVideoCommand, IBackgroundJobClient backgroundJobClient,
             ArchiveFilesCommand archiveFilesCommand)
         {
             this.dbContext = dbContext;

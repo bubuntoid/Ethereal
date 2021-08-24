@@ -35,7 +35,7 @@ namespace Ethereal.Application.UnitTests.Tests.Commands
         [Test]
         public void JobDoesNotExists_ErrorExpected()
         {
-            var ex = Assert.CatchAsync<NotFoundException>(() => command.ExecuteAsync(Guid.NewGuid()));
+            Assert.CatchAsync<NotFoundException>(() => command.ExecuteAsync(Guid.NewGuid()));
         }
         
         [Test]

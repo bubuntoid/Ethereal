@@ -19,15 +19,16 @@
         <e p="BackgroundJobs" t="Include">
           <e p="BackgroundJobBase.cs" t="Include" />
           <e p="DestructJob.cs" t="Include" />
+          <e p="GarbageCleanerJob.cs" t="Include" />
           <e p="InitializeJob.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Commands" t="Include">
           <e p="ArchiveFilesCommand.cs" t="Include" />
+          <e p="ConvertVideoCommand.cs" t="Include" />
           <e p="FetchThumbnailsCommand.cs" t="Include" />
           <e p="FetchYoutubeVideoCommand.cs" t="Include" />
           <e p="InitializeProcessingJobCommand.cs" t="Include" />
-          <e p="SplitVideoCommand.cs" t="Include" />
         </e>
         <e p="Ethereal.Application.csproj" t="IncludeRecursive" />
         <e p="EtherealApplication.cs" t="Include" />
@@ -58,9 +59,9 @@
           <e p="ProcessingJobLogger.cs" t="Include" />
         </e>
         <e p="Queries" t="Include">
-          <e p="GetAudioFileQuery.cs" t="Include" />
+          <e p="GetAudioFilePathQuery.cs" t="Include" />
           <e p="GetProcessingJobQuery.cs" t="Include" />
-          <e p="GetZipArchiveFileQuery.cs" t="Include" />
+          <e p="GetZipArchiveFilePathQuery.cs" t="Include" />
         </e>
         <e p="VideoChapter.cs" t="Include" />
         <e p="VideoDescription.cs" t="Include" />
@@ -86,9 +87,9 @@
         <e p="Tests" t="Include">
           <e p="Commands" t="Include">
             <e p="ArchiveFilesCommandTests.cs" t="Include" />
+            <e p="ConvertVideoCommandTests.cs" t="Include" />
             <e p="FetchThumbnailsCommandTests.cs" t="Include" />
             <e p="FetchYoutubeVideoCommandTests.cs" t="Include" />
-            <e p="SplitVideoCommandTests.cs" t="Include" />
           </e>
           <e p="FfmpegWrapperTests.cs" t="Include" />
           <e p="Queries" t="Include">

@@ -16,7 +16,7 @@ namespace Ethereal.WebAPI.Filters
                 context.Result = new ObjectResult(new ErrorResponseDto
                 {
                     ErrorCode = etherealException.ErrorCode,
-                    ErrorMessage = etherealException.Message,
+                    ErrorMessage = etherealException.ErrorMessage,
                 })
                 {
                     StatusCode = 400

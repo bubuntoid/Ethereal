@@ -13,16 +13,16 @@ using NUnit.Framework;
 namespace Ethereal.Application.UnitTests.Tests.Commands
 {
     [TestFixture]
-    public class SplitVideoCommandTests : WithInMemoryDatabaseTestBase
+    public class ConvertVideoCommandTests : WithInMemoryDatabaseTestBase
     {
-        private SplitVideoCommand command;
+        private ConvertVideoCommand command;
         private ProcessingJob job;
         
         [SetUp]
         public async Task SetUp()
         {
             await Task.Delay(1000);
-            command = Substitute.Resolve<SplitVideoCommand>();
+            command = Substitute.Resolve<ConvertVideoCommand>();
             job = new ProcessingJobBuilder(Fixture, Settings).Build();
             await DbContext.ProcessingJobs.AddAsync(job);
             await DbContext.SaveChangesAsync();
@@ -34,7 +34,7 @@ namespace Ethereal.Application.UnitTests.Tests.Commands
         [Test]
         public void JobDoesNotExists_ErrorExpected()
         {
-            var ex = Assert.CatchAsync<NotFoundException>(() => command.ExecuteAsync(Guid.NewGuid()));
+            Assert.CatchAsync<NotFoundException>(() => command.ExecuteAsync(Guid.NewGuid()));
         }
 
         [Test]

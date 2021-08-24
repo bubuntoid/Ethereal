@@ -1,8 +1,10 @@
-﻿using Autofac;
+﻿using System.ComponentModel;
+using Autofac;
 using AutoMapper;
 using Ethereal.Application;
 using Ethereal.Application.BackgroundJobs;
 using Ethereal.Application.Commands;
+using Ethereal.Application.Queries;
 using Ethereal.Domain;
 using Ethereal.WebAPI.Filters;
 using Ethereal.WebAPI.Settings;
@@ -16,6 +18,7 @@ namespace Ethereal.WebAPI
     {
         protected override void Load(ContainerBuilder builder)
         {
+            LoadQueries(builder);
             LoadCommands(builder);
             LoadBgJobs(builder);
             LoadSettings(builder);
@@ -42,9 +45,21 @@ namespace Ethereal.WebAPI
                 .AsSelf();
         }
 
+        private void LoadQueries(ContainerBuilder builder)
+        {
+            builder.RegisterType<GetZipArchiveFilePathQuery>()
+                .AsSelf();
+            
+            builder.RegisterType<GetAudioFilePathQuery>()
+                .AsSelf();
+            
+            builder.RegisterType<GetProcessingJobQuery>()
+                .AsSelf();
+        }
+        
         private void LoadCommands(ContainerBuilder builder)
         {
-            builder.RegisterType<SplitVideoCommand>()
+            builder.RegisterType<ConvertVideoCommand>()
                 .AsSelf()
                 .InstancePerLifetimeScope();
             
