@@ -5,4 +5,7 @@
     <AssemblyName>Ethereal.WebAPI.Contracts</AssemblyName>
     <RootNamespace>Ethereal.WebAPI.Contracts</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ethereal.Domain\Ethereal.Domain.csproj" />
+  </ItemGroup>
 </Project>

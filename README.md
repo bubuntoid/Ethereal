@@ -48,7 +48,8 @@ Ensure that you have new line after each time code.
 
 ## Backend
 test server endpoint: http://81.177.135.200:322 </br>
-swagger: http://81.177.135.200:322/swagger/index.html
+swagger: http://81.177.135.200:322/swagger/index.html </br>
+hangfire dashboard: http://81.177.135.200:322/hangfire
 
 ```
 $ chmod +x scripts/run.sh
@@ -62,14 +63,14 @@ Specify path to FFMPEG executables in **appsetings.json**:
 **Linux**:
 ```json
 "FFMPEG": {
-    "TempPath" : "{current}\\temp",
+    "TempPath" : "{current}\\bin\\temp",
     "ExecutablesPath" : "ffmpeg"
 }
 ```
 **Windows**:
 ```json
 "FFMPEG": {
-    "TempPath" : "{current}\\temp",
+    "TempPath" : "{current}\\bin\\temp",
     "ExecutablesPath" : "C:\\Path\\To\\ffmpeg.exe"
 }
 ```

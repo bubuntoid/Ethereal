@@ -33,7 +33,7 @@ namespace Ethereal.WebAPI.Controllers
             return PhysicalFile(path, "application/zip", Path.GetFileName(path), true);
         }
         
-        [HttpGet("{jobId}/{index}")]
+        [HttpGet("{jobId}/{index}/mp3")]
         [Produces("application/zip")]
         [ProducesResponseType(typeof(ErrorResponseDto), 400)]
         public async Task<IActionResult> DownloadChapterMp3(Guid jobId, int index)
@@ -44,5 +44,15 @@ namespace Ethereal.WebAPI.Controllers
             return PhysicalFile(path, "application/octet-stream", Path.GetFileName(path), true);
         }
         
+        [HttpGet("{jobId}/{index}/thumbnail")]
+        [Produces("application/zip")]
+        [ProducesResponseType(typeof(ErrorResponseDto), 400)]
+        public async Task<IActionResult> DownloadChapterThumbnail(Guid jobId, int index)
+        {
+            var path = await scope.Resolve<GetThumbnailFilePathQuery>()
+                .ExecuteAsync(jobId, index);
+            
+            return PhysicalFile(path, "image/png", Path.GetFileName(path), true);
+        }
     }
 }
