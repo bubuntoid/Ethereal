@@ -35,16 +35,7 @@ Ensure that you have new line after each time code.
 ## Stack / Dependencies
 * PostgreSQL 13 
 * FFMPEG 4.2.4-1ubuntu0.1
-* .NET 5.0
-* ASP.NET Core 5.6.3
-* EF Core 5.0.7
-* Hangfire 1.7.0
-* NLog 4.5.11
-* FluentValidation 10.3.0
-* Autofac 6.2.0
-* AutoMapper 10.1.1
-* Nunit 3.13.1
-* FluentAssertions 5.10.3
+* .NET 5.0 (.NET Runtime 5.0.9)
 
 ## Backend
 test server endpoint: http://81.177.135.200:322 </br>
