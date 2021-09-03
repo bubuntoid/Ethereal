@@ -1,6 +1,12 @@
+using System;
+using System.Reflection;
 using Autofac;
-using Ethereal.WebAPI.Controllers.MainController.Models;
-using Ethereal.WebAPI.Modules;
+using Ethereal.Application.BackgroundJobs;
+using Ethereal.Application.ProcessingJobLogger;
+using Ethereal.Domain;
+using Ethereal.Domain.Migrations;
+using Ethereal.WebAPI.Contracts;
+using Ethereal.WebAPI.Settings;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +14,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using FluentMigrator;
+using FluentMigrator.Runner;
+using Hangfire;
+using Hangfire.PostgreSql;
+using Hangfire.SqlServer;
 
 namespace Ethereal.WebAPI
 {
@@ -25,7 +36,7 @@ namespace Ethereal.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddFluentValidation(fv =>
-                fv.RegisterValidatorsFromAssemblyContaining<DownloadMp3RequestDto.Validator>());
+                fv.RegisterValidatorsFromAssemblyContaining<InitializeJobRequestDto>());
             
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -43,6 +54,24 @@ namespace Ethereal.WebAPI
                             .AllowAnyHeader();
                     });
             });
+
+            ProcessingJobLogger.CurrentSettings = new SystemSettings(this.Configuration);
+            var databaseSettings = new DatabaseSettings(this.Configuration);
+            
+            services
+                .AddLogging(c => c.AddFluentMigratorConsole())
+                .AddFluentMigratorCore()
+                .ConfigureRunner(c => c
+                    .AddPostgres()
+                    .WithGlobalConnectionString(databaseSettings.ConnectionString)
+                    .ScanIn(typeof(InitializeDatabaseMigration).Assembly).For.All());
+
+            services.AddHangfire(configuration => configuration
+                .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+                .UseSimpleAssemblyNameTypeSerializer()
+                .UseRecommendedSerializerSettings()
+                .UsePostgreSqlStorage(databaseSettings.ConnectionString, new PostgreSqlStorageOptions()));
+            services.AddHangfireServer();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -54,7 +83,7 @@ namespace Ethereal.WebAPI
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMigrationRunner runner)
         {
             if (env.IsDevelopment())
             {
@@ -68,10 +97,21 @@ namespace Ethereal.WebAPI
             app.UseRouting();
 
             app.UseCors("AllowSpecificOrigin");
-            
+
             app.UseAuthorization();
 
+            app.UseHangfireServer(new BackgroundJobServerOptions
+            {
+                WorkerCount = 10,
+            });
+            app.UseHangfireDashboard();
+
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            runner?.MigrateUp();
+
+            RecurringJob.AddOrUpdate<GarbageCleanerJob>("garbageCleaner",
+                bgJob => bgJob.Execute(TimeSpan.FromMinutes(10)), Cron.Hourly);
         }
     }
 }

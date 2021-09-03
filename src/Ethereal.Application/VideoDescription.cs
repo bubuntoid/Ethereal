@@ -15,7 +15,7 @@ namespace Ethereal.Application
             "00:00:00"
         };
 
-        public string Description { get; }
+        private string Description { get; }
 
         public VideoDescription(string description)
         {
@@ -25,7 +25,7 @@ namespace Ethereal.Application
         public IReadOnlyCollection<VideoChapter> ParseChapters()
         {
             if (Description == null)
-                throw new ChaptersParseException(description: "description has no value");
+                throw new InternalErrorException("Could not parse any chapter");
             
             var chapters = new List<VideoChapter>();
 
@@ -35,35 +35,39 @@ namespace Ethereal.Application
             var firstLine = lines.FirstOrDefault(line => FirstChapterVariants.Any(line.Contains));
             var index = lines.IndexOf(firstLine);
 
-            if (index == -1)
-                throw new ChaptersParseException();
+            if (index == -1 || lines.Count == 0)
+                throw new InternalErrorException("Could not parse any chapter");
             
-            if (lines.Count == 0)
-                return new List<VideoChapter>();
-
+            var chapterIndex = -1;
             while (lines.Count > index)
             {
                 var line = lines[index].Trim();
                 index++;
 
-                if (line.ContainsTimespan(out var timespan) == false)
-                    continue;
-
-                var chapter = new VideoChapter
+                try
                 {
-                    Original = line,
-                    StartTimespan = timespan,
-                    Name = line.RemoveTimespan().RemoveIllegalCharacters(),
-
-                };
-                chapters.Add(chapter);
+                    if (line.ContainsTimespan(out var timespan) == false)
+                        continue;
+                    
+                    var chapter = new VideoChapter
+                    {
+                        Index = ++chapterIndex,
+                        Original = line,
+                        StartTimespan = timespan,
+                        Name = line.RemoveTimespan().RemoveIllegalCharacters(),
+                    };
+                    chapters.Add(chapter);
+                }
+                catch
+                {
+                    continue;
+                }
             }
 
             for (var i = 0; i < chapters.Count; i++)
             {
                 var currentChapter = chapters.ElementAt(i);
                 currentChapter.EndTimespan = i == chapters.Count - 1
-                    // ReSharper disable once PossibleInvalidOperationException
                     ? (TimeSpan?) null
                     : chapters.ElementAt(i + 1).StartTimespan;
             }

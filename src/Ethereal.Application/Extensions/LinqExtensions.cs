@@ -10,8 +10,8 @@ namespace Ethereal.Application.Extensions
         {
             return source.MinBy(selector, null);
         }
-        
-        public static TSource MinBy<TSource, TKey>(this IEnumerable<TSource> source,
+
+        private static TSource MinBy<TSource, TKey>(this IEnumerable<TSource> source,
             Func<TSource, TKey> selector, IComparer<TKey> comparer)
         {
             if (source == null) throw new ArgumentNullException("source");

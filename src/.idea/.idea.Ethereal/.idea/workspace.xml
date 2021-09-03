@@ -6,6 +6,10 @@
     <projectFile>YOVPS.WebAPI.AutoTests/YOVPS.WebAPI.AutoTests.csproj</projectFile>
     <projectFile>YOVPS.WebAPI.Client/YOVPS.WebAPI.Client.csproj</projectFile>
     <projectFile>YOVPS.Common.Tests/YOVPS.Common.Tests.csproj</projectFile>
+    <projectFile>Ethereal.Domain.UnitTests/Ethereal.Domain.UnitTests.csproj</projectFile>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="BranchesTreeState">
     <expand>
@@ -27,7 +31,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721af198-314f-424b-a35d-823ea0946efe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Queries/GetThumbnailFilePathQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.WebAPI.AutoTests/AutoTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.WebAPI.AutoTests/EtherealClientSettings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Client/EtherealClient.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Client/IEtherealClientSettings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/ProcessingJobDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/ProcessingJobVideoDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI.AutoTests/Ethereal.WebAPI.AutoTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI.AutoTests/Ethereal.WebAPI.AutoTests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI.Client/Ethereal.WebAPI.Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Client/Ethereal.WebAPI.Client.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/Ethereal.WebAPI.Contracts.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/Ethereal.WebAPI.Contracts.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/DataController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/DataController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/MapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/MapperProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Properties/launchSettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,24 +58,69 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Ethereal.Application/VideoDescription.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/ResourcesHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ethereal.Application.UnitTests/ThreadQueueTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ethereal.Common.Tests/ResourcesHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1BC366D2-BA14-4BC5-A17E-08D4F35F238B/1AB/CancellationToken.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/12E0B451-3FEC-49EC-BE90-4CA18067A6FD/4d/d88e320f/PostgreSqlStorageOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0744BE4A-4556-4FE2-B179-94608316EA7F/94/3c89cc05/TimeSpan.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1BC366D2-BA14-4BC5-A17E-08D4F35F238B/1d/f5792670/IReadOnlyCollection`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Ethereal.Application/VideoChapter.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/YOVPS.Application/FfmpegWrapper.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Domain/YovpsDbContext.cs" />
-        <option value="$PROJECT_DIR$/YOVPS.Core.UnitTests/FfmpegWrapperTests.cs" />
-        <option value="$PROJECT_DIR$/YOVPS.Core.UnitTests/ThreadQueueTests.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/IVideoSplitterSettings.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Settings/FfmpegSettings.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/VideoSplitterService.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application/Exceptions/YovpsException.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/ThreadQueueTests.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/FfmpegWrapperTests.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/EtherealApplication.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/TestSettings.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/Infrastructure/IdResponseDto.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/InitializeJobRequestDto.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/Infrastructure/GuidResponseDto.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Ethereal.Application.csproj" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Ethereal.WebAPI.csproj" />
+        <option value="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobVideo.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Builders/ProcessingJobBuilder.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Extensions/ProcessingJobExtensions.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/WithInMemoryDatabaseTestBase.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/ProcessingJobLogger/ProcessingJobLogger.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/VideoDescription.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJob.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Domain/Entities/ProcessingJobStatus.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetProcessingJobQuery.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Exceptions/InvalidOperationException.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/ArchiveFilesCommand.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/FetchThumbnailsCommand.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/FetchYoutubeVideoCommandTests.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Domain/Migrations/1_InitializeDatabaseMigration.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Queries/GetProcessingJobQueryTests.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/ArchiveFilesCommandTests.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/FetchThumbnailsCommandTests.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/SplitVideoCommand.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/SplitVideoCommandTests.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/AutofacModule.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetAudioFileQuery.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetZipArchiveFileQuery.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Filters/ExceptionFilter.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/InitializeProcessingJobCommand.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/InitializeJob.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/DestructJob.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/BackgroundJobBase.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Startup.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/GarbageCleanerJob.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Commands/FetchYoutubeVideoCommand.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/appsettings.json" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetThumbnailFilePathQuery.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/DataController.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/MapperProfile.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI.Client/EtherealApiClient.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI.Client/IEtherealClientSettings.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Properties/launchSettings.json" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI.AutoTests/EtherealClientSettings.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/ProcessingJobDto.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/ProcessingJobVideoDto.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI.Client/EtherealClient.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI.AutoTests/AutoTests.cs" />
       </list>
     </option>
   </component>
@@ -66,10 +131,31 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34994584" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30010834" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
-  <component name="RunManager" selected=".NET Project.YOVPS.Common.Tests">
+  <component name="RunManager" selected=".NET Launch Settings Profile.Ethereal.WebAPI">
+    <configuration name="Ethereal.Domain.UnitTests" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/Ethereal.Domain.UnitTests/Ethereal.Domain.UnitTests.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
     <configuration name="YOVPS.Common.Tests" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -142,10 +228,10 @@
         <option name="Build" />
       </method>
     </configuration>
-    <configuration name="YOVPS.WebAPI" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+    <configuration name="Ethereal.WebAPI" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Ethereal.WebAPI/Ethereal.WebAPI.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v5.0" />
-      <option name="LAUNCH_PROFILE_NAME" value="YOVPS.WebAPI" />
+      <option name="LAUNCH_PROFILE_NAME" value="Ethereal.WebAPI" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
@@ -157,7 +243,7 @@
         <option name="Build" />
       </method>
     </configuration>
-    <configuration name="YOVPS.WebAPI: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+    <configuration name="Ethereal.WebAPI: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Ethereal.WebAPI/Ethereal.WebAPI.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v5.0" />
       <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
@@ -172,6 +258,15 @@
         <option name="Build" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue=".NET Launch Settings Profile.Ethereal.WebAPI" />
+      <item itemvalue=".NET Launch Settings Profile.Ethereal.WebAPI: IIS Express" />
+      <item itemvalue=".NET Project.Ethereal.Domain.UnitTests" />
+      <item itemvalue=".NET Project.YOVPS.Common.Tests" />
+      <item itemvalue=".NET Project.YOVPS.Core.UnitTests" />
+      <item itemvalue=".NET Project.YOVPS.WebAPI.AutoTests" />
+      <item itemvalue=".NET Project.YOVPS.WebAPI.Client" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -185,6 +280,22 @@
       <workItem from="1628900192350" duration="101000" />
       <workItem from="1628900359471" duration="30000" />
       <workItem from="1628900511132" duration="1175000" />
+      <workItem from="1629045646146" duration="5458000" />
+      <workItem from="1629062891385" duration="3810000" />
+      <workItem from="1629390947050" duration="8329000" />
+      <workItem from="1629453559628" duration="2242000" />
+      <workItem from="1629545652784" duration="4186000" />
+      <workItem from="1629562202295" duration="1258000" />
+      <workItem from="1629563491058" duration="2677000" />
+      <workItem from="1629581579051" duration="76000" />
+      <workItem from="1629587422152" duration="8238000" />
+      <workItem from="1629740078141" duration="7455000" />
+      <workItem from="1629750363919" duration="229000" />
+      <workItem from="1629828601181" duration="244000" />
+      <workItem from="1629829010064" duration="1665000" />
+      <workItem from="1629843740441" duration="609000" />
+      <workItem from="1629844566225" duration="2426000" />
+      <workItem from="1630161153172" duration="2527000" />
     </task>
     <servers />
   </component>
@@ -204,9 +315,207 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="613" y="253" width="694" height="534" key="find.popup" timestamp="1628901152209">
+    <state x="414" y="174" width="1391" height="763" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1630162932050">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="613" y="253" width="694" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1628901152209" />
+    <state x="414" y="174" width="1391" height="763" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1630162932050" />
+    <state width="711" height="464" key="DebuggerActiveHint" timestamp="1630163449944">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="711" height="464" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1630163449944" />
+    <state width="1877" height="375" key="GridCell.Tab.0.bottom" timestamp="1630163683272">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683272" />
+    <state width="1877" height="375" key="GridCell.Tab.0.center" timestamp="1630163683272">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683272" />
+    <state width="1877" height="375" key="GridCell.Tab.0.left" timestamp="1630163683272">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683272" />
+    <state width="1877" height="375" key="GridCell.Tab.0.right" timestamp="1630163683272">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683272" />
+    <state width="1877" height="375" key="GridCell.Tab.1.bottom" timestamp="1630163683272">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683272" />
+    <state width="1877" height="375" key="GridCell.Tab.1.center" timestamp="1630163683272">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683272" />
+    <state width="1877" height="375" key="GridCell.Tab.1.left" timestamp="1630163683272">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683272" />
+    <state width="1877" height="375" key="GridCell.Tab.1.right" timestamp="1630163683272">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683272" />
+    <state width="1877" height="375" key="GridCell.Tab.2.bottom" timestamp="1630163683273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683273" />
+    <state width="1877" height="375" key="GridCell.Tab.2.center" timestamp="1630163683273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683273" />
+    <state width="1877" height="375" key="GridCell.Tab.2.left" timestamp="1630163683273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683273" />
+    <state width="1877" height="375" key="GridCell.Tab.2.right" timestamp="1630163683273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683273" />
+    <state width="1877" height="375" key="GridCell.Tab.3.bottom" timestamp="1630163683273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.3.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683273" />
+    <state width="1877" height="375" key="GridCell.Tab.3.center" timestamp="1630163683273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.3.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683273" />
+    <state width="1877" height="375" key="GridCell.Tab.3.left" timestamp="1630163683273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.3.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683273" />
+    <state width="1877" height="375" key="GridCell.Tab.3.right" timestamp="1630163683273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.3.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683273" />
+    <state width="1877" height="375" key="GridCell.Tab.4.bottom" timestamp="1630163683273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.4.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683273" />
+    <state width="1877" height="375" key="GridCell.Tab.4.center" timestamp="1630163683273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.4.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683273" />
+    <state width="1877" height="375" key="GridCell.Tab.4.left" timestamp="1630163683273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.4.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683273" />
+    <state width="1877" height="375" key="GridCell.Tab.4.right" timestamp="1630163683273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="375" key="GridCell.Tab.4.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683273" />
+    <state x="552" y="251" key="Rider.ProjectTemplateDialog.Size" timestamp="1629546126478">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="251" key="Rider.ProjectTemplateDialog.Size/0.0.1920.1040@0.0.1920.1040" timestamp="1629546126478" />
+    <state x="788" y="193" key="RiderGenerateDialog" timestamp="1629565706605">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="788" y="193" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1629565706605" />
+    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog" timestamp="1629565277311">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1629565277311" />
+    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1630163449937">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1630163449937" />
+    <state x="613" y="253" width="694" height="534" key="find.popup" timestamp="1629744185180">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="613" y="253" width="694" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1629744185180" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1629844607352">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1629844607352" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/FetchYoutubeVideoCommandTests.cs</url>
+          <line>55</line>
+          <properties documentPath="C:\Users\Evs\repos\YOVPS\src\Ethereal.Application.UnitTests\Tests\Commands\FetchYoutubeVideoCommandTests.cs" initialLine="45" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/VideoDescriptionTests.cs</url>
+          <line>106</line>
+          <properties documentPath="C:\Users\Evs\repos\YOVPS\src\Ethereal.Application.UnitTests\Tests\VideoDescriptionTests.cs" initialLine="106" />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Ethereal.Domain/Migrations/1_InitializeDatabaseMigration.cs</url>
+          <line>8</line>
+          <properties documentPath="C:\Users\Evs\repos\ethereal\src\Ethereal.Domain\Migrations\1_InitializeDatabaseMigration.cs" initialLine="8">
+            <startOffsets>
+              <option value="199" />
+            </startOffsets>
+            <endOffsets>
+              <option value="200" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Ethereal.Domain.UnitTests/Tests/ProcessingJobTests.cs</url>
+          <line>17</line>
+          <properties documentPath="C:\Users\Evs\repos\ethereal\src\Ethereal.Domain.UnitTests\Tests\ProcessingJobTests.cs" initialLine="17">
+            <startOffsets>
+              <option value="479" />
+            </startOffsets>
+            <endOffsets>
+              <option value="524" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/ConvertVideoCommandTests.cs</url>
+          <line>60</line>
+          <properties documentPath="C:\Users\Evs\repos\ethereal\src\Ethereal.Application.UnitTests\Tests\Commands\SplitVideoCommandTests.cs" initialLine="47" />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/GarbageCleanerJob.cs</url>
+          <line>32</line>
+          <properties documentPath="C:\Users\Evs\repos\ethereal\src\Ethereal.Application\BackgroundJobs\GarbageCleanerJob.cs" initialLine="32">
+            <startOffsets>
+              <option value="1009" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1057" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Ethereal.WebAPI.AutoTests/AutoTests.cs</url>
+          <line>51</line>
+          <properties documentPath="C:\Users\Evs\repos\ethereal\src\Ethereal.WebAPI.AutoTests\AutoTests.cs" initialLine="41">
+            <startOffsets>
+              <option value="1491" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1516" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Type#Ethereal.Application.VideoChapter" memberName="Index" />
+        <PinnedItemInfo parentTag="Type#Npgsql.PostgresException" memberName="Statement" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="RiderUnitTests">
+        <watch expression="runner.MigrationLoader.LoadMigrations()" language="C#" />
+        <watch expression="runner.MigrateUp()" language="C#" />
+        <watch expression="DbContext.Database.GetMigrations()" language="C#" />
+        <watch expression="job.GetChapterLocalFilePath(chapter)" language="C#" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

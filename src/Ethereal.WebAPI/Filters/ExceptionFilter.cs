@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Ethereal.Application.Exceptions;
-using Ethereal.WebAPI.Models;
+using Ethereal.Domain;
+using Ethereal.WebAPI.Contracts.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -10,16 +11,29 @@ namespace Ethereal.WebAPI.Filters
     {
         public Task OnExceptionAsync(ExceptionContext context)
         {
-            var exception = context.Exception as EtherealException;
-            context.Result = new ObjectResult(new ApiErrorDto
+            if (context.Exception is EtherealException etherealException)
             {
-                Error = context.Exception.Message,
-                Description = exception?.Description ?? context.Exception.StackTrace,
+                context.Result = new ObjectResult(new ErrorResponseDto
+                {
+                    ErrorCode = etherealException.ErrorCode,
+                    ErrorMessage = etherealException.ErrorMessage,
+                })
+                {
+                    StatusCode = 400
+                };
+                
+                return Task.CompletedTask;
+            }
+            
+            context.Result = new ObjectResult(new ErrorResponseDto
+            {
+                ErrorCode = "internal_error",
+                ErrorMessage = context.Exception.Message + context.Exception.StackTrace,
             })
             {
                 StatusCode = 400
             };
-
+            
             return Task.CompletedTask;
         }
     }

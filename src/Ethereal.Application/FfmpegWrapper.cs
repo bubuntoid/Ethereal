@@ -5,18 +5,20 @@ using NLog;
 
 namespace Ethereal.Application
 {
-    public static class FfmpegWrapper
+    public class FfmpegWrapper
     {
-        // ReSharper disable once InconsistentNaming
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
-        public static string ExecutablesPath { get; set; }
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+        public string ExecutablesPath { get; }
 
-        public static async Task SaveTrimmedAsync(
+        public FfmpegWrapper(IEtherealSettings settings)
+        {
+            ExecutablesPath = settings.ExecutablesPath;
+        }
+        
+        public async Task SaveTrimmedAsync(
             string path, 
             string output, 
-            VideoChapter chapter, 
-            int index,
-            int count)
+            VideoChapter chapter)
         {
             logger.Info($"Processing {chapter.Name}...");
 
@@ -35,17 +37,14 @@ namespace Ethereal.Application
             p.Start();
 
             await ComputationExtensions.ComputeElapsedTimeInMillisecondsAsync(
-                $"SaveTrimmedAsync | {chapter.Name} | {index + 1} / {count}",
+                $"SaveTrimmedAsync | {chapter.Name}",
                 p.WaitForExitAsync());
         }
 
-        public static async Task SaveImageAsync(
+        public async Task SaveImageAsync(
             string path,
             string output,
-            VideoChapter chapter,
-            int index,
-            int count
-            )
+            VideoChapter chapter)
         {
             logger.Info($"Processing {chapter.Name}...");
             
@@ -64,7 +63,7 @@ namespace Ethereal.Application
             p.Start();
 
             await ComputationExtensions.ComputeElapsedTimeInMillisecondsAsync(
-                $"SaveImageAsync | {chapter.Name} | {index + 1} / {count}",
+                $"SaveImageAsync | {chapter.Name}",
                 p.WaitForExitAsync());
         }
     }

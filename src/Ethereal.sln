@@ -13,11 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.WebAPI.AutoTests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.WebAPI.Client", "Ethereal.WebAPI.Client\Ethereal.WebAPI.Client.csproj", "{80CE2047-62E1-4899-BF92-F017F8603942}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{53373308-8D94-4DE4-AEAF-FD0186C7CA90}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.Common.Tests", "Ethereal.Common.Tests\Ethereal.Common.Tests.csproj", "{D0F54300-21E3-4E1C-B4F6-99E48D09A487}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.Domain", "Ethereal.Domain\Ethereal.Domain.csproj", "{B123B0C7-D8FD-4410-820E-7E81BC5ACFFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.Domain.UnitTests", "Ethereal.Domain.UnitTests\Ethereal.Domain.UnitTests.csproj", "{679EB1C2-ECEE-4B94-B4F1-D076BBBB13D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.WebAPI.Contracts", "Ethereal.WebAPI.Contracts\Ethereal.WebAPI.Contracts.csproj", "{8CE37A77-DB67-4B47-98EB-4BBC1B021528}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,14 +45,18 @@ Global
 		{80CE2047-62E1-4899-BF92-F017F8603942}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80CE2047-62E1-4899-BF92-F017F8603942}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80CE2047-62E1-4899-BF92-F017F8603942}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D0F54300-21E3-4E1C-B4F6-99E48D09A487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0F54300-21E3-4E1C-B4F6-99E48D09A487}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0F54300-21E3-4E1C-B4F6-99E48D09A487}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0F54300-21E3-4E1C-B4F6-99E48D09A487}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B123B0C7-D8FD-4410-820E-7E81BC5ACFFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B123B0C7-D8FD-4410-820E-7E81BC5ACFFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B123B0C7-D8FD-4410-820E-7E81BC5ACFFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B123B0C7-D8FD-4410-820E-7E81BC5ACFFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{679EB1C2-ECEE-4B94-B4F1-D076BBBB13D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{679EB1C2-ECEE-4B94-B4F1-D076BBBB13D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{679EB1C2-ECEE-4B94-B4F1-D076BBBB13D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{679EB1C2-ECEE-4B94-B4F1-D076BBBB13D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE37A77-DB67-4B47-98EB-4BBC1B021528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE37A77-DB67-4B47-98EB-4BBC1B021528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE37A77-DB67-4B47-98EB-4BBC1B021528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE37A77-DB67-4B47-98EB-4BBC1B021528}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +65,5 @@ Global
 		SolutionGuid = {B3DB83C0-6FCC-4DE7-B2EA-E960C28E6A11}
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{D0F54300-21E3-4E1C-B4F6-99E48D09A487} = {53373308-8D94-4DE4-AEAF-FD0186C7CA90}
 	EndGlobalSection
 EndGlobal
