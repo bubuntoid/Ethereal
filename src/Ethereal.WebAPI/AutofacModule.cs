@@ -55,6 +55,9 @@ namespace Ethereal.WebAPI
             
             builder.RegisterType<GetProcessingJobQuery>()
                 .AsSelf();
+
+            builder.RegisterType<GetLogFilePathQuery>()
+                .AsSelf();
         }
         
         private void LoadCommands(ContainerBuilder builder)

@@ -19,6 +19,8 @@ using FluentMigrator.Runner;
 using Hangfire;
 using Hangfire.PostgreSql;
 using Hangfire.SqlServer;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using Newtonsoft.Json.Converters;
 
 namespace Ethereal.WebAPI
 {
@@ -37,8 +39,11 @@ namespace Ethereal.WebAPI
         {
             services.AddFluentValidation(fv =>
                 fv.RegisterValidatorsFromAssemblyContaining<InitializeJobRequestDto>());
+
+            services.AddControllers()
+                .AddNewtonsoftJson(opts =>
+                    opts.SerializerSettings.Converters.Add(new StringEnumConverter()));
             
-            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebAPI", Version = "v1"});
@@ -72,6 +77,8 @@ namespace Ethereal.WebAPI
                 .UseRecommendedSerializerSettings()
                 .UsePostgreSqlStorage(databaseSettings.ConnectionString, new PostgreSqlStorageOptions()));
             services.AddHangfireServer();
+            
+            services.AddSwaggerGenNewtonsoftSupport();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

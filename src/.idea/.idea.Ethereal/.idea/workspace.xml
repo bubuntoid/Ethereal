@@ -31,23 +31,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="721af198-314f-424b-a35d-823ea0946efe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Queries/GetThumbnailFilePathQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.WebAPI.AutoTests/AutoTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.WebAPI.AutoTests/EtherealClientSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Client/EtherealClient.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Client/IEtherealClientSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/ProcessingJobDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/ProcessingJobVideoDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ethereal.Application/Queries/GetLogFilePathQuery.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ethereal/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI.AutoTests/Ethereal.WebAPI.AutoTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI.AutoTests/Ethereal.WebAPI.AutoTests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI.Client/Ethereal.WebAPI.Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Client/Ethereal.WebAPI.Client.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/Ethereal.WebAPI.Contracts.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/Ethereal.WebAPI.Contracts.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI.Client/EtherealClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI.Client/EtherealClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/AutofacModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/AutofacModule.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/DataController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/DataController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/MapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/MapperProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Ethereal.WebAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Ethereal.WebAPI.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ethereal.WebAPI/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ethereal.WebAPI/Startup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +61,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Ethereal.Application/EtherealApplication.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application/FfmpegWrapper.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/TestSettings.cs" />
         <option value="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/Infrastructure/IdResponseDto.cs" />
@@ -97,7 +87,6 @@
         <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/FetchThumbnailsCommandTests.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application/Commands/SplitVideoCommand.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application.UnitTests/Tests/Commands/SplitVideoCommandTests.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.WebAPI/AutofacModule.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetAudioFileQuery.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetZipArchiveFileQuery.cs" />
         <option value="$PROJECT_DIR$/Ethereal.WebAPI/Filters/ExceptionFilter.cs" />
@@ -105,13 +94,10 @@
         <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/InitializeJob.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/DestructJob.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/BackgroundJobBase.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Startup.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application/BackgroundJobs/GarbageCleanerJob.cs" />
         <option value="$PROJECT_DIR$/Ethereal.Application/Commands/FetchYoutubeVideoCommand.cs" />
         <option value="$PROJECT_DIR$/Ethereal.WebAPI/appsettings.json" />
         <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetThumbnailFilePathQuery.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/DataController.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController.cs" />
         <option value="$PROJECT_DIR$/Ethereal.WebAPI/MapperProfile.cs" />
         <option value="$PROJECT_DIR$/Ethereal.WebAPI.Client/EtherealApiClient.cs" />
         <option value="$PROJECT_DIR$/Ethereal.WebAPI.Client/IEtherealClientSettings.cs" />
@@ -119,8 +105,13 @@
         <option value="$PROJECT_DIR$/Ethereal.WebAPI.AutoTests/EtherealClientSettings.cs" />
         <option value="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/ProcessingJobDto.cs" />
         <option value="$PROJECT_DIR$/Ethereal.WebAPI.Contracts/ProcessingJobVideoDto.cs" />
-        <option value="$PROJECT_DIR$/Ethereal.WebAPI.Client/EtherealClient.cs" />
         <option value="$PROJECT_DIR$/Ethereal.WebAPI.AutoTests/AutoTests.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI.Client/EtherealClient.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.Application/Queries/GetLogFilePathQuery.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/MainController.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Controllers/DataController.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/AutofacModule.cs" />
+        <option value="$PROJECT_DIR$/Ethereal.WebAPI/Startup.cs" />
       </list>
     </option>
   </component>
@@ -296,6 +287,7 @@
       <workItem from="1629843740441" duration="609000" />
       <workItem from="1629844566225" duration="2426000" />
       <workItem from="1630161153172" duration="2527000" />
+      <workItem from="1630843431298" duration="1000000" />
     </task>
     <servers />
   </component>
@@ -323,22 +315,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="711" height="464" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1630163449944" />
-    <state width="1877" height="375" key="GridCell.Tab.0.bottom" timestamp="1630163683272">
+    <state width="1877" height="274" key="GridCell.Tab.0.bottom" timestamp="1630844050742">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683272" />
-    <state width="1877" height="375" key="GridCell.Tab.0.center" timestamp="1630163683272">
+    <state width="1877" height="274" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1630844050742" />
+    <state width="1877" height="274" key="GridCell.Tab.0.center" timestamp="1630844050742">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683272" />
-    <state width="1877" height="375" key="GridCell.Tab.0.left" timestamp="1630163683272">
+    <state width="1877" height="274" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1630844050742" />
+    <state width="1877" height="274" key="GridCell.Tab.0.left" timestamp="1630844050741">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683272" />
-    <state width="1877" height="375" key="GridCell.Tab.0.right" timestamp="1630163683272">
+    <state width="1877" height="274" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1630844050741" />
+    <state width="1877" height="274" key="GridCell.Tab.0.right" timestamp="1630844050742">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="375" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630163683272" />
+    <state width="1877" height="274" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1630844050742" />
     <state width="1877" height="375" key="GridCell.Tab.1.bottom" timestamp="1630163683272">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
