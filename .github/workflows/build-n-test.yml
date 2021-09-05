@@ -40,5 +40,4 @@ jobs:
         run: dotnet build src --configuration Release --no-restore
         
       - name: Test
-        run: dotnet test src/Ethereal.Application.UnitTests --no-restore --verbosity normal
-            dotnet test src/Ethereal.WebAPI.UnitTests --no-restore --verbosity normal
+        run: dotnet test src/Ethereal.Application.UnitTests --no-restore --verbosity normal && dotnet test src/Ethereal.WebAPI.UnitTests --no-restore --verbosity normal
