@@ -7,6 +7,8 @@ using Ethereal.WebAPI.Contracts.Infrastructure;
 using Ethereal.WebAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileSystemGlobbing;
+using Microsoft.Extensions.Primitives;
+using Microsoft.Net.Http.Headers;
 
 namespace Ethereal.WebAPI.Controllers
 {
@@ -43,27 +45,31 @@ namespace Ethereal.WebAPI.Controllers
 
             return PhysicalFile(path, "application/zip", Path.GetFileName(path), true);
         }
-        
+
         [HttpGet("{jobId}/{index}/mp3")]
-        [Produces("application/zip")]
+        [Produces("audio/mp3")]
         [ProducesResponseType(typeof(ErrorResponseDto), 400)]
-        public async Task<IActionResult> DownloadChapterMp3(Guid jobId, int index)
+        public async Task<IActionResult> DownloadChapterMp3(Guid jobId, int index, bool inline = true)
         {
             var path = await scope.Resolve<GetAudioFilePathQuery>()
                 .ExecuteAsync(jobId, index);
 
-            return PhysicalFile(path, "application/octet-stream", Path.GetFileName(path), true);
+            return inline
+                ? PhysicalFile(path, "audio/mp3", true)
+                : PhysicalFile(path, "audio/mp3", Path.GetFileName(path), true);
         }
-        
+
         [HttpGet("{jobId}/{index}/thumbnail")]
-        [Produces("application/zip")]
+        [Produces("image/png")]
         [ProducesResponseType(typeof(ErrorResponseDto), 400)]
-        public async Task<IActionResult> DownloadChapterThumbnail(Guid jobId, int index)
+        public async Task<IActionResult> DownloadChapterThumbnail(Guid jobId, int index, bool inline = true)
         {
             var path = await scope.Resolve<GetThumbnailFilePathQuery>()
                 .ExecuteAsync(jobId, index);
             
-            return PhysicalFile(path, "image/png", Path.GetFileName(path), true);
+            return inline 
+                ? PhysicalFile(path, "image/png", true)
+                : PhysicalFile(path, "image/png", Path.GetFileName(path), true);
         }
     }
 }

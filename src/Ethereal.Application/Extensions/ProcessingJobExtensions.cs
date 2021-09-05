@@ -18,7 +18,7 @@ namespace Ethereal.Application.Extensions
 
         public static string GetArchivePath(this ProcessingJob job)
         {
-            return Path.Combine(job.LocalPath, job.Video.Title.RemoveIllegalCharacters() + ".zip");
+            return Path.Combine(job.LocalPath, $"{job.Video.Title.RemoveIllegalCharacters()}.zip");
         }
 
         public static string GetChapterLocalFilePath(this ProcessingJob job, VideoChapter chapter)
@@ -26,6 +26,11 @@ namespace Ethereal.Application.Extensions
             return Path.Combine(job.LocalPath, $"{chapter.Name.RemoveIllegalCharacters()}.mp4");
         }
 
+        public static string GetChapterLocalThumbnailFilePath(this ProcessingJob job, VideoChapter chapter)
+        {
+            return Path.Combine(GetLocalThumbnailsDirectoryPath(job), $"{chapter.Index}.png");
+        }
+        
         public static IReadOnlyCollection<VideoChapter> ParseChapters(this ProcessingJob job)
         {
             var chapters = new VideoDescription(job.Video.Description).ParseChapters();

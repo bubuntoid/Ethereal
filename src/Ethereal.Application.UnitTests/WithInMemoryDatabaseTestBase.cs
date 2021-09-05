@@ -2,12 +2,15 @@
 using AutofacContrib.NSubstitute;
 using AutoFixture;
 using Ethereal.Domain;
+using NUnit.Framework;
 using Xabe.FFmpeg;
 using Xabe.FFmpeg.Downloader;
 using YoutubeExplode;
 
 namespace Ethereal.Application.UnitTests
 {
+    [Ignore("CI/CD")]
+    [TestFixture]
     public class WithInMemoryDatabaseTestBase
     {
         protected EtherealDbContext DbContext { get; } 

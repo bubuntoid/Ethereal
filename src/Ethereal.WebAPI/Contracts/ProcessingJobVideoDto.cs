@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Ethereal.WebAPI.Contracts
+﻿namespace Ethereal.WebAPI.Contracts
 {
     public class ProcessingJobVideoDto
     {
