@@ -57,7 +57,7 @@ namespace Ethereal.Application.UnitTests.Tests.Commands
 
             foreach (var chapter in chapters)
             {
-                var path = Path.Combine(job.GetLocalThumbnailsDirectoryPath(), chapter.Index + ".png");
+                var path = job.GetChapterLocalThumbnailFilePath(chapter);
                 Assert.That(File.Exists(path));
             }
         }

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using AutoMapper;
 using Ethereal.Application.Commands;
+using Ethereal.Application.Extensions;
 using Ethereal.Application.Queries;
 using Ethereal.WebAPI.Contracts;
 using Ethereal.WebAPI.Contracts.Infrastructure;
@@ -44,7 +46,25 @@ namespace Ethereal.WebAPI.Controllers
             var job = await scope.Resolve<GetProcessingJobQuery>()
                 .ExecuteAsync(jobId);
 
-            return Ok(mapper.Map<ProcessingJobDto>(job));
+            var jobDto = mapper.Map<ProcessingJobDto>(job);
+            jobDto.ZipArchiveUrl = Url.ActionLink("DownloadZipArchive", "Data", new {jobId});
+            
+            jobDto.Chapters = job.ParseChapters()
+                .Select(chapter =>
+                {
+                    var chapterDto = mapper.Map<VideoChapterDto>(chapter);
+                    
+                    chapterDto.ThumbnailUrl = Url.ActionLink("DownloadChapterThumbnail", "Data",
+                        new {jobId, index = chapter.Index});
+                    
+                    chapterDto.Mp3Url = Url.ActionLink("DownloadChapterMp3", "Data",
+                        new {jobId, index = chapter.Index});
+                    
+                    return chapterDto;
+                })
+                .ToList();
+
+            return Ok(jobDto);
         }
     }
 }

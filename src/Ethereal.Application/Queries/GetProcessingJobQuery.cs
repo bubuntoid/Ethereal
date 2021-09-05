@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Ethereal.Application.Exceptions;
+using Ethereal.Application.Extensions;
 using Ethereal.Domain;
 using Ethereal.Domain.Entities;
 using Microsoft.EntityFrameworkCore;

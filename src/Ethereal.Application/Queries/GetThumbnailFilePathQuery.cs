@@ -37,7 +37,7 @@ namespace Ethereal.Application.Queries
             if (chapter == null)
                 throw new InvalidOperationException("Chapter not found");
 
-            var path = Path.Combine(job.GetLocalThumbnailsDirectoryPath(), chapter.Index + ".jpg");
+            var path = job.GetChapterLocalThumbnailFilePath(chapter);
 
             if (File.Exists(path) == false)
                 throw new NotFoundException("File not found");

@@ -9,15 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.Application.UnitTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.WebAPI", "Ethereal.WebAPI\Ethereal.WebAPI.csproj", "{6F66F2CE-6431-43B6-B49D-2A216DFAB75E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.WebAPI.AutoTests", "Ethereal.WebAPI.AutoTests\Ethereal.WebAPI.AutoTests.csproj", "{D7A50CC5-A7D5-4CD1-A513-4FA277CBEE1F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.WebAPI.Client", "Ethereal.WebAPI.Client\Ethereal.WebAPI.Client.csproj", "{80CE2047-62E1-4899-BF92-F017F8603942}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.Domain", "Ethereal.Domain\Ethereal.Domain.csproj", "{B123B0C7-D8FD-4410-820E-7E81BC5ACFFC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.Domain.UnitTests", "Ethereal.Domain.UnitTests\Ethereal.Domain.UnitTests.csproj", "{679EB1C2-ECEE-4B94-B4F1-D076BBBB13D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.WebAPI.Contracts", "Ethereal.WebAPI.Contracts\Ethereal.WebAPI.Contracts.csproj", "{8CE37A77-DB67-4B47-98EB-4BBC1B021528}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ethereal.WebAPI.UnitTests", "Ethereal.WebAPI.UnitTests\Ethereal.WebAPI.UnitTests.csproj", "{4D0904AA-C41E-4ADE-9561-D966BD9611F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +33,6 @@ Global
 		{6F66F2CE-6431-43B6-B49D-2A216DFAB75E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F66F2CE-6431-43B6-B49D-2A216DFAB75E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F66F2CE-6431-43B6-B49D-2A216DFAB75E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7A50CC5-A7D5-4CD1-A513-4FA277CBEE1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7A50CC5-A7D5-4CD1-A513-4FA277CBEE1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7A50CC5-A7D5-4CD1-A513-4FA277CBEE1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7A50CC5-A7D5-4CD1-A513-4FA277CBEE1F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80CE2047-62E1-4899-BF92-F017F8603942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80CE2047-62E1-4899-BF92-F017F8603942}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80CE2047-62E1-4899-BF92-F017F8603942}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80CE2047-62E1-4899-BF92-F017F8603942}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B123B0C7-D8FD-4410-820E-7E81BC5ACFFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B123B0C7-D8FD-4410-820E-7E81BC5ACFFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B123B0C7-D8FD-4410-820E-7E81BC5ACFFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,10 +41,10 @@ Global
 		{679EB1C2-ECEE-4B94-B4F1-D076BBBB13D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{679EB1C2-ECEE-4B94-B4F1-D076BBBB13D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{679EB1C2-ECEE-4B94-B4F1-D076BBBB13D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8CE37A77-DB67-4B47-98EB-4BBC1B021528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CE37A77-DB67-4B47-98EB-4BBC1B021528}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CE37A77-DB67-4B47-98EB-4BBC1B021528}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CE37A77-DB67-4B47-98EB-4BBC1B021528}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D0904AA-C41E-4ADE-9561-D966BD9611F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D0904AA-C41E-4ADE-9561-D966BD9611F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D0904AA-C41E-4ADE-9561-D966BD9611F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D0904AA-C41E-4ADE-9561-D966BD9611F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

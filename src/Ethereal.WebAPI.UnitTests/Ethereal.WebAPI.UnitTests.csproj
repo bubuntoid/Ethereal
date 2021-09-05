@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <AssemblyName>Ethereal.WebAPI.UnitTests</AssemblyName>
+    <RootNamespace>Ethereal.WebAPI.UnitTests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+  <PackageReference Include="AutoMapper" Version="10.1.1" />
+  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+  <PackageReference Include="NUnit" Version="3.13.1" />
+  <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ethereal.WebAPI\Ethereal.WebAPI.csproj" />
+  </ItemGroup>
+  
+</Project>

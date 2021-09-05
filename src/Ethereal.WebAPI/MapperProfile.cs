@@ -10,9 +10,14 @@ namespace Ethereal.WebAPI
     {
         public MapperProfile()
         {
-            CreateMap<ProcessingJob, ProcessingJobDto>();
-            
+            CreateMap<ProcessingJob, ProcessingJobDto>()
+                .ForMember(s => s.ZipArchiveUrl, cfg => cfg.Ignore());
+                
             CreateMap<ProcessingJobVideo, ProcessingJobVideoDto>();
+
+            CreateMap<VideoChapter, VideoChapterDto>()
+                .ForMember(s => s.Mp3Url, cfg => cfg.Ignore())
+                .ForMember(s => s.ThumbnailUrl, cfg => cfg.Ignore());
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Ethereal.Domain.Entities;
 
 namespace Ethereal.WebAPI.Contracts
@@ -14,5 +15,9 @@ namespace Ethereal.WebAPI.Contracts
         public DateTime? ProcessedDate { get; set; }
         
         public ProcessingJobVideoDto Video { get; set; }
+        
+        public IReadOnlyCollection<VideoChapterDto> Chapters { get; set; }
+        
+        public string ZipArchiveUrl { get; set; }
     }
 }

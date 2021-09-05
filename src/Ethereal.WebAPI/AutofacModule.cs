@@ -47,6 +47,9 @@ namespace Ethereal.WebAPI
 
         private void LoadQueries(ContainerBuilder builder)
         {
+            builder.RegisterType<GetThumbnailFilePathQuery>()
+                .AsSelf();
+            
             builder.RegisterType<GetZipArchiveFilePathQuery>()
                 .AsSelf();
             
