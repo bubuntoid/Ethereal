@@ -13,7 +13,7 @@ namespace Ethereal.WebAPI.Settings
             .Replace("{current}", Directory.GetCurrentDirectory());
         
         public SystemSettings(IConfiguration config) 
-            : base(config, "FFMPEG")
+            : base(config, "System")
         {
         }
     }

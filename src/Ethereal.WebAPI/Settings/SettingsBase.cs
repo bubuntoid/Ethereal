@@ -17,5 +17,10 @@ namespace Ethereal.WebAPI.Settings
         {
             return config.GetSection(section).GetValue<T>(key);
         }
+        
+        protected T GetArray<T>(string key)
+        {
+            return config.GetSection($"{section}:{key}").Get<T>();
+        }
     }
 }
