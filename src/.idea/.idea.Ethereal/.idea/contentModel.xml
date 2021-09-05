@@ -60,6 +60,7 @@
         </e>
         <e p="Queries" t="Include">
           <e p="GetAudioFilePathQuery.cs" t="Include" />
+          <e p="GetLogFilePathQuery.cs" t="Include" />
           <e p="GetProcessingJobQuery.cs" t="Include" />
           <e p="GetThumbnailFilePathQuery.cs" t="Include" />
           <e p="GetZipArchiveFilePathQuery.cs" t="Include" />

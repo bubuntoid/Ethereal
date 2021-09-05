@@ -22,7 +22,18 @@ namespace Ethereal.WebAPI.Controllers
             this.scope = scope;
         }
 
-        [HttpGet("{jobId}")]
+        [HttpGet("{jobId}/logs")]
+        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(typeof(ErrorResponseDto), 400)]
+        public async Task<IActionResult> GetLogs(Guid jobId)
+        {
+            var path = await scope.Resolve<GetLogFilePathQuery>()
+                .ExecuteAsync(jobId);
+
+            return Ok(await System.IO.File.ReadAllTextAsync(path));
+        }
+        
+        [HttpGet("{jobId}/zip")]
         [Produces("application/zip")]
         [ProducesResponseType(typeof(ErrorResponseDto), 400)]
         public async Task<IActionResult> DownloadZipArchive(Guid jobId)

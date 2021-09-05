@@ -10,21 +10,27 @@ namespace Ethereal.WebAPI.Client
     public class EtherealClient
     {
         private readonly IEtherealClientSettings settings;
+        private readonly FlurlClient client;
 
         public EtherealClient(IEtherealClientSettings settings)
         {
             this.settings = settings;
+            client = new FlurlClient(settings.Endpoint);
         }
 
         public Task<GuidResponseDto> InitializeAsync(InitializeJobRequestDto dto)
         {
-            return settings.Endpoint.AppendPathSegment("api/jobs/initialize").PostJsonAsync(dto)
+            return client.Request()
+                .AppendPathSegment("api/jobs/initialize")
+                .PostJsonAsync(dto)
                 .ReceiveJson<GuidResponseDto>();
         }
 
         public Task<ProcessingJobDto> GetAsync(Guid id)
         {
-            return settings.Endpoint.AppendPathSegment($"api/jobs/{id}").GetJsonAsync<ProcessingJobDto>();
+            return client.Request()
+                .AppendPathSegment($"api/jobs/{id}")
+                .GetJsonAsync<ProcessingJobDto>();
         }
     }
 }
