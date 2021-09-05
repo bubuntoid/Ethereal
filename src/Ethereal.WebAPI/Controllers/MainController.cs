@@ -49,6 +49,7 @@ namespace Ethereal.WebAPI.Controllers
 
             var jobDto = mapper.Map<ProcessingJobDto>(job);
             jobDto.ZipArchiveUrl = Url.ActionLink("DownloadZipArchive", "Data", new {jobId});
+            jobDto.LogFileUrl = Url.ActionLink("DownloadLogFile", "Data", new {jobId});
             
             jobDto.Chapters = job.ParseChapters()
                 .Select(chapter =>

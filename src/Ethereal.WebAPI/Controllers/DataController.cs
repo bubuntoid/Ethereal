@@ -27,14 +27,16 @@ namespace Ethereal.WebAPI.Controllers
         [HttpGet("{jobId}/logs")]
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(ErrorResponseDto), 400)]
-        public async Task<IActionResult> GetLogs(Guid jobId)
+        public async Task<IActionResult> DownloadLogFile(Guid jobId, bool inline = true)
         {
             var path = await scope.Resolve<GetLogFilePathQuery>()
                 .ExecuteAsync(jobId);
 
-            return Ok(await System.IO.File.ReadAllTextAsync(path));
+            return inline
+                ? (IActionResult) Ok(await System.IO.File.ReadAllTextAsync(path))
+                : PhysicalFile(path, "text/plain", $"{jobId}.txt", true);
         }
-        
+
         [HttpGet("{jobId}/zip")]
         [Produces("application/zip")]
         [ProducesResponseType(typeof(ErrorResponseDto), 400)]

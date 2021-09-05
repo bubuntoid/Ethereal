@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ethereal.Application.BackgroundJobs;
 using Ethereal.Application.Exceptions;
+using Ethereal.Application.Extensions;
 using Ethereal.Application.ProcessingJobLogger;
 using Ethereal.Domain;
 using Ethereal.Domain.Entities;
@@ -60,6 +61,10 @@ namespace Ethereal.Application.Commands
                     Duration = youtubeVideo.Duration.GetValueOrDefault(),
                 },
             };
+
+            var chapters = job.ParseChapters();
+            if (chapters?.Any() == false)
+                throw new NotFoundException("Chapters not found");
             
             job.LocalPath = Path.Combine(settings.TempPath, $"{job.Id}");
             Directory.CreateDirectory(job.LocalPath);

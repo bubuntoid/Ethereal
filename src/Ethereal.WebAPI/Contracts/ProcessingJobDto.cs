@@ -19,5 +19,6 @@ namespace Ethereal.WebAPI.Contracts
         public IReadOnlyCollection<VideoChapterDto> Chapters { get; set; }
         
         public string ZipArchiveUrl { get; set; }
+        public string LogFileUrl { get; set; }
     }
 }

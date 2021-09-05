@@ -9,8 +9,6 @@ using YoutubeExplode;
 
 namespace Ethereal.Application.UnitTests
 {
-    [Ignore("CI/CD")]
-    [TestFixture]
     public class WithInMemoryDatabaseTestBase
     {
         protected EtherealDbContext DbContext { get; } 
