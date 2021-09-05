@@ -52,7 +52,10 @@ namespace Ethereal.Application.Commands
                         // ReSharper disable once MethodSupportsCancellation
                         await dbContext.SaveChangesAsync();
                         await job.LogAsync("Could not fetch video from youtube. It happens sometimes. Try again.");
+
                         cts.Cancel();
+                        // throw new InternalErrorException(
+                        //     "Could not fetch video from youtube. It happens sometimes. Try again.");
                         return;
                     }
 

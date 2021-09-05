@@ -14,7 +14,7 @@ namespace Ethereal.Application.ProcessingJobLogger
     {
         public static IEtherealSettings CurrentSettings { get; set; }
         
-        public static Action<string, string> OnLog { get; set; }
+        public static Action<ProcessingJob, string> OnLog { get; set; }
         
         // ReSharper disable once InconsistentNaming
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -37,7 +37,7 @@ namespace Ethereal.Application.ProcessingJobLogger
                 await sw.WriteLineAsync($"{DateTime.UtcNow} | {job.Id} | {message}\n");
             }	
             
-            OnLog?.Invoke(job.Id.ToString(), message);
+            OnLog?.Invoke(job, message);
         }
     }
 }

@@ -55,7 +55,7 @@ namespace Ethereal.Application.Commands
                     Id = youtubeVideo.Id,
                     Url = url,
                     Title = youtubeVideo.Title,
-                    OriginalDescription = desc,
+                    OriginalDescription = youtubeVideo.Description,
                     Description = desc,
                     Duration = youtubeVideo.Duration.GetValueOrDefault(),
                 },

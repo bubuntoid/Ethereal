@@ -61,6 +61,12 @@ namespace Ethereal.WebAPI
 
             builder.RegisterType<GetLogFilePathQuery>()
                 .AsSelf();
+            
+            builder.RegisterType<GetVideoChaptersPreviewQuery>()
+                .AsSelf();
+            
+            builder.RegisterType<GetYoutubeDescriptionQuery>()
+                .AsSelf();
         }
         
         private void LoadCommands(ContainerBuilder builder)

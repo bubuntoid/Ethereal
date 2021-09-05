@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using Autofac;
 using Ethereal.Application.BackgroundJobs;
@@ -7,6 +8,7 @@ using Ethereal.Domain;
 using Ethereal.Domain.Migrations;
 using Ethereal.WebAPI.Contracts;
 using Ethereal.WebAPI.Settings;
+using Ethereal.WebAPI.SignalR;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,6 +21,7 @@ using FluentMigrator.Runner;
 using Hangfire;
 using Hangfire.PostgreSql;
 using Hangfire.SqlServer;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Newtonsoft.Json.Converters;
 
@@ -54,12 +57,14 @@ namespace Ethereal.WebAPI
                 options.AddPolicy("AllowSpecificOrigin",
                     builder =>
                     {
-                        builder.AllowAnyOrigin()
+                        var settings = new CorsSettings(this.Configuration);
+                        builder.WithOrigins(settings.Origins)
                             .AllowAnyMethod()
-                            .AllowAnyHeader();
+                            .AllowAnyHeader()
+                            .AllowCredentials();
                     });
             });
-
+            
             ProcessingJobLogger.CurrentSettings = new SystemSettings(this.Configuration);
             var databaseSettings = new DatabaseSettings(this.Configuration);
             
@@ -79,6 +84,8 @@ namespace Ethereal.WebAPI
             services.AddHangfireServer();
             
             services.AddSwaggerGenNewtonsoftSupport();
+
+            services.AddSignalR();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -90,8 +97,10 @@ namespace Ethereal.WebAPI
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMigrationRunner runner)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMigrationRunner runner, IHubContext<ProcessingJobLoggerHub> hubContext)
         {
+            app.UseCors("AllowSpecificOrigin");
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -99,11 +108,7 @@ namespace Ethereal.WebAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
-
-            app.UseCors("AllowSpecificOrigin");
 
             app.UseAuthorization();
 
@@ -113,12 +118,23 @@ namespace Ethereal.WebAPI
             });
             app.UseHangfireDashboard();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHub<ProcessingJobLoggerHub>("/logger");
+            });
 
             runner?.MigrateUp();
 
             RecurringJob.AddOrUpdate<GarbageCleanerJob>("garbageCleaner",
                 bgJob => bgJob.Execute(TimeSpan.FromMinutes(10)), Cron.Hourly);
+            
+            ProcessingJobLogger.OnLog = async (job, log) =>
+            {
+                var connectionIds = SignalR.SignalR.Sessions.Where(s => s.ProcessingJobId == job.Id).ToList();
+                await hubContext.Clients.Clients(connectionIds.Select(s => s.ConnectionId))
+                    .SendAsync("onReceiveLog", new {log, status = $"{job.Status}"});
+            };
         }
     }
 }
