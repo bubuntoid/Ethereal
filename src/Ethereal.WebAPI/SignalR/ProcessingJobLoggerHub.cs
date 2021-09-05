@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Threading.Tasks;
