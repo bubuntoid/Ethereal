@@ -17,12 +17,15 @@ namespace Ethereal.Application.Commands
     {
         private readonly EtherealDbContext dbContext;
         private readonly YoutubeClient youtubeClient;
+        private readonly IEtherealSettings settings;
         private bool isDownloaded;
 
-        public FetchYoutubeVideoCommand(EtherealDbContext dbContext, YoutubeClient youtubeClient)
+        public FetchYoutubeVideoCommand(EtherealDbContext dbContext, YoutubeClient youtubeClient,
+            IEtherealSettings settings)
         {
             this.dbContext = dbContext;
             this.youtubeClient = youtubeClient;
+            this.settings = settings;
         }
 
         public async Task ExecuteAsync(Guid jobId)
@@ -39,12 +42,12 @@ namespace Ethereal.Application.Commands
             await job.LogAsync("Fetching video from youtube...");
 
             var cts = new CancellationTokenSource();
-            var timeoutDate = DateTime.UtcNow.AddSeconds(10);
+            var timeoutDate = DateTime.UtcNow.Add(settings.DownloadingTimeout);
             var thread = new Thread(async () =>
             {
                 while (true)
                 {
-                    Console.WriteLine(timeoutDate.ToLongTimeString() + " || " + DateTime.UtcNow.ToLongTimeString());
+                    // Console.WriteLine(timeoutDate.ToLongTimeString() + " || " + DateTime.UtcNow.ToLongTimeString());
                     
                     if (DateTime.UtcNow > timeoutDate)
                     {
@@ -74,17 +77,14 @@ namespace Ethereal.Application.Commands
             var manifestStreams = manifest.GetVideoStreams();
             var videoStreamInfo = manifestStreams.First(x => x.Container.Name == "mp4");
             await job.LogAsync("Video stream info found");
-            await using var videoStream = await youtubeClient.Videos.Streams.GetAsync(videoStreamInfo, cts.Token);
-            isDownloaded = true;
-            await job.LogAsync("Video stream downloaded");
 
-            await job.LogAsync("Saving video to server...");
             // Saving video locally
-            await using var createdFileStream = File.Create(job.GetLocalVideoPath());
-            videoStream.Seek(0, SeekOrigin.Begin);
-            // ReSharper disable once MethodSupportsCancellation
-            await videoStream.CopyToAsync(createdFileStream);
+            await job.LogAsync("Fetching video...");
+            var progress = new Progress<double>(p =>
+                ProcessingJobLogger.ProcessingJobLogger.OnLog(job, $"Fetching video... [{p:P0}]"));
+            await youtubeClient.Videos.Streams.DownloadAsync(videoStreamInfo, job.GetLocalVideoPath(), progress, cts.Token);
             await job.LogAsync("Video fetched");
+            isDownloaded = true;
         }
     }
 }

@@ -58,7 +58,8 @@ namespace Ethereal.WebAPI.Controllers
 
             return inline
                 ? PhysicalFile(path, "audio/mp3", true)
-                : PhysicalFile(path, "audio/mp3", Path.GetFileName(path), true);
+                : PhysicalFile(path, "audio/mp3", Path.GetFileName(path).Replace(".mp4", ".mp3"),
+                    true); // todo: clean extensions casting
         }
 
         [HttpGet("{jobId}/{index}/thumbnail")]

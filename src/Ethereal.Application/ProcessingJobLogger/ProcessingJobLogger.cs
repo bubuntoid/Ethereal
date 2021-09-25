@@ -18,26 +18,23 @@ namespace Ethereal.Application.ProcessingJobLogger
         
         // ReSharper disable once InconsistentNaming
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
-        
+
         public static async Task LogAsync(this ProcessingJob job, string message)
         {
+            job.LastLogMessage = message;
+            logger.Info(message);
+            OnLog?.Invoke(job, message);
+
             if (CurrentSettings == null)
                 throw new InternalErrorException("CurrentSettings not initialized");
-            
+
             var directory = Path.Combine(CurrentSettings.TempPath, EtherealApplication.LogsDirectoryName);
             if (File.Exists(directory) == false)
                 Directory.CreateDirectory(directory);
-            
-            var path = job.GetLogFilePath(CurrentSettings);
 
-            logger.Info(message);
-            
-            await using (var sw = File.AppendText(path))
-            {
-                await sw.WriteLineAsync($"{DateTime.UtcNow} | {job.Id} | {message}\n");
-            }	
-            
-            OnLog?.Invoke(job, message);
+            await using var sw = File.AppendText(job.GetLogFilePath(CurrentSettings));
+            await sw.WriteLineAsync($"{DateTime.UtcNow} | {job.Id} | {message}\n");
+            sw.Close();
         }
     }
 }

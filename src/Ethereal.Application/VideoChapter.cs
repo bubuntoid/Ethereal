@@ -16,8 +16,6 @@ namespace Ethereal.Application
 
         public TimeSpan? Duration => EndTimespan - StartTimespan;
         
-        public byte[] Thumbnail { get; set; }
-        
         public VideoChapter()
         {
             

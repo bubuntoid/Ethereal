@@ -1,10 +1,8 @@
 using System;
 using System.Linq;
-using System.Reflection;
 using Autofac;
 using Ethereal.Application.BackgroundJobs;
 using Ethereal.Application.ProcessingJobLogger;
-using Ethereal.Domain;
 using Ethereal.Domain.Migrations;
 using Ethereal.WebAPI.Contracts;
 using Ethereal.WebAPI.Settings;
@@ -16,22 +14,19 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using FluentMigrator;
 using FluentMigrator.Runner;
 using Hangfire;
 using Hangfire.PostgreSql;
-using Hangfire.SqlServer;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Newtonsoft.Json.Converters;
 
 namespace Ethereal.WebAPI
 {
     public class Startup
     {
-        public ILifetimeScope AutofacContainer { get; private set; }
+        public ILifetimeScope AutofacContainer { get; set; }
         public IConfiguration Configuration { get; }
-        
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -46,12 +41,9 @@ namespace Ethereal.WebAPI
             services.AddControllers()
                 .AddNewtonsoftJson(opts =>
                     opts.SerializerSettings.Converters.Add(new StringEnumConverter()));
-            
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebAPI", Version = "v1"});
-            });
-            
+
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebAPI", Version = "v1"}); });
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
@@ -64,10 +56,10 @@ namespace Ethereal.WebAPI
                             .AllowCredentials();
                     });
             });
-            
+
             ProcessingJobLogger.CurrentSettings = new SystemSettings(this.Configuration);
             var databaseSettings = new DatabaseSettings(this.Configuration);
-            
+
             services
                 .AddLogging(c => c.AddFluentMigratorConsole())
                 .AddFluentMigratorCore()
@@ -82,7 +74,7 @@ namespace Ethereal.WebAPI
                 .UseRecommendedSerializerSettings()
                 .UsePostgreSqlStorage(databaseSettings.ConnectionString, new PostgreSqlStorageOptions()));
             services.AddHangfireServer();
-            
+
             services.AddSwaggerGenNewtonsoftSupport();
 
             services.AddSignalR();
@@ -95,12 +87,13 @@ namespace Ethereal.WebAPI
             // for you.
             builder.RegisterModule(new AutofacModule());
         }
-        
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMigrationRunner runner, IHubContext<ProcessingJobLoggerHub> hubContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMigrationRunner runner,
+            IHubContext<ProcessingJobLoggerHub> hubContext)
         {
             app.UseCors("AllowSpecificOrigin");
-            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -128,7 +121,7 @@ namespace Ethereal.WebAPI
 
             RecurringJob.AddOrUpdate<GarbageCleanerJob>("garbageCleaner",
                 bgJob => bgJob.Execute(TimeSpan.FromMinutes(10)), Cron.Hourly);
-            
+
             ProcessingJobLogger.OnLog = async (job, log) =>
             {
                 var connectionIds = SignalR.SignalR.Sessions.Where(s => s.ProcessingJobId == job.Id).ToList();

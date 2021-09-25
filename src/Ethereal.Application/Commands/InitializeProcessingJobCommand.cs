@@ -9,7 +9,6 @@ using Ethereal.Application.ProcessingJobLogger;
 using Ethereal.Domain;
 using Ethereal.Domain.Entities;
 using Hangfire;
-using Microsoft.EntityFrameworkCore;
 using YoutubeExplode;
 
 namespace Ethereal.Application.Commands
@@ -35,6 +34,12 @@ namespace Ethereal.Application.Commands
         {
             var youtubeVideo = await youtubeClient.Videos.GetAsync(url);
 
+            if (youtubeVideo.Duration.HasValue == false || youtubeVideo.Duration.Value == TimeSpan.Zero)
+                throw new InternalErrorException("Live streams not supported");
+
+            if (youtubeVideo.Duration.Value > settings.VideoDurationLimit)
+                throw new InternalErrorException($"Video duration exceeded ({settings.VideoDurationLimit})");
+                
             var desc = description ?? youtubeVideo.Description;
             // var existingJob = await dbContext.ProcessingJobs
             //     .Where(j => j.Status != ProcessingJobStatus.Expired)
