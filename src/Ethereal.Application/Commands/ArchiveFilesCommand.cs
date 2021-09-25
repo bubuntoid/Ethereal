@@ -45,7 +45,7 @@ namespace Ethereal.Application.Commands
 
                 var filename = Path.GetFileName(job.GetChapterLocalFilePath(chapter));
                 zipArchive.CreateEntryFromFile(job.GetChapterLocalFilePath(chapter),
-                    filename.Replace(".mp4", ".mp3"));
+                    filename.Replace(".mp4", ".mp3")); // todo: clean extensions casting
             }
 
             zipArchive.Dispose();

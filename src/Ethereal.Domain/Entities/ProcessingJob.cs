@@ -19,6 +19,8 @@ namespace Ethereal.Domain.Entities
         
         public virtual ProcessingJobVideo Video { get; set; }
 
+        public string LastLogMessage { get; set; }
+        
         public class Configuration : IEntityTypeConfiguration<ProcessingJob>
         {
             public void Configure(EntityTypeBuilder<ProcessingJob> builder)

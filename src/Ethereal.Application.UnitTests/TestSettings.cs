@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace Ethereal.Application.UnitTests
 {
@@ -6,7 +7,10 @@ namespace Ethereal.Application.UnitTests
     {
         public string TempPath => GetTempDirectory();
         public string ExecutablesPath { get; set; }
+        public TimeSpan VideoDurationLimit { get; } = TimeSpan.FromHours(5);
         
+        public TimeSpan DownloadingTimeout { get; } = TimeSpan.FromMinutes(1);
+
         private static string GetTempDirectory()
         {
             var path = Path.Combine(Directory.GetCurrentDirectory(), "temp");
