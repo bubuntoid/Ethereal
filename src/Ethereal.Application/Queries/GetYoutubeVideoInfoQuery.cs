@@ -7,19 +7,23 @@ using YoutubeExplode;
 
 namespace Ethereal.Application.Queries
 {
-    public class GetYoutubeDescriptionQuery
+    public class GetYoutubeVideoInfoQuery
     {
         private readonly YoutubeClient youtubeClient;
 
-        public GetYoutubeDescriptionQuery(YoutubeClient youtubeClient)
+        public GetYoutubeVideoInfoQuery(YoutubeClient youtubeClient)
         {
             this.youtubeClient = youtubeClient;
         }
         
-        public async Task<string> ExecuteAsync(string url)
+        public async Task<ProcessingJobVideo> ExecuteAsync(string url)
         {
             var youtubeVideo = await youtubeClient.Videos.GetAsync(url);
-            return youtubeVideo.Description;
+            return new ProcessingJobVideo
+            {
+                Description = youtubeVideo.Description,
+                Title = youtubeVideo.Title,
+            };
         }
     }
 }
