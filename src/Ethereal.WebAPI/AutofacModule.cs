@@ -65,7 +65,7 @@ namespace Ethereal.WebAPI
             builder.RegisterType<GetVideoChaptersPreviewQuery>()
                 .AsSelf();
             
-            builder.RegisterType<GetYoutubeDescriptionQuery>()
+            builder.RegisterType<GetYoutubeVideoInfoQuery>()
                 .AsSelf();
         }
         

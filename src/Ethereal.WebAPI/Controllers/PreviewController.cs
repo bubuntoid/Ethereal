@@ -30,8 +30,8 @@ namespace Ethereal.WebAPI.Controllers
         [ProducesResponseType(typeof(ErrorResponseDto), 400)]
         public async Task<IActionResult> GetYoutubeDescription(GetYoutubeDescriptionRequestDto dto)
         {
-            var description = await scope.Resolve<GetYoutubeDescriptionQuery>().ExecuteAsync(dto.Url);
-            return Ok(description);
+            var video = await scope.Resolve<GetYoutubeVideoInfoQuery>().ExecuteAsync(dto.Url);
+            return Ok(video.Description);
         }
         
         [HttpPost("chapters")]

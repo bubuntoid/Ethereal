@@ -17,12 +17,12 @@ namespace Ethereal.WebAPI.Controllers
     [ApiController]
     [Route("api/jobs")]
     [ServiceFilter(typeof(ExceptionFilter))]
-    public class MainController : ControllerBase
+    public class JobsController : ControllerBase
     {
         private readonly ILifetimeScope scope;
         private readonly IMapper mapper;
 
-        public MainController(ILifetimeScope scope, IMapper mapper)
+        public JobsController(ILifetimeScope scope, IMapper mapper)
         {
             this.scope = scope;
             this.mapper = mapper;
@@ -35,6 +35,20 @@ namespace Ethereal.WebAPI.Controllers
         {
             var id = await scope.Resolve<InitializeProcessingJobCommand>()
                 .ExecuteAsync(dto.Url, dto.Description);
+            
+            return Ok(new GuidResponseDto(id));
+        }
+        
+        [HttpPost("initializeWithoutChapters")]
+        [ProducesResponseType(typeof(GuidResponseDto), 200)]
+        [ProducesResponseType(typeof(ErrorResponseDto), 400)]
+        public async Task<IActionResult> InitializeWithoutChapters(InitializeJobRequestDto dto)
+        {
+            var video = await scope.Resolve<GetYoutubeVideoInfoQuery>()
+                .ExecuteAsync(dto.Url);
+
+            var id = await scope.Resolve<InitializeProcessingJobCommand>()
+                .ExecuteAsync(dto.Url, $"00:00:00 {video.Title}");
             
             return Ok(new GuidResponseDto(id));
         }
