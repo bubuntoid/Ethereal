@@ -40,14 +40,14 @@ namespace Ethereal.Application.Commands
             {
                 var chapter = chapters.ElementAt(i);
 
-                await job.LogAsync($"Converting video [{i + 1}/{chapters.Count}] ({chapter.Name})");
+                await job.LogAsync(dbContext, $"Converting video [{i + 1}/{chapters.Count}] ({chapter.Name})");
 
                 await ffmpegWrapper.SaveTrimmedAsync(job.GetLocalVideoPath(), job.GetChapterLocalFilePath(chapter),
                     chapter);
             }
 
             await dbContext.SaveChangesAsync();
-            await job.LogAsync("Converting succeeded");
+            await job.LogAsync(dbContext, "Converting succeeded");
         }
     }
 }

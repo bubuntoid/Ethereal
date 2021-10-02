@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Ethereal.Application.Exceptions;
 using Ethereal.Application.Extensions;
 using Ethereal.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.LayoutRenderers;
 
@@ -19,7 +20,7 @@ namespace Ethereal.Application.ProcessingJobLogger
         // ReSharper disable once InconsistentNaming
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static async Task LogAsync(this ProcessingJob job, string message)
+        public static async Task LogAsync(this ProcessingJob job, DbContext dbContext, string message)
         {
             job.LastLogMessage = message;
             logger.Info(message);
@@ -35,6 +36,8 @@ namespace Ethereal.Application.ProcessingJobLogger
             await using var sw = File.AppendText(job.GetLogFilePath(CurrentSettings));
             await sw.WriteLineAsync($"{DateTime.UtcNow} | {job.Id} | {message}\n");
             sw.Close();
+
+            await dbContext.SaveChangesAsync();
         }
     }
 }
