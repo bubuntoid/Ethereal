@@ -38,7 +38,7 @@ namespace Ethereal.Application.Commands
                 throw new InternalErrorException("Live streams not supported");
 
             if (youtubeVideo.Duration.Value > settings.VideoDurationLimit)
-                throw new InternalErrorException($"Video duration exceeded ({settings.VideoDurationLimit})");
+                throw new InternalErrorException($"Video duration exceeded time limit ({settings.VideoDurationLimit})");
                 
             var desc = description ?? youtubeVideo.Description;
             // var existingJob = await dbContext.ProcessingJobs
