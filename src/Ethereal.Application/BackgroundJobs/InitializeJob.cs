@@ -46,18 +46,18 @@ namespace Ethereal.Application.BackgroundJobs
             if (job == null)
                 return;
 
-            await job.LogAsync("Initializing chapters...");
+            await job.LogAsync(dbContext, "Initializing chapters...");
             
             var chapters = new VideoDescription(job.Video.Description).ParseChapters();
             if (chapters?.Any() == false)
             {
                 job.Status = ProcessingJobStatus.Failed;
                 await dbContext.SaveChangesAsync();
-                await job.LogAsync($"Could not parse any chapter");
+                await job.LogAsync(dbContext, $"Could not parse any chapter");
                 return;
             }
 
-            await job.LogAsync($"Found {chapters.Count} chapters");
+            await job.LogAsync(dbContext, $"Found {chapters.Count} chapters");
             
             try
             {
@@ -69,13 +69,13 @@ namespace Ethereal.Application.BackgroundJobs
                 job.Status = ProcessingJobStatus.Succeed;
                 job.ProcessedDate = DateTime.UtcNow;
                 await dbContext.SaveChangesAsync();
-                await job.LogAsync($"Completed");
+                await job.LogAsync(dbContext, $"Completed");
             }
             catch (Exception e)
             {
                 job.Status = ProcessingJobStatus.Failed;
                 await dbContext.SaveChangesAsync();
-                await job.LogAsync($"Failed with error: {e.Message}");
+                await job.LogAsync(dbContext, $"Failed with error: {e.Message}");
                 return;
             }
             

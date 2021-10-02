@@ -35,7 +35,7 @@ namespace Ethereal.Application.Commands
             var chapters = job.ParseChapters();
             job.Status = ProcessingJobStatus.Processing;
             await dbContext.SaveChangesAsync();
-            await job.LogAsync("Fetching thumbnails...");
+            await job.LogAsync(dbContext, "Fetching thumbnails...");
 
             var directory = job.GetLocalThumbnailsDirectoryPath();
             Directory.CreateDirectory(directory);
@@ -44,13 +44,13 @@ namespace Ethereal.Application.Commands
             {
                 var chapter = chapters.ElementAt(i);
 
-                await job.LogAsync($"Fetching thumbnails [{i + 1}/{chapters.Count}] ({chapter.Name})");
+                await job.LogAsync(dbContext, $"Fetching thumbnails [{i + 1}/{chapters.Count}] ({chapter.Name})");
 
                 var path = Path.Combine(directory, $"{i}.png");
                 await ffmpegWrapper.SaveImageAsync(job.GetLocalVideoPath(), path, chapter);
             }
 
-            await job.LogAsync("Thumbnails fetched");
+            await job.LogAsync(dbContext, "Thumbnails fetched");
         }
     }
 }

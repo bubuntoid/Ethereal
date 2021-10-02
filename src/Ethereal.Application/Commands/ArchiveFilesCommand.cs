@@ -41,7 +41,7 @@ namespace Ethereal.Application.Commands
             {
                 var chapter = chapters.ElementAt(i);
                 
-                await job.LogAsync($"Archiving files [{i + 1}/{chapters.Count}] ({chapter.Name})");
+                await job.LogAsync(dbContext, $"Archiving files [{i + 1}/{chapters.Count}] ({chapter.Name})");
 
                 var filename = Path.GetFileName(job.GetChapterLocalFilePath(chapter));
                 zipArchive.CreateEntryFromFile(job.GetChapterLocalFilePath(chapter),
@@ -53,7 +53,7 @@ namespace Ethereal.Application.Commands
             
             await File.WriteAllBytesAsync(job.GetArchivePath(), zipMemoryStream.ToArray());
             
-            await job.LogAsync("Archiving completed");
+            await job.LogAsync( dbContext, "Archiving completed");
         }
     }
 }
