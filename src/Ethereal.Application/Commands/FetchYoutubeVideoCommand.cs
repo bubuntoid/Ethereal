@@ -18,14 +18,16 @@ namespace Ethereal.Application.Commands
         private readonly EtherealDbContext dbContext;
         private readonly YoutubeClient youtubeClient;
         private readonly IEtherealSettings settings;
+        private readonly IDatabaseSettings databaseSettings;
         private bool isDownloaded;
 
         public FetchYoutubeVideoCommand(EtherealDbContext dbContext, YoutubeClient youtubeClient,
-            IEtherealSettings settings)
+            IEtherealSettings settings, IDatabaseSettings databaseSettings)
         {
             this.dbContext = dbContext;
             this.youtubeClient = youtubeClient;
             this.settings = settings;
+            this.databaseSettings = databaseSettings;
         }
 
         public async Task ExecuteAsync(Guid jobId)
@@ -51,10 +53,13 @@ namespace Ethereal.Application.Commands
                     
                     if (DateTime.UtcNow > timeoutDate)
                     {
-                        job.Status = ProcessingJobStatus.Failed;
+                        // ReSharper disable once InconsistentNaming
+                        await using var _dbContext = new EtherealDbContext(databaseSettings);
                         // ReSharper disable once MethodSupportsCancellation
-                        await dbContext.SaveChangesAsync();
-                        await job.LogAsync("Could not fetch video from youtube. It happens sometimes. Try again.");
+                        // ReSharper disable once InconsistentNaming
+                        var _job = await _dbContext.ProcessingJobs.FirstOrDefaultAsync(j => j.Id == job.Id);
+                        _job.Status = ProcessingJobStatus.Failed;
+                        await _job.LogAsync("Could not fetch video from youtube. It happens sometimes. Try again.");
 
                         cts.Cancel();
                         // throw new InternalErrorException(
