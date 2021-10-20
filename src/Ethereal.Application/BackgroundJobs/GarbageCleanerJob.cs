@@ -34,7 +34,7 @@ namespace Ethereal.Application.BackgroundJobs
                 {
                     job.Status = ProcessingJobStatus.Failed;
                     await dbContext.SaveChangesAsync();
-                    await job.LogAsync(dbContext, "Job failed due to long processing status");
+                    await job.LogAsync("Job failed due to long processing status");
                     await destructJob.ExecuteAsync(job.Id);
                 }
             }

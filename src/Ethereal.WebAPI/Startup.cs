@@ -57,9 +57,10 @@ namespace Ethereal.WebAPI
                     });
             });
 
-            ProcessingJobLogger.CurrentSettings = new SystemSettings(this.Configuration);
             var databaseSettings = new DatabaseSettings(this.Configuration);
-
+            ProcessingJobLogger.CurrentSettings = new SystemSettings(this.Configuration);
+            ProcessingJobLogger.DatabaseSettings = databaseSettings;
+            
             services
                 .AddLogging(c => c.AddFluentMigratorConsole())
                 .AddFluentMigratorCore()

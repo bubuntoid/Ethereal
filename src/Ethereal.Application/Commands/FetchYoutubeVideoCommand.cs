@@ -39,7 +39,7 @@ namespace Ethereal.Application.Commands
 
             job.Status = ProcessingJobStatus.Processing;
             await dbContext.SaveChangesAsync();
-            await job.LogAsync(dbContext, "Fetching video from youtube...");
+            await job.LogAsync("Fetching video from youtube...");
 
             var cts = new CancellationTokenSource();
             var timeoutDate = DateTime.UtcNow.Add(settings.DownloadingTimeout);
@@ -54,7 +54,7 @@ namespace Ethereal.Application.Commands
                         job.Status = ProcessingJobStatus.Failed;
                         // ReSharper disable once MethodSupportsCancellation
                         await dbContext.SaveChangesAsync();
-                        await job.LogAsync(dbContext, "Could not fetch video from youtube. It happens sometimes. Try again.");
+                        await job.LogAsync("Could not fetch video from youtube. It happens sometimes. Try again.");
 
                         cts.Cancel();
                         // throw new InternalErrorException(
@@ -73,17 +73,21 @@ namespace Ethereal.Application.Commands
 
             // Fetching video from youtube
             var manifest = await youtubeClient.Videos.Streams.GetManifestAsync(job.Video.Id, cts.Token);
-            await job.LogAsync(dbContext, "Manifest loaded");
+            await job.LogAsync("Manifest loaded");
             var manifestStreams = manifest.GetVideoStreams();
             var videoStreamInfo = manifestStreams.First(x => x.Container.Name == "mp4");
-            await job.LogAsync(dbContext, "Video stream info found");
+            await job.LogAsync("Video stream info found");
 
             // Saving video locally
-            await job.LogAsync(dbContext, "Fetching video...");
+            await job.LogAsync("Fetching video...");
             var progress = new Progress<double>(p =>
-                ProcessingJobLogger.ProcessingJobLogger.OnLog(job, $"Fetching video... [{p:P0}]"));
+            {
+                var message = $"Fetching video... [{p:P0}]";
+                ProcessingJobLogger.ProcessingJobLogger.InternalLogger.Info(message);
+                ProcessingJobLogger.ProcessingJobLogger.OnLog(job, message);
+            });
             await youtubeClient.Videos.Streams.DownloadAsync(videoStreamInfo, job.GetLocalVideoPath(), progress, cts.Token);
-            await job.LogAsync(dbContext, "Video fetched");
+            await job.LogAsync("Video fetched");
             isDownloaded = true;
         }
     }

@@ -77,7 +77,7 @@ namespace Ethereal.Application.Commands
             await dbContext.ProcessingJobs.AddAsync(job);
             await dbContext.SaveChangesAsync();
 
-            await job.LogAsync(dbContext, "Job created");
+            await job.LogAsync("Job created");
             backgroundJobClient.Enqueue<InitializeJob>(bgJob => bgJob.Execute(job.Id));
 
             return job.Id;
