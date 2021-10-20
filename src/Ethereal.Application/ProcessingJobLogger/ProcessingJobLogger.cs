@@ -25,28 +25,35 @@ namespace Ethereal.Application.ProcessingJobLogger
 
         public static async Task LogAsync(this ProcessingJob _, string message)
         {
-            if (DatabaseSettings == null)
-                throw new InternalErrorException("DatabaseSettings not initialized");
+            try
+            {
+                if (DatabaseSettings == null)
+                    throw new InternalErrorException("DatabaseSettings not initialized");
 
-            await using var dbContext = new EtherealDbContext(DatabaseSettings);
-            var job = await dbContext.ProcessingJobs.FirstAsync(j => j.Id == _.Id);
-            job.LastLogMessage = message;
-            
-            InternalLogger.Info(message);
-            OnLog?.Invoke(job, message);
+                await using var dbContext = new EtherealDbContext(DatabaseSettings);
+                var job = await dbContext.ProcessingJobs.FirstAsync(j => j.Id == _.Id);
+                job.LastLogMessage = message;
 
-            if (CurrentSettings == null)
-                throw new InternalErrorException("CurrentSettings not initialized");
-            
-            var directory = Path.Combine(CurrentSettings.TempPath, EtherealApplication.LogsDirectoryName);
-            if (File.Exists(directory) == false)
-                Directory.CreateDirectory(directory);
+                InternalLogger.Info(message);
+                OnLog?.Invoke(job, message);
 
-            await using var sw = File.AppendText(job.GetLogFilePath(CurrentSettings));
-            await sw.WriteLineAsync($"{DateTime.UtcNow} | {job.Id} | {message}\n");
-            sw.Close();
-            
-            await dbContext.SaveChangesAsync();
+                if (CurrentSettings == null)
+                    throw new InternalErrorException("CurrentSettings not initialized");
+
+                var directory = Path.Combine(CurrentSettings.TempPath, EtherealApplication.LogsDirectoryName);
+                if (File.Exists(directory) == false)
+                    Directory.CreateDirectory(directory);
+
+                await using var sw = File.AppendText(job.GetLogFilePath(CurrentSettings));
+                await sw.WriteLineAsync($"{DateTime.UtcNow} | {job.Id} | {message}\n");
+                sw.Close();
+
+                await dbContext.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                InternalLogger.Error(ex);
+            }
         }
     }
 }
