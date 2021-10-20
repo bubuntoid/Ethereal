@@ -30,17 +30,17 @@ namespace Ethereal.Application.BackgroundJobs
             try
             {
                 Directory.Delete(job.LocalPath, true);
-                await job.LogAsync(dbContext, $"Cache deleted");
+                await job.LogAsync($"Cache deleted");
             }
             catch (Exception e)
             {
-                await job.LogAsync(dbContext, $"Could not delete files: {e.Message}");
+                await job.LogAsync($"Could not delete files: {e.Message}");
             }
             finally
             {
                 job.Status = ProcessingJobStatus.Expired;
                 await dbContext.SaveChangesAsync();
-                await job.LogAsync(dbContext, $"Job expired");
+                await job.LogAsync($"Job expired");
             }
         }
     }
