@@ -1,11 +1,11 @@
 ﻿using System.IO;
 using AutofacContrib.NSubstitute;
 using AutoFixture;
+using Ethereal.Application.YouTube;
 using Ethereal.Domain;
 using NUnit.Framework;
 using Xabe.FFmpeg;
 using Xabe.FFmpeg.Downloader;
-using YoutubeExplode;
 
 namespace Ethereal.Application.UnitTests
 {
@@ -40,7 +40,7 @@ namespace Ethereal.Application.UnitTests
                 .Configure()
                 .Provide(DbContext)
                 .Provide(new FfmpegWrapper(Settings))
-                .Provide(new YoutubeClient())
+                .Provide<IYoutubeProvider>(new YoutubeExplodeProvider())
                 .Build();
 
             ProcessingJobLogger.ProcessingJobLogger.CurrentSettings = Settings;

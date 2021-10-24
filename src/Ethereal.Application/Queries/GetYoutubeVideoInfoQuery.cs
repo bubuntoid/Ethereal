@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Ethereal.Application.Extensions;
+using Ethereal.Application.YouTube;
 using Ethereal.Domain.Entities;
-using YoutubeExplode;
 
 namespace Ethereal.Application.Queries
 {
     public class GetYoutubeVideoInfoQuery
     {
-        private readonly YoutubeClient youtubeClient;
+        private readonly IYoutubeProvider youtubeProvider;
 
-        public GetYoutubeVideoInfoQuery(YoutubeClient youtubeClient)
+        public GetYoutubeVideoInfoQuery(IYoutubeProvider youtubeProvider)
         {
-            this.youtubeClient = youtubeClient;
+            this.youtubeProvider = youtubeProvider;
         }
         
         public async Task<ProcessingJobVideo> ExecuteAsync(string url)
         {
-            var youtubeVideo = await youtubeClient.Videos.GetAsync(url);
+            var youtubeVideo = await youtubeProvider.GetVideoAsync(url);
             return new ProcessingJobVideo
             {
                 Description = youtubeVideo.Description,

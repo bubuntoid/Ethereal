@@ -5,12 +5,12 @@ using Ethereal.Application;
 using Ethereal.Application.BackgroundJobs;
 using Ethereal.Application.Commands;
 using Ethereal.Application.Queries;
+using Ethereal.Application.YouTube;
 using Ethereal.Domain;
 using Ethereal.WebAPI.Filters;
 using Ethereal.WebAPI.Settings;
 using Hangfire;
 using Microsoft.AspNetCore.Components.RenderTree;
-using YoutubeExplode;
 
 namespace Ethereal.WebAPI
 {
@@ -41,8 +41,8 @@ namespace Ethereal.WebAPI
                 .As<IMapper>()
                 .SingleInstance();
 
-            builder.Register(c => new YoutubeClient())
-                .AsSelf();
+            builder.RegisterType<YoutubeExplodeProvider>()
+                .As<IYoutubeProvider>();
         }
 
         private void LoadQueries(ContainerBuilder builder)
