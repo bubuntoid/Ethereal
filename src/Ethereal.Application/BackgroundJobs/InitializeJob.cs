@@ -10,7 +10,6 @@ using Ethereal.Domain;
 using Ethereal.Domain.Entities;
 using Hangfire;
 using Microsoft.EntityFrameworkCore;
-using YoutubeExplode;
 
 namespace Ethereal.Application.BackgroundJobs
 {

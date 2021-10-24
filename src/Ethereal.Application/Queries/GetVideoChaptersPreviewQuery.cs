@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Ethereal.Application.Exceptions;
 using Ethereal.Application.Extensions;
+using Ethereal.Application.YouTube;
 using Ethereal.Domain.Entities;
-using YoutubeExplode;
 
 namespace Ethereal.Application.Queries
 {
     public class GetVideoChaptersPreviewQuery
     {
-        private readonly YoutubeClient youtubeClient;
         private readonly IEtherealSettings settings;
+        private readonly IYoutubeProvider youtubeProvider;
 
-        public GetVideoChaptersPreviewQuery(YoutubeClient youtubeClient, IEtherealSettings settings)
+        public GetVideoChaptersPreviewQuery(IEtherealSettings settings, IYoutubeProvider youtubeProvider)
         {
-            this.youtubeClient = youtubeClient;
             this.settings = settings;
+            this.youtubeProvider = youtubeProvider;
         }
         
         public async Task<IReadOnlyCollection<VideoChapter>> ExecuteAsync(string url, string description = null)
         {
-            var youtubeVideo = await youtubeClient.Videos.GetAsync(url);
+            var youtubeVideo = await youtubeProvider.GetVideoAsync(url);
             var desc = description ?? youtubeVideo.Description;
             
             if (youtubeVideo.Duration.HasValue == false || youtubeVideo.Duration.Value == TimeSpan.Zero)

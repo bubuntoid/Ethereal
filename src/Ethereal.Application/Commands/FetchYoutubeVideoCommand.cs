@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 using Ethereal.Application.Exceptions;
 using Ethereal.Application.Extensions;
 using Ethereal.Application.ProcessingJobLogger;
+using Ethereal.Application.YouTube;
 using Ethereal.Domain;
 using Ethereal.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using YoutubeExplode;
 
 namespace Ethereal.Application.Commands
 {
     public class FetchYoutubeVideoCommand
     {
         private readonly EtherealDbContext dbContext;
-        private readonly YoutubeClient youtubeClient;
+        private readonly IYoutubeProvider youtubeProvider;
         private readonly IEtherealSettings settings;
         private readonly IDatabaseSettings databaseSettings;
         private bool isDownloaded;
 
-        public FetchYoutubeVideoCommand(EtherealDbContext dbContext, YoutubeClient youtubeClient,
+        public FetchYoutubeVideoCommand(EtherealDbContext dbContext, IYoutubeProvider youtubeProvider,
             IEtherealSettings settings, IDatabaseSettings databaseSettings)
         {
             this.dbContext = dbContext;
-            this.youtubeClient = youtubeClient;
+            this.youtubeProvider = youtubeProvider;
             this.settings = settings;
             this.databaseSettings = databaseSettings;
         }
@@ -76,23 +76,7 @@ namespace Ethereal.Application.Commands
             });
             thread.Start();
 
-            // Fetching video from youtube
-            var manifest = await youtubeClient.Videos.Streams.GetManifestAsync(job.Video.Id, cts.Token);
-            await job.LogAsync("Manifest loaded");
-            var manifestStreams = manifest.GetVideoStreams();
-            var videoStreamInfo = manifestStreams.First(x => x.Container.Name == "mp4");
-            await job.LogAsync("Video stream info found");
-
-            // Saving video locally
-            await job.LogAsync("Fetching video...");
-            var progress = new Progress<double>(p =>
-            {
-                var message = $"Fetching video... [{p:P0}]";
-                ProcessingJobLogger.ProcessingJobLogger.InternalLogger.Info(message);
-                ProcessingJobLogger.ProcessingJobLogger.OnLog(job, message);
-            });
-            await youtubeClient.Videos.Streams.DownloadAsync(videoStreamInfo, job.GetLocalVideoPath(), progress, cts.Token);
-            await job.LogAsync("Video fetched");
+            await youtubeProvider.DownloadAsync(job, cts);
             isDownloaded = true;
         }
     }

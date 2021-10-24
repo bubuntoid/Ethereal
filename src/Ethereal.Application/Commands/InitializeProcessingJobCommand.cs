@@ -6,10 +6,10 @@ using Ethereal.Application.BackgroundJobs;
 using Ethereal.Application.Exceptions;
 using Ethereal.Application.Extensions;
 using Ethereal.Application.ProcessingJobLogger;
+using Ethereal.Application.YouTube;
 using Ethereal.Domain;
 using Ethereal.Domain.Entities;
 using Hangfire;
-using YoutubeExplode;
 
 namespace Ethereal.Application.Commands
 {
@@ -18,21 +18,20 @@ namespace Ethereal.Application.Commands
         private readonly EtherealDbContext dbContext;
         private readonly IEtherealSettings settings;
         private readonly IBackgroundJobClient backgroundJobClient;
-        private readonly YoutubeClient youtubeClient;
+        private readonly IYoutubeProvider youtubeProvider;
 
         public InitializeProcessingJobCommand(EtherealDbContext dbContext, IEtherealSettings settings,
-            IBackgroundJobClient backgroundJobClient,
-            YoutubeClient youtubeClient)
+            IBackgroundJobClient backgroundJobClient, IYoutubeProvider youtubeProvider)
         {
             this.dbContext = dbContext;
             this.settings = settings;
             this.backgroundJobClient = backgroundJobClient;
-            this.youtubeClient = youtubeClient;
+            this.youtubeProvider = youtubeProvider;
         }
 
         public async Task<Guid> ExecuteAsync(string url, string description = null)
         {
-            var youtubeVideo = await youtubeClient.Videos.GetAsync(url);
+            var youtubeVideo = await youtubeProvider.GetVideoAsync(url);
 
             if (youtubeVideo.Duration.HasValue == false || youtubeVideo.Duration.Value == TimeSpan.Zero)
                 throw new InternalErrorException("Live streams not supported");
