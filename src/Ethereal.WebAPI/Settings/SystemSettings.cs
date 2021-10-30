@@ -16,6 +16,8 @@ namespace Ethereal.WebAPI.Settings
         public TimeSpan VideoDurationLimit => GetValue<TimeSpan>("VideoDurationLimit");
 
         public TimeSpan DownloadingTimeout => GetValue<TimeSpan>("DownloadingTimeout");
+
+        public string YouTubeProvider => GetValue<string>("YouTubeProvider"); 
         
         public SystemSettings(IConfiguration config) 
             : base(config, "System")
