@@ -78,6 +78,7 @@ namespace Ethereal.Application.Commands
 
             await youtubeProvider.DownloadAsync(job, cts);
             isDownloaded = true;
+            await job.LogAsync("Video fetched successfully");
         }
     }
 }

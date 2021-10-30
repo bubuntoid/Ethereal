@@ -9,7 +9,7 @@ using YoutubeExplode;
 
 namespace Ethereal.Application.YouTube
 {
-    public class YoutubeExplodeProvider : IYoutubeProvider // todo: add tests
+    public class YoutubeExplodeProvider : IYoutubeProvider
     {
         private readonly YoutubeClient client;
         

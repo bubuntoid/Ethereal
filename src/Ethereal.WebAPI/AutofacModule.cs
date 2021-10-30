@@ -40,9 +40,6 @@ namespace Ethereal.WebAPI
                         }).CreateMapper())
                 .As<IMapper>()
                 .SingleInstance();
-
-            builder.RegisterType<YoutubeExplodeProvider>()
-                .As<IYoutubeProvider>();
         }
 
         private void LoadQueries(ContainerBuilder builder)
