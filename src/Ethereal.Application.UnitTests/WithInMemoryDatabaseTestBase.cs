@@ -26,7 +26,7 @@ namespace Ethereal.Application.UnitTests
             FFmpegDownloader.GetLatestVersion(FFmpegVersion.Full, ffmpegPath).GetAwaiter().GetResult();
             Settings = new TestSettings
             {
-                ExecutablesPath = Path.Combine(ffmpegPath, "ffmpeg")
+                 FfmpegExecutablesPath= Path.Combine(ffmpegPath, "ffmpeg")
             };
             FFmpeg.SetExecutablesPath(ffmpegPath);
             

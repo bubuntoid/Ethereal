@@ -6,7 +6,8 @@ namespace Ethereal.Application.UnitTests
     public class TestSettings : IEtherealSettings
     {
         public string TempPath => GetTempDirectory();
-        public string ExecutablesPath { get; set; }
+        public string FfmpegExecutablesPath { get; set; }
+        public string YtdlpExecutablesPath { get; set; }
         public TimeSpan VideoDurationLimit { get; } = TimeSpan.FromHours(5);
         
         public TimeSpan DownloadingTimeout { get; } = TimeSpan.FromMinutes(1);

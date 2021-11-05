@@ -25,7 +25,7 @@ namespace Ethereal.Application.UnitTests.Tests
             var ffmpegPath = Path.Combine(Directory.GetCurrentDirectory(), "ffmpeg");
             await FFmpegDownloader.GetLatestVersion(FFmpegVersion.Full, ffmpegPath);
             
-            ffmpegWrapper = new FfmpegWrapper(new TestSettings{ExecutablesPath = Path.Combine(ffmpegPath, "ffmpeg")});
+            ffmpegWrapper = new FfmpegWrapper(new TestSettings{FfmpegExecutablesPath = Path.Combine(ffmpegPath, "ffmpeg")});
             FFmpeg.SetExecutablesPath(ffmpegPath);
             
             // Creating temp directory to work with

@@ -1,5 +1,5 @@
 # Ethereal
-**Ethereal** is a service that splitting youtube video chapters into mp3 files using just url and (optionally) timecodes. For most of processing operations it uses [FFMPEG](https://www.ffmpeg.org/) library.
+**Ethereal** is a service that splitting youtube video chapters into mp3 files using just url and (optionally) timecodes. For most of processing operations it uses [FFMPEG](https://www.ffmpeg.org/) and [yt-dlp](https://www.videohelp.com/software/yt-dlp).
 
 Working preview web application: http://81.177.135.200
 
@@ -38,6 +38,7 @@ Ensure that you have new line after each time code.
 * PostgreSQL 13 
 * FFMPEG 4.2.4-1ubuntu0.1
 * .NET 5.0 (.NET Runtime 5.0.9)
+* yt-dlp 2021.10.22
 
 ## Backend
 test server endpoint: http://81.177.135.200:322 </br>
@@ -49,21 +50,31 @@ $ chmod +x scripts/run.sh
 $ ./scripts/run.sh
 ```
 
-### **FFMPEG**
+### **Path executables**
 Download and install fmpeg (https://ffmpeg.org/)<br>
-Specify path to FFMPEG executables in **appsetings.json**:
+Download and install yt-dlp (https://www.videohelp.com/software/yt-dlp)<br>
+
+Specify path to FFMPEG/yt-dlp executables in **appsetings.json**:
 
 **Linux**:
 ```json
-"FFMPEG": {
+ "System": {
     "TempPath" : "{current}\\bin\\temp",
-    "ExecutablesPath" : "ffmpeg"
-}
+    "FfmpegExecutablesPath" : "ffmpeg",
+    "YtdlpExecutablesPath" : "yt-dlp",
+    "VideoDurationLimit" : "05:00:00",
+    "DownloadingTimeout": "00:01:00",
+    "YouTubeProvider": "yt-dlp"
+  },
 ```
 **Windows**:
 ```json
-"FFMPEG": {
+"System": {
     "TempPath" : "{current}\\bin\\temp",
-    "ExecutablesPath" : "C:\\Path\\To\\ffmpeg.exe"
-}
+    "FfmpegExecutablesPath" : "C:\\path\\to\\ffmpeg.exe",
+    "YtdlpExecutablesPath" :  "C:\\path\\to\\yt-dlp.exe",
+    "VideoDurationLimit" : "05:00:00",
+    "DownloadingTimeout": "00:01:00",
+    "YouTubeProvider": "yt-dlp"
+  },
 ```

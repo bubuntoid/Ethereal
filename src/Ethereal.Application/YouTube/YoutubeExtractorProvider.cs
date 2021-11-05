@@ -15,6 +15,7 @@ namespace Ethereal.Application.YouTube
     {
         public async Task<YoutubeVideo> GetVideoAsync(string url)
         {
+            // todo: dry
             var video = await new YoutubeClient().Videos.GetAsync(url);
             return new YoutubeVideo
             {
