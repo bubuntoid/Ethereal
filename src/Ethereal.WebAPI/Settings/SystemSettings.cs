@@ -9,17 +9,21 @@ namespace Ethereal.WebAPI.Settings
     {
         public string TempPath => GetValue<string>("TempPath")
             .Replace("{current}", Directory.GetCurrentDirectory());
-        
-        public string ExecutablesPath => GetValue<string>("ExecutablesPath")
+
+        public string FfmpegExecutablesPath => GetValue<string>("FfmpegExecutablesPath")
             .Replace("{current}", Directory.GetCurrentDirectory());
+
+        public string YtdlpExecutablesPath => GetValue<string>("YtdlpExecutablesPath")
+            .Replace("{current}", Directory.GetCurrentDirectory());
+
 
         public TimeSpan VideoDurationLimit => GetValue<TimeSpan>("VideoDurationLimit");
 
         public TimeSpan DownloadingTimeout => GetValue<TimeSpan>("DownloadingTimeout");
 
-        public string YouTubeProvider => GetValue<string>("YouTubeProvider"); 
-        
-        public SystemSettings(IConfiguration config) 
+        public string YouTubeProvider => GetValue<string>("YouTubeProvider");
+
+        public SystemSettings(IConfiguration config)
             : base(config, "System")
         {
         }

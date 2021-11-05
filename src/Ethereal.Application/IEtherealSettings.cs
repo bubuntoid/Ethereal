@@ -6,7 +6,9 @@ namespace Ethereal.Application
     {
         string TempPath { get; }
         
-        string ExecutablesPath { get; }
+        string FfmpegExecutablesPath { get; }
+
+        string YtdlpExecutablesPath { get; }
 
         TimeSpan VideoDurationLimit { get; }
         

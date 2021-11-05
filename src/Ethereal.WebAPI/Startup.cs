@@ -26,8 +26,9 @@ namespace Ethereal.WebAPI
     public class Startup
     {
         public ILifetimeScope AutofacContainer { get; set; }
-        public IConfiguration Configuration { get; }
-
+        private IConfiguration Configuration { get; }
+        private const string SwaggerVersion = "v2.1.0.0"; 
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -43,7 +44,7 @@ namespace Ethereal.WebAPI
                 .AddNewtonsoftJson(opts =>
                     opts.SerializerSettings.Converters.Add(new StringEnumConverter()));
 
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebAPI", Version = "v1"}); });
+            services.AddSwaggerGen(c => { c.SwaggerDoc(SwaggerVersion, new OpenApiInfo {Title = "Ethereal WebAPI", Version = SwaggerVersion}); });
 
             services.AddCors(options =>
             {
@@ -108,6 +109,11 @@ namespace Ethereal.WebAPI
                         .As<IYoutubeProvider>();
                     break;
                 
+                case "yt-dlp":
+                    builder.RegisterType<YtdlpProvider>()
+                        .As<IYoutubeProvider>();
+                    break;
+                
                 default:
                     builder.RegisterType<YoutubeExplodeProvider>()
                         .As<IYoutubeProvider>();
@@ -125,7 +131,7 @@ namespace Ethereal.WebAPI
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint($"/swagger/{SwaggerVersion}/swagger.json", $"WebAPI {SwaggerVersion}"));
             }
 
             app.UseRouting();

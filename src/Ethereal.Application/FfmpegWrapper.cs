@@ -8,11 +8,11 @@ namespace Ethereal.Application
     public class FfmpegWrapper
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
-        public string ExecutablesPath { get; }
+        private string ExecutablesPath { get; }
 
         public FfmpegWrapper(IEtherealSettings settings)
         {
-            ExecutablesPath = settings.ExecutablesPath;
+            ExecutablesPath = settings.FfmpegExecutablesPath;
         }
         
         public async Task SaveTrimmedAsync(
