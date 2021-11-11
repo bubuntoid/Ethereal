@@ -6,6 +6,7 @@ using Ethereal.Application.ProcessingJobLogger;
 using Ethereal.Application.YouTube;
 using Ethereal.Domain.Migrations;
 using Ethereal.WebAPI.Contracts;
+using Ethereal.WebAPI.Extensions;
 using Ethereal.WebAPI.Settings;
 using Ethereal.WebAPI.SignalR;
 using FluentValidation.AspNetCore;
@@ -89,36 +90,7 @@ namespace Ethereal.WebAPI
             // call builder.Populate(), that happens in AutofacServiceProviderFactory
             // for you.
             builder.RegisterModule(new AutofacModule());
-
-            var settings = new SystemSettings(this.Configuration);
-
-            switch (settings.YouTubeProvider) // todo: move to extensions .ResolveProvider(settings)
-            {
-                case "YouTubeExplode":
-                    builder.RegisterType<YoutubeExplodeProvider>()
-                        .As<IYoutubeProvider>();
-                    break;
-                
-                case "YouTubeExtractor":
-                    builder.RegisterType<YoutubeExtractorProvider>()
-                        .As<IYoutubeProvider>();
-                    break;
-                
-                case "SharpGrabber":
-                    builder.RegisterType<SharpGrabberProvider>()
-                        .As<IYoutubeProvider>();
-                    break;
-                
-                case "yt-dlp":
-                    builder.RegisterType<YtdlpProvider>()
-                        .As<IYoutubeProvider>();
-                    break;
-                
-                default:
-                    builder.RegisterType<YoutubeExplodeProvider>()
-                        .As<IYoutubeProvider>();
-                    break;
-            }
+            builder.ResolveYoutubeProvider(new SystemSettings(Configuration));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,6 +9,7 @@ using Ethereal.Application.Extensions;
 using Ethereal.Application.ProcessingJobLogger;
 using Ethereal.Domain.Entities;
 using YoutubeExplode;
+#pragma warning disable 8618
 
 namespace Ethereal.Application.YouTube
 {
@@ -25,7 +26,7 @@ namespace Ethereal.Application.YouTube
             " "
         };
         
-        private Process dlProcess;
+        private Process process { get; set; }
 
         private double DownloadButtonProgressPercentageValue { get; set; }
         private string DownloadButtonProgressPercentageString { get; set; } = "_Download";
@@ -64,7 +65,7 @@ namespace Ethereal.Application.YouTube
 
         private void PrepareDlProcess(ProcessingJob job)
         {
-            dlProcess = new Process
+            process = new Process
             {
                 StartInfo =
                 {
@@ -77,9 +78,9 @@ namespace Ethereal.Application.YouTube
                 },
                 EnableRaisingEvents = true
             };
-            dlProcess.ErrorDataReceived += (sender, args) => DlOutputHandler(job, sender, args);
-            dlProcess.OutputDataReceived += (sender, args) => DlOutputHandler(job, sender, args);
-            dlProcess.Exited += DlProcess_Exited;
+            process.ErrorDataReceived += (sender, args) => DlOutputHandler(job, sender, args);
+            process.OutputDataReceived += (sender, args) => DlOutputHandler(job, sender, args);
+            process.Exited += DlProcess_Exited;
         }
 
         private void DlOutputHandler(ProcessingJob job, object? sendingProcess, DataReceivedEventArgs outLine)
@@ -94,8 +95,8 @@ namespace Ethereal.Application.YouTube
 
         private void DlProcess_Exited(object? sender, EventArgs e)
         {
-            dlProcess.CancelErrorRead();
-            dlProcess.CancelOutputRead();
+            process.CancelErrorRead();
+            process.CancelOutputRead();
             
             // todo: fail job here?
             
@@ -108,30 +109,30 @@ namespace Ethereal.Application.YouTube
 
         private void StartDownload(ProcessingJob job)
         {
-            dlProcess.StartInfo.FileName = settings.YtdlpExecutablesPath;
-            dlProcess.StartInfo.ArgumentList.Clear();
+            process.StartInfo.FileName = settings.YtdlpExecutablesPath;
+            process.StartInfo.ArgumentList.Clear();
 
             try
             {
                 // Use '-f' if no specified format. With specified format, use '--merge-output-format'.
-                dlProcess.StartInfo.ArgumentList.Add("-f");
-                dlProcess.StartInfo.ArgumentList.Add($"mp4");
+                process.StartInfo.ArgumentList.Add("-f");
+                process.StartInfo.ArgumentList.Add($"mp4");
 
-                dlProcess.StartInfo.ArgumentList.Add("-o");
-                dlProcess.StartInfo.ArgumentList.Add(job.GetLocalVideoPath());
+                process.StartInfo.ArgumentList.Add("-o");
+                process.StartInfo.ArgumentList.Add(job.GetLocalVideoPath(settings));
 
-                dlProcess.StartInfo.ArgumentList.Add(job.Video.Url);
+                process.StartInfo.ArgumentList.Add(job.Video.Url);
 
-                dlProcess.Start();
-                dlProcess.BeginErrorReadLine();
-                dlProcess.BeginOutputReadLine();
+                process.Start();
+                process.BeginErrorReadLine();
+                process.BeginOutputReadLine();
 
                 // FreezeButton = true;
                 // DownloadButtonProgressIndeterminate = true;
 
-                dlProcess.WaitForExit();
+                process.WaitForExit();
             }
-            catch (Exception ex)
+            catch
             {
                 // outputString.Append(ex.Message);
                 // outputString.Append(Environment.NewLine);

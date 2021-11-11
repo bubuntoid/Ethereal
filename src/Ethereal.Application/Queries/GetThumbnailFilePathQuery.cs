@@ -14,10 +14,12 @@ namespace Ethereal.Application.Queries
     public class GetThumbnailFilePathQuery
     {
         private readonly EtherealDbContext dbContext;
+        private readonly IEtherealSettings settings;
 
-        public GetThumbnailFilePathQuery(EtherealDbContext dbContext)
+        public GetThumbnailFilePathQuery(EtherealDbContext dbContext, IEtherealSettings settings)
         {
             this.dbContext = dbContext;
+            this.settings = settings;
         }
 
         public async Task<string> ExecuteAsync(Guid jobId, int index)
@@ -37,7 +39,7 @@ namespace Ethereal.Application.Queries
             if (chapter == null)
                 throw new InvalidOperationException("Chapter not found");
 
-            var path = job.GetChapterLocalThumbnailFilePath(chapter);
+            var path = job.GetChapterLocalThumbnailFilePath(chapter, settings);
 
             if (File.Exists(path) == false)
                 throw new NotFoundException("File not found");

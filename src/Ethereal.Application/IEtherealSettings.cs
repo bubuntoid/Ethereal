@@ -13,5 +13,13 @@ namespace Ethereal.Application
         TimeSpan VideoDurationLimit { get; }
         
         TimeSpan DownloadingTimeout { get; }
+        
+        string LogsDirectoryName { get; }
+
+        string ThumbnailsDirectoryName { get; }
+        
+        string OriginalVideoFileName { get; }
+
+        TimeSpan DefaultFileLifetime { get; }
     }
 }

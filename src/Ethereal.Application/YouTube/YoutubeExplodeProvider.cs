@@ -9,12 +9,15 @@ using YoutubeExplode;
 
 namespace Ethereal.Application.YouTube
 {
+    [Obsolete("Slow downloading speed")]
     public class YoutubeExplodeProvider : IYoutubeProvider
     {
+        private readonly IEtherealSettings settings;
         private readonly YoutubeClient client;
         
-        public YoutubeExplodeProvider()
+        public YoutubeExplodeProvider(IEtherealSettings settings)
         {
+            this.settings = settings;
             client = new YoutubeClient();
         }
         
@@ -48,7 +51,7 @@ namespace Ethereal.Application.YouTube
                 ProcessingJobLogger.ProcessingJobLogger.InternalLogger.Info(message);
                 ProcessingJobLogger.ProcessingJobLogger.OnLog(job, message);
             });
-            await client.Videos.Streams.DownloadAsync(videoStreamInfo, job.GetLocalVideoPath(), progress, cts.Token);
+            await client.Videos.Streams.DownloadAsync(videoStreamInfo, job.GetLocalVideoPath(settings), progress, cts.Token);
             await job.LogAsync("Video fetched");
         }
     }

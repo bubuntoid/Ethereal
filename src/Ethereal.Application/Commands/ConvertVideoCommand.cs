@@ -16,11 +16,13 @@ namespace Ethereal.Application.Commands
     {
         private readonly EtherealDbContext dbContext;
         private readonly FfmpegWrapper ffmpegWrapper;
+        private readonly IEtherealSettings settings;
 
-        public ConvertVideoCommand(EtherealDbContext dbContext, FfmpegWrapper ffmpegWrapper)
+        public ConvertVideoCommand(EtherealDbContext dbContext, FfmpegWrapper ffmpegWrapper, IEtherealSettings settings)
         {
             this.dbContext = dbContext;
             this.ffmpegWrapper = ffmpegWrapper;
+            this.settings = settings;
         }
         
         public async Task ExecuteAsync(Guid jobId)
@@ -42,7 +44,7 @@ namespace Ethereal.Application.Commands
 
                 await job.LogAsync($"Converting video [{i + 1}/{chapters.Count}] ({chapter.Name})");
 
-                await ffmpegWrapper.SaveTrimmedAsync(job.GetLocalVideoPath(), job.GetChapterLocalFilePath(chapter),
+                await ffmpegWrapper.SaveTrimmedAsync(job.GetLocalVideoPath(settings), job.GetChapterLocalFilePath(chapter),
                     chapter);
             }
 

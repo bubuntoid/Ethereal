@@ -22,11 +22,12 @@ namespace Ethereal.Application.BackgroundJobs
         private readonly ConvertVideoCommand splitVideoCommand;
         private readonly IBackgroundJobClient backgroundJobClient;
         private readonly ArchiveFilesCommand archiveFilesCommand;
+        private readonly IEtherealSettings settings;
 
         public InitializeJob(EtherealDbContext dbContext,
             FetchThumbnailsCommand fetchThumbnailsCommand, FetchYoutubeVideoCommand fetchYoutubeVideoCommand,
             ConvertVideoCommand splitVideoCommand, IBackgroundJobClient backgroundJobClient,
-            ArchiveFilesCommand archiveFilesCommand)
+            ArchiveFilesCommand archiveFilesCommand, IEtherealSettings settings)
         {
             this.dbContext = dbContext;
             this.fetchThumbnailsCommand = fetchThumbnailsCommand;
@@ -34,6 +35,7 @@ namespace Ethereal.Application.BackgroundJobs
             this.splitVideoCommand = splitVideoCommand;
             this.backgroundJobClient = backgroundJobClient;
             this.archiveFilesCommand = archiveFilesCommand;
+            this.settings = settings;
         }
 
         public override async Task ExecuteAsync(Guid jobId)
@@ -78,8 +80,7 @@ namespace Ethereal.Application.BackgroundJobs
                 return;
             }
             
-            backgroundJobClient.Schedule<DestructJob>(bgJob => bgJob.Execute(job.Id),
-                EtherealApplication.DefaultFileLifetime);
+            backgroundJobClient.Schedule<DestructJob>(bgJob => bgJob.Execute(job.Id), settings.DefaultFileLifetime);
         }
     }
 }
