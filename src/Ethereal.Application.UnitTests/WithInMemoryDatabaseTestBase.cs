@@ -40,7 +40,7 @@ namespace Ethereal.Application.UnitTests
                 .Configure()
                 .Provide(DbContext)
                 .Provide(new FfmpegWrapper(Settings))
-                .Provide<IYoutubeProvider>(new YoutubeExplodeProvider())
+                .Provide<IYoutubeProvider>(new YtdlpProvider(Settings))
                 .Build();
 
             ProcessingJobLogger.ProcessingJobLogger.CurrentSettings = Settings;

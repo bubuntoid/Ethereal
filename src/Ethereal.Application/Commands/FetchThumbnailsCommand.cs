@@ -16,11 +16,13 @@ namespace Ethereal.Application.Commands
     {
         private readonly EtherealDbContext dbContext;
         private readonly FfmpegWrapper ffmpegWrapper;
+        private readonly IEtherealSettings settings;
 
-        public FetchThumbnailsCommand(EtherealDbContext dbContext, FfmpegWrapper ffmpegWrapper)
+        public FetchThumbnailsCommand(EtherealDbContext dbContext, FfmpegWrapper ffmpegWrapper, IEtherealSettings settings)
         {
             this.dbContext = dbContext;
             this.ffmpegWrapper = ffmpegWrapper;
+            this.settings = settings;
         }
 
         public async Task ExecuteAsync(Guid jobId)
@@ -37,7 +39,7 @@ namespace Ethereal.Application.Commands
             await dbContext.SaveChangesAsync();
             await job.LogAsync("Fetching thumbnails...");
 
-            var directory = job.GetLocalThumbnailsDirectoryPath();
+            var directory = job.GetLocalThumbnailsDirectoryPath(settings);
             Directory.CreateDirectory(directory);
 
             for (var i = 0; i < chapters.Count; i++)
@@ -47,7 +49,7 @@ namespace Ethereal.Application.Commands
                 await job.LogAsync($"Fetching thumbnails [{i + 1}/{chapters.Count}] ({chapter.Name})");
 
                 var path = Path.Combine(directory, $"{i}.png");
-                await ffmpegWrapper.SaveImageAsync(job.GetLocalVideoPath(), path, chapter);
+                await ffmpegWrapper.SaveImageAsync(job.GetLocalVideoPath(settings), path, chapter);
             }
 
             await job.LogAsync("Thumbnails fetched");

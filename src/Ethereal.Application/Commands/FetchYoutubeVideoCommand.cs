@@ -59,11 +59,11 @@ namespace Ethereal.Application.Commands
                         // ReSharper disable once InconsistentNaming
                         var _job = await _dbContext.ProcessingJobs.FirstOrDefaultAsync(j => j.Id == job.Id);
                         _job.Status = ProcessingJobStatus.Failed;
+                        // ReSharper disable once MethodSupportsCancellation
+                        await _dbContext.SaveChangesAsync();
                         await _job.LogAsync("Could not fetch video from youtube. It happens sometimes. Try again.");
 
                         cts.Cancel();
-                        // throw new InternalErrorException(
-                        //     "Could not fetch video from youtube. It happens sometimes. Try again.");
                         return;
                     }
 

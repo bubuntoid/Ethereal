@@ -40,7 +40,7 @@ namespace Ethereal.Application.ProcessingJobLogger
                 if (CurrentSettings == null)
                     throw new InternalErrorException("CurrentSettings not initialized");
 
-                var directory = Path.Combine(CurrentSettings.TempPath, EtherealApplication.LogsDirectoryName);
+                var directory = Path.Combine(CurrentSettings.TempPath, CurrentSettings.LogsDirectoryName);
                 if (File.Exists(directory) == false)
                     Directory.CreateDirectory(directory);
 

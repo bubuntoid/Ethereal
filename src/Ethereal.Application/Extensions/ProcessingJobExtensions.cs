@@ -6,14 +6,14 @@ namespace Ethereal.Application.Extensions
 {
     public static class ProcessingJobExtensions
     {
-        public static string GetLocalVideoPath(this ProcessingJob job)
+        public static string GetLocalVideoPath(this ProcessingJob job, IEtherealSettings settings)
         {
-            return Path.Combine(job.LocalPath, EtherealApplication.OriginalVideoFileName);
+            return Path.Combine(job.LocalPath, settings.OriginalVideoFileName);
         }
 
-        public static string GetLocalThumbnailsDirectoryPath(this ProcessingJob job)
+        public static string GetLocalThumbnailsDirectoryPath(this ProcessingJob job, IEtherealSettings settings)
         {
-            return Path.Combine(job.LocalPath, EtherealApplication.ThumbnailsDirectoryName);
+            return Path.Combine(job.LocalPath, settings.ThumbnailsDirectoryName);
         }
 
         public static string GetArchivePath(this ProcessingJob job)
@@ -26,9 +26,9 @@ namespace Ethereal.Application.Extensions
             return Path.Combine(job.LocalPath, $"{chapter.Name.RemoveIllegalCharacters()}.mp4");
         }
 
-        public static string GetChapterLocalThumbnailFilePath(this ProcessingJob job, VideoChapter chapter)
+        public static string GetChapterLocalThumbnailFilePath(this ProcessingJob job, VideoChapter chapter, IEtherealSettings settings)
         {
-            return Path.Combine(GetLocalThumbnailsDirectoryPath(job), $"{chapter.Index}.png");
+            return Path.Combine(GetLocalThumbnailsDirectoryPath(job, settings), $"{chapter.Index}.png");
         }
         
         public static IReadOnlyCollection<VideoChapter> ParseChapters(this ProcessingJob job)
@@ -43,7 +43,7 @@ namespace Ethereal.Application.Extensions
 
         public static string GetLogFilePath(this ProcessingJob job, IEtherealSettings settings)
         {
-            return Path.Combine(settings.TempPath, EtherealApplication.LogsDirectoryName, $"{job.Id}.txt");
+            return Path.Combine(settings.TempPath, settings.LogsDirectoryName, $"{job.Id}.txt");
         }
     }
 }

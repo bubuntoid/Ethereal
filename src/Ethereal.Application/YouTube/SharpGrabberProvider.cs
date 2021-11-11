@@ -15,8 +15,16 @@ using YoutubeExplode;
 
 namespace Ethereal.Application.YouTube
 {
+    [Obsolete("Slow downloading speed")]
     public class SharpGrabberProvider : IYoutubeProvider
     {
+        private readonly IEtherealSettings settings;
+
+        public SharpGrabberProvider(IEtherealSettings settings)
+        {
+            this.settings = settings;
+        }
+        
         public async Task<YoutubeVideo> GetVideoAsync(string url)
         {
             // todo: dry
@@ -44,7 +52,7 @@ namespace Ethereal.Application.YouTube
                 throw new InternalErrorException($"Could not find grabbed media for this video ({job.Video.Url})");
             }
             
-            using var client = new HttpClientDownloadWithProgress(media.ResourceUri.ToString(), job.GetLocalVideoPath());
+            using var client = new HttpClientDownloadWithProgress(media.ResourceUri.ToString(), job.GetLocalVideoPath(settings));
             await job.LogAsync($"Downloading {media.Title ?? media.FormatTitle ?? media.Resolution}...");
             client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
             {

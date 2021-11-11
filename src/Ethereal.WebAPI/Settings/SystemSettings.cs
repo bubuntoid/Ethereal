@@ -16,11 +16,18 @@ namespace Ethereal.WebAPI.Settings
         public string YtdlpExecutablesPath => GetValue<string>("YtdlpExecutablesPath")
             .Replace("{current}", Directory.GetCurrentDirectory());
 
-
         public TimeSpan VideoDurationLimit => GetValue<TimeSpan>("VideoDurationLimit");
 
         public TimeSpan DownloadingTimeout => GetValue<TimeSpan>("DownloadingTimeout");
-
+        
+        public string LogsDirectoryName => GetValue<string>("LogsDirectoryName");
+        
+        public string ThumbnailsDirectoryName => GetValue<string>("ThumbnailsDirectoryName");
+        
+        public string OriginalVideoFileName => GetValue<string>("OriginalVideoFileName");
+        
+        public TimeSpan DefaultFileLifetime => GetValue<TimeSpan>("DefaultFileLifetime");
+        
         public string YouTubeProvider => GetValue<string>("YouTubeProvider");
 
         public SystemSettings(IConfiguration config)
