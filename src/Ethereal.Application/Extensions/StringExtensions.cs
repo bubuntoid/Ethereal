@@ -44,7 +44,7 @@ namespace Ethereal.Application.Extensions
 
         public static string RemoveIllegalCharacters(this string str)
         {
-            var invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+            var invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars()) + "\"";
             return invalid.Aggregate(str, (current, c) => current.Replace(c.ToString(), string.Empty));
         }
     }
