@@ -53,6 +53,20 @@ namespace Ethereal.WebAPI.Controllers
             return Ok(new GuidResponseDto(id));
         }
         
+        [HttpPost("initializeWithoutChapters")]
+        [ProducesResponseType(typeof(GuidResponseDto), 200)]
+        [ProducesResponseType(typeof(ErrorResponseDto), 400)]
+        public async Task<IActionResult> InitializePlaylistWithoutChapters(InitializeJobRequestDto dto)
+        {
+            var video = await scope.Resolve<GetYoutubeVideoInfoQuery>()
+                .ExecuteAsync(dto.Url);
+
+            var id = await scope.Resolve<InitializeProcessingJobCommand>()
+                .ExecuteAsync(dto.Url, $"00:00:00 {video.Title}");
+            
+            return Ok(new GuidResponseDto(id));
+        }
+        
         [HttpGet("{jobId}")]
         [ProducesResponseType(typeof(ProcessingJobDto), 200)]
         [ProducesResponseType(typeof(ErrorResponseDto), 400)]

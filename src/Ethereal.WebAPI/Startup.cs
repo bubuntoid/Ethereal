@@ -7,6 +7,7 @@ using Ethereal.Application.YouTube;
 using Ethereal.Domain.Migrations;
 using Ethereal.WebAPI.Contracts;
 using Ethereal.WebAPI.Extensions;
+using Ethereal.WebAPI.Filters;
 using Ethereal.WebAPI.Settings;
 using Ethereal.WebAPI.SignalR;
 using FluentValidation.AspNetCore;
@@ -76,7 +77,10 @@ namespace Ethereal.WebAPI
                 .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
                 .UseSimpleAssemblyNameTypeSerializer()
                 .UseRecommendedSerializerSettings()
-                .UsePostgreSqlStorage(databaseSettings.ConnectionString, new PostgreSqlStorageOptions()));
+                .UsePostgreSqlStorage(databaseSettings.ConnectionString, new PostgreSqlStorageOptions
+                {
+                    
+                }));
             services.AddHangfireServer();
 
             services.AddSwaggerGenNewtonsoftSupport();
@@ -112,9 +116,12 @@ namespace Ethereal.WebAPI
 
             app.UseHangfireServer(new BackgroundJobServerOptions
             {
-                WorkerCount = 10,
+                WorkerCount = 20,
             });
-            app.UseHangfireDashboard();
+            app.UseHangfireDashboard("/hangfire", new DashboardOptions
+            {
+                Authorization = new [] { new NoDashboardAuthorizationFilter() }
+            });
 
             app.UseEndpoints(endpoints =>
             {
