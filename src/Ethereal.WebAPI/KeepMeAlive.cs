@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Ethereal.WebAPI.Settings;
 using Flurl.Http;
+using NLog;
 
 namespace Ethereal.WebAPI
 {
     public class KeepMeAlive
     {
+        static readonly Logger InternalLogger = LogManager.GetCurrentClassLogger();
         private IFlurlClient client;
         
         public KeepMeAlive(SystemSettings systemSettings)
@@ -25,12 +26,11 @@ namespace Ethereal.WebAPI
                     try
                     {
                         var response = client.Request("api", "hc").GetStringAsync().GetAwaiter().GetResult();
-                        Console.WriteLine(response);
+                        InternalLogger.Info(response);
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e);
-                        throw;
+                        InternalLogger.Error(e);
                     }
                     finally
                     {
