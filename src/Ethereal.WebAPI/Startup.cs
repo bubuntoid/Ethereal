@@ -140,6 +140,8 @@ namespace Ethereal.WebAPI
                 await hubContext.Clients.Clients(connectionIds.Select(s => s.ConnectionId))
                     .SendAsync("onReceiveLog", new {log, status = $"{job.Status}"});
             };
+            
+            new KeepMeAlive(new SystemSettings(Configuration)).Run();
         }
     }
 }

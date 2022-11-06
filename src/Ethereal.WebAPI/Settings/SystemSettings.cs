@@ -29,6 +29,8 @@ namespace Ethereal.WebAPI.Settings
         public TimeSpan DefaultFileLifetime => GetValue<TimeSpan>("DefaultFileLifetime");
         
         public string YouTubeProvider => GetValue<string>("YouTubeProvider");
+        
+        public string Endpoint => GetValue<string>("Endpoint");
 
         public SystemSettings(IConfiguration config)
             : base(config, "System")
