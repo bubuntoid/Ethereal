@@ -126,6 +126,7 @@ namespace Ethereal.WebAPI
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<ProcessingJobLoggerHub>("/logger");
+                endpoints.MapFallbackToAreaController("Index", "Index", "");
             });
 
             runner?.MigrateUp();
