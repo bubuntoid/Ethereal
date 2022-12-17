@@ -78,3 +78,12 @@ Specify path to FFMPEG/yt-dlp executables in **appsetings.json**:
     "YouTubeProvider": "yt-dlp"
   },
 ```
+
+## Development
+### Updating frontend version
+
+1. do frontend changes in angular project
+1. ```cd frontend```
+1. ```export NODE_OPTIONS=--openssl-legacy-provider```
+1. ```ng build --watch```
+1. ```cp -r "./dist/." "../src/Ethereal.WebAPI/Frontend"```

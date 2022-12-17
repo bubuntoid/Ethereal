@@ -1,0 +1,75 @@
+<div class="card">
+    <div class="card-content">
+       <span class="card-title black-text">Ethereal</span>
+       <form>
+        <i class="fa fa-github" aria-hidden="true"></i>
+          <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">video_settings</i>
+                <input id="icon_prefix" type="text" class="validate" [ngModel]="url" (ngModelChange)="onUrlChanged($event)" [ngModelOptions]="{ standalone: true }">
+                <label for="icon_prefix">Youtube video url</label>
+              </div>
+          </div>
+          <div *ngIf="hasError()" class="card-panel red accent-1">{{error}}</div>
+
+          <div class = "row" *ngIf="!hasError() && isCorrectUrl">
+            <div class = "col s8">
+                <div class = "row">
+                  <div class="switch">
+                    <span>&nbsp;Custom description</span>  
+                    <label>
+                      <input type="checkbox" [ngModel]="useCustomDescription" (ngModelChange)="onUseCustomDescriptionChanged($event)" [ngModelOptions]="{ standalone: true }">
+                      <span class="lever"></span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class = "row" style = "align-items: center;justify-content: center;">
+
+                  <svg *ngIf = "isLoadingDescription" class="spinner" viewBox="0 0 50 50">
+                    <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                  </svg>
+
+                  <div class="input-field">
+                    <textarea [ngModel]="description"  *ngIf = "!isLoadingDescription" (ngModelChange)="onDescriptionChanged($event)" [ngModelOptions]="{ standalone: true }" [disabled]="!useCustomDescription" [readonly]="!useCustomDescription" 
+                    id="descripionTextArea" style="height: 300px; resize: none;"></textarea>
+                  </div>
+                </div>
+            </div>
+
+            <div class = "col s4" style = "padding-left: 20px;">
+              <div class = "row">
+                Preview
+              </div>
+
+              <div class = "row" style = "align-items: center;justify-content: center;">
+                
+                <svg *ngIf = "isLoadingChapters" class="spinner" viewBox="0 0 50 50">
+                  <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                </svg>
+
+                <div *ngIf="hasChaptersError()" class="card-panel red accent-1">{{chaptersError}}</div>
+
+                <div style="overflow-y: scroll; height:300px; padding-right: 5px;" *ngIf = "!hasChaptersError() && !isLoadingChapters && previewChapters.length != 0">
+                  <ul class="collection">
+                    <li *ngFor="let chapter of previewChapters; let last = last" class="collection-item">{{chapter.name}}
+                      <ng-container *ngIf="last">
+                        {{ onIsLoadingChaptersChanged(false) }}
+                     </ng-container>
+                    </li>
+                  </ul>
+              </div>
+              </div>
+            </div>
+          </div>
+
+       </form>
+    </div>
+    <div class="card-action right-align">
+      <input type="submit" class="btn red lighten-3 " value="Convert video to mp3" style="margin-right: 10px;" 
+      [disabled]="processing ||hasError() || url.length == 0" (click)="onConvertVideoToMp3ButtonClick()">
+
+       <input type="submit" (click)="onParseChaptersButtonClick()" class="btn red lighten-3 " value="Convert chapters" 
+        [disabled]="processing || previewChapters.length == 0 || hasError() || hasChaptersError()"> 
+    </div>
+ </div>

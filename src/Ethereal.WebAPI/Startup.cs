@@ -1,9 +1,10 @@
 using System;
+using System.IO;
 using System.Linq;
 using Autofac;
 using Ethereal.Application.BackgroundJobs;
 using Ethereal.Application.ProcessingJobLogger;
-using Ethereal.Application.YouTube;
+using Ethereal.Domain.Entities;
 using Ethereal.Domain.Migrations;
 using Ethereal.WebAPI.Contracts;
 using Ethereal.WebAPI.Extensions;
@@ -21,6 +22,7 @@ using FluentMigrator.Runner;
 using Hangfire;
 using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json.Converters;
 
 namespace Ethereal.WebAPI
@@ -77,11 +79,12 @@ namespace Ethereal.WebAPI
                 .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
                 .UseSimpleAssemblyNameTypeSerializer()
                 .UseRecommendedSerializerSettings()
-                .UsePostgreSqlStorage(databaseSettings.ConnectionString, new PostgreSqlStorageOptions
-                {
-                    
-                }));
-            services.AddHangfireServer();
+                .UsePostgreSqlStorage(databaseSettings.ConnectionString, new PostgreSqlStorageOptions()));
+            
+            services.AddHangfireServer(s =>
+            {
+                s.WorkerCount = 20;
+            });
 
             services.AddSwaggerGenNewtonsoftSupport();
 
@@ -114,15 +117,11 @@ namespace Ethereal.WebAPI
 
             app.UseAuthorization();
 
-            app.UseHangfireServer(new BackgroundJobServerOptions
-            {
-                WorkerCount = 20,
-            });
             app.UseHangfireDashboard("/hangfire", new DashboardOptions
             {
                 Authorization = new [] { new NoDashboardAuthorizationFilter() }
             });
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
@@ -134,12 +133,14 @@ namespace Ethereal.WebAPI
             RecurringJob.AddOrUpdate<GarbageCleanerJob>("garbageCleaner",
                 bgJob => bgJob.Execute(TimeSpan.FromMinutes(10)), Cron.Hourly);
 
-            ProcessingJobLogger.OnLog = async (job, log) =>
+            async void OnLog(ProcessingJob job, string log)
             {
                 var connectionIds = SignalR.SignalR.Sessions.Where(s => s.ProcessingJobId == job.Id).ToList();
                 await hubContext.Clients.Clients(connectionIds.Select(s => s.ConnectionId))
-                    .SendAsync("onReceiveLog", new {log, status = $"{job.Status}"});
-            };
+                    .SendAsync("onReceiveLog", new { log, status = $"{job.Status}" });
+            }
+
+            ProcessingJobLogger.OnLog = OnLog;
             
             new KeepMeAlive(new SystemSettings(Configuration)).Run();
         }
