@@ -41,9 +41,10 @@ Ensure that you have new line after each time code.
 * yt-dlp 2021.10.22
 
 ## Backend
-test server endpoint: http://81.177.135.200:322 </br>
-swagger: http://81.177.135.200:322/swagger/index.html </br>
-hangfire dashboard: http://81.177.135.200:322/hangfire
+working app: http://81.177.135.200 </br>
+test server endpoint: http://81.177.135.200/api </br>
+swagger: http://81.177.135.200/swagger/index.html </br>
+hangfire dashboard: http://81.177.135.200/hangfire
 
 ```
 $ chmod +x scripts/run.sh
@@ -78,3 +79,12 @@ Specify path to FFMPEG/yt-dlp executables in **appsetings.json**:
     "YouTubeProvider": "yt-dlp"
   },
 ```
+
+## Development
+### Updating frontend version
+
+1. do frontend changes in angular project
+1. ```cd frontend```
+1. ```export NODE_OPTIONS=--openssl-legacy-provider```
+1. ```ng build --watch```
+1. ```cp -r "./dist/." "../src/Ethereal.WebAPI/Frontend"```

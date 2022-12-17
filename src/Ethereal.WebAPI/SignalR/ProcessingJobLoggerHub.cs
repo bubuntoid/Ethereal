@@ -11,8 +11,8 @@ namespace Ethereal.WebAPI.SignalR
     {
         public override Task OnConnectedAsync()
         {
-            var httpContext = this.Context.GetHttpContext();
-            var queryParam = httpContext.Request.Query.First(x => x.Key == "jobId").Value.First();
+            var httpContext = Context.GetHttpContext();
+            var queryParam = httpContext!.Request.Query.First(x => x.Key == "jobId").Value.First();
             var jobId = Guid.Parse(queryParam);
             
             var session = new WebSocketUserSession

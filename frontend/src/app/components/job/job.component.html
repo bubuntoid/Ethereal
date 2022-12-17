@@ -1,0 +1,52 @@
+<div class="card">
+    <div class="card-content">
+        <div *ngIf="job != undefined">
+       <span class="card-title black-text">{{job.video.title}}</span>
+       <form>
+          <div class="row">
+              <br>
+
+              <div *ngIf = "isFailed()">
+                <div *ngIf="isFailed()" class="card-panel red accent-1">{{error ?? 'Failed. Try again.'}}</div>
+              </div>
+
+              <div *ngIf = "isProcessing()">
+                    <div class = "content">
+                        <div class = "col s2">
+                    <svg class="spinner" viewBox="0 0 50 50">
+                        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                      </svg>
+                    </div>
+
+                    <div class = "col s8">
+                        {{currentLog}}
+                    </div>
+                </div>
+                </div>
+
+                <div *ngIf = "isSucceed()">
+                <div style="overflow-y: scroll; height:300px; padding-right: 5px;" *ngIf = "!isLoadingChapters">
+                    <ul class="collection">
+                        <li class="collection-item avatar" *ngFor="let chapter of job.chapters; let last = last">
+                          <img src="{{chapter.thumbnailUrl}}" alt="" class="circle">
+                          <span class="title">{{chapter.name}}</span>
+                          <p>{{chapter.startTimespan}} - {{chapter.endTimespan}}<br>
+                            Duration: {{chapter.duration}}
+                          </p>
+                          <a href="{{chapter.mp3Url}}?inline=false" class="secondary-content"><i class="material-icons">save_alt</i></a>
+                        </li>
+                    </ul>
+                </div>
+
+                </div>
+
+          </div>
+       </form>
+    </div>
+    </div>
+
+    <div class="card-action right-align" *ngIf="job != undefined">
+        <a style="margin-top: 5px" routerLink="" class = "left">Back</a>
+        <input type="submit" class="btn red lighten-3 " (click)="openUrl(job.zipArchiveUrl)" value="Download ZIP" [disabled]="isProcessing() || isFailed()">
+     </div>
+</div>
