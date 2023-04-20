@@ -3,49 +3,44 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Ethereal.Application.Extensions
+namespace Ethereal.Application.Extensions;
+
+public static class StringExtensions
 {
-    public static class StringExtensions
+    public static bool ContainsTimespan(this string str, out TimeSpan timespan)
     {
-        public static bool ContainsTimespan(this string str, out TimeSpan timespan)
+        var parts = str.Split();
+
+        foreach (var part in parts)
         {
-            var parts = str.Split();
+            var cleaned = new string(part.Where(ch => char.IsDigit(ch) || ch == ':').ToArray());
 
-            foreach (var part in parts)
-            {
-                var cleaned = new string(part.Where(ch => char.IsDigit(ch) || ch == ':').ToArray());
+            if (cleaned.Contains(":") == false && cleaned.Length < 3)
+                continue;
 
-                if (cleaned.Contains(":") == false && cleaned.Length < 3)
-                    continue;
-
-                if (cleaned.TryParseToTimeSpan(out timespan))
-                    return true;
-            }
-
-            timespan = TimeSpan.MaxValue;
-            return false;
+            if (cleaned.TryParseToTimeSpan(out timespan))
+                return true;
         }
 
-        public static string RemoveTimespan(this string str)
-        {
-            var stringBuilder = new StringBuilder();
-            var parts = str.Split();
+        timespan = TimeSpan.MaxValue;
+        return false;
+    }
 
-            foreach (var part in parts)
-            {
-                if (part.ContainsTimespan(out _) == false)
-                {
-                    stringBuilder.Append(part + " ");
-                }
-            }
+    public static string RemoveTimespan(this string str)
+    {
+        var stringBuilder = new StringBuilder();
+        var parts = str.Split();
 
-            return stringBuilder.ToString().Trim();
-        }
+        foreach (var part in parts)
+            if (part.ContainsTimespan(out _) == false)
+                stringBuilder.Append(part + " ");
 
-        public static string RemoveIllegalCharacters(this string str)
-        {
-            var invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars()) + "\"";
-            return invalid.Aggregate(str, (current, c) => current.Replace(c.ToString(), string.Empty));
-        }
+        return stringBuilder.ToString().Trim();
+    }
+
+    public static string RemoveIllegalCharacters(this string str)
+    {
+        var invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars()) + "\"";
+        return invalid.Aggregate(str, (current, c) => current.Replace(c.ToString(), string.Empty));
     }
 }

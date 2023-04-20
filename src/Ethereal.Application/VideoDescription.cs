@@ -1,78 +1,76 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Ethereal.Application.Exceptions;
 using Ethereal.Application.Extensions;
 
-namespace Ethereal.Application
+namespace Ethereal.Application;
+
+public class VideoDescription
 {
-    public class VideoDescription
+    // ReSharper disable once InconsistentNaming
+    private readonly string[] FirstChapterVariants =
     {
-        // ReSharper disable once InconsistentNaming
-        private readonly string[] FirstChapterVariants = {
-            "0:00", 
-            "00:00", 
-            "00:00:00"
-        };
+        "0:00",
+        "00:00",
+        "00:00:00"
+    };
 
-        private string Description { get; }
+    public VideoDescription(string description)
+    {
+        Description = description;
+    }
 
-        public VideoDescription(string description)
+    private string Description { get; }
+
+    public IReadOnlyCollection<VideoChapter> ParseChapters()
+    {
+        if (Description == null)
+            throw new InternalErrorException("Could not parse any chapter");
+
+        var chapters = new List<VideoChapter>();
+
+        var lines = Description.Split("\n").ToList();
+        lines = lines.Count == 1 ? Description.Split(@"\n").ToList() : lines;
+
+        var firstLine = lines.FirstOrDefault(line => FirstChapterVariants.Any(line.Contains));
+        var index = lines.IndexOf(firstLine);
+
+        if (index == -1 || lines.Count == 0)
+            throw new InternalErrorException("Could not parse any chapter");
+
+        var chapterIndex = -1;
+        while (lines.Count > index)
         {
-            Description = description;
-        }
+            var line = lines[index].Trim();
+            index++;
 
-        public IReadOnlyCollection<VideoChapter> ParseChapters()
-        {
-            if (Description == null)
-                throw new InternalErrorException("Could not parse any chapter");
-            
-            var chapters = new List<VideoChapter>();
-
-            var lines = Description.Split("\n").ToList(); 
-            lines = lines.Count == 1 ? Description.Split(@"\n").ToList() : lines;
-            
-            var firstLine = lines.FirstOrDefault(line => FirstChapterVariants.Any(line.Contains));
-            var index = lines.IndexOf(firstLine);
-
-            if (index == -1 || lines.Count == 0)
-                throw new InternalErrorException("Could not parse any chapter");
-            
-            var chapterIndex = -1;
-            while (lines.Count > index)
+            try
             {
-                var line = lines[index].Trim();
-                index++;
-
-                try
-                {
-                    if (line.ContainsTimespan(out var timespan) == false)
-                        continue;
-                    
-                    var chapter = new VideoChapter
-                    {
-                        Index = ++chapterIndex,
-                        Original = line,
-                        StartTimespan = timespan,
-                        Name = line.RemoveTimespan().RemoveIllegalCharacters(),
-                    };
-                    chapters.Add(chapter);
-                }
-                catch
-                {
+                if (line.ContainsTimespan(out var timespan) == false)
                     continue;
-                }
-            }
 
-            for (var i = 0; i < chapters.Count; i++)
+                var chapter = new VideoChapter
+                {
+                    Index = ++chapterIndex,
+                    Original = line,
+                    StartTimespan = timespan,
+                    Name = line.RemoveTimespan().RemoveIllegalCharacters()
+                };
+                chapters.Add(chapter);
+            }
+            catch
             {
-                var currentChapter = chapters.ElementAt(i);
-                currentChapter.EndTimespan = i == chapters.Count - 1
-                    ? (TimeSpan?) null
-                    : chapters.ElementAt(i + 1).StartTimespan;
             }
-
-            return chapters;
         }
+
+        for (var i = 0; i < chapters.Count; i++)
+        {
+            var currentChapter = chapters.ElementAt(i);
+            currentChapter.EndTimespan = i == chapters.Count - 1
+                ? null
+                : chapters.ElementAt(i + 1).StartTimespan;
+        }
+
+        return chapters;
     }
 }

@@ -1,11 +1,10 @@
-﻿namespace Ethereal.Domain.Entities
+﻿namespace Ethereal.Domain.Entities;
+
+public enum ProcessingJobStatus
 {
-    public enum ProcessingJobStatus
-    {
-        Created,
-        Processing,
-        Succeed,
-        Expired,
-        Failed,
-    }
+    Created,
+    Processing,
+    Succeed,
+    Expired,
+    Failed
 }

@@ -10,57 +10,56 @@ using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 
-namespace Ethereal.Application.UnitTests.Tests.Commands
+namespace Ethereal.Application.UnitTests.Tests.Commands;
+
+[Ignore("CI/CD")]
+[TestFixture]
+public class ConvertVideoCommandTests : WithInMemoryDatabaseTestBase
 {
-    [Ignore("CI/CD")]
-    [TestFixture]
-    public class ConvertVideoCommandTests : WithInMemoryDatabaseTestBase
+    [SetUp]
+    public async Task SetUp()
     {
-        private ConvertVideoCommand command;
-        private ProcessingJob job;
-        
-        [SetUp]
-        public async Task SetUp()
+        await Task.Delay(1000);
+        command = Substitute.Resolve<ConvertVideoCommand>();
+        job = new ProcessingJobBuilder(Fixture, Settings).Build();
+        await DbContext.ProcessingJobs.AddAsync(job);
+        await DbContext.SaveChangesAsync();
+
+        await Substitute.Resolve<FetchYoutubeVideoCommand>().ExecuteAsync(job.Id);
+        await Substitute.Resolve<FetchThumbnailsCommand>().ExecuteAsync(job.Id);
+    }
+
+    private ConvertVideoCommand command;
+    private ProcessingJob job;
+
+    [Test]
+    public void JobDoesNotExists_ErrorExpected()
+    {
+        Assert.CatchAsync<NotFoundException>(() => command.ExecuteAsync(Guid.NewGuid()));
+    }
+
+    [Test]
+    public async Task JobExists_StatusChanged()
+    {
+        await command.ExecuteAsync(job.Id);
+
+        var updatedJob = await DbContext.ProcessingJobs.FirstOrDefaultAsync(j => j.Id == job.Id);
+
+        updatedJob.Status.Should().BeEquivalentTo(ProcessingJobStatus.Processing);
+    }
+
+    [Test]
+    // ReSharper disable once IdentifierTypo
+    public async Task VideoSplitted_FilesExistsLocally()
+    {
+        var chapters = job.ParseChapters();
+
+        await command.ExecuteAsync(job.Id);
+
+        foreach (var chapter in chapters)
         {
-            await Task.Delay(1000);
-            command = Substitute.Resolve<ConvertVideoCommand>();
-            job = new ProcessingJobBuilder(Fixture, Settings).Build();
-            await DbContext.ProcessingJobs.AddAsync(job);
-            await DbContext.SaveChangesAsync();
-            
-            await Substitute.Resolve<FetchYoutubeVideoCommand>().ExecuteAsync(job.Id);
-            await Substitute.Resolve<FetchThumbnailsCommand>().ExecuteAsync(job.Id);
-        }
-
-        [Test]
-        public void JobDoesNotExists_ErrorExpected()
-        {
-            Assert.CatchAsync<NotFoundException>(() => command.ExecuteAsync(Guid.NewGuid()));
-        }
-
-        [Test]
-        public async Task JobExists_StatusChanged()
-        {
-            await command.ExecuteAsync(job.Id);
-
-            var updatedJob = await DbContext.ProcessingJobs.FirstOrDefaultAsync(j => j.Id == job.Id);
-            
-            updatedJob.Status.Should().BeEquivalentTo(ProcessingJobStatus.Processing);
-        }
-        
-        [Test]
-        // ReSharper disable once IdentifierTypo
-        public async Task VideoSplitted_FilesExistsLocally()
-        {
-            var chapters = job.ParseChapters();
-
-            await command.ExecuteAsync(job.Id);
-
-            foreach (var chapter in chapters)
-            {
-                var path = Path.Combine(job.GetChapterLocalFilePath(chapter));
-                Assert.That(File.Exists(path));
-            }
+            var path = Path.Combine(job.GetChapterLocalFilePath(chapter));
+            Assert.That(File.Exists(path));
         }
     }
 }

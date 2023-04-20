@@ -3,68 +3,68 @@ using System.Threading.Tasks;
 using Ethereal.Application.Extensions;
 using NLog;
 
-namespace Ethereal.Application
+namespace Ethereal.Application;
+
+public class FfmpegWrapper
 {
-    public class FfmpegWrapper
+    private readonly Logger logger = LogManager.GetCurrentClassLogger();
+
+    public FfmpegWrapper(IEtherealSettings settings)
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
-        private string ExecutablesPath { get; }
+        ExecutablesPath = settings.FfmpegExecutablesPath;
+    }
 
-        public FfmpegWrapper(IEtherealSettings settings)
-        {
-            ExecutablesPath = settings.FfmpegExecutablesPath;
-        }
-        
-        public async Task SaveTrimmedAsync(
-            string path, 
-            string output, 
-            VideoChapter chapter)
-        {
-            logger.Info($"Processing {chapter.Name}...");
+    private string ExecutablesPath { get; }
 
-            using var p = new Process
+    public async Task SaveTrimmedAsync(
+        string path,
+        string output,
+        VideoChapter chapter)
+    {
+        logger.Info($"Processing {chapter.Name}...");
+
+        using var p = new Process
+        {
+            StartInfo =
             {
-                StartInfo =
-                {
-                    UseShellExecute = false,
-                    CreateNoWindow = true,
-                    RedirectStandardOutput = true,
-                    FileName = ExecutablesPath,
-                    Arguments =
-                        $"-ss {chapter.StartTimespan.TotalSeconds} -i \"{path}\" -vn -acodec copy -t {chapter.Duration.Value.TotalSeconds} \"{output}\"",
-                }
-            };
-            p.Start();
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                RedirectStandardOutput = true,
+                FileName = ExecutablesPath,
+                Arguments =
+                    $"-ss {chapter.StartTimespan.TotalSeconds} -i \"{path}\" -vn -acodec copy -t {chapter.Duration.Value.TotalSeconds} \"{output}\""
+            }
+        };
+        p.Start();
 
-            await ComputationExtensions.ComputeElapsedTimeInMillisecondsAsync(
-                $"SaveTrimmedAsync | {chapter.Name}",
-                p.WaitForExitAsync());
-        }
+        await ComputationExtensions.ComputeElapsedTimeInMillisecondsAsync(
+            $"SaveTrimmedAsync | {chapter.Name}",
+            p.WaitForExitAsync());
+    }
 
-        public async Task SaveImageAsync(
-            string path,
-            string output,
-            VideoChapter chapter)
+    public async Task SaveImageAsync(
+        string path,
+        string output,
+        VideoChapter chapter)
+    {
+        logger.Info($"Processing {chapter.Name}...");
+
+        using var p = new Process
         {
-            logger.Info($"Processing {chapter.Name}...");
-            
-            using var p = new Process
+            StartInfo =
             {
-                StartInfo =
-                {
-                    UseShellExecute = false,
-                    CreateNoWindow = true,
-                    RedirectStandardOutput = true,
-                    FileName = ExecutablesPath,
-                    Arguments =
-                        $"-ss {chapter.StartTimespan.TotalSeconds} -i \"{path}\" -frames:v 1 \"{output}\"",
-                }
-            };
-            p.Start();
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                RedirectStandardOutput = true,
+                FileName = ExecutablesPath,
+                Arguments =
+                    $"-ss {chapter.StartTimespan.TotalSeconds} -i \"{path}\" -frames:v 1 \"{output}\""
+            }
+        };
+        p.Start();
 
-            await ComputationExtensions.ComputeElapsedTimeInMillisecondsAsync(
-                $"SaveImageAsync | {chapter.Name}",
-                p.WaitForExitAsync());
-        }
+        await ComputationExtensions.ComputeElapsedTimeInMillisecondsAsync(
+            $"SaveImageAsync | {chapter.Name}",
+            p.WaitForExitAsync());
     }
 }

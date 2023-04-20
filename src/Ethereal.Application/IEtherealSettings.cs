@@ -1,25 +1,24 @@
 ﻿using System;
 
-namespace Ethereal.Application
+namespace Ethereal.Application;
+
+public interface IEtherealSettings
 {
-    public interface IEtherealSettings
-    {
-        string TempPath { get; }
-        
-        string FfmpegExecutablesPath { get; }
+    string TempPath { get; }
 
-        string YtdlpExecutablesPath { get; }
+    string FfmpegExecutablesPath { get; }
 
-        TimeSpan VideoDurationLimit { get; }
-        
-        TimeSpan DownloadingTimeout { get; }
-        
-        string LogsDirectoryName { get; }
+    string YtdlpExecutablesPath { get; }
 
-        string ThumbnailsDirectoryName { get; }
-        
-        string OriginalVideoFileName { get; }
+    TimeSpan VideoDurationLimit { get; }
 
-        TimeSpan DefaultFileLifetime { get; }
-    }
+    TimeSpan DownloadingTimeout { get; }
+
+    string LogsDirectoryName { get; }
+
+    string ThumbnailsDirectoryName { get; }
+
+    string OriginalVideoFileName { get; }
+
+    TimeSpan DefaultFileLifetime { get; }
 }
