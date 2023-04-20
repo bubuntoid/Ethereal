@@ -1,7 +1,6 @@
-﻿namespace Ethereal.Domain
+﻿namespace Ethereal.Domain;
+
+public interface IDatabaseSettings
 {
-    public interface IDatabaseSettings
-    {
-        string ConnectionString { get; }
-    }
+    string ConnectionString { get; }
 }

@@ -4,20 +4,21 @@
 Working preview web application: http://81.177.135.200
 
 ![](./assets/Screenshot_1.png)
-![](./assets/Screenshot_2.png)
+![](./assets/1.png)
+![](./assets/2.png)
 ![](./assets/Screenshot_3.png)
 
 ## Syntax
 There is no strict rule, if youtube recognize chapters from your video then we can parse it without any other additional actions.
 How do youtube chapters work: https://www.tubics.com/blog/youtube-chapters/
 
-Correct (https://www.youtube.com/watch?v=UZ7oOhhPEWU&t=3448s&ab_channel=kneon):
+Correct (https://youtu.be/UZ7oOhhPEWU):
 ```
 1. (0:00) KOPI / KOBASOLO – Swayed in Spring Reiniscence
 2. (04:11) Sakanaction – Shin Takarajima
 3. (09:13) Memai Siren - Nisemono no Utage
 ```
-Correct as well (https://www.youtube.com/watch?v=CU_ruPKWJpc&t=82s&ab_channel=Asthenic):
+Correct as well (https://youtu.be/CU_ruPKWJpc):
 ```
 0:00 Lazerhawk - So Far Away 
 https://soundcloud.com/lazerhawk/so-f...
@@ -37,14 +38,14 @@ Ensure that you have new line after each time code.
 ## Stack / Dependencies
 * PostgreSQL 13 
 * FFMPEG 4.2.4-1ubuntu0.1
-* .NET 5.0 (.NET Runtime 5.0.9)
-* yt-dlp 2021.10.22
+* .NET 6.0 (ASP.NET Core Runtime 6.0.16)
+* yt-dlp 2023.03.04
 
 ## Backend
 working app: http://81.177.135.200 </br>
-test server endpoint: http://81.177.135.200/api </br>
 swagger: http://81.177.135.200/swagger/index.html </br>
-hangfire dashboard: http://81.177.135.200/hangfire
+hangfire dashboard: http://81.177.135.200/hangfire </br>
+healthcheck: http://81.177.135.200/api/hc
 
 ```
 $ chmod +x scripts/run.sh
@@ -87,4 +88,5 @@ Specify path to FFMPEG/yt-dlp executables in **appsetings.json**:
 1. ```cd frontend```
 1. ```export NODE_OPTIONS=--openssl-legacy-provider```
 1. ```ng build --watch```
-1. ```cp -r "./dist/." "../src/Ethereal.WebAPI/Frontend"```
+1. ```rm ../src/Ethereal.WebAPI/Frontend/*```
+1. ```cp -r "./dist/ethereal/." "../src/Ethereal.WebAPI/Frontend"```

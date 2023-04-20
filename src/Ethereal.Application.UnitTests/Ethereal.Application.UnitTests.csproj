@@ -1,33 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
 
-    <IsPackable>false</IsPackable>
+        <IsPackable>false</IsPackable>
 
-    <AssemblyName>Ethereal.Application.UnitTests</AssemblyName>
+        <AssemblyName>Ethereal.Application.UnitTests</AssemblyName>
 
-    <RootNamespace>Ethereal.Application.UnitTests</RootNamespace>
-  </PropertyGroup>
+        <RootNamespace>Ethereal.Application.UnitTests</RootNamespace>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AutofacContrib.NSubstitute" Version="7.0.0" />
-    <PackageReference Include="AutoFixture" Version="4.17.0" />
-    <PackageReference Include="FluentAssertions" Version="5.10.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.7" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
-    <PackageReference Include="NUnit" Version="3.13.1" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
-    <PackageReference Include="coverlet.collector" Version="3.0.2" />
-    <PackageReference Include="Xabe.FFmpeg.Downloader" Version="5.0.2" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="AutofacContrib.NSubstitute" Version="7.0.0"/>
+        <PackageReference Include="AutoFixture" Version="4.17.0"/>
+        <PackageReference Include="FluentAssertions" Version="5.10.3"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.7"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4"/>
+        <PackageReference Include="NUnit" Version="3.13.1"/>
+        <PackageReference Include="NUnit3TestAdapter" Version="3.17.0"/>
+        <PackageReference Include="coverlet.collector" Version="3.0.2"/>
+        <PackageReference Include="Xabe.FFmpeg.Downloader" Version="5.0.2"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Ethereal.Application\Ethereal.Application.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Ethereal.Application\Ethereal.Application.csproj"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\sample.mp4" />
-  </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="Resources\sample.mp4"/>
+    </ItemGroup>
 
 </Project>

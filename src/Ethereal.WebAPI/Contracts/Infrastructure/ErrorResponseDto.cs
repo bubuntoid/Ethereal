@@ -1,9 +1,8 @@
-﻿namespace Ethereal.WebAPI.Contracts.Infrastructure
+﻿namespace Ethereal.WebAPI.Contracts.Infrastructure;
+
+public class ErrorResponseDto
 {
-    public class ErrorResponseDto
-    {
-        public string ErrorCode { get; set; }
-        
-        public string ErrorMessage { get; set; }
-    }
+    public string ErrorCode { get; set; }
+
+    public string ErrorMessage { get; set; }
 }

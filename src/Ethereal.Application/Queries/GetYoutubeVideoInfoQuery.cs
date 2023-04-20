@@ -1,29 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Ethereal.Application.Extensions;
+﻿using System.Threading.Tasks;
 using Ethereal.Application.YouTube;
 using Ethereal.Domain.Entities;
 
-namespace Ethereal.Application.Queries
-{
-    public class GetYoutubeVideoInfoQuery
-    {
-        private readonly IYoutubeProvider youtubeProvider;
+namespace Ethereal.Application.Queries;
 
-        public GetYoutubeVideoInfoQuery(IYoutubeProvider youtubeProvider)
+public class GetYoutubeVideoInfoQuery
+{
+    private readonly IYoutubeProvider youtubeProvider;
+
+    public GetYoutubeVideoInfoQuery(IYoutubeProvider youtubeProvider)
+    {
+        this.youtubeProvider = youtubeProvider;
+    }
+
+    public async Task<ProcessingJobVideo> ExecuteAsync(string url)
+    {
+        var youtubeVideo = await youtubeProvider.GetVideoAsync(url);
+        return new ProcessingJobVideo
         {
-            this.youtubeProvider = youtubeProvider;
-        }
-        
-        public async Task<ProcessingJobVideo> ExecuteAsync(string url)
-        {
-            var youtubeVideo = await youtubeProvider.GetVideoAsync(url);
-            return new ProcessingJobVideo
-            {
-                Description = youtubeVideo.Description,
-                Title = youtubeVideo.Title,
-            };
-        }
+            Description = youtubeVideo.Description,
+            Title = youtubeVideo.Title
+        };
     }
 }

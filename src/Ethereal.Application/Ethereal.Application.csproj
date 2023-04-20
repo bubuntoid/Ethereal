@@ -1,22 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>Ethereal.Application</AssemblyName>
-    <RootNamespace>Ethereal.Application</RootNamespace>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <AssemblyName>Ethereal.Application</AssemblyName>
+        <RootNamespace>Ethereal.Application</RootNamespace>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Hangfire" Version="1.7.28" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
-    <PackageReference Include="NLog" Version="4.5.11" />
-    <PackageReference Include="SharpGrabber" Version="2.0.2" />
-    <PackageReference Include="SharpGrabber.YouTube" Version="1.1.0" />
-    <PackageReference Include="YoutubeExplode" Version="6.0.5" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Hangfire" Version="1.7.28"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9"/>
+        <PackageReference Include="NLog" Version="4.5.11"/>
+        <PackageReference Include="SharpGrabber" Version="2.0.2"/>
+        <PackageReference Include="SharpGrabber.YouTube" Version="1.1.0"/>
+        <PackageReference Include="YoutubeExplode" Version="6.0.5"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Ethereal.Domain\Ethereal.Domain.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Ethereal.Domain\Ethereal.Domain.csproj"/>
+    </ItemGroup>
 
 </Project>

@@ -1,17 +1,31 @@
-﻿using Ethereal.WebAPI.Filters;
+﻿using System.Threading.Tasks;
+using Ethereal.Domain;
+using Ethereal.Domain.Entities;
+using Ethereal.WebAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace Ethereal.WebAPI.Controllers
+namespace Ethereal.WebAPI.Controllers;
+
+[ApiController]
+[Route("api")]
+[ServiceFilter(typeof(ExceptionFilter))]
+public class MetaController : ControllerBase
 {
-    [ApiController]
-    [Route("api")]
-    [ServiceFilter(typeof(ExceptionFilter))]
-    public class MetaController : ControllerBase
+    private readonly EtherealDbContext dbContext;
+
+    public MetaController(EtherealDbContext dbContext)
     {
-        [HttpGet("hc")]
-        public IActionResult HealthCheck()
+        this.dbContext = dbContext;
+    }
+
+    [HttpGet("hc")]
+    public async Task<IActionResult> HealthCheck()
+    {
+        return Ok(new
         {
-            return Ok(new {status = "ok"});
-        }
+            status = "ok",
+            totalProcessedJobs = await dbContext.ProcessingJobs.CountAsync(),
+        });
     }
 }

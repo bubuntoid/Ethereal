@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace Ethereal.WebAPI.SignalR
+namespace Ethereal.WebAPI.SignalR;
+
+public class WebSocketUserSession
 {
-    public class WebSocketUserSession
-    {
-        public string ConnectionId { get; set; }
-        
-        public Guid ProcessingJobId { get; set; }
-    }
+    public string ConnectionId { get; set; }
+
+    public Guid ProcessingJobId { get; set; }
 }

@@ -1,11 +1,10 @@
-﻿namespace Ethereal.Application.Exceptions
+﻿namespace Ethereal.Application.Exceptions;
+
+public class InvalidOperationException : EtherealException
 {
-    public class InvalidOperationException : EtherealException
+    public InvalidOperationException(string errorMessage = "Invalid operation",
+        string errorCode = "invalid_operation")
+        : base(errorCode, errorMessage)
     {
-        public InvalidOperationException(string errorMessage = "Invalid operation",
-            string errorCode = "invalid_operation")
-            : base(errorCode, errorMessage)
-        {
-        }
     }
 }

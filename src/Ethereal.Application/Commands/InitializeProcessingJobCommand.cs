@@ -11,75 +11,74 @@ using Ethereal.Domain;
 using Ethereal.Domain.Entities;
 using Hangfire;
 
-namespace Ethereal.Application.Commands
+namespace Ethereal.Application.Commands;
+
+public class InitializeProcessingJobCommand
 {
-    public class InitializeProcessingJobCommand
+    private readonly IBackgroundJobClient backgroundJobClient;
+    private readonly EtherealDbContext dbContext;
+    private readonly IEtherealSettings settings;
+    private readonly IYoutubeProvider youtubeProvider;
+
+    public InitializeProcessingJobCommand(EtherealDbContext dbContext, IEtherealSettings settings,
+        IBackgroundJobClient backgroundJobClient, IYoutubeProvider youtubeProvider)
     {
-        private readonly EtherealDbContext dbContext;
-        private readonly IEtherealSettings settings;
-        private readonly IBackgroundJobClient backgroundJobClient;
-        private readonly IYoutubeProvider youtubeProvider;
+        this.dbContext = dbContext;
+        this.settings = settings;
+        this.backgroundJobClient = backgroundJobClient;
+        this.youtubeProvider = youtubeProvider;
+    }
 
-        public InitializeProcessingJobCommand(EtherealDbContext dbContext, IEtherealSettings settings,
-            IBackgroundJobClient backgroundJobClient, IYoutubeProvider youtubeProvider)
+    public async Task<Guid> ExecuteAsync(string url, string description = null)
+    {
+        var youtubeVideo = await youtubeProvider.GetVideoAsync(url);
+
+        if (youtubeVideo.Duration.HasValue == false || youtubeVideo.Duration.Value == TimeSpan.Zero)
+            throw new InternalErrorException("Live streams not supported");
+
+        if (youtubeVideo.Duration.Value > settings.VideoDurationLimit)
+            throw new InternalErrorException($"Video duration exceeded time limit ({settings.VideoDurationLimit})");
+
+        var desc = description ?? youtubeVideo.Description;
+        // var existingJob = await dbContext.ProcessingJobs
+        //     .Where(j => j.Status != ProcessingJobStatus.Expired)
+        //     .Where(j => j.Status != ProcessingJobStatus.Failed)
+        //     .Where(j => j.Video.Description == desc)
+        //     .FirstOrDefaultAsync(j => j.Video.Id == youtubeVideo.Id.Value);
+        // 
+        // if (existingJob != null)
+        //     return existingJob.Id;
+
+        var job = new ProcessingJob
         {
-            this.dbContext = dbContext;
-            this.settings = settings;
-            this.backgroundJobClient = backgroundJobClient;
-            this.youtubeProvider = youtubeProvider;
-        }
+            Id = Guid.NewGuid(),
+            Status = ProcessingJobStatus.Created,
+            CreatedDate = DateTime.UtcNow,
 
-        public async Task<Guid> ExecuteAsync(string url, string description = null)
-        {
-            var youtubeVideo = await youtubeProvider.GetVideoAsync(url);
-
-            if (youtubeVideo.Duration.HasValue == false || youtubeVideo.Duration.Value == TimeSpan.Zero)
-                throw new InternalErrorException("Live streams not supported");
-
-            if (youtubeVideo.Duration.Value > settings.VideoDurationLimit)
-                throw new InternalErrorException($"Video duration exceeded time limit ({settings.VideoDurationLimit})");
-                
-            var desc = description ?? youtubeVideo.Description;
-            // var existingJob = await dbContext.ProcessingJobs
-            //     .Where(j => j.Status != ProcessingJobStatus.Expired)
-            //     .Where(j => j.Status != ProcessingJobStatus.Failed)
-            //     .Where(j => j.Video.Description == desc)
-            //     .FirstOrDefaultAsync(j => j.Video.Id == youtubeVideo.Id.Value);
-            // 
-            // if (existingJob != null)
-            //     return existingJob.Id;
-            
-            var job = new ProcessingJob
+            Video = new ProcessingJobVideo
             {
-                Id = Guid.NewGuid(),
-                Status = ProcessingJobStatus.Created,
-                CreatedDate = DateTime.UtcNow,
-                
-                Video = new ProcessingJobVideo
-                {
-                    Id = youtubeVideo.Id,
-                    Url = url,
-                    Title = youtubeVideo.Title,
-                    OriginalDescription = youtubeVideo.Description,
-                    Description = desc,
-                    Duration = youtubeVideo.Duration.GetValueOrDefault(),
-                },
-            };
+                Id = youtubeVideo.Id,
+                Url = url,
+                Title = youtubeVideo.Title,
+                OriginalDescription = youtubeVideo.Description,
+                Description = desc,
+                Duration = youtubeVideo.Duration.GetValueOrDefault()
+            }
+        };
 
-            var chapters = job.ParseChapters();
-            if (chapters?.Any() == false)
-                throw new NotFoundException("Chapters not found");
-            
-            job.LocalPath = Path.Combine(settings.TempPath, $"{job.Id}");
-            Directory.CreateDirectory(job.LocalPath);
-            
-            await dbContext.ProcessingJobs.AddAsync(job);
-            await dbContext.SaveChangesAsync();
+        var chapters = job.ParseChapters();
+        if (chapters?.Any() == false)
+            throw new NotFoundException("Chapters not found");
 
-            await job.LogAsync("Job created");
-            backgroundJobClient.Enqueue<InitializeJob>(bgJob => bgJob.Execute(job.Id));
+        job.LocalPath = Path.Combine(settings.TempPath, $"{job.Id}");
+        Directory.CreateDirectory(job.LocalPath);
 
-            return job.Id;
-        }
+        await dbContext.ProcessingJobs.AddAsync(job);
+        await dbContext.SaveChangesAsync();
+
+        await job.LogAsync("Job created");
+        backgroundJobClient.Enqueue<InitializeJob>(bgJob => bgJob.Execute(job.Id));
+
+        return job.Id;
     }
 }

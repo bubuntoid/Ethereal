@@ -1,42 +1,38 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Ethereal.Application.Exceptions;
 using Ethereal.Application.Extensions;
 using Ethereal.Domain;
-using Ethereal.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using InvalidOperationException = System.InvalidOperationException;
 
-namespace Ethereal.Application.Queries
+namespace Ethereal.Application.Queries;
+
+public class GetLogFilePathQuery
 {
-    public class GetLogFilePathQuery
+    private readonly EtherealDbContext dbContext;
+    private readonly IEtherealSettings settings;
+
+    public GetLogFilePathQuery(EtherealDbContext dbContext, IEtherealSettings settings)
     {
-        private readonly EtherealDbContext dbContext;
-        private readonly IEtherealSettings settings;
+        this.dbContext = dbContext;
+        this.settings = settings;
+    }
 
-        public GetLogFilePathQuery(EtherealDbContext dbContext, IEtherealSettings settings)
-        {
-            this.dbContext = dbContext;
-            this.settings = settings;
-        }
+    public async Task<string> ExecuteAsync(Guid jobId)
+    {
+        var job = await dbContext.ProcessingJobs
+            .Include(j => j.Video)
+            .FirstOrDefaultAsync(j => j.Id == jobId);
 
-        public async Task<string> ExecuteAsync(Guid jobId)
-        {
-            var job = await dbContext.ProcessingJobs
-                .Include(j => j.Video)
-                .FirstOrDefaultAsync(j => j.Id == jobId);
+        if (job == null)
+            throw new NotFoundException("Job not found");
 
-            if (job == null)
-                throw new NotFoundException("Job not found");
+        var path = Path.Combine(job.LocalPath, job.GetLogFilePath(settings));
 
-            var path = Path.Combine(job.LocalPath, job.GetLogFilePath(settings));
+        if (File.Exists(path) == false)
+            throw new NotFoundException("File not found");
 
-            if (File.Exists(path) == false)
-                throw new NotFoundException("File not found");
-
-            return path;
-        }
+        return path;
     }
 }

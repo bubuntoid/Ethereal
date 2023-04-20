@@ -16,7 +16,7 @@
             <div class = "col s8">
                 <div class = "row">
                   <div class="switch">
-                    <span>&nbsp;Custom description</span>  
+                    <span>&nbsp;Specify timecodes manually</span>  
                     <label>
                       <input type="checkbox" [ngModel]="useCustomDescription" (ngModelChange)="onUseCustomDescriptionChanged($event)" [ngModelOptions]="{ standalone: true }">
                       <span class="lever"></span>
@@ -66,10 +66,10 @@
        </form>
     </div>
     <div class="card-action right-align">
-      <input type="submit" class="btn red lighten-3 " value="Convert video to mp3" style="margin-right: 10px;" 
-      [disabled]="processing ||hasError() || url.length == 0" (click)="onConvertVideoToMp3ButtonClick()">
+      <input type="submit" class="btn red lighten-3 " value="Download" style="margin-right: 10px;" 
+      [disabled]="processing || hasError() || url.length == 0" (click)="onConvertVideoToMp3ButtonClick()">
 
-       <input type="submit" (click)="onParseChaptersButtonClick()" class="btn red lighten-3 " value="Convert chapters" 
+       <input type="submit" (click)="onParseChaptersButtonClick()" class="btn red lighten-3 " value="Split chapters" 
         [disabled]="processing || previewChapters.length == 0 || hasError() || hasChaptersError()"> 
     </div>
  </div>

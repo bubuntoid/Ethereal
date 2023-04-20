@@ -1,7 +1,6 @@
-﻿namespace Ethereal.WebAPI.Contracts
+﻿namespace Ethereal.WebAPI.Contracts;
+
+public class GetYoutubeDescriptionRequestDto
 {
-    public class GetYoutubeDescriptionRequestDto
-    {
-        public string Url { get; set; }
-    }
+    public string Url { get; set; }
 }

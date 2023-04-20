@@ -1,12 +1,11 @@
 ﻿using Hangfire.Dashboard;
 
-namespace Ethereal.WebAPI.Filters
+namespace Ethereal.WebAPI.Filters;
+
+public class NoDashboardAuthorizationFilter : IDashboardAuthorizationFilter
 {
-    public class NoDashboardAuthorizationFilter : IDashboardAuthorizationFilter
+    public bool Authorize(DashboardContext context)
     {
-        public bool Authorize(DashboardContext context)
-        {
-            return true;
-        }
+        return true;
     }
 }
