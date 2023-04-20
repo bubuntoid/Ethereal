@@ -25,8 +25,7 @@ public class MetaController : ControllerBase
         return Ok(new
         {
             status = "ok",
-            totalJobs = await dbContext.ProcessingJobs.CountAsync(),
-            succeedJobs = await dbContext.ProcessingJobs.CountAsync(s => s.Status == ProcessingJobStatus.Succeed)
+            totalProcessedJobs = await dbContext.ProcessingJobs.CountAsync(),
         });
     }
 }
