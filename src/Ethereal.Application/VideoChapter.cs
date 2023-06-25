@@ -21,6 +21,8 @@ public class VideoChapter
 
     public string Name { get; set; }
 
+    public string UniqueName { get; set; }
+    
     public TimeSpan StartTimespan { get; set; }
 
     public TimeSpan? EndTimespan { get; set; }

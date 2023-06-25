@@ -42,6 +42,7 @@ public class FetchYoutubeVideoCommand
 
         var cts = new CancellationTokenSource();
         var timeoutDate = DateTime.UtcNow.Add(settings.DownloadingTimeout);
+        // todo: refactor this
         var thread = new Thread(async () =>
         {
             while (true)

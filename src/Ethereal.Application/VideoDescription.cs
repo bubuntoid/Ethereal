@@ -56,10 +56,20 @@ public class VideoDescription
                     StartTimespan = timespan,
                     Name = line.RemoveTimespan().RemoveIllegalCharacters()
                 };
+                
+                chapter.UniqueName = chapter.Name;
+
+                var duplicatesCount = chapters.Count(s => s.Name == chapter.Name);
+                if (duplicatesCount > 0)
+                {
+                    chapter.UniqueName += $" ({duplicatesCount + 1})";
+                }
+                
                 chapters.Add(chapter);
             }
             catch
             {
+                // ignored
             }
         }
 

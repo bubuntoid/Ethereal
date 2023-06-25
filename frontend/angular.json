@@ -102,5 +102,8 @@
       }
     }
   },
-  "defaultProject": "ethereal"
+  "defaultProject": "ethereal",
+  "cli": {
+    "analytics": false
+  }
 }

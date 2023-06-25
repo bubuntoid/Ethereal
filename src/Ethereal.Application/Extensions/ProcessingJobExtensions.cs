@@ -23,7 +23,7 @@ public static class ProcessingJobExtensions
 
     public static string GetChapterLocalFilePath(this ProcessingJob job, VideoChapter chapter)
     {
-        return Path.Combine(job.LocalPath, $"{chapter.Name.RemoveIllegalCharacters()}.mp4");
+        return Path.Combine(job.LocalPath, $"{chapter.UniqueName.RemoveIllegalCharacters()}.mp4");
     }
 
     public static string GetChapterLocalThumbnailFilePath(this ProcessingJob job, VideoChapter chapter, IEtherealSettings settings)
