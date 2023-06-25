@@ -8,7 +8,7 @@ using Xabe.FFmpeg.Downloader;
 
 namespace Ethereal.Application.UnitTests;
 
-public class WithInMemoryDatabaseTestBase
+public abstract class WithInMemoryDatabaseTestBase
 {
     protected TestSettings Settings;
 
