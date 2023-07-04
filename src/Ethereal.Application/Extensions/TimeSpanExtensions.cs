@@ -10,9 +10,7 @@ public static bool TryParseToTimeSpan(this string str, out TimeSpan timespan)
     // 0:00
     // 00:00
     // 00:00:00
-    // m:ss
-    // mm:ss
-
+    
     if (str.Length == 4) // m:ss
     {
         var parts = str.Split(':');
