@@ -90,3 +90,9 @@ Specify path to FFMPEG/yt-dlp executables in **appsetings.json**:
 1. ```ng build --watch```
 1. ```rm ../src/Ethereal.WebAPI/Frontend/*```
 1. ```cp -r "./dist/ethereal/." "../src/Ethereal.WebAPI/Frontend"```
+
+## Linux issues
+If video downloading stage is skipping and job`s outcome results is not valid mp4/mp3 files - update yt-dlp by following this command:
+```
+yt-dlp -U
+```
