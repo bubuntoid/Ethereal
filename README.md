@@ -1,7 +1,8 @@
 # Ethereal
 **Ethereal** is a service that splitting youtube video chapters into mp3 files using just url and (optionally) timecodes. For most of processing operations it uses [FFMPEG](https://www.ffmpeg.org/) and [yt-dlp](https://www.videohelp.com/software/yt-dlp).
 
-Working preview web application: http://81.177.135.200
+
+Working preview web application: http://81.177.135.200 (*TEMPORARY NOT WORKING DUE TO SERVER`S TERRITORIAL ISSUES WITH YOUTUBE SERVICES*)
 
 ![](./assets/Screenshot_1.png)
 ![](./assets/1.png)
