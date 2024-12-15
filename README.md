@@ -2,7 +2,7 @@
 **Ethereal** is a service that splitting youtube video chapters into mp3 files using just url and (optionally) timecodes. For most of processing operations it uses [FFMPEG](https://www.ffmpeg.org/) and [yt-dlp](https://www.videohelp.com/software/yt-dlp).
 
 
-Working preview web application: http://81.177.135.200 (*TEMPORARY NOT WORKING DUE TO SERVER`S TERRITORIAL ISSUES WITH YOUTUBE SERVICES*)
+Working preview web application: http://ovz2.j6415456.pxlzp.vps.myjino.ru/ (*TEMPORARY NOT WORKING DUE TO SERVER`S TERRITORIAL ISSUES WITH YOUTUBE SERVICES*)
 
 ![](./assets/Screenshot_1.png)
 ![](./assets/1.png)
@@ -43,10 +43,10 @@ Ensure that you have new line after each time code.
 * yt-dlp 2023.03.04
 
 ## Backend
-working app: http://81.177.135.200 </br>
-swagger: http://81.177.135.200/swagger/index.html </br>
-hangfire dashboard: http://81.177.135.200/hangfire </br>
-healthcheck: http://81.177.135.200/api/hc
+working app: http://ovz2.j6415456.pxlzp.vps.myjino.ru/ </br>
+swagger: http://ovz2.j6415456.pxlzp.vps.myjino.ru/swagger/index.html </br>
+hangfire dashboard: http://ovz2.j6415456.pxlzp.vps.myjino.ru/hangfire </br>
+healthcheck: http://ovz2.j6415456.pxlzp.vps.myjino.ru/api/hc
 
 ```
 $ chmod +x scripts/run.sh
