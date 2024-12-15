@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: "http://81.177.135.200:80",
+  version: "2.4.1.0"
 };
 
 /*
