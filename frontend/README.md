@@ -1,7 +1,7 @@
 # Ethereal.UI
 Ethereal frontend project repository.
 
-Working preview web application: http://81.177.135.200/ <br>
+Working preview web application: http://ovz2.j6415456.pxlzp.vps.myjino.ru/ <br>
 Tested with [Ethereal](https://github.com/bubuntoid/Ethereal) (2.0)
 
 ## Stack / Dependencies
