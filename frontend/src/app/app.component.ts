@@ -9,6 +9,6 @@ import { environment } from 'src/environments/environment';
 export class AppComponent {
   version: string;
   constructor(){
-    this.version = environment.apiUrl;
+    this.version = environment.version;
   }
 }
